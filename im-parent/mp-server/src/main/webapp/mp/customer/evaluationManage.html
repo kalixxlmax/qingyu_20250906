@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/mp/css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+
+     <!-- 评价管理  -->
+    <div class="layui-row">
+        <div id="evaluation_table" class="layui-card" style="margin-top: 1%;">
+            <div class="layui-card-header" style="text-align: center;">
+                <!-- <p data-locale="evaluationList">客服列表</p> -->
+            </div>
+            <div class="layui-card-body">
+                <table id="evaluation_list" lay-filter="evaluation_list" style="table-layout:fixed;word-break:break-all;" >
+                    
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script type="text/html" id="evaluationTopBar">
+            <input type="text" name="" class="layui-input search_evaluation_keyword" style="width: 15%;display: inline" placeholder="客服Id" data-locale="service_name" >
+            <a class="layui-btn layui-btn-sm"  lay-event="search_evaluation" data-locale="menu_search">搜索</a>
+            <!-- <a class="layui-btn layui-btn-sm"  lay-event="search_fans" data-locale="addService">添加客服</a> -->
+    </script>
+
+    <!-- 表格操作列 -->
+	<script type="text/html" id="evaluationOptionBar">
+	    <!-- <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">添加子菜单</a> -->
+	    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del_evaluation">删除</a>
+	</script>
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="/mp/common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+    
+
+    <script type="text/javascript">
+        
+        layui.use(['layer','table'],function(){
+            var layer = parent.layer === undefined ? layui.layer : top.layer,
+                $ = layui.jquery,
+                table = layui.table;
+
+                //评价列表
+                var tableInEvaluation = table.render({
+                    elem: '#evaluation_list'
+                    ,toolbar: '#evaluationTopBar'
+                    ,url: request(mpCommon.serviceUrl+"/customerService/admin/evaluateList")
+                    ,id: 'evaluation_list'
+                    ,page: true
+                    ,curr: 0
+                    ,limit: mpCommon.limit
+                    ,limits: mpCommon.limits
+                    ,groups: 7
+                    ,cols: [[ //表头
+
+                        {field: 'id', title: mpLanguage.getLanguageName('record_Id'), width:150}
+                        ,{field: 'service_userId', title: mpLanguage.getLanguageName('service_Id'), width:100}
+                        ,{field: 'service_name', title:  mpLanguage.getLanguageName('service_nickName'),sort:'true', width:150}
+                        ,{field: 'visitor_userId', title: mpLanguage.getLanguageName('evaluation_Id'),sort:'true', width:130}
+                        // ,{field: 'visitor_name', title: mpLanguage.getLanguageName('evaluation_nickName'), width:150}
+
+                        ,{field: 'grade', title: mpLanguage.getLanguageName('select_score'),sort:'true', width:100}
+                        ,{field: 'content', title: mpLanguage.getLanguageName('evaluation_content'), width:300}
+                        ,{field: 'createTime', title: mpLanguage.getLanguageName('create_time'),sort:'true', width:200,templet:function(d){
+                                return (new Date(d.createTime)).format("yyyy-MM-dd hh:mm:ss");
+                            }}
+                        ,{fixed: 'right', width: 150,title: mpLanguage.getLanguageName('operation'), align:'center', toolbar: '#evaluationOptionBar'}
+                    ]]
+                    ,done:function(res, curr, count){
+                        // checkRequst(res);
+
+                       //initLanguage();
+                        layui.form.render();
+                    }
+
+                });
+
+
+                //表头监听
+                table.on('toolbar(evaluation_list)', function(obj){
+                    
+                    var layEvent = obj.event,  data = obj.data;
+                   
+                    if (layEvent === 'search_evaluation'){
+                        //重载表格数据
+                        tableInEvaluation.reload({
+                          where: { //设定异步数据接口的额外参数，任意设
+                            keyword : $(".search_evaluation_keyword").val()
+                          }
+                          ,page: {
+                            curr: 1 //重新从第 1 页开始
+                          }
+                        });
+                    }
+
+                });
+
+                // 菜单操作项
+                table.on('tool(evaluation_list)', function(obj){
+                    var layEvent = obj.event,  data = obj.data;
+                   
+                    if(layEvent==='del_evaluation'){ //删除
+
+
+                        layer.confirm('确定删除该评价吗？', function(index){
+                              mpCommon.invoke2({
+                                url : '/customerService/admin/deleteEvaluate',
+                                data : {
+                                    evaluateId : data.id
+                                },
+                                success : function(result) {
+                                    if(result.resultCode == 1){
+                                        layer.msg(mpLanguage.getLanguageName('delete_success'),{"icon":1});
+                                        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                                    }else{
+                                        layer.msg(result.resultMsg,{"icon":2});
+                                    }
+                                },
+                                error : function(result) {
+                                }
+                            });
+
+                          
+                          layer.close(index);
+
+                        });
+                    }
+
+                });
+
+
+
+       });
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+</body>
+</html>

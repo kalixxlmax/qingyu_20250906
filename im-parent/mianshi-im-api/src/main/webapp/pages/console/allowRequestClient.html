@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>授权IP 管理</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<link href="/pages/console/css/allowRequestClient.css" rel="stylesheet">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+
+<!--用户列表 筛选-->
+<div class="layui-row background_white title_menu_place userListSearch">
+    <div class="searchModule layui-form">
+        <!--关键字-->
+        <div class="searchBranch">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">IP地址：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input ipWord" placeholder="请输入">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch characters_center">
+            <button class="layui-btn search_word motif_button_style" style="margin-top: -2.5px">搜索</button>
+        </div>
+    </div>
+</div>
+
+<div class="layui-row">
+    <!-- 授权IP列表 -->
+    <div id="bindingSDKList" class="layui-card module_interval">
+        <div class="layui-card-header user_table_open table_topTitle_space">
+            <button class="layui-btn motif_button_style allowRequestClient-add" onclick="allowClient.saveAllowRequestClient()">新 增</button>
+        </div>
+        <div class="layui-card-header layui_card_header_title layui_card_header_spare">授权IP管理</div>
+        <div class="layui-card-body layui_card_body_top">
+            <table id="allow_client_table" lay-filter="allow_client_table"></table>
+        </div>
+    </div>
+</div>
+
+<!--新增 修改-->
+<div class="layui-form saveAllowClient" style="display: none;">
+    <div class="layui-form-item allowIdDiv" style="display: none;">
+        <label class="layui-form-label">ID：</label>
+        <div class="layui-input-block">
+            <input type="text" placeholder="请输入" class="layui-input allowId" readonly="readonly">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">IP：</label>
+        <div class="layui-input-block">
+            <input type="text" placeholder="请输入" class="layui-input allowIp">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">状态：</label>
+        <div class="layui-input-block">
+            <select class="allowStatus">
+                <option value="">请选择</option>
+                <option value="1">正常</option>
+                <option value="-1">禁用</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">描述：</label>
+        <div class="layui-input-block">
+            <input type="text" placeholder="请输入" class="layui-input allowDesc">
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="bindingSDKListBar">
+    <a class="layui-btn layui-btn-xs table_default_btn allowRequestClient-edit" lay-event="update">修改</a>
+    <a class="layui-btn layui-btn-xs table_default_btn allowRequestClient-delete" lay-event="delete">删除</a>
+</script>
+
+<input id="binding_limlt" value="15" type="hidden">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="/pages/console/js/allowRequestClient.js"></script>
+</body>
+</html>

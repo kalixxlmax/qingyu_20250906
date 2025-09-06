@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>测试</title>
+    <link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/pages/console/css/public.css" rel="stylesheet">
+    <link href="/pages/common/scrollbar/nanoscroller.css" rel="stylesheet">
+</head>
+<body>
+
+<button class="layui-btn layui-btn-primary" onclick="test()">获取当前时间</button>
+
+
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<!-- 滚动条相关  -->
+<script type="text/javascript" src="/pages/common/scrollbar/jquery.nanoscroller.js"></script>
+<script type="text/javascript" src="/pages/common/scrollbar/jquery.nicescroll.js"></script>
+
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="/pages/console/js/demo.js"></script>
+<script>
+	function test() {
+		var date = new Date();
+		var aaa = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
+
+
+		var time = new Date().getTime();
+		var halfYear = 365 / 2 * 24 * 3600 * 1000;
+		var pastResult = time - halfYear;
+
+		var pastDate = new  Date(pastResult);
+		var aaa = pastDate.getFullYear() + "-" + (pastDate.getMonth()+1) + "-" + pastDate.getDate();
+		console.log(aaa);
+	}
+
+	function thisTime() {
+		var nowDate = new Date();
+		return nowDate.getFullYear() + "-" + (nowDate.getMonth()+1) + "-" + nowDate.getDate();
+	}
+	
+	function beforeHalfTime() {
+		var halfTime = 365 / 2 * 24 * 3600 * 1000;
+		var pastDate = new  Date(new Date().getTime() - halfTime);
+		return pastDate.getFullYear() + "-" + (pastDate.getMonth()+1) + "-" + pastDate.getDate();
+	}
+</script>
+</body>
+</html>

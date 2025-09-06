@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>全站公告</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet" media="all">
+<link href="/pages/console/css/fileUpload.css" rel="stylesheet" media="all">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet" media="all">
+<link href="/pages/console/css/websiteNotice.css" rel="stylesheet" media="all">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-body" style="padding: 15px 0px;">
+        <div class="layui-form-item">
+            <form class="layui-form">
+                <div class="layui-btn-group">
+                    <button type="button" class="layui-btn layui-btn-primary value_0 default_button_style"
+                            onclick="operation_.clickStatus(0)">不展示
+                    </button>
+                    <button type="button" class="layui-btn value_1 default_button_style"
+							onclick="operation_.clickStatus(1)">永久展示
+					</button>
+                    <button type="button" class="layui-btn layui-btn-primary value_2 default_button_style"
+                            onclick="operation_.clickStatus(2)">只展示一次
+                    </button>
+                </div>
+                <br/><br/>
+                <div class="layui-btn-group">
+                    <button type="button" class="layui-btn value_content_0 default_button_style"
+							onclick="operation_.clickType(0)">文字
+                    </button>
+                    <button type="button" class="layui-btn layui-btn-primary value_content_1 default_button_style"
+                            onclick="operation_.clickType(1)">图片
+                    </button>
+                </div>
+
+                <div class="layui-form-item layui-form-text">
+                    <textarea placeholder="请输入全站公告内容" class="layui-textarea noticeContent"
+                              style="margin-top: 2%;height: 220px;"></textarea>
+                </div>
+
+                <div id="websiteImgDiv" class="layui-col-md12 module_interval">
+                    <div style="content: '\200B';display: block;clear: both;padding-bottom: 15px;word-break: normal;">
+                        <div style="clear: both;height: 0 !important;display: block;line-height: 0;padding-top: 2px;display: table-cell;vertical-align: top;float: none;width: auto;">
+                            <div style="width: 510px;margin-bottom: 40px;">
+                                <div class="photo_div">
+                                    <p class="photo_p">请选择图片</p>
+                                    <span class="file_span">
+										<a href="javascript:;" class="layui-btn default_button_style">选择文件</a>
+										<ul class="file_ul"></ul>
+										<div class="file_div">
+											<label onclick="operation_.selectSmallFile()" class="file_label"></label>
+										</div>
+									</span>
+                                    <img id="uploadSmall_url" src="" style="width: 35px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <button class="layui-btn motif_button_style" style="display:block;margin:0 auto" onclick="operation_.submitFrom()">
+            保存
+        </button>
+    </div>
+</div>
+
+<form id="uploadSmallFileFrom" name="uploadSmallFileFrom" action="" method="post" enctype="multipart/form-data">
+    <input id="photoSmallUrl" type="hidden" name="photoSmallUrl">
+    <input id="photoSmallUpload" lay-filter="photoSmallUpload" onchange="operation_.upload()" name="myfile" type="file"
+           style="display: none;" accept="image/bmp,image/png,image/jpeg,image/jpg,image/gif">
+</form>
+
+
+</body>
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/jquery.form.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script>
+    var noticeStatus = 1;
+    var noticeType = 0;
+    var noticeSlideshow = 1;
+    var operation_ = {
+        clickStatus: function (data) {
+            var count = 3;
+            for (var i = 0; i < count; i++) {
+                $(".value_" + i).addClass('layui-btn-primary');
+            }
+            $(".value_" + data).removeClass('layui-btn-primary');
+            noticeStatus = data;
+        },
+        clickType: function (data) {
+            operation_.setWebsiteImgDiv(data);
+            var count = 2;
+            for (var i = 0; i < count; i++) {
+                $(".value_content_" + i).addClass('layui-btn-primary');
+            }
+            $(".value_content_" + data).removeClass('layui-btn-primary');
+            noticeType = data;
+        },
+        submitFrom: function () {
+            var content = $(".noticeContent").val();
+            var picturn = $("#uploadSmall_url").attr("src");
+            if (Common.isNil(content)) {
+                layer.msg("请输入全站公告内容！", {"icon": 2});
+                return;
+            }
+            if (Common.isNil(picturn) && noticeType == 1) {
+                layer.msg("请选择图片！", {"icon": 2});
+                return;
+            }
+            Common.invoke({
+                url: request('/console/notice/config/set'),
+                data: {
+                    status: noticeStatus,
+                    type: noticeType,
+                    slideshow: noticeSlideshow,
+                    content: content,
+                    picturn: picturn
+                },
+                success: function (result) {
+                    if (result.resultCode == 1) {
+                        layer.msg("保存成功！", {"icon": 1});
+                    }
+                }
+            })
+        },
+        // 上传
+        upload: function () {
+            $("#uploadSmallFileFrom").ajaxSubmit(function (data) {
+                var obj = eval("(" + data + ")");
+                console.log(obj);
+                $("#uploadSmall_url").attr("src", obj.url);
+            })
+        },
+        // 选择文件
+        selectSmallFile: function () {
+            $("#photoSmallUpload").click();
+        },
+        setWebsiteImgDiv: function (data) {
+            if (data == "0") {
+                //文字
+                $("#websiteImgDiv").hide();
+            } else if (data == "1") {
+                //图片
+                $("#websiteImgDiv").show();
+            }
+        }
+    }
+
+    layui.form.on('switch(switchTest)', function (data) {
+        if (data.elem.checked) {
+            noticeSlideshow = 1;
+        } else {
+            noticeSlideshow = 0;
+        }
+    })
+
+    $(function () {
+        $("#uploadSmallFileFrom").attr("action", Config.getConfig().uploadUrl + "upload/UploadifyServlet");
+        Common.invoke({
+            url: request('/console/find/notice/config'),
+            data: {},
+            success: function (result) {
+                if (result.resultCode == 1 && !Common.isNil(result.data)) {
+                    operation_.clickStatus(result.data.status);
+                    noticeStatus = result.data.status;
+                    operation_.clickType(result.data.type);
+                    noticeType = result.data.type;
+                    $(".noticeContent").val(result.data.content);
+                    if (result.data.slideshow == 0) {
+                        noticeSlideshow = 0;
+                        $('.switchTest').prop('checked', '');
+                    } else {
+                        noticeSlideshow = 1;
+                        $('.switchTest').prop('checked', 'checked');
+                    }
+                    $("#uploadSmall_url").attr("src", result.data.picturn);
+                    layui.form.render();
+                }
+            }
+        })
+        //调用父级页面的Js函数
+        window.parent.getJointVisitPath();
+    })
+</script>
+</html>

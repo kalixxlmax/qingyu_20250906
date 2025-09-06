@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="./css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+
+
+    <!-- 自定义菜单 -->
+    <div class="layui-row">
+        <div class="page_content">
+
+            <button id="addMenu_btn" class="layui-btn" type="submit" data-locale="menu_mark">添加菜单</button>
+
+
+            <!-- 公众号菜单列表  -->
+            <div id="mpMenu_table" class="layui-card" style="margin-top: 1%;">
+                <div class="layui-card-body">
+                    <table id="mpMenu_list" lay-filter="mpMenu_list" style="table-layout:fixed;word-break:break-all;" >
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 表格操作列 -->
+    <script type="text/html" id="mpMenuOptionBar">
+        {{# if(0==d.parentId){  }}
+            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add_child_menu" data-locale="add_child_menu">添加子菜单</a>
+        {{# }  }}
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit_menu" data-locale="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del_menu" data-locale="btn_delete">删除</a>
+    </script>
+
+
+    <div id="hide_area">
+
+        <!-- 修改菜单 -->
+        <div id="update_menu" class="layui-form hide">
+            <div class="layui-form-item">
+                <div class="layui-input-block" style="margin: 0 auto;padding: 10px 20px;">
+
+                    <!-- <div class="layui-inline" id="menu_type">
+                        <label class="layui-form-label" data-locale="type">类型</label>
+                        <div class="layui-input-block">
+                            <select id="update_parentId" class="layui-select">
+                                <option value="0" data-locale="parentId">一级菜单</option>
+                            </select>
+                        </div>
+                    </div> -->
+
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" data-locale="menu_name">菜单名</label>
+                        <div class="layui-input-block">
+                            <input id="update_name" class="layui-input" type="text" value="">
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" data-locale="menu_num">排序</label>
+                        <div class="layui-input-block">
+                            <input id="update_index" class="layui-input" type="text" value="">
+                            <p class="input_desc" data-locale="menu_order">此属性控制菜单显示的先后顺序</p>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" data-locale="menu_url">访问地址</label>
+                        <div class="layui-input-block">
+                            <input id="update_urls" class="layui-input" type="text" value="">
+                            <p class="input_desc" data-locale="menu_input_api_name">此属性在接口名称未填写时，客户端会直接跳转该网址</p>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" data-locale="menu_menuId">接口名称</label>
+                        <div class="layui-input-block">
+                            <input id="update_apiName" class="layui-input" type="text" value="" placeholder="用来标识某一个接口" data-locale="menu_tag_api">
+                            <p class="input_desc" data-locale="menu_request_api_name">此属性用来请求服务器接口的接口名称,如：/mp/manyToAll</p>
+                        </div>
+                    </div>
+
+                    <div class="layui-inline">
+                        <label class="layui-form-label" data-locale="explain">说明</label>
+                        <div class="layui-input-block">
+                            <input id="update_desc" class="layui-input" type="text" value="">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="./common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+    <script type="text/javascript" src="./js/mp_httpApi.js"></script>
+
+    <script type="text/javascript" src="./js/mp_menu.js"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>消息管理</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<!--搜索操作-->
+<div class="msg_btn_div">
+    <div class="layui-row background_white title_menu_place">
+        <div class="layui-form searchModule">
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">发送者ID ：</label>
+                        <div class="layui-input-inline">
+                            <input id="sender" type="text" name="" class="layui-input"
+                                   placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">接收者ID ：</label>
+                        <div class="layui-input-inline">
+                            <input id="receiver" type="text" name="" class="layui-input"
+                                   placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">库表：</label>
+                        <div class="layui-input-inline">
+                            <select id="documents" class="layui-select">
+                                <option value="">请选择表</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">关键词内容 ：</label>
+                        <div class="layui-input-inline">
+                            <input id="keyWord" type="text" name="" class="layui-input"
+                                   placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch characters_center" style="margin-right: 20px;">
+                <button class="layui-btn search_message layui-btn-disabled motif_button_style" disabled="disabled">搜索
+                </button>
+            </div>
+        </div>
+    </div>
+    <!--<button  class="layui-btn deleteMonthLogs">删除一个月之前的所有聊天记录</button>
+    <button  class="layui-btn deleteThousandAgoLogs">删除十万条之前的所有聊天记录</button>
+    <button onclick="Msg.deleteMsg()" class="layui-btn del_msg">清空消息</button>-->
+</div>
+
+
+<div class="layui-card module_interval">
+    <div style="height: 1px;"></div>
+    <div class="mustDelete">
+        <img src="/pages/console/images/draw/question.png" class="small_icon">
+        <span class="chooseDeleteCount"></span>
+        <span class="checkDeleteUsersFriends mess-delete checkDelete" onclick="Msg.checkDeleteMessage()" lay-event="checkDelete">  删除
+            </span>
+    </div>
+    <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+        单聊聊天记录
+    </div>
+    <div class="layui-card-body layui_card_body_top">
+        <table id="message_table" lay-filter="message_table">
+
+        </table>
+        <div id="demo7" style="height: 55px;"><img src="images/loading.gif"></div>
+    </div>
+</div>
+
+<script type="text/html" id="messageListBar">
+    {{# if(d.contentType === 1) { }}
+    <a class="layui-btn layui-btn-danger layui-btn-xs edit mess-delete table_default_btn" lay-event="edit">编辑</a>
+    {{# } }}
+    <a class="layui-btn layui-btn-danger layui-btn-xs delete mess-delete table_default_btn" lay-event="delete">删除</a>
+</script>
+
+<!--预览 -->
+<form id="showMsgInfo" style="display:none;">
+    <div class="layui-form-item">
+        <p class="layui-form-label" id="msgTitle" style="width: 650px;text-align: left"></p><br/><br/><br/>
+        <div class="layui-input-block" id="msgContent">
+
+        </div>
+    </div>
+</form>
+
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+<input id="messageList_limlt" value="15" type="hidden">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<!-- 加解密 -->
+<script type="text/javascript" src="./js/encrypt/crypto-js.js"></script>
+<script type="text/javascript" src="./js/encrypt/encryptUtils.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="/pages/console/js/messageList.js"></script>
+</body>
+</html>

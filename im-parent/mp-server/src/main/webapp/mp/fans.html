@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="./css/mp.css?v=21212" rel="stylesheet">
+</head>
+
+<style>
+    .layui-table-cell {
+        height: 32px;
+        line-height: 32px;
+    }
+</style>
+
+<body>
+
+    <div class="layui-row">
+        <div id="fans_table" class="layui-card" style="margin-top: 1%;">
+            <div class="layui-card-header" style="text-align: center;">
+                <p data-locale="fans_list">粉丝列表</p>
+            </div>
+            <div class="layui-card-body">
+                <table id="fans_list" lay-filter="fans_list" style="table-layout:fixed;word-break:break-all;" >
+                    
+                </table>
+            </div>
+
+
+            <!--粉丝相关操作-->
+            <!-- <script type="text/html" id="fansOptionBar">
+                {{#  if(d.totalTimes==1){ }}
+                    <a class="layui-btn layui-btn-danger layui-btn-xs"  lay-event="del_inviteCode" data-locale="delete_btn">删除</a>
+                {{# }else{ }}
+                <input type="checkbox"  name="status"  value = {{d.status}} lay-skin="switch" lay-text="开启|禁用" lay-filter="status" {{ d.status == '1' ? 'checked' : '' }}>
+                {{# } }}
+            </script> -->
+
+           
+
+            <!-- <td>
+                <button onclick='UI.deleteUser(\""+toUserId+"\")' class='layui-btn layui-btn-sm layui-btn-danger'>" + mpLanguage.getLanguageName('index_3') + "</button>"
+                <button onclick='MpChat.openChatPanel("+toUserId+",\""+nickname+"\");' class='layui-btn layui-btn-sm' style='margin:0 20px;'>"+ mpLanguage.getLanguageName('index_16') +"</button>"
+            </td>  -->
+
+        </div>
+
+    </div>
+
+    <script type="text/html" id="fansTopBar">
+            <input type="text" name="" class="layui-input search_fans_keyword" style="width: 15%;display: inline" placeholder="粉丝昵称" data-locale="fans_nickName" >
+            <a class="layui-btn layui-btn-sm"  lay-event="search_fans" data-locale="menu_search">搜索</a>
+    </script>
+
+    <script type="text/html" id="fansOptionBar">
+            <a class="layui-btn layui-btn-danger layui-btn-sm"  lay-event="del_fans" data-locale="btn_delete">删除</a>
+            <a class="layui-btn layui-btn-sm"  lay-event="send_msg" data-locale="send_message">发消息</a>
+    </script>
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="./common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+    <script type="text/javascript" src="./js/mp_httpApi.js"></script>
+
+     <script type="text/javascript">
+        layui.use(['layer','table','util'],function(){
+            var layer = parent.layer === undefined ? layui.layer : top.layer,
+                $ = layui.jquery,
+                table = layui.table,
+                util = layui.util;
+
+                //粉丝列表
+                var tableInUser = table.render({
+                    elem: '#fans_list'
+                    ,toolbar: '#fansTopBar'
+                    ,url: request("/mp/fans")
+                    ,id: 'fans_list'
+                    ,page: true
+                    ,curr: 0
+                    ,limit: mpCommon.limit
+                    ,limits: mpCommon.limits
+                    ,groups: 7
+                    ,cols: [[ //表头
+
+                         // {type:'checkbox',fixed:'left'}// 多选
+                        {field: 'toUserId', title: mpLanguage.getLanguageName('fans_avatar'), width:120,templet:function(d){
+                                return "<img width='30px' onerror='this.src=\"./images/ic_avatar.png\"'  src='"+mpCommon.getAvatarUrl(d.toUserId)+"'>";
+                            }
+                        }
+                        ,{field: 'toUserId', title:  mpLanguage.getLanguageName('fans_Id'),sort:'true', width:120}
+                        ,{field: 'toNickname', title: mpLanguage.getLanguageName('fans_nickName'), width:300}
+                        ,{field: 'createTime', title: mpLanguage.getLanguageName('attention_time') ,sort:'true', width:200,templet:function(d){
+                                return util.toDateString(d.createTime*1000);
+                            }
+                        }
+                        ,{fixed: 'right', width: 300,title: mpLanguage.getLanguageName('operation'), align:'center', toolbar: '#fansOptionBar'}
+                    ]]
+                    ,done:function(res, curr, count){
+                        // checkRequst(res);
+
+                       //initLanguage();
+                        layui.form.render();
+                    }
+
+                });
+
+
+
+       });
+
+
+     </script>
+
+
+
+</body>
+</html>

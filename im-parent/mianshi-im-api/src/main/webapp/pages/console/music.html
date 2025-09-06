@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>短视频音乐管理</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<div id="music_div">
+    <div class="layui-row background_white title_menu_place searchMusic">
+        <div class="layui-form searchModule">
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">音乐名称：</label>
+                        <div class="layui-input-inline">
+                            <input id="musicName" type="text" name="" class="layui-input" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch characters_center">
+                <button class="layui-btn search_live motif_button_style">搜索</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="musicList" class="layui-card module_interval">
+        <div class="table_topTitle_space" style="position: relative;z-index: 11;">
+            <button onclick="Music.addMusic()" class="layui-btn btn_addLive music-delete motif_button_style">新增音乐
+            </button>
+        </div>
+        <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+            短视频音乐列表
+        </div>
+        <div class="layui-card-body layui_card_body_top">
+            <table id="music_table" lay-filter="music_table"></table>
+        </div>
+    </div>
+
+    <div id="updateMusic" style="display: none;">
+        <div class="layui-card module_interval">
+            <div class="layui-card-header layui_card_header_title">修改音乐</div>
+            <div class="layui-card-body layui-form">
+                <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+                    <tr>
+                        <td>音乐名称</td>
+                        <td><input id="musicName_update" type="text" name="" class="layui-input"></td>
+                    </tr>
+                    <tr>
+                        <td>创作人</td>
+                        <td><input id="musicNickName_update" type="text" name="" class="layui-input"></td>
+                    </tr>
+                    <tr>
+                        <td>音乐封面</td>
+                        <td>
+                            <button class="layui-btn default_button_style" onclick="Music.selectUpdateCover()">选择封面</button>
+                            <span id="musicCover_update"></span>
+                            <form id="uploadMusicCover_update" name="uploadMusicCover_update" action="" method="post"
+                                  enctype="multipart/form-data" style="display: none;">
+                                <input id="uploadCover_update" type="file" name="file"
+                                       onchange="Music.updateUploadCover()"
+                                       accept=".png,.jpg,.jpeg,.gif,.psd,.tiff,.swf,.svg,.bmp">
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>音乐</td>
+                        <td>
+                            <button class="layui-btn default_button_style" onclick="Music.selectUpdateMusic()">选择音乐</button>
+                            <span id="musicPath_update"></span>
+                            <form id="uploadMusicPath_update" name="uploadMusicPath_update" action="" method="post"
+                                  enctype="multipart/form-data" style="display: none;">
+                                <input id="uploadMusic_update" type="file" name="file" value="111"
+                                       onchange="Music.updateUploadMusic()" accept=".mp3,.amr,.wma,.midi,.vqf">
+                            </form>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>长度</td>
+                        <td>
+                            <p id="musicLength_update"></p>
+                        </td>
+                    </tr>
+                </table>
+                <div class="characters_center padding_upDown_space">
+                    <button onclick="Music.commit_updateMusic()" class="layui-btn addLiveRoombtn motif_button_style">提交
+                    </button>
+                    <button onclick="Music.btn_back()" class="layui-btn default_button_style"
+                            style="">返回
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="addMusic" style="display: none;">
+    <div class="layui-card">
+        <div class="layui-card-header layui_card_header_title">
+           新增音乐
+        </div>
+        <div class="layui-card-body layui-form">
+            <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+                <tr>
+                    <td>音乐名称</td>
+                    <td><input id="musicName_add" type="text" name="" class="layui-input" lay-verify="required"></td>
+                </tr>
+                <tr>
+                    <td>创作人</td>
+                    <td><input id="musicNickName" type="text" name="" class="layui-input" lay-verify="required"></td>
+                </tr>
+                <tr>
+                    <td>音乐封面</td>
+                    <td>
+                        <button class="layui-btn default_button_style" onclick="Music.selectCover()">选择封面</button>
+                        <span id="musicCover"></span>
+                        <form id="uploadMusicCover" name="uploadMusicCover" action="" method="post"
+                              enctype="multipart/form-data" style="display: none;">
+                            <input id="uploadCover" type="file" name="file" onchange="Music.uploadCover()"
+                                   accept=".png,.jpg,.jpeg,.gif,.psd,.tiff,.swf,.svg,.bmp">
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>音乐</td>
+                    <td>
+                        <!--<button class="layui-btn" onclick="Music.selectMusic()">选择音乐</button>
+                        <span id="musicPath"></span>
+                        <form id="uploadMusicPath" name="uploadMusicPath" action="" method="post" enctype="multipart/form-data" style="display: none;">
+                            <input id="uploadMusic" type="file" name="file" onchange="Music.uploadMusic()" accept=".mp3,.amr,.wma,.midi,.vqf">
+                        </form>-->
+
+                        <button type="button" class="layui-btn default_button_style" id="test1">
+                            <i class="layui-icon">&#xe67c;</i>上传音乐
+                        </button>
+
+                        <span id="musicPath"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>长度</td>
+                    <td>
+                        <p id="musicLength"></p>
+                    </td>
+                </tr>
+            </table>
+            <div class="characters_center padding_upDown_space">
+                <button onclick="Music.commit_addMusic()" class="layui-btn addLiveRoombtn motif_button_style">提交</button>
+                <button onclick="Music.btn_back()" class="layui-btn default_button_style">返回</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input id="music_limlt" value="15" type="hidden">
+
+<!--操作-->
+<script type="text/html" id="musicListBar">
+    <a class="layui-btn table_default_btn layui-btn-xs delete music-delete" lay-event="delete">删除</a>
+    <a class="layui-btn table_default_btn layui-btn-xs delete music-update" lay-event="update">修改</a>
+</script>
+
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+<input type="" name="" id="save_roomId" style="display: none;">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.form.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="/pages/console/js/music.js"></script>
+
+
+<script>
+    layui.use('upload', function () {
+        var upload = layui.upload;
+
+        var uploadMusicUrl = Config.uploadUrl;
+        if (uploadMusicUrl == null || uploadMusicUrl == "") {
+            uploadMusicUrl = Config.getConfig().uploadUrl + "/upload/UploadifyServlet";
+        }
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1' //绑定元素
+            , url: uploadMusicUrl //上传接口
+            , accept: 'audio' //允许上传的文件类型
+            , before: function (obj) { //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+                var files = this.files = obj.pushFile();
+                var size = "";
+                $.each(files, function (key, values) {
+                    size = values.size;
+                });
+                if (size == 0 || size == "") {
+                    layer.msg('音乐文件大小为0,请重新选择！', {icon: 2});
+                    return;
+                }
+
+                $("#musicLength").html(parseInt(size));
+                layer.load(); //上传loading
+            }, done: function (res) {
+                layer.closeAll('loading'); //关闭loading
+                console.log(res);
+                var arr = res.url.split("/");
+                var url = "/" + arr[arr.length - 3] + "/" + arr[arr.length - 2] + "/" + arr[arr.length - 1];
+                console.log("最后的路径" + url);
+                $("#musicPath").html(Common.filterHtmlData(url));
+                $("#musicPath").show();
+            }
+            , error: function () {
+                layer.closeAll('loading');
+                layer.msg('上传失败！', {icon: 2});
+            }
+        });
+    });
+</script>
+</body>
+</html>

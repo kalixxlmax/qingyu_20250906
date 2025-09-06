@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>礼物管理</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+
+<div class="layui-row background_white title_menu_place gift_list">
+    <div class="layui-form searchModule">
+        <div class="searchBranch">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">礼物名称 ：</label>
+                    <div class="layui-input-inline">
+                        <input id="giftName" type="text" name="" class="layui-input"
+                               placeholder="请输入">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch characters_center">
+            <button onclick="Gift.findGiftList()" class="layui-btn motif_button_style">搜索</button>
+        </div>
+    </div>
+</div>
+<div class="layui-card module_interval gift_list">
+    <div class="layui-card-header table_topTitle_space" style="padding-top: 12px;">
+        <button onclick="Gift.addGift()" class="layui-btn add_gift gift-add motif_button_style">新增礼物</button>
+    </div>
+    <div class="layui-card-header layui_card_header_title">
+        礼物列表
+    </div>
+    <div class="layui-card-body">
+        <table id="gift_table" lay-filter="gift_table"></table>
+    </div>
+</div>
+
+<!-- 新增礼物-->
+<div id="addGift" style="display: none;">
+    <div class="layui-card module_interval">
+        <div class="layui-card-header layui_card_header_title">
+            新增礼物
+        </div>
+        <div class="layui-card-body layui-form">
+            <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+                <tr>
+                    <td>礼物名称</td>
+                    <td><input id="add_giftName" type="text" class="layui-input"></td>
+                </tr>
+                <tr>
+                    <td>礼物url</td>
+                    <td><input id="giftUrl" type="text" class="layui-input"></td>
+                </tr>
+                <tr>
+                    <td>礼物价格</td>
+                    <td><input id="giftPrice" type="text" class="layui-input"></td>
+                </tr>
+                <!--<tr>
+                    <td>礼物类型</td>
+                    <td>
+                        <select id="giftType" class="layui-select">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </td>
+                </tr>-->
+            </table>
+            <div class="characters_center padding_upDown_space">
+                <button onclick="Gift.commit_addGift()" class="layui-btn motif_button_style">提交</button>
+                <button onclick="Gift.back(0)" class="layui-btn default_button_style">返回</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--工具列-->
+<script type="text/html" id="operationBar">
+    <a class="layui-btn layui-btn-xs table_default_btn" onclick="Gift.deleteGift('{{d.giftId}}')">删除</a>
+</script>
+
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+
+	<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+	<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+	<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+	<script type="text/javascript" src="./js/common.js"></script>
+	<script type="text/javascript" src="./js/console_ui.js"></script>
+	<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+	<script type="text/javascript" src="/pages/console/js/gift.js"></script>
+
+</body>
+</html>

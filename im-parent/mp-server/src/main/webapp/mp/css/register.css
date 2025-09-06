@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+
+body {
+    padding:0;
+    margin:0;
+    background: #f6f8f9;
+    font-family: '微软雅黑', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#chat-title{
+    background: #fff;
+    height: 60px;
+    margin:0 auto;
+ }
+#chat-title-context{
+    padding-top: 20px;
+}
+.chat-img{
+    width: 40px;
+    height: 40px;
+}
+#container-context{
+    background: #fff;
+    margin-top: 1px;
+}
+.chat-desktop{
+    height: 50px;
+    color: #9a9a9a;
+    font-size: 14px;
+    text-align: center;
+    margin: 0 auto;
+    margin: 20px 0px 20px 0px;
+    border:1px solid #fff;
+    border-bottom-color: #f6f8f9;
+}
+.chat-space{
+    height: 30px;
+    border:1px solid #fff;
+    margin-bottom: 10px;
+}
+.chat-pass{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.layui-nav {
+    color: black;
+    background-color:#fff;
+}
+.layui-nav-img {
+    width:45px;
+    height:45px;
+    margin-right:10px;
+}
+.layui-form-label {
+    width:119px;
+}
+.layui-input, .layui-textarea {
+    width: 96%;
+}
+.layui-form-select .layui-edge {
+    right: 16px;
+}
+.layui-input-block {
+    margin-left: 149px;
+}

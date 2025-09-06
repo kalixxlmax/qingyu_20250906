@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>打赏列表</title>
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="./css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+    <div class="layui-row">
+        <div id="record_table" class="layui-card" style="margin-top: 1%;">
+            <div class="layui-card-header" style="text-align: center;">
+                <p>打赏列表</p>
+            </div>
+            <div id="time_search">
+                <label class="layui-form-label" data-locale="time_socpe">时间范围：</label>
+                <div class="layui-input-inline">
+                    <input class="layui-input" id="exceptionalRecordDate"  value=""   placeholder="" type="text">
+                </div>
+            </div>
+            <div class="layui-card-body">
+                <table id="exceptional_record_list" lay-filter="exceptional_record_list" style="table-layout:fixed;word-break:break-all;" >
+                </table>
+            </div>
+        </div>
+    </div>
+    <script type="text/html" id="fansOptionBar">
+            <a class="layui-btn layui-btn-danger layui-btn-sm"  lay-event="del_fans" data-locale="btn_delete">删除</a>
+            <a class="layui-btn layui-btn-sm"  lay-event="send_msg" data-locale="send_message">发消息</a>
+    </script>
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="./common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+    <script type="text/javascript" src="./js/mp_httpApi.js"></script>
+
+     <script type="text/javascript">
+         var thisStartDate;
+         var thisEndDate;
+
+     layui.use(['jquery','form','layer','laydate'],function(){
+         var form = layui.form,
+             layer = parent.layer === undefined ? layui.layer : top.layer,
+             $ = layui.jquery,
+             table = layui.table,
+             util = layui.util,
+             laydate = layui.laydate;
+
+                //粉丝列表
+                var tableInUser = table.render({
+                     elem: '#exceptional_record_list'
+                    ,toolbar: '#recordTopBar'
+                    ,url: request("/mp/find/exceptional/record/list")
+                    ,id: 'exceptional_record_list'
+                    ,page: true
+                    ,curr: 0
+                    ,limit: mpCommon.limit
+                    ,limits: mpCommon.limits
+                    ,groups: 7
+                    ,cols: [[ //表头
+                        {field: 'id', title:  mpLanguage.getLanguageName('thisId'),sort:'true', width:'13%'}
+                        ,{field: 'redPacketId', title:  mpLanguage.getLanguageName('redpacket_id'),sort:'true', width:'13%'}
+                        ,{field: 'userId', title:  mpLanguage.getLanguageName('user_id'),sort:'true', width:'10%'}
+                        ,{field: 'toUserId', title:  mpLanguage.getLanguageName('recipient_user_number'),sort:'true', width:'10%'}
+                        ,{field: 'chargePrice', title:  mpLanguage.getLanguageName('service_charge'),sort:'true', width:'10%'}
+                        ,{field: 'price', title:  mpLanguage.getLanguageName('bonus_amount'),sort:'true', width:'10%'}
+                        ,{field: 'status', title: mpLanguage.getLanguageName('redpacket_status'), width:'10%',templet(d){
+                                if (d.status == -1){
+                                    return "退回";
+                                }else if (d.status == 0){
+                                    return "未打开"
+                                }else if(d.status == 1){
+                                    return "打开";
+                                }
+                            }}
+                        ,{field: 'createTime', title: mpLanguage.getLanguageName('create_time') ,sort:'true', width:'10%',templet:function(d){
+                                return util.toDateString(d.createTime*1000);
+                            }
+                        }
+                    ]]
+                    ,done:function(res, curr, count){
+                         //checkRequst(res);
+
+                        layui.laydate.render({
+                            elem: '#exceptionalRecordDate'
+                            ,lang: mpLanguage.getLanguage()
+                            ,range: "~"
+                            ,done: function(value, date, endDate){  // choose end
+                                //console.log("date callBack====>>>"+value); //得到日期生成的值，如：2017-08-18
+                                var startTime = value.split("~")[0];
+                                var endTime = value.split("~")[1];
+                                table.reload("exceptional_record_list",{
+                                    page: {
+                                        curr: 1 //重新从第 1 页开始
+                                    },
+                                    where: {
+                                        startTime : startTime,
+                                        endTime : endTime
+                                    }
+                                })
+                            }
+                            ,max: 0
+                        });
+                        mpLanguage.initLanguage();
+                        layui.form.render();
+                    }
+
+                });
+       });
+
+        var operation = {
+            //加载打赏账单记录列表
+            loadExceptionalRecordList:function(startDate,endDate,num){
+                if (!mpCommon.isNil(thisStartDate) && !mpCommon.isNil(thisEndDate)){
+                    startDate = thisStartDate;
+                    endDate = thisEndDate;
+                }
+                var html="";
+                mpCommon.invoke({
+                    url : '/mp/find/exceptional/record/list',
+                    data : {
+                        pageIndex:num,
+                        pageSize:10,
+                        startTime:mpCommon.isNullReturn(startDate),
+                        endTime:mpCommon.isNullReturn(endDate)
+                    },
+                    success : function(result) {
+                        console.log("数据：",result);
+                        if(result.data == null){
+                            html+="<tr><td>" + mpLanguage.getLanguageName('noData') + "</td><td></tr>";
+                        }else{
+                            $("#pageCount").empty();
+                            $("#pageCount").val(result.count);
+                            /* console.log("数据："+JSON.stringify(result.data)); */
+                            $("#exceptionalRecordTotal").empty();
+                            $("#exceptionalRecordTotal").append("共"+result.data.total+"条");
+                            sum=result.data.length;
+                            for(var i=0;i<result.data.length;i++){
+                                html+="<tr>"
+                                    +	"<td>"+ result.data[i].id +"</td>"
+                                    +	"<td>"+ result.data[i].redPacketId +"</td>"
+                                    +	"<td>"+ result.data[i].userId +"</td>"
+                                    +	"<td>"+ result.data[i].toUserId +"</td>"
+                                    +	"<td>"+ result.data[i].chargePrice +"</td>"
+                                    +	"<td>"+ result.data[i].price +"</td>"
+                                    +	"<td>"+ (result.data[i].status == -1 ? "退回" : result.data[i].status == 0 ? "未打开" : result.data[i].status == 1 ? "打开" : "其他") +"</td>"
+                                    +	"<td>"+ (new Date(result.data[i].createTime * 1000)).format("yyyy-MM-dd hh:mm:ss") +"</td>"
+                                /*(new Date(result.data[i].createTime * 1000)).format("yyyy-MM-dd hh:mm:ss")*/
+                                "</tr>";
+                            }
+                            $("#exceptionalRecord_td").empty();
+                            $("#exceptionalRecord_td").append(html);
+                        }
+                    },
+                    error : function(result) {
+                        $("#exceptionalRecord_td").empty();
+                        layui.layer.msg(mpLanguage.getLanguageName('failed_load_data'));
+                    }
+                });
+            }
+        }
+     </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.interfaceOrder .layui-form-label{
+    width: unset;
+    padding: 9px 0px;
+}
+
+.interfaceOrder .layui-input-block {
+    margin-left: 50px;
+}

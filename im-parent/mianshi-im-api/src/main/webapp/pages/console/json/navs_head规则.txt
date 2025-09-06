@@ -1,0 +1,12 @@
+{
+    title = 名称
+    imgUrl =  默认图片地址,
+    href = 点击顶部菜单 显示的页面URL,
+    visitPath = 点击顶部菜单 显示的页面路径
+    isSelect = 是否首选项,
+    groupName = 分组名称,
+    isHomePage = 是否首页
+    id = 唯一名称
+    resourceAuth = 权限名称
+    resourceAuthChild = 对应 - 【 href = 点击顶部菜单 显示的页面URL 】的权限
+}

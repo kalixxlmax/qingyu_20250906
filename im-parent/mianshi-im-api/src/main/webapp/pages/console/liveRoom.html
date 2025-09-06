@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>直播管理</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<link href="/pages/console/css/liveRoom.css" rel="stylesheet">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+
+<!--搜索操作-->
+<div class="liveRoom_div">
+    <div class="layui-row background_white title_menu_place searchLive">
+        <div class="searchModule layui-form">
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">房间名称 ：</label>
+                        <div class="layui-input-inline">
+                            <input id="roomName" type="text" name="" class="layui-input" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch characters_center">
+                <button class="layui-btn search_live motif_button_style">搜索</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-row background_white title_menu_place searchLive_">
+        <div class="searchModule layui-form">
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">创建者Id ：</label>
+                        <div class="layui-input-inline">
+                            <input id="createUserId" type="text" name="" class="layui-input" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch characters_center">
+                <button class="layui-btn search_live_ motif_button_style">搜索</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="liveRoomByUser" class="layui-card module_interval">
+        <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+            直播间用户列表
+        </div>
+        <div class="layui-card-body layui_card_body_top">
+            <table id="liveRoomByUser_table" lay-filter="liveRoomByUser_table"></table>
+        </div>
+    </div>
+
+
+    <div id="liveRoomList" class="layui-card module_interval" style="display:none;">
+        <div class="layui-card-header liveRoom_div table_topTitle_space">
+            <button onclick="Live.addLiveRoom()" class="layui-btn btn_addLive liveRoom-add motif_button_style">新增直播
+            </button>
+        </div>
+
+        <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+            直播间列表
+        </div>
+        <div class="layui-card-body layui_card_body_top">
+            <table id="liveRoom_table" lay-filter="liveRoom_table"></table>
+            <div class="characters_center">
+                <button onclick="Live.btn_back()" class="layui-btn default_button_style margin_upDown_space"
+                        style="">返回
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 聊天记录 -->
+    <div id="liveRoomMsg" class="layui-card module_interval" style="display: none;">
+        <div class="layui-card-header layui_card_header_title layui_card_header_spare">聊天记录</div>
+        <div class="layui-card-body layui_card_body_top">
+            <table id="liveRoomMsg_table" lay-filter="liveRoomMsg_table"></table>
+            <input id="msg_pageCount" type="" name="" style="display: none">
+            <div class="characters_center">
+                <button onclick="Live.backMsg()" class="layui-btn default_button_style margin_upDown_space">返回
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- 人员管理 -->
+    <div id="liveRoomUser" class="layui-card module_interval" style="display: none;">
+        <div class="layui-card-header layui_card_header_title layui_card_header_spare">人员管理</div>
+        <div class="layui-card-body layui_card_body_top">
+            <table id="liveRoomMember_table" lay-filter="liveRoomMember_table"></table>
+            <input id="member_pageCount" type="" name="" style="display: none">
+            <div class="characters_center">
+                <button onclick="Live.backUser()" class="layui-btn default_button_style margin_upDown_space"
+                        style="">返回
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="addLiveRoom" style="display: none;">
+    <div class="layui-card">
+        <div class="layui-card-header layui_card_header_p_title">
+            新增直播
+        </div>
+        <div class="layui-card-body table_padding">
+            <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+                <tr>
+                    <td>直播间名称</td>
+                    <td><input id="liveRoomName" type="text" name="" class="layui-input"></td>
+                </tr>
+                <tr>
+                    <td>房间公告</td>
+                    <td><input id="liveRoomNotic" type="text" name="" class="layui-input"></td>
+                </tr>
+            </table>
+            <div class="characters_center padding_upDown_space">
+                <button onclick="Live.commit_addLiveRoom()" class="layui-btn addLiveRoombtn motif_button_style">提交
+                </button>
+                <button onclick="Live.btn_back()" class="layui-btn default_button_style"
+                        style="">返回
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--操作-->
+<script type="text/html" id="liveRoomListBar">
+    <a class="layui-btn table_default_btn layui-btn-xs chatMessage liveRoom-chatMessage"
+       lay-event="chatMessage">聊天记录</a>
+    <a class="layui-btn table_default_btn layui-btn-xs member liveRoom-member" lay-event="member">人员管理</a>
+    <!--<a class="layui-btn layui-btn-primary layui-btn-xs giftWater" lay-event="giftWater">礼物流水</a> -->
+    <a class="layui-btn table_default_btn layui-btn-xs member liveRoom-member" lay-event="modifyRtmpUrl">修改推流地址</a>
+</script>
+
+<script type="text/html" id="liveRoomByUserBar">
+    <a class="layui-btn table_default_btn layui-btn-xs" lay-event="lookUserLive">查看直播间</a>
+
+    <a class="layui-btn table_default_btn layui-btn-xs delete liveRoom-lock " lay-event="disable">封锁直播间</a>
+
+    <a class="layui-btn table_default_btn layui-btn-xs delete liveRoom-lock" lay-event="relieveDisable">解封直播间</a>
+</script>
+
+<script type="text/html" id="liveRoomMemberListBar">
+    <!--创建直播间的人不能被踢出或禁言-->
+    {{#  if(d.type == 1){ }}
+    <a class="layui-btn table_disabled_btn layui-btn-xs">踢出</a>
+    {{#  }else{  }}
+    <a class="layui-btn table_default_btn layui-btn-xs remove" lay-event="remove">踢出</a>
+    {{#  } }}
+</script>
+
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+<input id="liveRoom_limlt" value="15" type="hidden">
+<input type="" name="" id="save_roomId" style="display: none;">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="/pages/console/js/liveRoom.js"></script>
+</body>
+</html>

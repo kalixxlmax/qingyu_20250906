@@ -1,0 +1,16 @@
+#officialDesc{
+    padding: 30px 40px 0px 40px;
+}
+
+#officialDesc .layui-form-label{
+    padding: 9px 0px;
+    width: unset;
+}
+
+#officialDesc .layui-input-block {
+    margin-left: 120px;
+}
+
+#officialDesc .layui-input-inline{
+    margin-left: 50px;
+}

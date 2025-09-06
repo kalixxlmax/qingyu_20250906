@@ -1,0 +1,33 @@
+spring:
+    application:
+        name: delayjob-server
+        stream:
+
+            rocketmq:
+                binder:
+                    name-server: 192.168.0.120:9876
+  profiles:
+        active: dev
+
+
+mongoconfig:
+    uri: mongodb://192.168.0.120:28018/delayjob
+    dbName: delayjob
+
+redisson:
+    address : redis://192.168.0.120:6379
+    database: 3
+    ping-timeout: 10000
+    timeout: 10000
+    connect-timeout: 10000
+    pingConnection-tnterval: 500
+
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+
+logging:
+    level:
+        com.alibaba.nacos.client.naming: warn

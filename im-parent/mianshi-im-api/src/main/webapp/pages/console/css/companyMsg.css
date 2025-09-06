@@ -1,0 +1,7 @@
+#employeeInput .layui-form-item , #departmentInput .layui-form-item ,#createCompany .layui-form-item{
+    margin-top: 27px;
+}
+
+#employeeInput , #departmentInput , #createCompany{
+    display: none;
+}

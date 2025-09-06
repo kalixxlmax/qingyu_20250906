@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/mp/css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+    <!-- 配置管理  -->
+    <div id="config_manage" class="layui-body" style="position: static;">
+        <div class="page_content">
+            <form class="layui-form" lay-filter="customer_config">
+
+                <div class="layui-center">
+                    <div class="layui-input-block" style="margin-left: 43%">
+                       <button class="layui-btn update-btn-place" lay-submit="" lay-filter="customerConfig" data-locale="update_data" >更新</button>
+                    </div>
+                </div>
+
+                <table class="layui-table">
+
+
+                    <thead>
+                        <tr>
+                            <th data-locale="parameters_that">参数说明</th>
+                            <th data-locale="parameter_value">参数值</th>
+                            <th data-locale="variable_name">变量名</th>
+                            <th data-locale="configuration_detailed">参数说明</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td style="border: 0;text-align: center;" colspan="4" data-locale="configuration_config">全局配置项</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="webHeadText">web 访客页的标题</td>
+                            <td>
+                                <textarea type="text" rows="10"  class="layui-input" name="webHeadText" style="height: 50px;resize: none;"></textarea>
+                            </td>
+                            <td>webHeadText</td>
+                            <td data-locale="webHeadText_info">显示在web访客聊天面板的顶部</td>
+                        </tr>
+
+
+                        <tr>
+                            <td data-locale="welcomeMenuText">迎宾菜单语(用于菜单)</td>
+                            <td>
+                                <textarea type="text" rows="10"  class="layui-input" name="welcomeMenuText" style="height: 50px;resize: none;"></textarea>
+                            </td>
+                            <td>welcomeMenuText</td>
+                            <td data-locale="welcomeMenuText_info_1">访客进入页面显示在菜单顶部的文本</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="welcomeText">迎宾文字</td>
+                            <td>
+                                <textarea type="text" rows="10"  class="layui-input" name="welcomeText" style="height: 50px;resize: none;"></textarea>
+                            </td>
+                            <td>welcomeText</td>
+                            <td data-locale="welcomeText_info_1">访客进入页面后发送的欢迎文本</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="autoWelcome">自动欢迎语设置</td>
+                            <td>
+                                <select class="layui-input-inline" name="autoWelcome">
+                                    <option value="0" data-locale="autoWelcome_select_0">访客发送一条消息后发送欢迎语</option>
+                                    <option value="1" data-locale="autoWelcome_select_1">打开界面立即发送欢迎语</option>
+                                </select>
+                            </td>
+                            <td>autoWelcome</td>
+                            <td data-locale="autoWelcome_defInfo">默认为访客发送一条消息后发送欢迎语</td>
+                        </tr>
+
+
+                        <tr>
+                            <td data-locale="visitorModel">访客模式</td>
+                            <td>
+                                <select class="layui-input-inline" name="visitorModel">
+                                    <option value="1" data-locale="visitorModel_select_1">仅限无身份访客</option>
+                                    <option value="2" data-locale="visitorModel_select_2">仅限有身份访客</option>
+                                    <option value="3" data-locale="visitorModel_select_3" checked>均支持</option>
+                                </select>
+                            </td>
+                            <td>visitorModel</td>
+                            <td data-locale="visitorModel_info_1">默认为均支持</td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td data-locale="robotModel">接待模式</td>
+                            <td>
+                                <select class="layui-input-inline" name="robotModel" >
+                                    <!-- <option value="1" data-locale="robotModel_select_1" checked>人工客服模式</option> -->
+                                    <!--<option value="2" data-locale="">纯机器人模式</option>-->
+                                    <option value="3" data-locale="">人工</option>
+                                    <option value="4" data-locale="">机器人</option>
+                                </select>
+                            </td>
+                            <td>robotModel</td>
+                            <td data-locale="robotModel_info_1">默认为人工客服模式</td>
+                        </tr>
+
+
+                        <tr>
+                            <td data-locale="allotRange">人工分配范围</td>
+                            <td>
+                                <select class="layui-input-inline" name="allotRange">
+                                    <option value="1" data-locale="">分配在线</option>
+                                    <option value="2" data-locale="">分配所有</option>
+                                </select>
+                            </td>
+                            <td>allotRange</td>
+                            <td data-locale="allotRange_info">默认为分配在线</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="allotStrategy">人工分配策略</td>
+                            <td>
+                                <select class="layui-input-inline" name="allotStrategy">
+                                    <option value="1" data-locale="">随机分配</option>
+                                    <option value="2" data-locale="">轮询分配</option>
+                                </select>
+                            </td>
+                            <td>allotStrategy</td>
+                            <td data-locale="allotStrategy_info">默认为随机分配</td>
+                        </tr>
+
+
+                        <tr>
+                            <td data-locale="noServiceOnlineModel">无客服在线时接待模式</td>
+                            <td>
+                                <select class="layui-input-inline" name="noServiceOnlineModel" >
+                                    <option value="0" data-locale="">给客服留言（纯人工）</option>
+                                    <option value="1" data-locale="">转机器人</option>
+                                </select>
+                            </td>
+                            <td>noServiceOnlineModel</td>
+                            <td data-locale="noServiceOnlineModel_info">仅在接待模式为人工模式时生效</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="serviceAllotModel">人工接待模式</td>
+                            <td>
+                                <select class="layui-input-inline" name="serviceAllotModel">
+                                    <option value="1" data-locale="serviceAllotModel_select_1" checked>自动分配</option>
+                                    <option value="2" data-locale="serviceAllotModel_select_2">手动抢单</option>
+                                </select>
+                            </td>
+                            <td>serviceAllotModel</td>
+                            <td data-locale="serviceAllotModel_info_1">默认为自动分配模式</td>
+                        </tr>
+
+
+                        <tr>
+                            <td data-locale="autoTransferPeople">转接人工客服</td>
+                            <td>
+                                <select class="layui-input-inline" name="autoTransferPeople">
+                                    <option value="0" data-locale="autoTransferPeople_select_0">手动转接</option>
+                                    <option value="1" data-locale="autoTransferPeople_select_1">自动转接</option>
+                                </select>
+                            </td>
+                            <td>autoTransferPeople</td>
+                            <td data-locale="autoTransferPeople_defInfo">默认为手动转接</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="pointServiceNoOnline_text">是否提示访客客服不在线</td>
+                            <td>
+                                <select class="layui-input-inline" name="pointServiceNoOnline">
+                                    <option value="0" data-locale="pointServiceNoOnline_select_0">不显示</option>
+                                    <option value="1" data-locale="pointServiceNoOnline_select_1">显示</option>
+                                </select>
+                            </td>
+                            <td>pointServiceNoOnline</td>
+                            <td data-locale="pointServiceNoOnline_defInfo">默认为不显示</td>
+                        </tr>
+
+
+                        <tr>
+                            <td data-locale="robotNickname_text">机器人客服昵称</td>
+                            <td>
+                                <input type="text" value="0"  class="layui-input" name="robotNickname">
+                            </td>
+                            <td>robotNickname</td>
+                            <td data-locale="robotNickname_defInfo">默认为智能客服</td>
+                        </tr>
+
+
+
+                        <tr>
+                            <td data-locale="FAQNoMatchReply">常见问题无匹配自动回复</td>
+                            <td>
+                                <textarea type="text" rows="5"  class="layui-input" name="FAQNoMatchReply" placeholder="常见问题无匹配自动回复" style="height: 50px;"></textarea>
+                            </td>
+                            <td>FAQNoMatchReply</td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="noServiceOnlineHite">无客服人员在线时访客看到的提示信息</td>
+                            <td>
+                                <textarea type="text"  class="layui-input" name="noServiceOnlineHite"></textarea>
+                            </td>
+                            <td>noServiceOnlineHite</td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="wxErCodeUrl">web 访客页微信二维码url</td>
+                            <td>
+                                <textarea type="text"  class="layui-input" name="wxErCodeUrl"></textarea>
+                            </td>
+                            <td>wxErCodeUrl</td>
+                            <td>配置后可以在web访客页显示该微信二维码</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="qqNumber">web 访客页QQ号</td>
+                            <td>
+                                <textarea type="text"  class="layui-input" name="qqNumber"></textarea>
+                            </td>
+                            <td>qqNumber</td>
+                            <td></td>
+                        </tr>
+
+
+                        <tr>
+                            <td data-locale="alertTalkWindowTime">网页打开到会话窗口弹出的时间   单位：秒</td>
+                            <td>
+                               <input type="text" value="0"  class="layui-input" name="talkWindowOpenTime">
+                            </td>
+                            <td>talkWindowOpenTime</td>
+                            <td>单位：秒（s）</td>
+                        </tr>
+
+
+                        <tr>
+                            <td style="border: 0;text-align: center;" colspan="4" data-locale="serviceCH">客服无应答提示</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="service_outTime1">客服无应答超时时间1</td>
+                            <td>
+                                <input type="text" value="0"  class="layui-input" name="service_outTime1">
+                            </td>
+                            <td>service_outTime1</td>
+                            <td data-locale="service_outTime1_info_1">单位:秒（sec）</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="service_replyText1">客服无应答超时自动回复1</td>
+                            <td>
+                                <textarea type="text"  value="" class="layui-input" name="service_replyText1"></textarea>
+                            </td>
+                            <td>service_replyText1</td>
+                            <td data-locale="service_replyText1_info_1">与客服无应答超时时间1对应</td>
+                        </tr>
+
+
+                        <tr>
+                            <td data-locale="service_outTime2">客服无应答超时时间2</td>
+                            <td>
+                                <input type="text" value="0"  class="layui-input" name="service_outTime2">
+                            </td>
+                            <td>service_outTime2</td>
+                            <td data-locale="service_outTime2_info_1">单位:秒（sec）</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="service_replyText2">客服无应答超时自动回复2</td>
+                            <td>
+                                <textarea type="text" value="" class="layui-input" name="service_replyText2"></textarea>
+                            </td>
+                            <td>service_replyText2</td>
+                            <td data-locale="service_replyText2_info_1">与客服无应答超时时间2对应</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="service_outTime3">客服无应答超时时间3</td>
+                            <td>
+                                <input type="text" value="0"  class="layui-input" name="service_outTime3">
+                            </td>
+                            <td>service_outTime3</td>
+                            <td data-locale="service_outTime3_info_1">单位:秒（sec）</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="service_replyText3">客服无应答超时自动回复3</td>
+                            <td>
+                                <textarea type="text" value=""  class="layui-input" name="service_replyText3"></textarea>
+                            </td>
+                            <td>service_replyText3</td>
+                            <td data-locale="service_replyText3_info_1">与客服无应答超时时间3对应</td>
+                        </tr>
+
+
+                        <tr>
+                            <td style="border: 0;text-align: center;" colspan="4" data-locale="visitor_config">访客无应答提示</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="visitor_outTime1">访客无应答超时时间1</td>
+                            <td>
+                                <input type="text" value="0"  class="layui-input" name="visitor_outTime1">
+                            </td>
+                            <td>visitor_outTime1</td>
+                            <td data-locale="service_outTime3_info_1">单位:秒（sec）</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="visitor_replyText1">访客无应答超时自动回复1</td>
+                            <td>
+                                <textarea type="text" value="" class="layui-input" name="visitor_replyText1"></textarea>
+                            </td>
+                            <td>visitor_replyText1</td>
+                            <td data-locale="visitor_replyText1_info_1">与访客无应答超时时间1对应</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="visitor_outTime2">访客无应答超时时间2</td>
+                            <td>
+                                <input type="text" value="0"  class="layui-input" name="visitor_outTime2">
+                            </td>
+                            <td>visitor_outTime2</td>
+                            <td data-locale="service_outTime3_info_1">单位:秒（sec）</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="visitor_replyText2">访客无应答超时自动回复2</td>
+                            <td>
+                                <textarea type="text" value=""  class="layui-input" name="visitor_replyText2"></textarea>
+                            </td>
+                            <td>visitor_replyText2</td>
+                            <td data-locale="visitor_replyText2_info_1">与访客无应答超时时间2对应</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="visitor_outTime3">访客无应答超时时间3</td>
+                            <td>
+                                <input type="text" value="0"  class="layui-input" name="visitor_outTime3">
+                            </td>
+                            <td>visitor_outTime3</td>
+                            <td data-locale="service_outTime3_info_1">单位:秒（sec）</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="visitor_replyText3">访客无应答超时自动回复3</td>
+                            <td>
+                                <textarea type="text" value="" class="layui-input" name="visitor_replyText3"></textarea>
+                            </td>
+                            <td>visitor_replyText3</td>
+                            <td data-locale="visitor_replyText3_info_1">与访客无应答超时时间3对应</td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="isSendChatEndMsg_text">是否发送结束会话消息</td>
+                            <td>
+                                <select class="layui-input-inline" name="isSendChatEndMsg">
+                                    <option value="0" data-locale="isSendChatEndMsg_select_0">不发送</option>
+                                    <option value="1" data-locale="isSendChatEndMsgselect_1">发送</option>
+                                </select>
+                            </td>
+                            <td>isSendChatEndMsg</td>
+                            <td data-locale="isSendChatEndMsg_defInfo">默认为不发送</td>
+                        </tr>
+
+                        <tr>
+                            <td style="border: 0;text-align: center;" colspan="4" data-locale="default_server_config">客服默认配置项(这里只配置默认值，客服可以自己修改)</td>
+                        </tr>
+
+                        <!--<tr>
+                            <td>客服忙碌提示语</td>
+                            <td>
+                                <textarea type="text"  class="layui-input" style="height: 90px;" id="serviceBusyHite"></textarea>
+                            </td>
+                            <td>serviceBusyHite</td>
+                            <td></td>
+                        </tr>-->
+
+                       <!--  <tr>
+                            <td data-locale="allowPush">允许推送</td>
+                            <td>
+                                <select class="layui-input-inline" id="allowPush">
+                                    <option value="0" data-locale="dont_allow">不允许</option>
+                                    <option value="1" data-locale="select_allow">允许</option>
+                                </select>
+                            </td>
+                            <td>allowPush</td>
+                            <td></td>
+                        </tr> -->
+
+
+                
+                        <tr>
+                            <td data-locale="newVisitorHint">新到访客提示</td>
+                            <td>
+                                
+                                <div id="newVisitorHint">
+                                    
+                                    <div class="layui-input-block hintOption">
+                                      <input type="checkbox"  name="newVisitorHint_sound" data-locale="select_prompt" title="提示音">
+                                      <input type="checkbox" name="newVisitorHint_shock" data-locale="select_vibration" title="震动">
+                                      <input type="checkbox" name="newVisitorHint_offlinePush" title="离线通知">
+                                    </div>
+                                </div>
+                                 
+
+                            </td>
+                            <td>newVisitorHint</td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="newTalkHint">新到对话提示</td>
+                            <td>
+
+                                <div class="layui-input-block hintOption">
+                                  <input type="checkbox" name="newTalkHint_sound"  title="提示音">
+                                  <input type="checkbox" name="newTalkHint_shock"  title="震动">
+                                  <input type="checkbox" name="newTalkHint_offlinePush" title="离线通知">
+                                </div>
+                                
+                            </td>
+                            <td>newTalkHint</td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="newVisitorMsgHint">新到一个访客消息提示</td>
+                            <td>
+
+                                <div class="layui-input-block hintOption">
+                                  <input type="checkbox" name="newVisitorMsgHint_sound"  title="提示音">
+                                  <input type="checkbox" name="newVisitorMsgHint_shock" title="震动">
+                                  <input type="checkbox" name="newVisitorMsgHint_offlinePush" title="离线通知">
+                                </div>
+
+
+                            </td>
+                            <td>newVisitorMsgHint</td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="newFowardHint">新到一个转接提示</td>
+                            <td>
+                                <div class="layui-input-block hintOption">
+                                  <input type="checkbox" name="newFowardHint_sound"  title="提示音">
+                                  <input type="checkbox" name="newFowardHint_shock"  title="震动">
+                                  <input type="checkbox" name="newFowardHint_offlinePush" title="离线通知">
+                                </div>
+                            </td>
+                            <td>newFowardHint</td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="newInnerTalkHint">新到一个内部对话提示</td>
+                            <td>
+
+                                <div class="layui-input-block hintOption">
+                                  <input type="checkbox" name="newInnerTalkHint_sound"  title="提示音">
+                                  <input type="checkbox" name="newInnerTalkHint_shock"  title="震动">
+                                  <input type="checkbox" name="newInnerTalkHint_offlinePush" title="离线通知">
+                                </div>
+
+                               
+                            </td>
+                            <td>newInnerTalkHint</td>
+                            <td></td>
+                        </tr>
+
+                       <!--  <tr>
+                            <td data-locale="hideNoTalkVisitor">隐藏未说话访客</td>
+                            <td>
+                                <select class="layui-input-inline" id="hideNoTalkVisitor">
+                                    <option value="0" data-locale="select_hidden">隐藏</option>
+                                    <option value="1" data-locale="select_show">显示</option>
+                                </select>
+                            </td>
+                            <td>hideNoTalkVisitor</td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            <td data-locale="newMsgUp">新消息是否置顶</td>
+                            <td>
+                                <select class="layui-input-inline" id="newMsgUp">
+                                    <option value="0" data-locale="notAtTop">不置顶</option>
+                                    <option value="1" data-locale="atTop">置顶</option>
+                                </select>
+                            </td>
+                            <td>newMsgUp</td>
+                            <td></td>
+                        </tr> -->
+
+                    </tbody>
+                </table>
+                
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- 表格操作列 -->
+	<script type="text/html" id="replyMenuBar">
+	    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">添加子菜单</a>
+	    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="/mp/common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+
+    <script type="text/javascript">
+
+        layui.use(['form','jquery',"layer"],function() {
+            var form = layui.form,
+                $ = layui.jquery,
+                layer = parent.layer === undefined ? layui.layer : top.layer;
+
+                //获取配置
+                mpCommon.invoke2({
+                    url : '/customerService/admin/getSysConfig',
+                    data : {},
+                    success : function(result) {
+                        if(result.resultCode==1){
+                            if (result.data != null){
+                                var data = result.data;
+
+                                var visitor_NoReply = data.visitor_NoReply;
+
+                                var service_NoReply = data.service_NoReply;
+
+                                form.val("customer_config", { 
+                                  "webHeadText": data.webHeadText // "name": "value"
+                                  ,"welcomeMenuText": data.welcomeMenuText
+                                  ,"welcomeText": data.welcomeText
+                                  ,"autoWelcome": data.autoWelcome
+                                  ,"visitorModel": data.visitorModel
+                                  ,"robotModel": data.robotModel
+                                  ,"noServiceOnlineModel" : data.noServiceOnlineModel
+                                  ,"allotRange":data.allotRange
+                                  ,"allotStrategy":data.allotStrategy
+                                  ,"serviceAllotModel" :data.serviceAllotModel
+                                  ,"autoTransferPeople" : data.autoTransferPeople
+                                  ,"pointServiceNoOnline" : data.pointServiceNoOnline
+                                  ,"robotNickname" : data.robotNickname
+                                  ,"FAQNoMatchReply" : data.fAQNoMatchReply
+                                  ,"noServiceOnlineHite" : data.noServiceOnlineHite
+                                  ,"wxErCodeUrl" : data.wxErCodeUrl
+                                  ,"qqNumber" : data.qqNumber
+                                  ,"talkWindowOpenTime" : data.talkWindowOpenTime
+                                  ,"visitor_outTime1" : visitor_NoReply.outTime1
+                                  ,"visitor_replyText1" : visitor_NoReply.replyText1
+                                  ,"visitor_outTime2" : visitor_NoReply.outTime2
+                                  ,"visitor_replyText2" : visitor_NoReply.replyText2
+                                  ,"visitor_outTime3" : visitor_NoReply.outTime3
+                                  ,"visitor_replyText3" : visitor_NoReply.replyText3
+                                  ,"isSendChatEndMsg" : data.isSendChatEndMsg
+
+                                  ,"service_outTime1" : service_NoReply.outTime1
+                                  ,"service_replyText1" : service_NoReply.replyText1
+                                  ,"service_outTime2" : service_NoReply.outTime2
+                                  ,"service_replyText2" : service_NoReply.replyText2
+                                  ,"service_outTime3" : service_NoReply.outTime3
+                                  ,"service_replyText3" : service_NoReply.replyText3
+
+
+                                  ,"newVisitorHint_sound": (1==data.newVisitorHint.sound)? true : false
+                                  ,"newVisitorHint_shock": (1==data.newVisitorHint.shock)? true : false
+                                  ,"newVisitorHint_offlinePush" : (1==data.newVisitorHint.offlinePush)? true : false
+
+                                  ,"newTalkHint_sound" : (1==data.newTalkHint.sound)? true : false
+                                  ,"newTalkHint_shock" : (1==data.newTalkHint.shock)? true : false
+                                  ,"newTalkHint_offlinePush" : (1==data.newTalkHint.offlinePush)? true : false
+
+                                  ,"newVisitorMsgHint_sound" : (1==data.newVisitorMsgHint.sound)? true : false
+                                  ,"newVisitorMsgHint_shock" : (1==data.newVisitorMsgHint.shock)? true : false
+                                  ,"newVisitorMsgHint_offlinePush" : (1==data.newVisitorMsgHint.offlinePush)? true : false
+
+                                  ,"newFowardHint_sound" : (1==data.newFowardHint.sound)? true : false
+                                  ,"newFowardHint_shock" : (1==data.newFowardHint.shock)? true : false
+                                  ,"newFowardHint_offlinePush" : (1==data.newFowardHint.offlinePush)? true : false
+
+                                  ,"newInnerTalkHint_sound" : (1==data.newInnerTalkHint.sound)? true : false
+                                  ,"newInnerTalkHint_shock" : (1==data.newInnerTalkHint.shock)? true : false
+                                  ,"newInnerTalkHint_offlinePush" : (1==data.newInnerTalkHint.offlinePush)? true : false
+                                  
+
+                                  ,"hideNoTalkVisitor" : data.hideNoTalkVisitor//隐藏未说话访客  
+                                  ,"newMsgUp" : data.newMsgUp //新消息是否置顶  
+                                 
+                                });
+
+                                /*$("#webHeadText").val(result.data.webHeadText);  //web 访客页标题
+                                $("#welcomeText").val(result.data.welcomeText);  //进入页面提示语
+                                $("#autoWelcome").val(result.data.autoWelcome); //自动欢迎语选项*/
+
+                            
+                                //$("#visitorModel").val(result.data.visitorModel); //访客模式  1 仅限无身份访客   2 仅限有身份访客 3 均支持
+                                //$("#robotModel").val(result.data.robotModel); //机器人模式  1:人工客服+机器人模式   2: 纯机器人模式  默认1
+                                //$("#serviceAllotModel").val(result.data.serviceAllotModel); //人工客服分配模式   1: 自动分配模式  2: 手动抢单模式
+
+                                //$("#autoTransferPeople").val(result.data.autoTransferPeople);
+                                //-----------
+                                    // $("#serviceBusyHite").val(result.data.serviceBusyHite); //客服忙碌提示语
+                                    // $("#quitWindowsEvaluate").val(result.data.quitWindowsEvaluate); //退出对话窗口时提示访客评价本次对话
+                                    //$("#outTime_time_close_windows").val(result.data.outTime_time_close_windows); //超时自动结束会话时间
+                                //--------------
+
+                                /*$("#FAQNoMatchReply").val(result.data.fAQNoMatchReply); //常见问题无匹配自动回复
+                                $("#noServiceOnlineHite").val(result.data.noServiceOnlineHite); //无客服在线访客看到的提示语
+
+                                $("#wxErCodeUrl").val(result.data.wxErCodeUrl); //web 访客页微信二维码url
+
+                                $("#qqNumber").val(result.data.qqNumber);   //web 访客页QQ号*/
+
+
+                                /** 超时时间及回复设置 **/
+                                //访客无应答超时时间及提示
+                               /* if(undefined != result.data.visitor_NoReply){
+                                    var visitor_NoReply = result.data.visitor_NoReply;
+                                    $("#visitor_outTime1").val(visitor_NoReply.outTime1);
+                                    $("#visitor_replyText1").val(visitor_NoReply.replyText1);
+
+                                    $("#visitor_outTime2").val(visitor_NoReply.outTime2);
+                                    $("#visitor_replyText2").val(visitor_NoReply.replyText2);
+
+                                    $("#visitor_outTime3").val(visitor_NoReply.outTime3);
+                                    $("#visitor_replyText3").val(visitor_NoReply.replyText3);
+                                }*/
+
+                                //客服无应答超时时间及提示
+                                /*if(undefined != result.data.service_NoReply){
+                                    var service_NoReply = result.data.service_NoReply;
+                                    $("#service_outTime1").val(service_NoReply.outTime1);
+                                    $("#service_replyText1").val(service_NoReply.replyText1);
+
+                                    $("#service_outTime2").val(service_NoReply.outTime2);
+                                    $("#service_replyText2").val(service_NoReply.replyText2);
+
+                                    $("#service_outTime3").val(service_NoReply.outTime3);
+                                    $("#service_replyText3").val(service_NoReply.replyText3);
+                                }*/
+
+
+                                //======客服设置默认值====================================================
+
+                                // $("#newTalkPush").val(result.data.newTalkPush);//新到对话推送 0 不允许 1 允许
+
+                                // $("#newVisitorPush").val(result.data.newVisitorPush);//新到访客推送 0 不允许 1 允许
+
+                                // $("#newVisitorMsgPush").val(result.data.newVisitorMsgPush);//新到访客消息推送 0 不允许 1 允许
+
+
+
+                               /*  $("#newVisitorHint").val(result.data.newVisitorHint);//新到访客提示
+
+                                $("#newTalkHint").val(result.data.newTalkHint);//新到对话 
+                                $("#newVisitorMsgHint").val(result.data.newVisitorMsgHint);//新到访客消息
+
+                                $("#newFowardHint").val(result.data.newFowardHint);//新到转接 
+
+                                $("#newInnerTalkHint").val(result.data.newInnerTalkHint);//新到内部对话*/ 
+
+                                /*$("#hideNoTalkVisitor").val(result.data.hideNoTalkVisitor);//隐藏未说话访客  
+
+                                $("#newMsgUp").val(result.data.newMsgUp); //新消息是否置顶  */
+
+                                
+                                //重新渲染select 选择框
+                                form.render();
+
+                            }
+                        }
+                    },
+                    error : function(result) {
+                        layer.msg(result.resultMsg,{"icon":5});
+                    }
+                });
+
+
+                //提交保存配置
+                form.on("submit(customerConfig)",function(data){
+
+                    //提交数据loading框
+                    // submit_loading_index = layui.layer.load(1, {shade: [0.4,'#383535']  }); 
+
+                   var config = data.field;
+                   mpCommon.invoke2({
+                        url : '/customerService/admin/setSysConfig',
+                        data : {
+
+                            webHeadText : config.webHeadText, //web 访客页标题
+                            welcomeMenuText : config.welcomeMenuText, //迎宾菜单语
+                            welcomeText : config.welcomeText,  //进入页面提示语
+                            autoWelcome : config.autoWelcome,
+                            //访客进入页面不说话触发提示时间
+                            visitorIntoPageNoTalkHintTime : config.visitorIntoPageNoTalkHintTime,
+                            //访客进入页面不说话触发提示文字
+                            visitorIntoPageNoTalkHintText : config.visitorIntoPageNoTalkHintText,
+
+                            visitorModel : config.visitorModel, //访客模式  1 仅限无身份访客   2 仅限有身份访客 3 均支持
+                            robotModel : config.robotModel, //机器人模式  1:人工客服+机器人模式   2: 纯机器人模式  默认1
+                            serviceAllotModel : config.serviceAllotModel, //人工客服分配模式   1: 自动分配模式  2: 手动抢单模式
+                            allotRange : config.allotRange, //客服自动分配范围 1:分配在线的  2:分配所有
+                            allotStrategy : config.allotStrategy,//客服自动分配策略 1：随机分配 2：轮询分配
+                            noServiceOnlineModel : config.noServiceOnlineModel, ////无客服在线时接待模式  0 给客服留言（纯人工） 1 转机器人
+
+                            autoTransferPeople : config.autoTransferPeople,
+                            pointServiceNoOnline : config.pointServiceNoOnline,
+                            robotNickname : config.robotNickname,  //机器人客服昵称
+                            // serviceBusyHite : $("#serviceBusyHite").val(); //客服忙碌提示语
+                            // quitWindowsEvaluate : $("#quitWindowsEvaluate").val(); //退出对话窗口时提示访客评价本次对话
+                            // outTime_time_close_windows : $("#outTime_time_close_windows").val(); //超时自动结束会话时间
+
+                            fAQNoMatchReply : config.FAQNoMatchReply, //常见问题无匹配自动回复
+                            noServiceOnlineHite : config.noServiceOnlineHite, //无客服在线访客看到的提示语
+
+                            wxErCodeUrl : config.wxErCodeUrl, //web 访客页微信二维码url
+                            qqNumber : config.qqNumber,   //web 访客页QQ号
+
+                            talkWindowOpenTime : config.talkWindowOpenTime, //网页打开到会话窗口弹出的时间   单位：秒
+
+                            /** 超时时间及回复设置 **/
+                            //访客无应答超时时间及提示
+
+                            visitor_outTime1 : mpCommon.isNil(config.visitor_outTime1) ? 0 : config.visitor_outTime1,
+                            visitor_replyText1 : config.visitor_replyText1,
+
+                            visitor_outTime2 : mpCommon.isNil(config.visitor_outTime2) ? 0 : config.visitor_outTime2,
+                            visitor_replyText2 : config.visitor_replyText2,
+
+                            visitor_outTime3 : mpCommon.isNil(config.visitor_outTime3) ? 0 : config.visitor_outTime3,
+                            visitor_replyText3 : config.visitor_replyText3,
+                            isSendChatEndMsg : config.isSendChatEndMsg,
+
+                            //客服无应答超时时间及提示
+                            service_outTime1 : mpCommon.isNil(config.service_outTime1) ? 0 : config.service_outTime1,
+                            service_replyText1 : config.service_replyText1,
+
+                            service_outTime2 : mpCommon.isNil(config.service_outTime2) ? 0 : config.service_outTime2,
+                            service_replyText2 : config.service_replyText2,
+
+                            service_outTime3 : mpCommon.isNil(config.service_outTime3) ? 0 : config.service_outTime3,
+                            service_replyText3 : config.service_replyText3,
+
+                            //======客服设置默认值====================================================
+
+                            //新到访客提示音
+                            newVisitorHintSound : ("on" != config.newVisitorHint_sound) ? 0 : 1,
+                            //新到访客震动
+                            newVisitorHintShock : ("on" != config.newVisitorHint_shock) ? 0 : 1,
+                            //新到访客推送
+                            newVisitorHintOfflinePush : ("on" != config.newVisitorHint_offlinePush) ? 0 : 1,
+
+
+                            newTalkHintSound : ("on" != config.newTalkHint_sound) ? 0 : 1, //新到对话 
+                            newTalkHintShock : ("on" != config.newTalkHint_shock) ? 0 : 1, //新到对话 
+                            newTalkHintOfflinePush : ("on" != config.newTalkHint_offlinePush) ? 0 : 1, //新到对话 
+
+                            newVisitorMsgHintSound : ("on" != config.newVisitorMsgHint_sound) ? 0 : 1,//新到访客消息 
+                            newVisitorMsgHintShock : ("on" != config.newVisitorMsgHint_shock) ? 0 : 1,//新到访客消息 
+                            newVisitorMsgHintOfflinePush : ("on" != config.newVisitorMsgHint_offlinePush) ? 0 : 1,//新到访客消息 
+
+                            newFowardHintSound : ("on" != config.newFowardHint_sound) ? 0 : 1, //新到转接 
+                            newFowardHintShock : ("on" != config.newFowardHint_shock) ? 0 : 1, //新到转接 
+                            newFowardHintOfflinePush : ("on" != config.newFowardHint_offlinePush) ? 0 : 1, //新到转接 
+
+                            newInnerTalkHintSound : ("on" != config.newInnerTalkHint_sound) ? 0 : 1, //新到内部对话
+                            newInnerTalkHintShock : ( "on" != config.newInnerTalkHint_shock) ? 0 : 1, //新到内部对话
+                            newInnerTalkHintOfflinePush : ( "on" != config.newInnerTalkHint_offlinePush) ? 0 : 1, //新到内部对话
+                           
+
+                            hideNoTalkVisitor : config.hideNoTalkVisitor, //隐藏未说话访客  0 隐藏 1 显示
+
+                            newMsgUp : config.newMsgUp, //新消息是否置顶  0 不置顶 1 置顶
+
+                           "hideNoTalkVisitor" : $("#hideNoTalkVisitor").val()
+                        },
+                        success : function(result) {
+                            if(result.resultCode==1){
+                                
+                                // layer.close(submit_loading_index);
+
+                                layer.msg("更新成功",{"icon":1});
+                                //layer.msg(mpLanguage.getLanguageName('update_success'),{"icon":1});
+
+                            }
+                        },
+                        error : function(result) {
+                            layer.msg(result.resultMsg,{"icon":5});
+                        }
+                    });
+
+                });
+
+
+        });
+    </script>
+
+</body>
+</html>

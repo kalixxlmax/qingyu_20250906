@@ -1,0 +1,7 @@
+2024-09-18 13:00:32.418 - com.basic.mianshi.SysApiLogAspect 璇锋眰鍙傛暟锛� /extend/signIn?userId=100043&language=ur&
+2024-09-18 13:00:32.419 - com.basic.mianshi.SysApiLogAspect 瀹㈡埛绔痠p [127.0.0.1]  User-Agent Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36 
+2024-09-18 13:00:32.419 - com.basic.mianshi.SysApiLogAspect 銆�com.basic.im.api.controller.ExtendController銆戠被鐨勩��signIn銆戞柟娉�
+2024-09-18 13:00:32.432 - moneyLogger 100043 [余额记录成功]-> to 0 红包  领取/收入 余额增加  15.0  当前余额 15.0 备注: 暂无
+2024-09-18 13:00:32.434 - com.basic.mianshi.SysApiLogAspect 鎺ュ彛銆�signIn銆戞�昏�楁椂(姣)锛�14
+2024-09-18 13:00:32.434 - com.basic.mianshi.SysApiLogAspect ********************************************
+2024-09-18 13:00:34.959 - RocketmqRemoting closeChannel: close the connection to remote address[] result: true

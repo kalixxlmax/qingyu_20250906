@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="/pages/common/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="./css/public.css" media="all" />
+	<link rel="stylesheet" href="/pages/console/css/commonStyle.css" media="all" />
+</head>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+	<div class="visitPath"></div>
+</div>
+<form class="layui-form layui_form_set spare_bottom">
+	<!--建立群组默认参数设置：只对新建群组有效-->
+	<table class="layui-table buildGroupConfig layui_table_set">
+		<colgroup>
+			<col width="25%">
+			<col width="26%">
+			<col width="25%">
+		</colgroup>
+		<thead>
+		<tr>
+			<th>参数说明</th>
+			<th>参数值</th>
+			<th>变量名</th>
+			<th>参数说明</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>新建群最大人数</td>
+			<td><input type="text" class="layui-input maxUserSize" placeholder=""></td>
+			<td>maxUserSize</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>群组内管理员最大个数</td>
+			<td><input type="text" class="layui-input adminMaxNumber" placeholder=""></td>
+			<td>adminMaxNumber</td>
+			<td>0:表示没有限制，默认群内管理员可设置50个</td>
+		</tr>
+		<tr>
+			<td>是否私密群组</td>
+			<td>
+				<select class="layui-input-inline isLook">
+					<option value="1">是</option>
+					<option value="0">否</option>
+				</select>
+			</td>
+			<td>
+				isLook
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>是否显示已读人数</td>
+			<td>
+				<select class="layui-input-inline showRead">
+					<option value="0">否</option>
+					<option value="1">是</option>
+				</select>
+			</td>
+			<td>
+				showRead
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>是否开启群组邀请确认</td>
+			<td>
+				<select class="layui-input-inline isNeedVerify">
+					<option value="0">关闭</option>
+					<option value="1">开启</option>
+				</select>
+			</td>
+			<td>
+				isNeedVerify
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>群组减员发送通知</td>
+			<td>
+				<select class="layui-input-inline isAttritionNotice">
+					<option value="1">开启</option>
+					<option value="0">关闭</option>
+				</select>
+			</td>
+			<td>isAttritionNotice</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>是否允许显示群成员</td>
+			<td>
+				<select class="layui-input-inline showMember">
+					<option value="1">是</option>
+					<option value="0">否</option>
+				</select>
+			</td>
+			<td>
+				showMember
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>是否允许普通成员私聊</td>
+			<td>
+				<select class="layui-input-inline allowSendCard">
+					<option value="1">是</option>
+					<option value="0">否</option>
+				</select>
+			</td>
+			<td>
+				allowSendCard
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>是否允许普通成员邀请好友</td>
+			<td>
+				<select class="layui-input-inline allowInviteFriend">
+					<option value="1">是</option>
+					<option value="0">否</option>
+				</select>
+			</td>
+			<td>
+				allowInviteFriend
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>是否允许普通成员上传群共享文件</td>
+			<td>
+				<select class="layui-input-inline allowUploadFile">
+					<option value="1">是</option>
+					<option value="0">否</option>
+				</select>
+			</td>
+			<td>
+				allowUploadFile
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>是否允许普通成员发起会议</td>
+			<td>
+				<select class="layui-input-inline allowConference">
+					<option value="1">是</option>
+					<option value="0">否</option>
+				</select>
+			</td>
+			<td>
+				allowConference
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>是否允许普通成员发起讲课</td>
+			<td>
+				<select class="layui-input-inline allowSpeakCourse">
+					<option value="1">是</option>
+					<option value="0">否</option>
+				</select>
+			</td>
+			<td>
+				allowSpeakCourse
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>是否显示水印开关</td>
+			<td>
+				<select class="layui-input-inline showMarker">
+					<option value="1">是</option>
+					<option value="0">否</option>
+				</select>
+			</td>
+			<td>
+				showMarker
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>注册时默认创建群组的群公告和欢迎信息</td>
+			<td>
+				<textarea cols="30" rows="6"class="layui-textarea roomNotice"></textarea>
+			</td>
+			<td>
+				roomNotice  #### 分割欢迎信息
+			</td>
+			<td></td>
+		</tr>
+		<tr class="tableHoverWhite characters_center">
+			<td colspan="4" style="border-bottom: 1px solid transparent;">
+				<button class="layui-btn save sys-sava motif_button_style" lay-submit="" lay-filter="systemConfig">保存
+				</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</form>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="./js/system_default_room_config.js"></script>
+</body>
+</html>

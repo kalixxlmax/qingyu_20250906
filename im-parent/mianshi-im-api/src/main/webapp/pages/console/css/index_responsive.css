@@ -1,0 +1,13 @@
+/*index 响应式CSS*/
+@media screen and (max-width: 1770px){
+    .layui-nav-item_test{
+        width: 1000px;
+    }
+}
+
+
+@media screen and (max-width: 1440px){
+    .layui-nav-item_test{
+        width: 550px;
+    }
+}

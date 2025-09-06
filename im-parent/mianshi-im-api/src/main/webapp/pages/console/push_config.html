@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>推送配置</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<link href="/pages/console/css/push_config.css" rel="stylesheet">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv" style="padding-bottom: 10px;">
+    <div class="visitPath"></div>
+</div>
+
+<div class="layui-tab spare_bottom background_white" lay-filter="demo" lay-allowclose="true" style="margin-top: -10px;">
+    <ul class="layui-tab-title">
+        <!--<li class="layui-this" lay-id="11">网站设置</li>-->
+    </ul>
+
+    <div class="layui-tab-content">
+        <!--<div class="layui-tab-item layui-show">
+                <a class="layui-btn save site-demo-active savaBtn" data-type="tabAdd">新增Tab项</a>
+                <button class="layui-btn save sys-sava pushConfg-sava sava-btn-place savaBtn" lay-submit="" lay-filter="systemConfig" data-locale="sava_btn">保存</button>
+                <br>
+                <b class="pushTitle">消息推送相关配置</b>
+
+                <form class="layui-form">
+                    <table class="layui-table mag0 table-top-interval">
+                        <thead>
+                            <tr>
+                                <th data-locale="parameterSpecification">参数说明</th>
+                                <th data-locale="parameterValues">参数值</th>
+                                <th data-locale="variableName">变量名</th>
+                                <th data-locale="parameterSpecification1">参数详细说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        &lt;!&ndash; 消息推送相关配置 &ndash;&gt;
+                        <tr>
+                            <td colspan="4" data-locale="push_config">
+                                <b class="pushTitle">消息推送相关配置</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>安卓包名</td>
+                            <td><input type="" name="" class="layui-input packName"  placeholder=""></td>
+                            <td>packName</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>appStore 版本App包名(IOS个人版)</td>
+                            <td><input type="" name="" class="layui-input appStoreAppId"  placeholder=""></td>
+                            <td>appStoreAppId</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>企业版 app 包名(IOS企业版)</td>
+                            <td><input type="" name="" class="layui-input betaAppId"  placeholder=""></td>
+                            <td>betaAppId</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>安卓推送配置</td>
+                            <td><input type="" name="" class="layui-input androidPush"  placeholder=""></td>
+                            <td>androidPush</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>IOS推送配置</td>
+                            <td><input type="" name="" class="layui-input iosPush"  placeholder=""></td>
+                            <td>iosPush</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 0;text-align: center; height: 30px;" colspan="4">小米推送配置</td>
+                        </tr>
+                        <tr>
+                            <td>小米 AppSecret</td>
+                            <td><input type="" name="" class="layui-input xmAppSecret"  placeholder=""></td>
+                            <td>xmAppSecret</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>是否创建自定义渠道</td>
+                            <td><input type="" name="" class="layui-input xmChannle"  placeholder=""></td>
+                            <td>xmChannle</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td style="border: 0;text-align: center; height: 30px;" colspan="4">华为推送配置</td>
+                        </tr>
+                        <tr>
+                            <td>华为 AppSecret</td>
+                            <td><input type="" name="" class="layui-input hwAppSecret"  placeholder=""></td>
+                            <td>hwAppSecret</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>华为 AppId</td>
+                            <td><input type="" name="" class="layui-input hwAppId"  placeholder=""></td>
+                            <td>hwAppId</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td data-locale="hw_tokenUrl">华为推送Token地址</td>
+                            <td><input type="" name="" class="layui-input hwTokenUrl"  placeholder="请输入华为TokenUrl！" data-locale="hw_tokenUrl_info"></td>
+                            <td>hwTokenUrl</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td data-locale="hw_apiUrl">华为推送请求地址</td>
+                            <td><input type="" name="" class="layui-input hwApiUrl"  placeholder="请输入hw_apiUrl！" data-locale="hw_apiUrl_info"></td>
+                            <td>hwApiUrl</td>
+                            <td data-locale="hw_apiUrl_info_desc">华为推送服务的api（请求）地址</td>
+                        </tr>
+                        <tr>
+                            <td data-locale="hw_iconUrl">华为推送图标的URL</td>
+                            <td><input type="" name="" class="layui-input hwIconUrl"  placeholder="请输入hw_iconUrl！" data-locale="hw_iconUrl_info"></td>
+                            <td>hwIconUrl</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td data-locale="hw_isopen">是否打开</td>
+                            <td>
+                                <select class="layui-input-inline isOpen">
+                                    <option value="0" data-locale="thisNo">否</option>
+                                    <option value="1" data-locale="thisYes">是</option>
+                                </select>
+                            </td>
+                            <td>isOpen</td>
+                            <td></td>
+                        </tr>
+
+                        &lt;!&ndash; 极光推送配置 &ndash;&gt;
+                        <tr>
+                            <td style="border: 0;text-align: center; height: 30px;" colspan="4" data-locale="js_config"> 极光推送配置</td>
+                        </tr>
+                        <tr>
+                            <td data-locale="jPush_appKey">极光 AppKey</td>
+                            <td><input type="" name="" class="layui-input jPushAppKey"  placeholder="请输入jPush_appKey！" data-locale="jPush_appKey_info"></td>
+                            <td>jPushAppKey</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td data-locale="jPush_masterSecret">极光 MasterSecret</td>
+                            <td><input type="" name="" class="layui-input jPushMasterSecret"  placeholder="请输入jPush_masterSecret！" data-locale="jPush_masterSecret_info"></td>
+                            <td>jPushMasterSecret</td>
+                            <td></td>
+                        </tr>
+
+                        &lt;!&ndash; google FCM推送配置 &ndash;&gt;
+                        <tr>
+                            <td style="border: 0;text-align: center; height: 30px;" colspan="4" data-locale="gg_config"> google FCM推送配置</td>
+                        </tr>
+                        <tr>
+                            <td>FCM_dataBaseUrl</td>
+                            <td><input type="" name="" class="layui-input fcmDataBaseUrl"  placeholder="请输入FCM_dataBaseUrl！" data-locale="FCM_dataBaseUrl_config"></td>
+                            <td>fcmDataBaseUrl</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>FCM_keyJson</td>
+                            <td><input type="" name="" class="layui-input fcmKeyJson"  placeholder="请输入FCM_keyJson！" data-locale="FCM_keyJson_info"></td>
+                            <td>fcmKeyJson</td>
+                            <td></td>
+                        </tr>
+
+                        &lt;!&ndash; 魅族推送配置 &ndash;&gt;
+                        <tr>
+                            <td style="border: 0;text-align: center; height: 30px;" colspan="4" data-locale="mz_config"> 魅族推送配置</td>
+                        </tr>
+                        <tr>
+                            <td data-locale="mz_appSecret">魅族 AppSecret</td>
+                            <td><input type="" name="" class="layui-input mzAppSecret"  placeholder="请输入魅族的AppSecret！" data-locale="mz_appSecret_info"></td>
+                            <td>mzAppSecret</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td data-locale="mz_appId">魅族 AppId</td>
+                            <td><input type="number" name="" class="layui-input mzAppId"  placeholder="请输入魅族的AppId！" data-locale="mz_appId_info"></td>
+                            <td>mzAppId</td>
+                            <td></td>
+                        </tr>
+
+                        &lt;!&ndash; VIVO推送配置 &ndash;&gt;
+                        <tr>
+                            <td style="border: 0;text-align: center; height: 30px;" colspan="4" data-locale="vivo_config"> VIVO推送配置</td>
+                        </tr>
+                        <tr>
+                            <td>VIVO AppId</td>
+                            <td><input type="number" name="" class="layui-input vivoAppId"  placeholder="请输入VIVO的AppId！" data-locale="vivo_appId_config"></td>
+                            <td>vivoAppId</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>VIVO AppKey</td>
+                            <td><input type="" name="" class="layui-input vivoAppKey"  placeholder="请输入VIVO的AppKey！" data-locale="vivo_appKey_config"></td>
+                            <td>vivoAppKey</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>VIVO AppSecret</td>
+                            <td><input type="" name="" class="layui-input vivoAppSecret"  placeholder="请输入VIVO的AppSecret！" data-locale="vivo_appSecret_config"></td>
+                            <td>vivoAppSecret</td>
+                            <td></td>
+                        </tr>
+
+                        &lt;!&ndash; OPPO推送配置 &ndash;&gt;
+                        <tr>
+                            <td style="border: 0;text-align: center; height: 30px;" colspan="4" data-locale="oppo_config"> OPPO推送配置</td>
+                        </tr>
+                        <tr>
+                            <td>OPPO AppKey</td>
+                            <td><input type="" name="" class="layui-input oppoAppKey"  placeholder="请输入oppo_appKey！" data-locale="oppo_appKey_config"></td>
+                            <td>oppoAppKey</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>OPPO MasterSecret</td>
+                            <td><input type="" name="" class="layui-input oppoMasterSecret"  placeholder="请输入OPPO的MasterSecret！" data-locale="oppo_masterSecret_info"></td>
+                            <td>oppoMasterSecret</td>
+                            <td></td>
+                        </tr>
+
+                        &lt;!&ndash; IOS推送配置 &ndash;&gt;
+                        <tr>
+                            <td style="border: 0;text-align: center; height: 30px;" colspan="4" data-locale="push_config_1"> IOS推送配置</td>
+                        </tr>
+                        <tr>
+                            <td data-locale="betaApnsPk">企业版 测试版 apns 推送证书</td>
+                            <td><input type="" name="" class="layui-input betaApnsPk"  placeholder="请输入企业版 测试版 apns 推送证书！" data-locale="betaApnsPk_info"></td>
+                            <td>betaApnsPk</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td data-locale="appStoreApnsPk">appStore apns 推送证书</td>
+                            <td><input type="" name="" class="layui-input appStoreApnsPk"  placeholder="请输入appStore apns 推送证书！" data-locale="appStoreApnsPk_info"></td>
+                            <td>appStoreApnsPk</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td data-locale="voipPk">voip 证书</td>
+                            <td><input type="" name="" class="layui-input voipPk"  placeholder="请输入voip 证书！" data-locale="voipPk_info"></td>
+                            <td>voipPk</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td data-locale="pkPassword">voip 证书 密码</td>
+                            <td><input type="" name="" class="layui-input pkPassword"  placeholder="请输入voip 证书 密码！" data-locale="pkPassword_info"></td>
+                            <td>pkPassword</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>isApnsSandbox</td>
+                            <td>
+                                <select class="layui-input-inline isApnsSandbox">
+                                    <option value="0" data-locale="thisNo">否</option>
+                                    <option value="1" data-locale="thisYes">是</option>
+                                </select>
+                            </td>
+                            <td>isApnsSandbox</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td data-locale="isDebug">调试模式  打印 log</td>
+                            <td>
+                                <select class="layui-input-inline isDebug">
+                                    <option value="0" data-locale="thisNo">否</option>
+                                    <option value="1" data-locale="thisYes">是</option>
+                                </select>
+                            </td>
+                            <td>isDebug</td>
+                            <td></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>-->
+    </div>
+</div>
+
+
+<input id="paymentCode_limlt" value="15" type="hidden">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="./js/push_config.js"></script>
+</body>
+</html>

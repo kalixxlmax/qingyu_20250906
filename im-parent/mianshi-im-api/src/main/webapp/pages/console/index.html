@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>即时通讯管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="icon" href="/pages/common/images/favicon.ico">
+    <link rel="stylesheet" href="/pages/common/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="/pages/common/swiper/swiper-3.4.2.min.css" media="all"/>
+    <link rel="stylesheet" href="./css/index.css" media="all"/>
+    <link rel="stylesheet" href="./css/index_responsive.css" media="all"/>
+</head>
+<body class="main_body">
+<div class="layui-layout layui-layout-admin">
+    <!-- 顶部 -->
+    <div class="layui-header layui_header_top"
+         style="background: #26292C;box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.03);z-index: 10001;">
+        <div class="layui-main" style="margin: 0 27px;">
+            <ul class="layui-nav">
+                <!--用户头像-->
+                <li class="layui-nav-item layui-nav-item_ title_user_style">
+                    <a href="javascript:;" data-url="/pages/console/system_report.html" id="homePage_">
+                        <img src="/pages/console/images/defaultHead.png" class="header_photo_">
+                    </a>
+                </li>
+
+                <!--用户头像-->
+                <li class="layui-nav-item"
+                    style="line-height: 17px;position: absolute;margin-top: 13px;margin-left: 7px;">
+                    <p class="title_style_forn">后台系统管理员</p>
+                </li>
+
+                <!--用户信息-->
+                <li class="layui-nav-item" id="userInfo" style="z-index: 1;">
+                    <a href="javascript:;" class="admin_bar_title admin_bar_title_">
+                        <cite>欢迎你, </cite><cite class="adminName"></cite>
+                    </a>
+                    <dl class="layui-nav-child" style="">
+                        <dd>
+                            <a href="#" class="signOut">
+                                <i class="seraph icon-tuichu"></i>
+                                <cite id="bang_google" class="admin_bar_title">绑定谷歌验证器</cite>
+                            </a>
+                        </dd>
+                        <dd>
+                            <a href="#" class="signOut">
+                                <i class="seraph icon-tuichu"></i>
+                                <cite id="changeMyPasswd" class="admin_bar_title">修改密码</cite>
+                            </a>
+                        </dd>
+                        <dd>
+                            <a data-url="/pages/console/pressureTest.html" class="pressureTest index-yc">
+                                <i class="seraph icon-tuichu"></i>
+                                <cite id="pressureTest" class="admin_bar_title">压力测试</cite>
+                            </a>
+                        </dd>
+                        <dd>
+                            <a onclick="quitLogin()" class="signOut">
+                                <i class="seraph icon-tuichu"></i>
+                                <cite class="admin_bar_title">退出</cite>
+                            </a>
+                        </dd>
+                    </dl>
+                </li>
+                <!--顶部菜单-->
+                <li class="layui-nav-item_ layui-nav-item_test"
+                    style="position: relative;display: inline-block;vertical-align: middle;line-height: 42px;height: 51px;">
+                    <div class="layui-main top_menu_main"
+                         style="width: 1300px;height: 74px;margin: 0px auto 0;position: relative;overflow: hidden;top: -12px;background: #26292C;">
+                        <div class="">
+                            <div class="swiper-container swiper1">
+                                <div class="swiper-wrapper" id="navHeadTop">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <!--切换语言-->
+                <!--<li class="layui-nav-item top_right_title" style="width: 84px;">
+                    <a href="javascript:;">
+                        <img src="/pages/console/images/translate.png" width="18px">
+                    </a>
+                    <dl class="layui-nav-child" style="margin-top: -24px;">
+                        <dd>
+                            <a href="#" class="signOut">
+                                <i class="seraph icon-tuichu"></i>
+                                <cite id="clickZH" class="admin_bar_title" onclick="loadProperties('ZH')">简体</cite>
+                            </a>
+                        </dd>
+                        <dd>
+                            <a href="#" class="signOut">
+                                <i class="seraph icon-tuichu"></i>
+                                <cite id="clickEN" class="admin_bar_title" onclick="loadProperties('EN')">English</cite>
+                            </a>
+                        </dd>
+                    </dl>
+                </li>-->
+            </ul>
+        </div>
+    </div>
+
+    <!-- 左侧导航 -->
+    <div class="layui-side layui-bg-green" id="left_menu"
+         style="display:none;margin-top: 21px;background-color: #F8F8F8!important;">
+        <div class="navBar layui-side-scroll" id="navBar">
+            <ul class="layui-nav layui-nav-tree">
+                <li class="layui-nav-item layui-this">
+                    <a href="javascript:;" data-url="/pages/console/system_report.html">
+                        <i class="layui-icon" data-icon=""></i>
+                        <cite>系统报表</cite>
+                    </a>
+                    <dl class="layui-nav-child">
+                        <dd>
+                            <a href="javascript:;" data-url="/pages/console/system_report.html">
+                                <i class="layui-icon" data-icon=""></i>
+                                <cite>系统报表</cite>
+                            </a>
+                        </dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 内容 -->
+    <div class="layui-body layui-form" id="content_body"
+         style="background-color: #F8F8F8;margin-top: 20px;bottom: 0px;left: 0px;">
+        <div class="layui-tab mag0 bodyTab" lay-filter="bodyTab" id="top_tabs_box">
+            <div class="layui-tab-content clildFrame">
+
+                <div class="layui-tab-item layui-show" id="iframe_body">
+                    <iframe id="iframe" src="/pages/console/system_report.html"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <!--<div class="layui-footer footer" style="box-shadow: 0px 1px 4px 4px rgba(0, 21, 41, 0.03);border-left:0;background: #fff;">
+       <p><span> 即时通讯管理系统 2018 &copy;</span></p>
+   </div>-->
+</div>
+
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="/pages/console/js/bodyTab.js"></script>
+<script type="text/javascript" src="/pages/console/js/home/initHead.js"></script>
+<script type="text/javascript" src="./js/index.js"></script>
+<script type="text/javascript" src="/pages/common/swiper/swiper-3.4.2.jquery.min.js"></script>
+</body>
+</html>

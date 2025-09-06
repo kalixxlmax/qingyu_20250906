@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/mp/css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+    <!-- 常用语管理  -->
+    <div class="layui-tab" lay-filter="usefulText_tab">
+     <!--  <ul class="layui-tab-title">
+        <li class="layui-this">常用语分组</li>
+        <li>常用语</li>
+      </ul> -->
+
+      <div class="layui-tab-content" >
+
+        <div class="layui-tab-item layui-show" id="usefulTextGroup">
+          
+            <!-- 常用语分组管理  -->
+            <div class="layui-row">
+                <div id="usefulTextGroup_table" class="layui-card" style="margin-top: 1%;">
+                    <div class="layui-card-body">
+                        <table id="usefulTextGroup_list" lay-filter="usefulTextGroup_list" style="table-layout:fixed;word-break:break-all;" >
+                               
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- 表头操作项 -->
+            <script type="text/html" id="usefulTextGroupTopBar">
+                    <input type="text" name="" class="layui-input search_usefulTextGroup_keyword" style="width: 15%;display: inline" placeholder="分组名称" data-locale="service_name" >
+                    <a class="layui-btn layui-btn-sm"  lay-event="search_usefulTextGroup" data-locale="menu_search">搜索</a>
+                    <a class="layui-btn layui-btn-sm"  lay-event="add_usefulTextGroup" data-locale="addCommonGroup">添加公用分组</a>
+            </script>
+
+            <!-- 表格操作列 -->
+            <script type="text/html" id="usefulTextGroupOptionBar">
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="usefulTextManager" data-locale="usefulText_manager">常用语管理</a>
+                <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del_usefulTextGroup" data-locale="btn_delete">删除</a>
+            </script>
+
+
+        </div>
+        
+        <div class="layui-tab-item" id="usefulText">
+                
+            <!-- 常用语管理  -->
+            <div class="layui-row">
+                <div id="usefulText_table" class="layui-card" style="margin-top: 1%;">
+                    <div class="layui-card-body">
+                        <table id="usefulText_list" lay-filter="usefulText_list" style="table-layout:fixed;word-break:break-all;" >
+                               
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- 表头操作项 -->
+        <script type="text/html" id="usefulTextTopBar">
+                <input type="text" name="" class="layui-input search_usefulText_keyword" style="width: 15%;display: inline" placeholder="常用语" data-locale="usefulText" >
+                <a class="layui-btn layui-btn-sm"  lay-event="search_usefulText" data-locale="menu_search">搜索</a>
+                <a class="layui-btn layui-btn-sm"  lay-event="add_usefulText" data-locale="add_usefulText">添加常用语</a>
+        </script>
+
+        <!-- 表格操作列 -->
+        <script type="text/html" id="usefulTextOptionBar">
+            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit_usefulText" data-locale="edit">编辑</a>
+            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del_usefulText" data-locale="btn_delete">删除</a>
+        </script>
+
+
+       
+      </div>
+    </div>
+
+
+
+     
+   <div id="hide_area">
+
+            <div id="addUsefulText" class="layui-form" style="margin:20px 40px 10px 40px;display: none;">
+                <div class="layui-form-item">
+                    <div class="layui-input-block" style="margin: 0 auto;">
+                        <!-- <select name="type" class="type">
+                            <option value="1">文本</option>
+                            <option value="2">图片</option>
+                            <option value="3">链接</option>
+                        </select> -->
+
+                        <input type="text" required  lay-verify="required" placeholder="请输入常用语内容,例如 " autocomplete="off" lay-verify="number" class="layui-input context" style="margin: 10px 0; ">
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="updateUsefulText" class="layui-form" style="margin:20px 40px 10px 40px;display: none;">
+                <div class="layui-form-item">
+                    <div class="layui-input-block" style="margin: 0 auto;">
+                        <input type="text" required  lay-verify="required" placeholder="请输入常用语内容,例如 " autocomplete="off" lay-verify="number" class="layui-input context" style="margin: 10px 0; ">
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+   
+
+    <!-- 表格操作列 -->
+	<script type="text/html" id="replyMenuBar">
+	    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">添加子菜单</a>
+	    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+    
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="/mp/common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+    <!-- <script type="text/javascript" src="/mp/customer/js/replyMenu.js"></script> -->
+
+    <script>
+        layui.use(['layer','table','element'],function(){
+            var layer = layui.layer;
+            var $ = layui.jquery;
+            var table = layui.table;
+            var element = layui.element;
+        
+
+            element.on('tab(usefulText_tab)', function(data){
+              console.log(this); //当前Tab标题所在的原始DOM元素
+              console.log(data.index); //得到当前Tab的所在下标
+              console.log(data.elem); //得到当前的Tab大容器
+
+            });
+
+            
+            //分组列表
+            var tableInUsefulTextGroup = table.render({
+                elem: '#usefulTextGroup_list'
+                ,toolbar: '#usefulTextGroupTopBar'
+                ,url: request(mpCommon.serviceUrl+"/customerService/admin/usefulTextGroupList")
+                ,id: 'usefulTextGroup_list'
+                ,page: true
+                ,curr: 0
+                ,limit: mpCommon.limit
+                ,limits: mpCommon.limits
+                ,groups: 7
+                ,cols: [[ //表头
+
+                    {field: 'id', title: mpLanguage.getLanguageName('record_Id'), width:220}
+                    ,{field: 'companyMpId', title: mpLanguage.getLanguageName('groupType'),sort:'true', width:100,templet:function(d){
+                            return d.create_serviceId == d.companyMpId ? "公共":"客服私有";
+                    }}
+                    ,{field: 'groupName', title:  mpLanguage.getLanguageName('groupName'),sort:'true', width:120}
+                    ,{field: 'create_serviceId', title: mpLanguage.getLanguageName('createrId'),sort:'true', width:100}
+                    ,{field: 'updateTime', title: mpLanguage.getLanguageName('add_time'),sort:'true', width:200,templet:function(d){
+                            return (new Date(d.updateTime )).format("yyyy-MM-dd hh:mm:ss");
+                        }}
+                    ,{fixed: 'right', title: mpLanguage.getLanguageName('operation'), align:'center', toolbar: '#usefulTextGroupOptionBar'}
+                ]]
+                ,done:function(res, curr, count){
+                    // checkRequst(res);
+
+                   //initLanguage();
+                    layui.form.render();
+                }
+
+            });
+
+
+            //表头监听
+            table.on('toolbar(usefulTextGroup_list)', function(obj){
+                
+                var layEvent = obj.event,  data = obj.data;
+               
+                if(layEvent === 'add_usefulTextGroup'){ //添加常用语分组
+                    UsefulText.addUsefulTextGroup();
+                }else if (layEvent === 'search_usefulTextGroup'){
+                    UsefulText.reloadUsefulTextGroup();
+                }
+
+            });
+
+            // 菜单操作项
+            table.on('tool(usefulTextGroup_list)', function(obj){
+                var layEvent = obj.event,  data = obj.data;
+               
+                if(layEvent === 'usefulTextManager'){ //常用语管理
+                    
+                   UsefulText.usefulTextManager(data.id);
+
+                }else if(layEvent==='del_usefulTextGroup'){ //删除分组
+
+                    layer.confirm('删除分组将会删除该分组下的全部常用语，确定删除该分组吗？', function(index){
+                      UsefulText.deleteUsefulGroup(data.id);
+                      obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                      layer.close(index);
+                    });
+
+                }
+
+            });
+
+
+
+            var UsefulText = {
+
+                usefulTextManager : function(groupId){
+
+                    layer.open({
+                        // title:mpLanguage.getLanguageName('addService'),
+                        title:"",
+                        type: 1,
+                        //btn:[mpLanguage.getLanguageName('determine'),mpLanguage.getLanguageName('theCancel')],
+                        btn:[],
+                        area: ['800px','610px'],
+                        content: $("#usefulText")
+                        ,end: function(){ 
+                            $("#usefulText").hide();
+                            //layui.form.render();
+                        },
+                        success : function(){
+
+                            UsefulText.loadUsefulTextList(groupId);
+
+                        }
+                        ,yes: function(index, layero){ //确定按钮的回调
+                            /*var telephoneStr = $("#bindService .telephoneStr").val();
+                            if (telephoneStr == ""){
+                                layer.msg(mpLanguage.getLanguageName('input_phone_number'),{"icon":5});
+                                return
+                            }
+                            mpCommon.invoke2({
+                                url :'/customerService/admin/bindService',
+                                data : {
+                                    telephoneStr : telephoneStr
+                                },
+                                success : function(result) {
+                                    if(result.resultCode == 1){
+                                        
+                                        layer.msg(mpLanguage.getLanguageName('add_success')+ result.data.successCount + mpLanguage.getLanguageName('theData') ,{"icon":1});
+
+                                        layer.close(index); //关闭弹框
+
+                                        Service.reloadServiceList();
+
+                                    }else{
+                                        layer.close(index); //关闭弹框
+                                        layer.msg(result.resultMsg,{"icon":2});
+                                    }
+                                },
+                                error : function(result) {
+                                  layer.msg(mpLanguage.getLanguageName('failed_load_data'));
+                                }
+                            });*/
+                        }
+                    });
+                },
+                loadUsefulTextList : function(groupId){
+                    //常用语列表
+                    var tableInUsefulText = table.render({
+                            elem: '#usefulText_list'
+                            ,toolbar: '#usefulTextTopBar'
+                            ,url: request(mpCommon.serviceUrl+"/customerService/admin/usefulTextList")
+                            ,where: { groupId : groupId }
+                            ,id: 'usefulText_list'
+                            ,page: true
+                            ,curr: 0
+                            ,limit: mpCommon.limit
+                            ,limits: mpCommon.limits
+                            ,groups: 7
+                            ,cols: [[ //表头
+
+                                {field: 'service_userId', title: mpLanguage.getLanguageName('service_id'), width:100}
+                                ,{field: 'service_name', title:  mpLanguage.getLanguageName('belong_service_name'),sort:'true', width:120}
+                                //type 1:文本 2:图片 3:链接
+                                ,{field: 'type', title: mpLanguage.getLanguageName('type'),sort:'true', width:100,templet:function(d){
+                                        if(1==d.type){ return mpLanguage.getLanguageName('text')  
+                                        }else if(2==d.type){ return mpLanguage.getLanguageName('image') 
+                                        }else if(3==d.type){ return mpLanguage.getLanguageName('url') }
+                                    }}
+                                ,{field: 'content', title: mpLanguage.getLanguageName('usefulText'),sort:'true', width:180}
+                                ,{field: 'createTime', title: mpLanguage.getLanguageName('create_time'),sort:'true', width:150,templet:function(d){
+                                        return (new Date(d.createTime)).format("yyyy-MM-dd hh:mm:ss");
+                                    }}
+                                ,{fixed: 'right',width:150, title: mpLanguage.getLanguageName('operation'), align:'center', toolbar: '#usefulTextOptionBar'}
+                            ]]
+                            ,done:function(res, curr, count){
+                                // checkRequst(res);
+
+                               //initLanguage();
+                               //layui.form.render();
+
+                                //表头监听
+                                table.on('toolbar(usefulText_list)', function(obj){
+                                    
+                                    var layEvent = obj.event,  data = obj.data;
+                                   
+                                    if(layEvent === 'search_usefulText'){ //搜索常用语
+                                        UsefulText.reloadUsefulText(tableInUsefulText);
+                                    }else if (layEvent === 'add_usefulText'){ //添加常用语
+                                        UsefulText.addUsefulText(groupId,tableInUsefulText);
+                                    }
+
+                                });
+
+                                //菜单操作项
+                                table.on('tool(usefulText_list)', function(obj){
+                                    var layEvent = obj.event,  data = obj.data;
+                                   
+                                    if(layEvent === 'edit_usefulText'){ //编辑常用语
+                                        
+                                       UsefulText.editUsefulText(data,tableInUsefulText);
+
+                                    }else if(layEvent==='del_usefulText'){ //删除
+
+                                        layer.confirm('确定删除该常用语吗？', function(index){
+                                            UsefulText.deleteUsefulText(data.id);
+                                            obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                                            layer.close(index);
+                                        });
+
+                                    }
+
+                                });
+
+
+                            }
+
+                        });
+
+                },
+                addUsefulTextGroup : function(){
+
+                    layer.prompt({title: '请输入分组名称，并确认', formType: 0}, function(groupName, index){
+                      
+                        if ( "" == groupName ){
+                            layer.msg("请输入分组名称",{"icon":5});
+                            return
+                        }
+
+                        mpCommon.invoke2({
+                            url :'/customerService/admin/addUsefulTextGroup',
+                            data : {
+                                groupName : groupName
+                            },
+                            success : function(result) {
+                                if(result.resultCode == 1){
+                                    layer.msg("添加成功" ,{"icon":1});
+                                    layer.close(index); //关闭弹框
+                                    //重载表格数据
+                                    UsefulText.reloadUsefulTextGroup();
+                                }else{
+                                    layer.close(index); //关闭弹框
+                                    layer.msg(result.resultMsg,{"icon":2});
+                                }
+                            },
+                            error : function(result) {
+                               layer.msg(mpLanguage.getLanguageName('failed_load_data'));
+                            }
+                        });
+                      
+                    });
+
+                },
+                deleteUsefulGroup : function(groupId){
+
+                    mpCommon.invoke2({
+                        url :'/customerService/admin/deleteUsefulTextGroup',
+                        data : {
+                            usefulTextGroupId : groupId
+                        },
+                        success : function(result) {
+                            if(result.resultCode == 1){
+                                layer.msg("删除分组成功" ,{"icon":1});
+                                
+                                //重载表格数据
+                                //UsefulText.reloadUsefulTextGroup();
+                            }else{
+                
+                                layer.msg(result.resultMsg,{"icon":2});
+                            }
+                        },
+                        error : function(result) {
+                           layer.msg(mpLanguage.getLanguageName('failed_load_data'));
+                        }
+                    });
+
+
+                },
+                reloadUsefulTextGroup : function(){
+
+                    //重载表格数据
+                    tableInUsefulTextGroup.reload({
+                      where: { //设定异步数据接口的额外参数，任意设
+                        keyword : $(".search_usefulTextGroup_keyword").val()
+                      }
+                      ,page: {
+                        curr: 1 //重新从第 1 页开始
+                      }
+                    });
+
+                    $(".search_usefulTextGroup_keyword").val("");
+                },
+                addUsefulText : function(groupId,tableInUsefulText){
+                   
+                    layer.open({
+                            title:mpLanguage.getLanguageName('add_phrase'),
+                            type: 1,
+                            btn:[mpLanguage.getLanguageName('determine'),mpLanguage.getLanguageName('theCancel')],
+                            area: ['310px','200px'],
+                            content: $("#addUsefulText")
+                            ,end: function(){ 
+                                $("#addUsefulText").hide();
+                                //layui.form.render();
+                            }
+                            ,yes: function(index, layero){ //确定按钮的回调
+                                var context = $("#addUsefulText .context").val();
+                                if (context == ""){
+                                    layer.msg(mpLanguage.getLanguageName('input_phrase'),{"icon":5});
+                                    return;
+                                }
+                                mpCommon.invoke2({
+                                    url :'/customerService/admin/addUsefulText',
+                                    data : {
+                                        groupId : groupId,
+                                        context : context,
+                                        type : mpCommon.isNil($("#addUsefulText .type").val()) ? 1 : $("#addUsefulText .type").val()
+                                    },
+                                    success : function(result) {
+                                        if(result.resultCode == 1){
+                                            
+                                            layer.msg(mpLanguage.getLanguageName('add_success') ,{"icon":1});
+
+                                            layer.close(index); //关闭弹框
+
+                                            UsefulText.reloadUsefulText(tableInUsefulText);
+
+                                        }else{
+                                            layer.close(index); //关闭弹框
+                                            layer.msg(result.resultMsg,{"icon":2});
+                                        }
+                                    },
+                                    error : function(result) {
+                                      layer.msg(mpLanguage.getLanguageName('failed_load_data'));
+                                    }
+                                });
+                            }
+                        });
+
+                },
+                editUsefulText : function(data,tableInUsefulText){
+
+                    layer.open({
+                        title : mpLanguage.getLanguageName('edit_usefulText'),
+                        type : 1,
+                        btn : [mpLanguage.getLanguageName('determine'),mpLanguage.getLanguageName('theCancel')],
+                        area : ['310px','200px'],
+                        content: $("#updateUsefulText")
+                        ,end: function(){ 
+                            $("#updateUsefulText").hide();
+                        }
+                        ,success : function(){
+                            //数据回显
+                            $("#updateUsefulText .context").val(data.content);
+
+                            layui.form.render(); //刷新表单
+                        }
+                        ,yes: function(index, layero){ //确定按钮的回调
+                            var context = $("#updateUsefulText .context").val();
+                            if (context == ""){
+                                layer.msg(mpLanguage.getLanguageName('input_phrase'),{"icon":5});
+                                return;
+                            }
+                            mpCommon.invoke2({
+                                url :'/customerService/admin/updateUsefulText',
+                                data : {
+                                    id : data.id,
+                                    content : context
+                                },
+                                success : function(result) {
+                                    if(result.resultCode == 1){
+                                        
+                                        layer.msg(mpLanguage.getLanguageName('update_success') ,{"icon":1});
+
+                                        layer.close(index); //关闭弹框
+
+                                        tableInUsefulText.reload();
+
+                                    }else{
+                                        layer.close(index); //关闭弹框
+                                        layer.msg(result.resultMsg,{"icon":2});
+                                    }
+                                },
+                                error : function(result) {
+                                  layer.msg(mpLanguage.getLanguageName('failed_load_data'));
+                                }
+                            });
+                        }
+                    });
+
+                },
+                deleteUsefulText : function(usefulTextId){
+
+                    mpCommon.invoke2({
+                        url :'/customerService/admin/deleteUsefulText',
+                        data : {
+                            id : usefulTextId
+                        },
+                        success : function(result) {
+                            if(result.resultCode == 1){
+                                layer.msg(mpLanguage.getLanguageName('delete_success') ,{"icon":1});
+                            } else {
+                                layer.msg(result.resultMsg,{"icon":2});
+                            }
+                        },
+                        error : function(result) {
+                          layer.msg(mpLanguage.getLanguageName('failed_load_data'));
+                        }
+                    });
+
+                },
+                reloadUsefulText : function(tableInUsefulText){
+
+                    //重载表格数据
+                    tableInUsefulText.reload({
+                      where: { //设定异步数据接口的额外参数，任意设
+                        keyword : $(".search_usefulText_keyword").val()
+                      }
+                      ,page: {
+                        curr: 1 //重新从第 1 页开始
+                      }
+                    });
+
+                    $(".search_usefulText_keyword").val("");
+                },
+
+
+              }; 
+
+
+        });
+    </script>
+
+
+
+</body>
+</html>

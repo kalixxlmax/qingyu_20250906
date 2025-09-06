@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>云钱包提现列表</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<!--搜索操作-->
+<div class="layui-row background_white title_menu_place">
+    <div class="searchModule layui-form">
+        <div class="searchBranch">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">提现用户ID ：</label>
+                    <div class="layui-input-inline">
+                        <input id="userId" type="text" name="" class="layui-input" placeholder="提现用户Id">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch">
+            <div class="layui-form-item timeComponent">
+                <div class="layui-inline">
+                    <label class="layui-form-label">提现的时间范围 ：</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" id="raiseCashMsgDate" placeholder="请选择时间范围" type="text">
+                        <img src="/pages/console/images/draw/calendar.png" class="calendar_icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch characters_center">
+            <button class="layui-btn search_live motif_button_style">搜索</button>
+        </div>
+    </div>
+</div>
+
+<!--统计金额-->
+<div class="layui-row title_menu_place transfer_div background_white module_interval" style="padding-left: 40px;">
+    <div class="layui-col-md2">
+        <span>未交易金额：<cite class="notTrading"></cite>  元</span>
+    </div>
+    <div class="layui-col-md2">
+        <span>提现成功金额：<cite class="withdrawalSuccess"></cite>  元</span>
+    </div>
+    <div class="layui-col-md2">
+        <span>提现失败金额：<cite class="withdrawalFailure"></cite>  元</span>
+    </div>
+</div>
+
+<div id="raiseCash" class="layui-card module_interval">
+    <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+        用户提现列表
+    </div>
+    <div class="layui-card-body layui_card_body_top">
+        <table id="raiseCash_table" lay-filter="raiseCash_table">
+        </table>
+    </div>
+</div>
+<!--隐藏框-->
+<input id="ybWithdraw_limlt" value="15" type="hidden">
+<input id="pageCount" type="" name="" style="display: none">
+
+<!-- <script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script> -->
+<script type="text/javascript" src="/pages/common/jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="./js/ybWithdraw.js"></script>
+</body>
+</html>

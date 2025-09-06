@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>全员通知</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet" media="all">
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<link href="/pages/console/css/pushDevice.css" rel="stylesheet">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<div id="keyWordList">
+    <div class="layui-card">
+        <div class="layui-card-body layui-form" style="padding-right: 40px;">
+                <!-- 推送类型 -->
+                <div class="layui-form-item">
+                    <label class="layui-form-label">推送机型</label>
+                    <div class="layui-input-block" id="IsPurchased">
+                        <input type="radio" name="like" value="华为" title="华为" checked>
+                        <input type="radio" name="like" value="VIVO" title="VIVO">
+                        <input type="radio" name="like" value="OPPO" title="OPPO">
+                        <input type="radio" name="like" value="小米" title="小米">
+                        <input type="radio" name="like" value="魅族" title="魅族">
+                        <input type="radio" name="like" value="APNS" title="APNS">
+                        <input type="radio" name="like" value="极光" title="极光">
+                    </div>
+                </div>
+                <div style="margin-top: 20px">
+                    <label class="layui-form-label">推送Token</label>
+                    <div class="layui-input-block">
+                        <input name="username" placeholder="请输入推送Token" autocomplete="off" class="layui-input pushToken"
+                               type="text">
+                    </div>
+                </div>
+                <form class="layui-form" style="margin-top: 20px;padding: 0px;">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">推送包名</label>
+                        <div class="layui-input-block">
+                            <select class="pushPackageName">
+                            </select>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="title" style="margin-top: 20px">
+                    <label class="layui-form-label">推送标题</label>
+                    <div class="layui-input-block">
+                        <input name="" placeholder="请输入推送标题" autocomplete="off" class="layui-input title" type="text">
+                    </div>
+                </div>
+
+                <div id="area" style="margin-top: 20px">
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">推送内容</label>
+                        <div class="layui-input-block">
+                            <textarea placeholder="请输入推送内容" class="layui-textarea textContext"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="padding_upDown_space">
+                    <div class="layui-input-block">
+                        <a class="layui-btn pushSubmit pushDevice-submit motif_button_style">提交</a>
+                    </div>
+                    <label class="push_explain">功能说明：本功能适合做新版本和广告的通知提醒，推送Token对应的用户均会收到操作系统级的推送通知，但APP内部并无新消息。</label>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+<script type="text/javascript" src="/pages/common/jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script>
+    layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
+        var form = layui.form,
+            layer = parent.layer === undefined ? layui.layer : top.layer,
+            $ = layui.jquery,
+            laydate = layui.laydate,
+            laytpl = layui.laytpl,
+            table = layui.table;
+
+        $(".textContext").attr('placeholder', '请填写推送内容');
+        $(".pushSubmit").click(function () {
+
+            var data = $('#IsPurchased input[name="like"]:checked ').val()
+
+            if (Common.isNil($(".title").val())) {
+                layer.msg('请输入推送标题')
+                return;
+            }
+
+            if (Common.isNil($(".textContext").val())) {
+                layer.msg('请输入推送标题')
+                return;
+            }
+
+            if (Common.isNil($(".pushToken").val())) {
+                layer.msg('请输入推送Token')
+                return;
+            }
+
+            Common.invoke({
+                url: request('/console/pushDevice'),
+                data: {
+                    pushDevice: data,
+                    title: $(".title").val(),
+                    text: $(".textContext").val(),
+                    pushToken: $(".pushToken").val(),
+                    pushPackageName: $(".pushPackageName").val()
+                },
+                successMsg: '消息已推送,请检查是否推送成功  !',
+                errorMsg: '推送失败,请检查网络  !',
+                success: function (result) {
+                },
+                error: function (result) {
+                }
+            });
+        })
+    });
+
+    $(function () {
+        showAllPushPackage();
+        //权限判断
+        var arr = ['pushDevice-submit'];
+        manage.authButton(arr);
+        //调用父级页面的Js函数
+        window.parent.getJointVisitPath();
+    })
+
+    //获取全部推送配置包名
+    function showAllPushPackage() {
+        Common.invoke({
+            url: request('/console/get/pushconfigmodel/list'),
+            data: {},
+            errorMsg: '获取推送包名数据失败,请稍后重试！',
+            success: function (result) {
+                console.log("//", result);
+                if (result.data.length > 0) {
+                    var html;
+                    html += '<option value="">请选择</option>';
+                    for (var i = 0; i < result.data.length; i++) {
+                        html += '<option value="' + result.data[i].packageName + '">安卓包名：' + result.data[i].packageName + '</option>';
+                        html += '<option value="' + result.data[i].appStoreAppId + '">appStore 版本App包名(IOS个人版): ' + result.data[i].appStoreAppId + '</option>';
+                        html += '<option value="' + result.data[i].betaAppId + '">企业版 app 包名(IOS企业版)：' + result.data[i].betaAppId + '</option>';
+                    }
+                    $(".pushPackageName").empty();
+                    $(".pushPackageName").append(html);
+                    layui.form.render();
+                }
+            },
+            error: function (result) {
+            }
+        });
+    }
+</script>
+</html>

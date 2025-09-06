@@ -1,0 +1,31 @@
+#role_table .table_topTitle_space{
+    padding-top: 0px;
+}
+
+#add_role , #update_role , #desc_role {
+    display: none;
+}
+
+.input_left{
+    margin-left: -65px;
+}
+
+.updateRoleButtom{
+    padding-bottom: 30px;
+}
+
+.cancelPaddingTop{
+    padding-top: 0px;
+}
+
+#add_role , #update_role{
+    display: none;
+}
+
+#update_role{
+    padding-top: 20px;
+}
+
+#add_role {
+    padding: 20px 40px 0px 0px;
+}

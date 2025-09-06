@@ -1,0 +1,7 @@
+.layui-table thead tr td {
+    background: #FAFAFA;
+    border-radius: 5px 5px 0px 0px;
+    color: #333333;
+    font-size: 14px;
+    font-weight: 600;
+}

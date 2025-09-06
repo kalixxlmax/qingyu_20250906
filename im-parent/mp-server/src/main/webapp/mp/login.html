@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<title>即时通讯公众号</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="icon" href="./images/favicon.ico">
+
+	<link href="./common/layui/css/layui.css" rel="stylesheet" media="all"/>
+	<link rel="stylesheet" href="./css/login.css" media="all" />
+	<link rel="stylesheet" href="./css/intltelinput.css">
+	<link rel="stylesheet" href="./css/demo.css">
+	<link rel="stylesheet" href="./common/step-lay/step.css">
+
+</head>
+
+<body class="loginBody">
+	<select id="selectLanguage">
+		<option value="-1">切换语言</option>
+		<option value="zh">中文</option>
+		<option value="en">English</option>
+	</select>
+
+	<!-- 登录操作 -->
+	<form class="layui-form" id="loginOper">
+		<div class="layadmin-user-login-box layadmin-user-login-header layui-center" style="margin: 40px 0;">
+			<h1 data-locale="im_public">即时通讯公众号</h1>
+		</div>
+		<div class="layui-form-item input-item">
+			<!--<label style="top:-10px">账号</label>-->
+			<input type="text" id="account" placeholder="请输入账号" autocomplete="off" name="account" class="layui-input" lay-verify="required" data-locale="input_account" style="display: inherit">
+		</div>
+		<div class="layui-form-item input-item">
+			<label style="top:-10px" data-locale="password">密码</label>
+			<input type="password" placeholder="请输入密码" autocomplete="off" name="password" class="layui-input" lay-verify="required" data-locale="input_password">
+		</div>
+		<div class="layui-form-item" style="margin-top: 26px;">
+			<button class="layui-btn layui-block" lay-filter="mpUser_login" lay-submit data-locale="login_form">登录</button>
+		</div>
+		<div class="layui-form-item" style="margin-top: 25px;">
+			<p class="regitser_now" id="chat-register" data-locale="soon_registe">立即注册?</p>
+		</div>
+	</form>
+
+
+	<!-- 注册操作 -->
+	<div class="layui-fluid" id="registerOper">
+		<div class="layui-card">
+			<div class="layui-card-body" style="padding-top: 40px;">
+				<div class="layui-carousel" id="stepForm" lay-filter="stepForm" style="margin: 0 auto;">
+					<div carousel-item style="height: 550px;">
+						<div>
+							<form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
+								<div class="layui-form-item">
+									<label class="layui-form-label" data-locale="please_select">请选择：</label>
+									<div class="layui-input-block">
+										<select lay-verify="required" id="officialType">
+											<option value="" selected data-locale="select_account_type">请选择注册的账号类型</option>
+											<option value="4" data-locale="enterprise">企业号</option>
+											<option value="2" data-locale="Personal">个人号</option>
+										</select>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<div class="layui-input-block">
+										<button class="layui-btn" lay-submit lay-filter="formStep" data-locale="next">&emsp;下一步&emsp;</button>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<div>
+							<form class="layui-form" style="margin: 0 auto;max-width: 570px;padding-top: 40px;">
+								<!--个人号-->
+								<div id="privateAccount">
+									<div class="layui-form-item">
+										<label class="layui-form-label" data-locale="identityName">身份证姓名:</label>
+										<div class="layui-input-block">
+											<input type="text" id="identityName" placeholder="请填写身份证姓名" class="layui-input" data-locale="input_identityName"/>
+										</div>
+									</div>
+
+									<div class="layui-form-item">
+										<label class="layui-form-label" data-locale="identity">身份证号码:</label>
+										<div class="layui-input-block">
+											<input type="text" id="identity" placeholder="请填写身份证号码" class="layui-input" data-locale="input_identity"/>
+										</div>
+									</div>
+
+									<div style="content: '\200B';display: block;clear: both;padding-bottom: 15px;word-break: normal;padding-left: 76px;">
+										<label style="margin-left: -49px" data-locale="identity_from">身份证正面:</label>
+										<div style="clear: both;height: 0 !important;display: block;line-height: 0;padding-top: 2px;display: table-cell;vertical-align: top;float: none;width: auto;">
+											<div style="width: 510px;margin-bottom: 15px;">
+												<div class="photo_div">
+													<p class="photo_p" data-locale="update_identity_from">请上传身份证正面</p>
+													<span class="file_span">
+														<a  href="javascript:;" class="layui-btn" data-locale="choose_picture">选择图片</a>
+														<ul class="file_ul"></ul>
+														<div class="file_div">
+															<label onclick="oper.selectSmallFile('positive_url')" class="file_label"></label>
+														</div>
+													</span>
+													<img id="positive_url" src="" style="width: 35px;margin-left: 53px;">
+													<div class="layui-progress" lay-filter="positive_url" style="left: 30px; top: 15px;" lay-showpercent="true">
+														<div class="layui-progress-bar" lay-percent="0%"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div style="content: '\200B';display: block;clear: both;padding-bottom: 15px;word-break: normal;padding-left: 76px;">
+										<label style="margin-left: -49px" data-locale="identity_reverse_side">身份证反面:</label>
+										<div style="clear: both;height: 0 !important;display: block;line-height: 0;padding-top: 2px;display: table-cell;vertical-align: top;float: none;width: auto;">
+											<div style="width: 510px;margin-bottom: 40px;">
+												<div class="photo_div">
+													<p class="photo_p" data-locale="input_upload_identity_reverse_side">请上传身份证反面</p>
+													<span class="file_span">
+														<a  href="javascript:;" class="layui-btn" data-locale="choose_picture">选择图片</a>
+														<ul class="file_ul"></ul>
+														<div class="file_div">
+															<label onclick="oper.selectSmallFile('negative_url')" class="file_label"></label>
+														</div>
+													</span>
+													<img id="negative_url" src="" style="width: 35px;margin-left: 53px;">
+													<div class="layui-progress" lay-filter="negative_url" style="left: 30px;top: 15px;" lay-showpercent="true">
+														<div class="layui-progress-bar" lay-percent="0%"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- 企业号 -->
+								<div id="companyAccount">
+									<div class="layui-form-item">
+										<label class="layui-form-label" data-locale="company_name">企业名称:</label>
+										<div class="layui-input-block">
+											<input type="text" placeholder="请填写企业名称" id="companyName" class="layui-input" data-locale="input_company_name"/>
+										</div>
+									</div>
+
+									<div class="layui-form-item">
+										<label class="layui-form-label" data-locale="business_license_number">营业执照号码:</label>
+										<div class="layui-input-block">
+											<input type="text" placeholder="请输入15位营业执照号码或18位的统一社会信用代码" id="businessLicense" class="layui-input" data-locale="input_business_license_number" />
+										</div>
+									</div>
+
+									<!--选择城市-->
+									<div class="layui-form-item">
+										<label class="layui-form-label" data-locale="company_regio">企业地区</label>
+										<div class="layui-input-inline layui-form"  style="width: 25%;margin-left: 5px;" >
+											<select name="country" id="country" lay-filter="country">
+												<option value="">请选择国家</option>
+											</select>
+										</div>
+										<div class="layui-input-inline layui-form" style="width: 25%">
+											<select name="province" id="province" lay-filter="province">
+												<option value="">请选择省份</option>
+											</select>
+										</div>
+										<div class="layui-input-inline layui-form" style="width: 25%">
+											<select name="city" id="city" lay-filter="city">
+												<option value="">请选择城市</option>
+											</select>
+										</div>
+									</div>
+									<div class="layui-form-item layui-form-text">
+										<label class="layui-form-label" data-locale="desc_address">详细地址</label>
+										<div class="layui-input-block">
+											<textarea name="desc" id="desc" rows="1" cols="1" placeholder="请输入详细地址" class="layui-textarea"></textarea>
+										</div>
+									</div>
+
+									<div style="content: '\200B';display: block;clear: both;padding-bottom: 15px;word-break: normal;padding-left: 76px;">
+										<label style="margin-left: -34px" data-locale="business_license_picture">营业执照:</label>
+										<div style="clear: both;height: 0 !important;display: block;line-height: 0;padding-top: 2px;display: table-cell;vertical-align: top;float: none;width: auto;">
+											<div style="width: 510px;margin-bottom: 40px;">
+												<div class="photo_div">
+													<p class="photo_p" data-locale="input_business_license_picture">请上传公司工商执照图片</p>
+													<span class="file_span">
+														<a  href="javascript:;" class="layui-btn" data-locale="choose_file">选择文件</a>
+														<ul class="file_ul"></ul>
+														<div class="file_div">
+															<label onclick="oper.selectSmallFile('businessLicense_url')" class="file_label"></label>
+														</div>
+													</span>
+													<img id="businessLicense_url" src="" style="width: 35px;margin-left: 53px;">
+													<div class="layui-progress" lay-filter="businessLicense_url" style="left: 30px;top: 15px;" lay-showpercent="true">
+														<div class="layui-progress-bar" lay-percent="0%"></div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<div class="layui-input-block">
+										<button type="button" class="layui-btn layui-btn-primary pre" data-locale="step">上一步</button>
+										<button class="layui-btn" lay-submit lay-filter="formStep2" data-locale="next">&emsp;下一步&emsp;</button>
+									</div>
+								</div>
+							</form>
+						</div>
+
+						<div>
+							<form class="layui-form" style="margin: 0 auto;max-width: 460px;padding-top: 40px;">
+								<div class="layui-form-item">
+									<label class="layui-form-label" data-locale="admin_name">管理员姓名:</label>
+									<div class="layui-input-block">
+										<input type="text" placeholder="请填写企业管理员的姓名" id="adminName" class="layui-input" lay-verify="required" data-locale="input_admin_name" />
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label" data-locale="identity">身份证号码:</label>
+									<div class="layui-input-block">
+										<input type="text" placeholder="请填写企业管理员身份证号码" id="adminIdentity" class="layui-input" lay-verify="required" data-locale="input_admin_identity"/>
+									</div>
+								</div>
+
+
+								<div class="layui-form-item">
+									<label class="layui-form-label">公众号名称:</label>
+									<div class="layui-input-block">
+										<input type="text" placeholder="请填写公众号的名称" id="mpName" class="layui-input" lay-verify="required" />
+									</div>
+								</div>
+
+								<div style="content: '\200B';display: block;clear: both;padding-bottom: 15px;word-break: normal;padding-left: 76px;">
+									<label style="margin-left: -34px" data-locale="head_upload">头像上传:</label>
+									<div style="clear: both;height: 0 !important;display: block;line-height: 0;padding-top: 2px;display: table-cell;vertical-align: top;float: none;width: auto;">
+										<div style="width: 510px;">
+											<div class="photo_div">
+												<p class="photo_p" data-locale="please_upload_head">请上传头像</p>
+												<span class="file_span">
+													<a  href="javascript:;" class="layui-btn" data-locale="choose_headImg">选择头像</a>
+													<ul class="file_ul"></ul>
+													<div class="file_div">
+														<label onclick="oper.selectSmallFile('officialHeadImg')" class="file_label"></label>
+													</div>
+												</span>
+												<img id="officialHeadImg" src="" style="width: 35px;margin-left: 53px;">
+												<div class="layui-progress" lay-filter="officialHeadImg" style="left: 30px;top: 15px;" lay-showpercent="true">
+													<div class="layui-progress-bar" lay-percent="0%"></div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label" data-locale="phone_number">手机号码:</label>
+									<div class="layui-input-block">
+										<!--<input type="text" placeholder="请输入你的手机号码" id="telephone" class="layui-input" lay-verify="number" lay-verify="required" />-->
+										<input type="text" id="telephone" placeholder="请输入账号" autocomplete="off" name="account" class="layui-input" lay-verify="required" style="width: 351px;" data-locale="input_account">
+									</div>
+								</div>
+
+								<div class="layui-form-item">
+									<label class="layui-form-label" data-locale="code">验证码:</label>
+									<div class="layui-input-block">
+										<input type="text" placeholder="请输入验证码" class="layui-input" id="chat-code" style="display: inline;width: 68%;" lay-verify="required" />
+										<a class="layui-btn  layui-btn-primary code" onclick="oper.getCode()" data-locale="getCode">获取验证码</a>
+									</div>
+								</div>
+
+								<div class="layui-form-item">
+									<label class="layui-form-label" data-locale="password">密码:</label>
+									<div class="layui-input-block">
+										<input type="text" placeholder="请输入密码" id="password" class="layui-input" lay-verify="required" data-locale="input_password"/>
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<label class="layui-form-label" data-locale="agein_password">确认密码:</label>
+									<div class="layui-input-block">
+										<input type="text" placeholder="请输入确认密码" id="agreePassword" class="layui-input" lay-verify="required" data-locale="input_agein_password" />
+									</div>
+								</div>
+
+								<div class="layui-form-item">
+									<div class="layui-input-block">
+										<button type="button" class="layui-btn layui-btn-primary pre" data-locale="step">上一步</button>
+										<button class="layui-btn" lay-submit lay-filter="formStep2" data-locale="next">&emsp;下一步&emsp;</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div>
+							<div style="text-align: center;margin-top: 90px;">
+								<i class="layui-icon layui-circle" style="color: white;font-size:30px;font-weight:bold;background: #52C41A;padding: 20px;line-height: 80px;">&#xe605;</i>
+								<div id="successTest" style="font-size: 24px;color: #333;font-weight: 500;margin-top: 30px;">注册成功, 请耐心等待管理员审核！</div>
+								<div style="font-size: 14px;color: #666;margin-top: 20px;" data-locale="register_success">可以登录啦！！！</div>
+							</div>
+							<div style="text-align: center;margin-top: 50px;">
+								<!--<button class="layui-btn next">重新注册</button>-->
+								<button class="layui-btn layui-btn-primary backLogin" data-locale="friendly_reminder">前去登录</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<hr style="margin-top: 108px;">
+				<div style="color: #666;margin-top: 30px;margin-bottom: 40px;padding-left: 30px;">
+					<h3 data-locale="explain">说明</h3><br>
+					<h4 data-locale="personal_number">个人号</h4>
+					<p data-locale="personal_number_info">申请主体为个人。</p>
+					<br>
+					<h4 data-locale="enterprise">企业号</h4>
+					<p data-locale="company_info">申请主体为企业,针对整个公司进行管理,帮助企业高效沟通和管理,能够有效地帮助企业组织进行内部管理,并带来了很多便捷的办公服务。</p>
+					<button class="layui-btn-primary backLogin" style="float:right" data-locale="back_btn">返回</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<form id="uploadSmallFileFrom" name="uploadSmallFileFrom" action="" method="post" enctype="multipart/form-data">
+		<input id="photoSmallUrl" type="hidden" name="photoSmallUrl">
+		<input id="photoSmallUpload" lay-filter="photoSmallUpload" onchange="oper.upload()" name="myfile" type="file" style="display: none;" accept="image/bmp,image/png,image/jpeg,image/jpg,image/gif">
+	</form>
+
+<script type="text/javascript" src="./common/jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="./common/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="./common/i18n/jquery.i18n.properties.js"></script>
+<script type="text/javascript" src="./common/layui/layui.all.js"></script>
+<script type="text/javascript" src="./js/assets/intlTelInput.js"></script>
+<script type="text/javascript" src="./common/step-lay/step.js"></script>
+<script type="text/javascript" src="./js/addr.js"></script>
+<script type="text/javascript" src="./js/mp_login.js"></script>
+<!--注册相关JS-->
+<script type="text/javascript" src="./customer/js/customer_login.js"></script>
+<!-- 文件上传 -->
+<script type="text/javascript" src="./js/jquery.form.js"></script>
+
+</body>
+</html>

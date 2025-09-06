@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>热门主页</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet" media="all">
+<link href="/pages/console/css/fileUpload.css" rel="stylesheet" media="all">
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<body>
+<div class="layui-row">
+
+	<div class="layui-col-md1">&nbsp;</div>
+	<div class="layui-col-md10">
+		<div class="layui-card" style="margin-top: 1%">
+			<div class="layui-card-header">热门主页配置</div>
+
+			<!--热门主页-->
+			<div class="layui-card-body">
+
+				<div class="layui-form-item" style="padding: 35px; width: 40%;">
+
+					<form class="layui-form">
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">底部主页名称</label>
+							<div class="layui-input-block">
+								<input type="text" name="title" autocomplete="off" placeholder="请输入名称" class="layui-input name">
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">底部主页地址</label>
+							<div class="layui-input-block">
+								<input type="text" autocomplete="off" placeholder="请输入地址" class="layui-input homeUrl">
+							</div>
+						</div>
+
+						<div class="layui-col-md12" style="margin-top: 1%;">
+							<div style="content: '\200B';display: block;clear: both;padding-bottom: 15px;word-break: normal;">
+								<label class="layui-form-label" style="">底部主页图标</label>
+								<div style="clear: both;height: 0 !important;display: block;line-height: 0;padding-top: 2px;display: table-cell;vertical-align: top;float: none;width: auto; display: inline;">
+									<div style="width: 510px;margin-bottom: 40px;">
+										<div class="photo_div">
+											<span class="photo_p">请选择图标</span>
+											<span class="file_span">
+												<a href="javascript:;" class="layui-btn">选择文件</a>
+												<ul class="file_ul"></ul>
+												<div class="file_div">
+													<label onclick="operationHomePage_.selectSmallFile()" class="file_label"></label>
+												</div>
+											</span>
+											<img id="uploadSmall_url" src="" style="width: 35px">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+
+					<button class="layui-btn layui-btn-lg" style="display:block;margin:0 auto" onclick="operationHomePage_.submitFrom()">保存</button>
+				</div>
+
+
+				<!--发现页 热门应用-->
+				<div class="layui-form-item" style="padding: 35px; width: 40%; margin-top:30px;">
+					<form class="layui-form">
+
+						<!-- 热门应用1 -->
+						<div class="layui-form-item">
+							<label class="layui-form-label">发现页热门应用1名称</label>
+							<div class="layui-input-block">
+								<input type="text" name="title" autocomplete="off" placeholder="请输入名称" class="layui-input webAddressName">
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">发现页热门应用1地址</label>
+							<div class="layui-input-block">
+								<input type="text" autocomplete="off" placeholder="请输入地址" class="layui-input webAddressHomeUrl">
+							</div>
+						</div>
+
+						<div class="layui-col-md12" style="margin-top: 1%;">
+							<div style="content: '\200B';display: block;clear: both;padding-bottom: 15px;word-break: normal;">
+								<label class="layui-form-label">发现页热门应用1图标</label>
+								<div style="clear: both;height: 0 !important;display: block;line-height: 0;padding-top: 2px;display: table-cell;vertical-align: top;float: none;width: auto; display: inline;">
+									<div style="width: 510px;margin-bottom: 40px;">
+										<div class="photo_div">
+											<p class="photo_p">请选择图标</p>
+											<span class="file_span">
+												<a href="javascript:;" class="layui-btn">选择文件</a>
+												<ul class="file_ul"></ul>
+												<div class="file_div">
+													<label onclick="operationHomePage_.selectWebAddressFile()" class="file_label"></label>
+												</div>
+											</span>
+											<img id="webAddressUrl" src="" style="width: 35px">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<!-- 热门应用2 -->
+						<div class="layui-form-item">
+							<label class="layui-form-label">发现页热门应用2名称</label>
+							<div class="layui-input-block">
+								<input type="text" name="title" autocomplete="off" placeholder="请输入名称" class="layui-input webAddressName">
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">发现页热门应用2地址</label>
+							<div class="layui-input-block">
+								<input type="text" autocomplete="off" placeholder="请输入地址" class="layui-input webAddressHomeUrl">
+							</div>
+						</div>
+
+						<div class="layui-col-md12" style="margin-top: 1%;">
+							<div style="content: '\200B';display: block;clear: both;padding-bottom: 15px;word-break: normal;">
+								<label class="layui-form-label">发现页热门应用2图标</label>
+								<div style="clear: both;height: 0 !important;display: block;line-height: 0;padding-top: 2px;display: table-cell;vertical-align: top;float: none;width: auto;display: inline;">
+									<div style="width: 510px;margin-bottom: 40px;">
+										<div class="photo_div">
+											<p class="photo_p">请选择图标</p>
+											<span class="file_span">
+												<a href="javascript:;" class="layui-btn">选择文件</a>
+												<ul class="file_ul"></ul>
+												<div class="file_div">
+													<label onclick="operationHomePage_.selectWebAddressFile()" class="file_label"></label>
+												</div>
+											</span>
+											<img id="webAddressUrl" src="" style="width: 35px">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</form>
+					<button class="layui-btn layui-btn-lg" style="display:block;margin:0 auto" onclick="operationHomePage_.submitWebAddress()">保存</button>
+				</div>
+
+
+
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+
+<form id="uploadSmallFileFrom" name="uploadSmallFileFrom" action="" method="post" enctype="multipart/form-data">
+	<input id="photoSmallUrl" type="hidden" name="photoSmallUrl">
+	<input id="photoSmallUpload" lay-filter="photoSmallUpload" onchange="operationHomePage_.upload()" name="myfile" type="file" style="display: none;" accept="image/bmp,image/png,image/jpeg,image/jpg,image/gif">
+</form>
+
+
+<form id="uploadWebAddressFileFrom" name="uploadWebAddressFileFrom" action="" method="post" enctype="multipart/form-data">
+	<input id="photoWebAddressUrl" type="hidden" name="photoWebAddressUrl">
+	<input id="photoWebAddressUpload" lay-filter="photoWebAddressUpload" onchange="operationHomePage_.uploadWebAddress()" name="myfile" type="file" style="display: none;" accept="image/bmp,image/png,image/jpeg,image/jpg,image/gif">
+</form>
+
+
+</body>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/jquery.form.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="/pages/console/js/homePage.js"></script>
+
+</html>

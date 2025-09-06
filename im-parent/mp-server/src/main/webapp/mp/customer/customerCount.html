@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/mp/css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+    <!-- 统计图表  -->
+
+    <div class="layui-container" style="width: 90%;margin-top: 30px;">
+
+        <div class="layui-row layui-col-space15">
+
+        
+            <!-- 访问量统计 -->
+   
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header" data-locale="sum_today">今日访问量</div>
+                    <div class="layui-card-body layuiadmin-card-list">
+                        <p class="layuiadmin-big-font" id="todayVisitrNum">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md6">
+                <div class="layui-card">
+                    <div class="layui-card-header" data-locale="sum_visits">累计访问量</div>
+                    <div class="layui-card-body layuiadmin-card-list">
+                        <p class="layuiadmin-big-font" id="sumVisitrNum">0</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 全局时间范围选择 -->
+            <div class="layui-col-sm12" style="margin: 72px 0px -1px 0px;">
+                <div class="layui-card" >
+                    <div class="layui-card-header" style="height: 55px;">
+                        <div class="layui-form" style="min-width: 400px;max-height: 30px;display: inline-flex; margin-top: 8px;">
+
+                            <div class="layui-form-item">
+                                <div class="layui-inline">
+                                  <label class="layui-form-label" style="padding: 9px 8px" data-locale="time_socpe">时间范围：</label>
+                                  <div class="layui-input-inline">
+                                    <input class="layui-input" id="visitorCountDate" placeholder=" - " type="text">
+                                  </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item" >
+
+                                <div class="layui-inline" >
+                                      <div class="layui-input-inline" style="width: 80px;">
+                                        <select class="visitorCount_time_unit" name="timeItem"  lay-filter="visitorCount_time_unit">
+                                                <option value="1" data-locale="time_unit_month">月</option>
+                                                <option value="2" data-locale="time_unit_day" selected>天</option>
+                                                <option value="3" data-locale="time_unit_hour">小时</option>
+                                         </select>
+                                      </div>
+                                </div>
+
+
+                                <div class="layui-inline" >
+                                    <span style="color: red;" class="prompt_info"></span>
+                                </div>
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+                
+
+            <!-- 每日访客统计图展示 -->
+            <div class="layui-col-sm12">
+                <div class="layui-card">
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-sm12">
+                                <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-pagetwo" lay-anim="fade" style="width: 100%; ">
+                                    <div id="everyDayVisitorCount"  style="width:100%;height:300px;"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 时间范围搜索 -->
+            <div class="page_content">
+                <table class="layui-table" style="margin-top: 30px;">
+                    <thead>
+                    </thead>
+                    <tbody id="service_back_td">
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 客服接待访客排名统计图展示 -->
+            <div id="serviceRanking" style="width: 90%;height:600px;float:left;"></div>
+
+        </div>
+    </div>
+
+    <!-- 表格操作列 -->
+	<script type="text/html" id="replyMenuBar">
+	    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">添加子菜单</a>
+	    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+	</script>
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="/mp/common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/common/echarts/echarts4_7_0.js"></script>
+    <script type="text/javascript" src="/mp/common/echarts/shine.js"></script>
+
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+    
+    <script>
+        var CustomerCount = {
+
+            //获取每日访客 折线图
+            getVisitorCount(startDate,endDate,timeUnit){
+                var userRegister = echarts.init(document.getElementById('everyDayVisitorCount'),'shine');
+                mpCommon.invoke2({
+                    url : '/customerService/admin/visitorCount',
+                    data : {
+                        startDate:startDate,
+                        endDate:endDate,
+                        timeUnit:timeUnit
+                    },
+                    success : function(result) {
+                        if(result.resultCode==1){
+                            var optionchartZhe = {
+                                title: {
+                                    text : mpLanguage.getLanguageName('visitor_statistics')
+                                },
+                                tooltip : { trigger : 'axis'},
+                                /*legend: {
+                                    data: ['每日访客']
+                                },*/
+                                xAxis: {
+                                    // type: 'category',
+                                    // boundaryGap: false, //从起点开始
+                                    data: CustomerCount.getTimeStr(result.data)
+                                },
+                                yAxis: {
+                                    splitLine: {
+                                        show: false
+                                    },
+                                    type: 'value'
+                                },
+                                /*toolbox: {
+                                    left: 'right',
+                                    feature: {
+                                        dataZoom: {
+                                            yAxisIndex: 'none'
+                                        },
+                                        restore: {},
+                                        //saveAsImage: {}
+                                    }
+                                },*/
+                                visualMap: {
+                                    top: 10,
+                                    right: 10,
+                                    pieces: [{
+                                        gt: 0,
+                                        lte: 50,
+                                        color: '#096'
+                                    }, {
+                                        gt: 50,
+                                        lte: 100,
+                                        color: '#ffde33'
+                                    }, {
+                                        gt: 100,
+                                        lte: 150,
+                                        color: '#ff9933'
+                                    }, {
+                                        gt: 150,
+                                        lte: 200,
+                                        color: '#cc0033'
+                                    }, {
+                                        gt: 200,
+                                        lte: 300,
+                                        color: '#660099'
+                                    }, {
+                                        gt: 300,
+                                        color: '#7e0023'
+                                    }],
+                                    outOfRange: {
+                                        color: '#999'
+                                    }
+                                },
+                                series: [{
+                                    name: mpLanguage.getLanguageName('daily_visitors'),
+                                    type: 'line', //线性
+                                    data: CustomerCount.getTimeVlues(result.data)
+                                }]
+                            };
+
+                            userRegister.setOption(optionchartZhe, true);
+                        }
+                    },
+                    error : function(result) {
+                        layer.msg(result.resultMsg,{"icon":5});
+                    }
+                });
+            }
+            //获取今日访客数  与  总访客数
+            ,getCountCustomVisitrNum() {
+                mpCommon.invoke2({
+                    url : '/customerService/admin/countCustomTodayVisitrNum',
+                    data : {},
+                    success : function(result) {
+                        if(result.resultCode==1){
+                            $("#todayVisitrNum").html(result.data.todayVisitrNum);
+                            $("#sumVisitrNum").html(result.data.sumVisitrNum);
+                        }
+                    },
+                    error : function(result) {
+                        layer.msg(result.resultMsg,{"icon":5});
+                    }
+                });
+            },
+            //获取客服接待访客数排名
+            getServiceRanking(){
+                var serviceRanking_chart = echarts.init(document.getElementById('serviceRanking'));
+
+                mpCommon.invoke2({
+                    url : '/customerService/admin/getServiceRanking',
+                    data : {},
+                    success : function(result) {
+                        if (result.resultCode == 1){
+                            var data = result.data;
+
+
+                            serviceRanking_chart.setOption( {
+                                title: {
+                                    text: mpLanguage.getLanguageName('service_visitor_num'),
+                                    subtext: mpLanguage.getLanguageName('ranking')
+                                },
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: {
+                                        type: 'shadow'
+                                    }
+                                },
+                                legend: {
+                                    data: [mpLanguage.getLanguageName('numberOf')]
+                                },
+                                color: ['#c12e34', '#c12e34'],
+                                grid: {
+                                    containLabel: true
+                                },
+                                xAxis: {
+                                    type: 'value',
+                                    boundaryGap: [0, 0.01]
+                                },
+                                yAxis: {
+                                    type: 'category',
+                                    data: CustomerCount.getTimeStr(data)
+                                },
+                                series: [
+                                    {
+                                        name: mpLanguage.getLanguageName('numberOf'),
+                                        type: 'bar',
+                                        data: CustomerCount.getTimeVlues(data)
+                                    }
+                                ]
+                            });
+
+
+                            /*option = {
+                                color: ['#c12e34'],
+                                tooltip: {
+                                    trigger: 'axis',
+                                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                                    }
+                                },
+                                grid: {
+                                    left: '3%',
+                                    right: '4%',
+                                    bottom: '3%',
+                                    containLabel: true
+                                },
+                                xAxis: [
+                                    {
+                                        type: 'category',
+                                        data: ['客服若曦', '你在教我做事', '估计寄几块可哦苦菊个不能没没没帮你们妈妈家你那边😭好看了', '富婆都想包养我', '老衲四大皆空，只爱钱和美女', '客服王俊凯', '客服test111'],
+                                        axisTick: {
+                                            alignWithLabel: true
+                                        },
+                                        axisLabel:{
+                                              interval: 0,
+                                              formatter: function (value) {
+                                                //x轴的文字改为竖版显示
+                                                var str = value.split("");
+                                                return str.join("\n");
+                                              }
+                                            },
+                                    }
+                                ],
+                                yAxis: [
+                                    {
+                                        type: 'value'
+                                    }
+                                ],
+                                series: [
+                                    {
+                                        name: '直接访问',
+                                        type: 'bar',
+                                        barWidth: '60%',
+                                        data: [10, 52, 200, 334, 390, 330, 220]
+                                    }
+                                ]
+                            };*/
+
+
+
+                        }
+                    },
+                    error : function(result) {
+                        layer.msg(result.resultMsg,{"icon":5});
+                    }
+                });
+
+            
+            },
+            getTimeStr(datas){
+                var timeStrs = new Array();
+                for(var time in datas){
+                  timeStrs.push(time);
+                }
+                return timeStrs;
+            }
+            ,getTimeVlues(datas){
+                var values = new Array();
+                for(var time in datas){
+                    values.push(datas[time]);
+                }
+                return values;
+            },
+            listenDateSwitch : function(){
+                //日期范围
+                var time =  layui.laydate.render({
+                    elem: '#visitorCountDate'
+                    ,lang: mpLanguage.getLanguage()
+                    ,range: "~"
+                    ,done: function(value, date, endDate){  // choose end
+                        //console.log("date callBack====>>>"+value); //得到日期生成的值，如：2017-08-18
+                        var startDate = value.split("~")[0];
+                        var endDate = value.split("~")[1]; 
+                        var timeUnit =  $(".visitorCount_time_unit").val();
+
+                        CustomerCount.getVisitorCount(startDate,endDate,timeUnit);
+                    }
+                    ,max: 0
+                });
+
+
+                //时间单位切换
+                layui.form.on('select(visitorCount_time_unit)', function(data){
+
+                    if(data.value==3){ //时间单位切换到小时
+
+                        $("#visitorCountDate").val("");
+
+                        $("#visitorCountDate").attr("disabled","");
+                        //getLanguage('count_hint')
+                        $(".prompt_info").text(mpLanguage.getLanguageName("count_hint"));
+
+                        dateRange = "";
+
+                    } else {
+
+                        $("#visitorCountDate").removeAttr("disabled");
+                        $(".prompt_info").text("");
+                    }
+
+                      var dateRange = $("#visitorCountDate").val();
+                      var startDate = dateRange.split("~")[0];
+                      var endDate = dateRange.split("~")[1];
+                      CustomerCount.getVisitorCount(startDate,endDate,data.value);
+                });
+            },
+
+            
+            
+        };
+
+
+        layui.use(['layer','table','laydate'],function(){
+            var layer = parent.layer === undefined ? layui.layer : top.layer,
+                $ = layui.jquery,
+                table = layui.table;
+
+            CustomerCount.listenDateSwitch();
+
+            CustomerCount.getVisitorCount("","",2);
+            CustomerCount.getCountCustomVisitrNum();
+            CustomerCount.getServiceRanking();
+        });
+
+       
+
+
+
+
+    </script>
+
+
+
+
+
+</body>
+</html>

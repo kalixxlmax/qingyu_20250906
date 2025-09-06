@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="./css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+    
+    <div id="pushOneText" class="layui-body">
+        <div class="page_content">
+            <div class="layui-row layui-col-space10">
+                <div class="layui-col-md10" style="margin-left: 10%;margin-top: 2%">
+                    <p data-locale="headline">标题</p>
+                    <input class="layui-input" placeholder="请输入标题" id="pushbody" name="body" data-locale="headline_info">
+                    &nbsp;
+                    <p data-locale="small_title">小标题</p>
+                    <input class="layui-input" placeholder="请输入小标题" id="pushbodyTitle" name="body2" data-locale="small_title_info">
+                    &nbsp;
+                    <p data-locale="pushbodyImgUrl">图片url</p>
+                    <input class="layui-input" placeholder="请输入图片url" id="pushbodyImgUrl" name="body3" data-locale="pushbodyImgUrl_info">
+                    &nbsp;
+                    <p data-locale="pushbodyHtmlUrl">网页url</p>
+                    <input class="layui-input" placeholder="请输入网页url" id="pushbodyHtmlUrl" name="body4" data-locale="pushbodyHtmlUrl_info">
+                
+                    <div style="margin-top: 2%">
+                        <button id="groupSendImgText_btn" onclick="UI.pushOneToAll()" class="layui-btn" data-locale="textbody_btn">群发</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="layui-row layui-col-space10">
+                <div class="layui-col-md10" style="margin-left: 10%;margin-top: 2%;height: 2%;" >
+                    <h1 data-locale="example">示例</h1>
+                    <img alt="" style="margin-left: 20%" src="./images/pushOne.png">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="./common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+    <script type="text/javascript" src="./js/mp_httpApi.js"></script>
+
+     <script type="text/javascript">
+         
+        //群发单图文
+        $('#groupSendImgText_btn').on('click',function(){
+
+                var title = $("#pushbody").val()
+                if(null == title  || "" == title || undefined == title){
+                    ownAlert(2,mpLanguage.getLanguageName('headline_info'));
+                    return;
+                }
+                var sub = $("#pushbodyTitle").val();
+                if(null == sub  || "" == sub || undefined == sub){
+                    ownAlert(2,mpLanguage.getLanguageName('small_title_info'));
+                    return;
+                }
+                var img = $("#pushbodyImgUrl").val();
+                if(null == img  || "" == img || undefined == img){
+                    ownAlert(2,mpLanguage.getLanguageName('pushbodyImgUrl_info'));
+                    return;
+                }
+                if(!/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/.test(img)){
+                    ownAlert(2,"请输入正确的图片url");
+                    return;
+                }
+
+
+                var weburl=$("#pushbodyHtmlUrl").val();
+                if(null == weburl  || "" == weburl || undefined == weburl){
+                    ownAlert(2,mpLanguage.getLanguageName('bodyHtmlUrl'));
+                    return;
+                }
+                if(!/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\*\+,;=.]+$/.test(weburl)){
+                    ownAlert(2,"请输入正确的网页url");
+                    return;
+                }
+
+                mpCommon.invoke({
+                    url : '/mp/pushToAll',
+                    data : {
+                        title:title,
+                        sub:sub,
+                        img:img,
+                        url:weburl
+                    },
+                    success : function(result) {
+                        if (result.resultCode == 1) {
+                            layui.layer.alert(mpLanguage.getLanguageName('successful_mass'));
+                            $("#pushbody").val("");
+                            $("#pushbodyTitle").val("");
+                            $("#pushbodyImgUrl").val("");
+                            $("#pushbodyHtmlUrl").val("");
+                        } else {
+                            layui.layer.alert(mpLanguage.getLanguageName('mass_failure'));
+                        }
+                    },
+                    error : function(result) {
+                        layui.layer.alert(mpLanguage.getLanguageName('mass_failure'));
+                    }
+                });
+
+        });
+
+
+
+     </script>
+
+
+
+</body>
+</html>

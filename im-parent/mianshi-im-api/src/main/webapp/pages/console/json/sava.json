@@ -1,0 +1,64 @@
+{
+  "contentManagement": [
+
+{
+  "title": "角色管理",
+  "resourceAuth":"role:menu",
+  "icon": "&#xe716;",
+  "href": "",
+  "spread": false,
+  "roleInfo":true,
+  "children": [
+    {
+      "title": "管理员",
+      "resourceAuth":"roleAdmin:menu",
+      "icon":"&#xe66c;",
+      "href": "/pages/console/admin.html",
+      "spread": false,
+      "adminUser":true
+    },
+    {
+      "title": "客服",
+      "resourceAuth":"roleService:menu",
+      "icon":"&#xe63a;",
+      "href": "/pages/console/customer.html",
+      "spread": false,
+      "customer": true
+    },
+    {
+      "title": "财务",
+      "resourceAuth":"roleFinance:menu",
+      "icon":"&#xe65e",
+      "href": "/pages/console/finance.html",
+      "spread": false,
+      "finance":true
+    },
+    {
+      "title": "机器人",
+      "resourceAuth":"roleRobot:menu",
+      "icon":"&#xe606",
+      "href": "/pages/console/robot.html",
+      "spread": false,
+      "robot": true
+    },
+    {
+      "title": "游客",
+      "resourceAuth":"roleTourist:menu",
+      "icon":"&#xe66f",
+      "href": "/pages/console/tourist.html",
+      "spread": false,
+      "tourist": true
+    },
+    {
+      "title": "公众号用户",
+      "resourceAuth":"roleOfficial:menu",
+      "icon":"&#xe612",
+      "href": "/pages/console/publicNumber.html",
+      "spread": false,
+      "publicNum": true
+    }
+  ]
+
+}
+]
+}

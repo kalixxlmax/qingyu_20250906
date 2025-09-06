@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<title>系统报表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="./css/public.css" rel="stylesheet">
+<link href="./css/system_report.css" rel="stylesheet">
+<body>
+<div class="layui-row layui-col-space20" style="margin-bottom: 24px;">
+
+    <div class="layui-col-sm6 layui-col-md3 layui-col-md2-4">
+        <div class="layui-card statistics_body" style="margin-left: 1px;">
+            <!--<div class="layui-card-header">用户总数</div>-->
+            <div class="layui-card-body layuiadmin-card-list">
+                <div class="statistics_div">
+                    <p class="statistics_count user-total"></p>
+                    <p class="statistics_title">用户总数</p>
+                    <i class="layui-icon layui-icon-about statistics_issue"></i>
+                </div>
+                <img class="statistics_img" src="/pages/console/images/draw/user_count.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-col-sm6 layui-col-md3 layui-col-md2-4">
+        <div class="layui-card statistics_body">
+            <!--<div class="layui-card-header">用户总数</div>-->
+            <div class="layui-card-body layuiadmin-card-list">
+                <div class="statistics_div">
+                    <p class="statistics_count chat-msg-total"></p>
+                    <p class="statistics_title">单聊消息总数</p>
+                    <i class="layui-icon layui-icon-about statistics_issue"></i>
+                </div>
+                <img class="statistics_img" src="/pages/console/images/draw/sing_chat_count.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-col-sm6 layui-col-md2-4">
+        <div class="layui-card statistics_body">
+            <!--<div class="layui-card-header">用户总数</div>-->
+            <div class="layui-card-body layuiadmin-card-list">
+                <div class="statistics_div">
+                    <p class="statistics_count friends-total"></p>
+                    <p class="statistics_title">添加好友总数</p>
+                    <i class="layui-icon layui-icon-about statistics_issue"></i>
+                </div>
+                <img class="statistics_img" src="/pages/console/images/draw/friend_count.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-col-sm6 layui-col-md3 layui-col-md2-4">
+        <div class="layui-card statistics_body">
+            <!--<div class="layui-card-header">用户总数</div>-->
+            <div class="layui-card-body layuiadmin-card-list">
+                <div class="statistics_div">
+                    <p class="statistics_count live-total"></p>
+                    <p class="statistics_title">直播间总数</p>
+                    <i class="layui-icon layui-icon-about statistics_issue"></i>
+                </div>
+                <img class="statistics_img" src="/pages/console/images/draw/sing_chat_count.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-col-sm6 layui-col-md3 layui-col-md2-4">
+        <div class="layui-card statistics_body" style="margin-right: 1px;">
+            <!--<div class="layui-card-header">用户总数</div>-->
+            <div class="layui-card-body layuiadmin-card-list">
+                <div class="statistics_div">
+                    <p class="statistics_count room-total"></p>
+                    <p class="statistics_title">群组总数</p>
+                    <i class="layui-icon layui-icon-about statistics_issue"></i>
+                </div>
+                <img class="statistics_img" src="/pages/console/images/draw/room_count.png">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 七日活跃统计图 -->
+<div class="layui-col-sm8 severTest" style="margin-top: 4px;width: 1082px;">
+    <div class="layui-card" style="margin-right: -2px;">
+        <div class="layui-card-header layui_card_header_title">
+            <p class="layui_card_header_title_p">七日数据</p>
+        </div>
+        <div class="layui-card-body">
+            <div class="sevenStatistics_count_body">
+                <div class="sevenStatistics_count_color"></div>
+                <span class="sevenStatistics_count_title">七日用户活跃量</span>
+                <p class="sevenStatistics_count sevenStatistics_count_active">0</p>
+                <!--<p class="sevenStatistics_count_change">0</p>-->
+            </div>
+            <div class="sevenStatistics_count_body" style="margin-left: 290px;">
+                <div class="sevenStatistics_count_color" style="background: #FF6666;"></div>
+                <span class="sevenStatistics_count_title">七日新增用户量</span>
+                <p class="sevenStatistics_count sevenStatistics_count_new">0</p>
+                <!--<p class="sevenStatistics_count_change">0</p>-->
+            </div>
+            <div id="sevenStatistics" style="height:271px;margin-top: 30px;"></div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 在线人数 -->
+<div class="layui-col-sm4 layui-col-md4" id="onlineUserDiv" style="margin-top: 4px;width: 457px;padding-left: 17px;">
+    <div class="layui-card">
+        <div class="layui-card-header layui_card_header_title">
+            <p class="layui_card_header_title_p">在线人数</p>
+        </div>
+        <div class="layui-card-body">
+            <div id="onlineUser" style="width: 417px;height:231px;"></div>
+            <div style="text-align: center;margin-bottom: 17px;">
+                <div class="onlineUser_div_submodule">
+                    <p class="onlineUser_count onlineUser_count_max">0</p>
+                    <div class="onlineUser_div_color" style="background: #FF6666"></div>
+                    <span class="sevenStatistics_count_title">最高在线数量</span>
+                </div>
+                <div class="onlineUser_div_submodule">
+                    <p class="onlineUser_count onlineUser_count_now">0</p>
+                    <div class="onlineUser_div_color" style="background: #FFD8D8;"></div>
+                    <span class="sevenStatistics_count_title">当前在线数量</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 全局时间范围选择 -->
+<div class="layui-form">
+    <div class="layui-form-item">
+    </div>
+</div>
+
+<!-- 数据趋势图表 -->
+<div class="layui-card" style="margin-top: 24px;">
+    <div class="layui-card-header layui_card_header_title" style="padding-bottom: 14px;">
+        <p class="layui_card_header_title_p" style="margin-left: -2px;">数据趋势图表</p>
+        <div class="layui-form dataTrend" style="float: right;margin-top: 7px;">
+            <div class="layui-input-inline" style="width: 114px;">
+                <select class="global-time-unit" name="timeUnit" lay-filter="global-time-unit"
+                        style="text-align: center;color: rgba(0, 0, 0, 0.65);">
+                    <option value="1">按月展示</option>
+                    <option value="2" selected>按日展示</option>
+                    <option value="3">按小时展示</option>
+                    <option value="4">按分钟展示</option>
+                </select>
+            </div>
+            <div class="layui-inline">
+                <div class="layui-input-inline" style="margin-top: -3px;width: 256px;">
+                    <input class="layui-input" id="globalDate" value="" placeholder="2015-10-10 ~ 2015-11-10"
+                           type="text" style="width: 110%;">
+                </div>
+            </div>
+            <img src="/pages/console/images/draw/calendar.png" class="calendar_icon">
+        </div>
+    </div>
+
+    <div class="layui-card-body">
+        <!--选项卡 注册量-->
+        <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">注册量</li>
+            </ul>
+            <div class="layui-tab-content" style="width:100%;height:300px;">
+                <div class="layui-tab-item layui-show">
+                    <!-- 用户注册 -->
+                    <div id="userRegisterCount" style="width:1630px;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <!--选项卡 在线量-->
+        <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">在线量</li>
+            </ul>
+            <div class="layui-tab-content" style="width:100%;height:300px;">
+                <div class="layui-tab-item layui-show">
+                    <!-- 用户在线数量统计 -->
+                    <div id="userOnlineNumCount" style="width:1630px;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+        <!--选项卡 在线量 注册量-->
+        <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+                <li class="layui-this">单聊消息</li>
+                <li>创建群组</li>
+                <li>好友关系</li>
+            </ul>
+            <div class="layui-tab-content" style="width:100%;height:300px;">
+                <div class="layui-tab-item layui-show">
+                    <!-- 单聊消息 -->
+                    <div id="chatMsgSumCount" style="width:1630px;height:300px;"></div>
+                </div>
+                <div class="layui-tab-item">
+                    <!-- 创建群组 -->
+                    <div id="addRoomsCount" style="width:1630px;height:300px;"></div>
+                </div>
+                <div class="layui-tab-item">
+                    <!-- 好友关系 -->
+                    <div id="friendsRelationCount" style="width:1630px;height:300px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/common/echarts_5.0.1/echarts.min.js"></script>
+<script type="text/javascript" src="/pages/common/echarts/shine.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/count.js"></script>
+<script type="text/javascript" src="/pages/console/js/system_report.js"></script>
+</body>
+</html>

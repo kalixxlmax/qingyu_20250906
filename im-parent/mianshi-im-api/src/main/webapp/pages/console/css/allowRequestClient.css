@@ -1,0 +1,8 @@
+.saveAllowClient .layui-form-label{
+    width: unset;
+    padding: 9px 9px;
+}
+
+.saveAllowClient{
+    padding-top: 25px;
+}

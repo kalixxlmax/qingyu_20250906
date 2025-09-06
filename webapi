@@ -1,0 +1,2238 @@
+# 云聊IM系统 - API接口文档
+
+## 项目概述
+
+**项目名称**: 云聊Web版  
+**项目类型**: 即时通讯(IM)系统的Web客户端  
+**技术栈**: HTML5 + JavaScript + jQuery + LayUI + WebSocket  
+**主要功能**: 聊天消息、好友管理、群组管理、文件传输、音视频通话、客服系统等
+
+## 系统架构
+
+- **前端**: Web页面 (index.html, login.html)
+- **后端API**: RESTful接口 (默认端口: 9094)
+- **WebSocket**: 实时消息推送 (默认端口: 9260)
+- **文件服务**: 文件上传下载 (默认端口: 8088, 8089)
+- **音视频**: Jitsi集成
+
+## API接口分类
+
+### 1. 系统配置接口
+
+#### 1.1 获取系统配置
+- **接口**: `GET /config`
+- **描述**: 获取系统基础配置信息
+- **请求参数**: 无
+- **返回数据**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "操作成功",
+  "data": {
+    "apiUrl": "http://域名:9094",
+    "websocketUrl": "ws://域名:9260",
+    "uploadUrl": "http://域名:8088/upload/UploadifyServlet",
+    "downloadUrl": "http://域名:8089/",
+    "jitsiServer": "meet.jit.si"
+  },
+  "currentTime": 1234567890
+}
+```
+
+#### 1.1.1 获取详细配置
+- **接口**: `GET /config/get`
+- **描述**: 获取详细系统配置
+- **参数**:
+```json
+{
+  "type": "string"  // 配置类型："system", "app", "chat", "upload"
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "type": "system",
+    "config": {
+      "appName": "云聊IM",
+      "version": "1.0.0",
+      "maxFileSize": 10485760,   // 最大文件大小（字节）
+      "allowFileTypes": ["jpg", "png", "mp4"],
+      "maxGroupMembers": 500
+    }
+  }
+}
+```
+
+#### 1.2 获取服务器时间
+- **接口**: `GET /getCurrentTime`
+- **描述**: 获取服务器当前时间，用于时间同步
+- **请求参数**: 无
+- **返回数据**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "操作成功",
+  "data": 1234567890,
+  "currentTime": 1234567890
+}
+```
+
+#### 1.3 获取版本信息
+- **接口**: `GET /version`
+- **描述**: 获取系统版本信息
+- **参数**: 无
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "version": "1.0.0",
+    "buildTime": "2024-01-01 12:00:00",
+    "gitCommit": "abc123def",
+    "updateTime": 1640995200000,
+    "features": ["chat", "group", "file", "voice", "video"]
+  }
+}
+```
+
+### 2. 用户认证接口
+
+#### 2.1 用户登录 (普通)
+- **接口**: `POST /user/login`
+- **描述**: 用户账号密码登录
+- **请求参数**:
+```json
+{
+  "telephone": "13800138000",
+  "password": "e10adc3949ba59abbe56e057f20f883e"
+}
+```
+- **返回数据**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "登录成功",
+  "data": {
+    "userId": 10001,
+    "access_token": "eyJhbGciOiJIUzI1NiJ9...",
+    "nickname": "用户昵称",
+    "avatar": "头像URL",
+    "login": {
+      "offlineTime": 1234567890
+    }
+  },
+  "currentTime": 1234567890
+}
+```
+
+#### 2.2 用户登录 (加固版)
+- **接口**: `POST /user/login/v1`
+- **描述**: 加固后的登录接口，使用RSA加密
+- **参数**:
+```json
+{
+  "telephone": "string",  // 手机号
+  "password": "string",   // MD5加密后的密码
+  "areaCode": "string",   // 区号，如"+86"
+  "loginType": 0,          // 登录类型，0表示手机号登录
+  "model": "string",      // 设备型号
+  "osVersion": "string",  // 操作系统版本
+  "serialNumber": "string" // 设备序列号
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "access_token": "string",
+    "userId": 123456,
+    "nickname": "用户昵称",
+    "telephone": "13800138000"
+  }
+}
+```
+
+#### 2.3 自动登录
+- **接口**: `POST /user/login/auto`
+- **描述**: 基于token的自动登录
+- **参数**:
+```json
+{
+  "access_token": "string",  // 访问令牌
+  "userId": 123456,           // 用户ID
+  "model": "string",         // 设备型号
+  "osVersion": "string",     // 操作系统版本
+  "serialNumber": "string"   // 设备序列号
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "access_token": "string",
+    "userId": 123456,
+    "nickname": "用户昵称",
+    "telephone": "13800138000"
+  }
+}
+```
+
+#### 2.4 自动登录 (加固版)
+- **接口**: `POST /user/login/auto/v1`
+- **描述**: 加固版自动登录
+- **参数**:
+```json
+{
+  "access_token": "string",  // 访问令牌
+  "userId": 123456,           // 用户ID
+  "model": "string",         // 设备型号
+  "osVersion": "string",     // 操作系统版本
+  "serialNumber": "string",  // 设备序列号
+  "secret": "string"         // 加密密钥
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "access_token": "string",
+    "userId": 123456,
+    "nickname": "用户昵称",
+    "telephone": "13800138000"
+  }
+}
+```
+
+#### 2.5 获取登录验证码
+- **接口**: `POST /auth/getLoginCode`
+- **描述**: 获取登录随机验证码，用于加固登录流程
+- **请求参数**:
+```json
+{
+  "areaCode": "86",
+  "account": "13800138000",
+  "salt": 1234567890,
+  "mac": "HMAC-MD5签名",
+  "apiKey": "API密钥"
+}
+```
+- **返回数据**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "获取成功",
+  "data": {
+    "code": "随机验证码",
+    "userId": 10001
+  },
+  "currentTime": 1234567890
+}
+```
+
+#### 2.6 获取登录私钥
+- **接口**: `POST /authkeys/getLoginPrivateKey`
+- **描述**: 获取用户登录私钥
+- **参数**: 
+  - `userId`: 用户ID
+  - `salt`: 时间戳
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "privateKey": "string",  // RSA私钥
+    "keyId": "string"        // 密钥ID
+  }
+}
+```
+
+#### 2.7 上传登录密钥
+- **接口**: `POST /authkeys/uploadLoginKey`
+- **描述**: 上传RSA公私钥对
+- **参数**:
+```json
+{
+  "publicKey": "string",   // RSA公钥
+  "keyId": "string",      // 密钥ID
+  "userId": 123456         // 用户ID
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "keyId": "string",
+    "uploadTime": 1640995200000
+  }
+}
+```
+
+### 3. 用户管理接口
+
+#### 3.1 用户注册
+- **接口**: `POST /user/register`
+- **描述**: 新用户注册
+- **参数**:
+```json
+{
+  "telephone": "string",     // 手机号
+  "password": "string",      // MD5加密后的密码
+  "nickname": "string",      // 用户昵称
+  "areaCode": "string",      // 区号，如"+86"
+  "smsCode": "string",       // 短信验证码
+  "model": "string",         // 设备型号
+  "osVersion": "string",     // 操作系统版本
+  "serialNumber": "string"   // 设备序列号
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "userId": 123456,
+    "nickname": "用户昵称",
+    "telephone": "13800138000",
+    "access_token": "string"
+  }
+}
+```
+
+#### 3.2 用户注册 (加固版)
+- **接口**: `POST /user/register/v1`
+- **描述**: 加固版用户注册
+- **参数**:
+```json
+{
+  "telephone": "string",     // 手机号
+  "password": "string",      // MD5加密后的密码
+  "nickname": "string",      // 用户昵称
+  "areaCode": "string",      // 区号，如"+86"
+  "smsCode": "string",       // 短信验证码
+  "model": "string",         // 设备型号
+  "osVersion": "string",     // 操作系统版本
+  "serialNumber": "string",  // 设备序列号
+  "secret": "string"         // 加密密钥
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "userId": 123456,
+    "nickname": "用户昵称",
+    "telephone": "13800138000",
+    "access_token": "string"
+  }
+}
+```
+
+#### 3.3 获取用户信息
+- **接口**: `GET /user/get`
+- **描述**: 获取指定用户的详细信息
+- **参数**:
+```json
+{
+  "userId": 123456  // 要查询的用户ID
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "userId": 123456,
+    "nickname": "用户昵称",
+    "telephone": "13800138000",
+    "sex": 1,              // 性别：1男，0女
+    "birthday": "1990-01-01",
+    "description": "个人简介",
+    "areaCode": "+86",
+    "createTime": 1640995200000,
+    "modifyTime": 1640995200000
+  }
+}
+```
+
+#### 3.4 更新用户信息
+- **接口**: `POST /user/update`
+- **描述**: 更新用户资料
+- **参数**:
+```json
+{
+  "userId": 123456,           // 用户ID（必填）
+  "nickname": "新昵称",       // 用户昵称（可选）
+  "sex": 1,                   // 性别：1男，0女（可选）
+  "birthday": "1990-01-01",   // 生日（可选）
+  "description": "个人简介"    // 个人简介（可选）
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "userId": 123456,
+    "nickname": "新昵称",
+    "sex": 1,
+    "birthday": "1990-01-01",
+    "description": "个人简介",
+    "modifyTime": 1640995200000
+  }
+}
+```
+
+#### 3.5 修改密码
+- **接口**: `POST /user/password/update`
+- **描述**: 修改用户密码
+- **参数**:
+```json
+{
+  "oldPassword": "string",  // 旧密码（MD5加密）
+  "newPassword": "string",  // 新密码（MD5加密）
+  "password1": "string"     // 确认新密码（MD5加密）
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "updateTime": 1640995200000
+  }
+}
+```
+
+#### 3.6 重置密码
+- **接口**: `POST /user/password/reset`
+- **描述**: 重置用户密码
+- **参数**:
+```json
+{
+  "telephone": "string",    // 手机号
+  "areaCode": "string",     // 区号，如"+86"
+  "smsCode": "string",      // 短信验证码
+  "newPassword": "string"   // 新密码（MD5加密）
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "resetTime": 1640995200000
+  }
+}
+```
+
+#### 3.7 获取用户在线状态
+- **接口**: `GET /user/getOnLine`
+- **描述**: 获取用户在线状态
+- **参数**:
+```json
+{
+  "userId": 123456  // 要查询的用户ID
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "userId": 123456,
+    "isOnline": true,           // 是否在线
+    "lastOnlineTime": 1640995200000,  // 最后在线时间
+    "deviceType": "mobile",    // 设备类型
+    "status": 1                 // 在线状态：1在线，0离线
+  }
+}
+```
+
+#### 3.8 获取用户设置
+- **接口**: `GET /user/settings`
+- **描述**: 获取用户个人设置
+- **参数**: 
+  - `userId`: 用户ID
+- **返回**: 用户设置信息
+
+#### 3.9 更新用户设置
+- **接口**: `POST /user/settings/update`
+- **描述**: 更新用户个人设置
+- **参数**: 
+```json
+{
+  "settingObj": {
+    "userId": "用户ID",
+    "allowPushMsg": 1,
+    "allowSound": 1,
+    "allowVibration": 1,
+    "allowPushDetail": 1,
+    "allowBeenSearch": 1,
+    "allowLook": 1
+  }
+}
+```
+- **返回**: 
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "操作成功",
+  "data": {
+    "userId": "用户ID",
+    "allowPushMsg": 1,
+    "allowSound": 1,
+    "allowVibration": 1,
+    "allowPushDetail": 1,
+    "allowBeenSearch": 1,
+    "allowLook": 1
+  },
+  "currentTime": 1640995200000
+}
+```
+
+### 4. 好友管理接口
+
+#### 4.1 获取好友列表
+- **接口**: `GET /friends/page`
+- **描述**: 分页获取好友列表
+- **请求参数**:
+```json
+{
+  "userId": 10001,
+  "pageIndex": 0,
+  "pageSize": 15,
+  "status": 2,
+  "keyword": "搜索关键字"
+}
+```
+- **参数说明**:
+  - `status`: 好友状态 (1:单向关注, 2:好友, 0:陌生人)
+- **返回数据**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "获取成功",
+  "data": {
+    "pageData": [
+      {
+        "toUserId": 10002,
+        "toUserName": "好友昵称",
+        "toNickname": "好友备注",
+        "status": 2,
+        "createTime": 1234567890,
+        "user": {
+          "userId": 10002,
+          "nickname": "好友昵称",
+          "avatar": "头像URL",
+          "sex": 1
+        }
+      }
+    ],
+    "total": 100,
+    "pageIndex": 0,
+    "pageSize": 15
+  },
+  "currentTime": 1234567890
+}
+```
+
+#### 4.2 获取好友信息
+- **接口**: `GET /friends/get`
+- **描述**: 获取指定好友的关系信息
+- **参数**: 
+  - `toUserId`: 好友用户ID
+- **返回**: 好友关系信息
+
+#### 4.3 添加好友
+- **接口**: `POST /friends/add`
+- **描述**: 添加好友
+- **参数**:
+```json
+{
+  "toUserId": 123456,        // 要添加的好友用户ID
+  "content": "string",       // 验证消息
+  "remarkName": "string"     // 好友备注名（可选）
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "friendId": 789012,
+    "status": 0,              // 0待验证，1已同意，2已拒绝
+    "createTime": 1640995200000
+  }
+}
+```
+
+#### 4.4 删除好友
+- **接口**: `POST /friends/delete`
+- **描述**: 删除好友关系
+- **参数**:
+```json
+{
+  "toUserId": 123456  // 要删除的好友用户ID
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "deleteTime": 1640995200000
+  }
+}
+```
+
+#### 4.5 添加关注
+- **接口**: `POST /friends/attention/add`
+- **描述**: 添加单向关注
+- **参数**: 
+  - `toUserId`: 目标用户ID
+- **返回**: 关注结果
+
+#### 4.6 取消关注
+- **接口**: `POST /friends/attention/delete`
+- **描述**: 取消单向关注
+- **参数**: 
+  - `toUserId`: 目标用户ID
+- **返回**: 取消结果
+
+#### 4.7 获取新好友列表
+- **接口**: `GET /friends/newFriendListWeb`
+- **描述**: 获取新的好友申请列表
+- **参数**: 
+  - `userId`: 用户ID
+  - `pageIndex`: 页码
+  - `pageSize`: 每页数量
+- **返回**: 新好友申请列表
+
+#### 4.8 获取好友和关注列表
+- **接口**: `GET /friends/friendsAndAttention`
+- **描述**: 获取好友和关注的用户ID列表
+- **参数**: 
+  - `userId`: 用户ID
+  - `type`: 类型 (friendList/blackList)
+- **返回**: 用户ID列表
+
+### 5. 黑名单管理接口
+
+#### 5.1 添加黑名单
+- **接口**: `POST /friends/blacklist/add`
+- **描述**: 将用户加入黑名单
+- **参数**: 
+  - `toUserId`: 目标用户ID
+- **返回**: 添加结果
+
+#### 5.2 移除黑名单
+- **接口**: `POST /friends/blacklist/delete`
+- **描述**: 将用户从黑名单移除
+- **参数**: 
+  - `toUserId`: 目标用户ID
+- **返回**: 移除结果
+
+#### 5.3 查询黑名单
+- **接口**: `GET /friends/queryBlacklistWeb`
+- **描述**: 查询黑名单列表
+- **参数**: 无
+- **返回**: 黑名单用户列表
+
+### 6. 群组管理接口
+
+#### 6.1 获取我的群组列表
+- **接口**: `GET /room/list/his`
+- **描述**: 获取用户加入的群组列表
+- **请求参数**:
+```json
+{
+  "pageIndex": 0,
+  "pageSize": 20
+}
+```
+- **返回数据**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "获取成功",
+  "data": {
+    "pageData": [
+      {
+        "id": "群组ID",
+        "name": "群组名称",
+        "desc": "群组描述",
+        "avatar": "群头像URL",
+        "createTime": 1234567890,
+        "userId": 10001,
+        "nickname": "群主昵称",
+        "memberCount": 50,
+        "maxUserSize": 500,
+        "isPublic": 1,
+        "role": 1
+      }
+    ],
+    "total": 10,
+    "pageIndex": 0,
+    "pageSize": 20
+  },
+  "currentTime": 1234567890
+}
+```
+
+#### 6.2 获取所有群组
+- **接口**: `GET /room/list`
+- **描述**: 获取所有公开群组
+- **参数**: 
+```json
+{
+  "pageIndex": 0,
+  "keyword": "群组名称关键词"
+}
+```
+- **返回**: 
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "操作成功",
+  "data": {
+    "pageData": [
+      {
+        "id": "群组ID",
+        "name": "群组名称",
+        "desc": "群组描述",
+        "category": "群组分类",
+        "tags": "群组标签",
+        "maxUserSize": 500,
+        "isLook": 1,
+        "isAttrition": 0,
+        "isNeedVerify": 1,
+        "showMember": 1,
+        "allowInviteFriend": 1,
+        "allowUploadFile": 1,
+        "allowConference": 1,
+        "allowSpeakCourse": 1,
+        "createTime": 1640995200,
+        "updateTime": 1640995200,
+        "userSize": 10
+      }
+    ],
+    "pageIndex": 0,
+    "pageSize": 10,
+    "pageCount": 1,
+    "count": 1
+  },
+  "currentTime": 1640995200000
+}
+```
+
+#### 6.3 获取群组信息
+- **接口**: `GET /room/get`
+- **描述**: 获取群组详细信息(包含成员列表)
+- **参数**: 
+```json
+{
+  "roomId": "群组ID"
+}
+```
+- **返回**: 
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "操作成功",
+  "data": {
+    "id": "群组ID",
+    "name": "群组名称",
+    "desc": "群组描述",
+    "category": "群组分类",
+    "tags": "群组标签",
+    "maxUserSize": 500,
+    "isLook": 1,
+    "isAttrition": 0,
+    "isNeedVerify": 1,
+    "showMember": 1,
+    "allowInviteFriend": 1,
+    "allowUploadFile": 1,
+    "allowConference": 1,
+    "allowSpeakCourse": 1,
+    "createTime": 1640995200,
+    "updateTime": 1640995200,
+    "members": [
+      {
+        "userId": "用户ID",
+        "nickname": "用户昵称",
+        "role": 1,
+        "createTime": 1640995200
+      }
+    ]
+  },
+  "currentTime": 1640995200000
+}
+```
+
+#### 6.4 获取群组基本信息
+- **接口**: `GET /room/getRoom`
+- **描述**: 获取群组基本信息(不包含成员列表)
+- **参数**: 
+  - `roomId`: 群组ID
+- **返回**: 群组基本信息
+
+#### 6.5 创建群组
+- **接口**: `POST /room/add`
+- **描述**: 创建新群组
+- **参数**:
+```json
+{
+  "roomName": "string",      // 群组名称
+  "desc": "string",          // 群组描述
+  "category": 0,             // 群组类别：0普通群，1部门群
+  "isLook": 0,               // 是否可见：0公开，1私有
+  "userIds": [123456, 789012], // 初始成员用户ID列表
+  "maxUserSize": 500         // 最大成员数量
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "roomId": "string",
+    "roomName": "群组名称",
+    "jid": "string",
+    "createTime": 1640995200000,
+    "memberCount": 3
+  }
+}
+```
+
+#### 6.6 加入群组
+- **接口**: `POST /room/join`
+- **描述**: 用户加入群组
+- **参数**:
+```json
+{
+  "roomId": "string",        // 群组ID
+  "content": "string"        // 申请消息（可选）
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "roomId": "string",
+    "status": 1,              // 1成功加入，0待审核
+    "joinTime": 1640995200000
+  }
+}
+```
+
+#### 6.7 更新群组信息
+- **接口**: `POST /room/update`
+- **描述**: 更新群组信息
+- **参数**: 
+  - `roomId`: 群组ID
+  - 其他群组信息字段
+- **返回**: 更新结果
+
+#### 6.8 删除群组
+- **接口**: `POST /room/delete`
+- **描述**: 删除群组
+- **参数**:
+```json
+{
+  "roomId": "string"  // 要解散的群组ID
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "deleteTime": 1640995200000
+  }
+}
+```
+
+#### 6.9 转让群组
+- **接口**: `POST /room/transfer`
+- **描述**: 转让群主权限
+- **参数**: 
+  ```json
+  {
+    "roomId": "群组ID",
+    "toUserId": "新群主用户ID"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "操作成功",
+    "data": {
+      "roomId": "群组ID",
+      "oldOwnerId": "原群主ID",
+      "newOwnerId": "新群主ID",
+      "transferTime": 1640995200
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+### 7. 群组成员管理接口
+
+#### 7.1 获取群成员列表
+- **接口**: `GET /room/member/list`
+- **描述**: 获取群组成员列表
+- **参数**: 
+  - `roomId`: 群组ID
+  - `keyword`: 搜索关键字
+- **返回**: 成员列表
+
+#### 7.2 获取群成员信息
+- **接口**: `GET /room/member/get`
+- **描述**: 获取指定群成员信息
+- **参数**: 
+  - `roomId`: 群组ID
+  - `userId`: 用户ID
+- **返回**: 成员信息
+
+#### 7.3 更新群成员信息
+- **接口**: `POST /room/member/update`
+- **描述**: 更新群成员信息(如昵称、权限等)
+- **参数**: 
+  - `roomId`: 群组ID
+  - `userId`: 用户ID
+  - 其他成员信息字段
+- **返回**: 更新结果
+
+#### 7.4 删除群成员
+- **接口**: `POST /room/member/delete`
+- **描述**: 移除群成员
+- **参数**:
+```json
+{
+  "roomId": "string",        // 群组ID
+  "userId": 123456           // 要移除的成员用户ID（可选，不填表示自己退出）
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "exitTime": 1640995200000
+  }
+}
+```
+
+#### 7.5 设置群管理员
+- **接口**: `POST /room/set/admin`
+- **描述**: 设置或取消群管理员
+- **参数**: 
+  ```json
+  {
+    "roomId": "群组ID",
+    "touserId": "目标用户ID",
+    "type": 1
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "操作成功",
+    "data": {
+      "userId": "用户ID",
+      "roomId": "群组ID",
+      "role": 2,
+      "updateTime": 1640995200
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+### 8. 群组分享管理接口
+
+#### 8.1 查找群组分享
+- **接口**: `GET /room/share/find`
+- **描述**: 查找群组分享内容
+- **参数**: 
+  - `roomId`: 群组ID
+- **返回**: 分享内容列表
+
+#### 8.2 添加群组分享
+- **接口**: `POST /room/add/share`
+- **描述**: 添加群组分享内容
+- **参数**:
+```json
+{
+  "roomId": "string",        // 群组ID
+  "file": "binary",          // 文件二进制数据（multipart/form-data）
+  "fileName": "string",      // 文件名
+  "fileSize": 1024,          // 文件大小（字节）
+  "desc": "string"           // 文件描述（可选）
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "fileId": "string",
+    "fileName": "文件名",
+    "fileSize": 1024,
+    "url": "string",
+    "uploadTime": 1640995200000
+  }
+}
+```
+
+#### 8.3 删除群组分享
+- **接口**: `POST /room/share/delete`
+- **描述**: 删除群组分享内容
+- **参数**:
+```json
+{
+  "fileId": "string"  // 要删除的文件ID
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "deleteTime": 1640995200000
+  }
+}
+```
+
+### 9. 群组公告管理接口
+
+#### 9.1 获取群公告列表
+- **接口**: `GET /room/noticesPage`
+- **描述**: 分页获取群公告列表
+- **参数**: 
+  - `roomId`: 群组ID
+  - `pageIndex`: 页码
+  - `pageSize`: 每页数量
+- **返回**: 公告列表
+
+#### 9.2 删除群公告
+- **接口**: `POST /room/notice/delete`
+- **描述**: 删除群公告
+- **参数**: 
+  - `noticeId`: 公告ID
+- **返回**: 删除结果
+
+### 10. 消息管理接口
+
+#### 10.1 获取最近聊天列表
+- **接口**: `GET /tigase/getLastChatList`
+- **描述**: 获取最近聊天的会话列表
+- **参数**:
+```json
+{
+  "startTime": 1640995200000, // 开始时间戳（可选）
+  "pageSize": 20             // 每页数量（可选，默认20）
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "chatList": [
+      {
+        "jid": "string",
+        "chatType": 1,           // 聊天类型：1单聊，2群聊
+        "nickname": "聊天对象名称",
+        "lastMsg": "最后一条消息",
+        "lastMsgTime": 1640995200000,
+        "unreadCount": 3,
+        "isTop": false          // 是否置顶
+      }
+    ],
+    "totalCount": 50
+  }
+}
+```
+
+#### 10.2 获取历史消息
+- **接口**: `GET /tigase/yunla_msgs` (单聊)
+- **接口**: `GET /tigase/yunla_muc_msgs` (群聊)
+- **描述**: 获取历史聊天消息
+- **请求参数**:
+```json
+{
+  "pageIndex": 0,
+  "pageSize": 20,
+  "endTime": 1234567890,
+  "maxType": 1,
+  "receiver": "10002",
+  "roomId": "群组ID"
+}
+```
+- **参数说明**:
+  - `receiver`: 接收者ID (单聊时使用)
+  - `roomId`: 群组ID (群聊时使用)
+  - `maxType`: 最大消息类型
+- **返回数据**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "获取成功",
+  "data": {
+    "pageData": [
+      {
+        "messageId": "消息ID",
+        "type": 1,
+        "content": "消息内容",
+        "fromUserId": 10001,
+        "fromUserName": "发送者昵称",
+        "toUserId": 10002,
+        "roomJid": "群组JID",
+        "timeSend": 1234567890,
+        "timeReceive": 1234567890,
+        "isRead": 1,
+        "isRoom": 0
+      }
+    ],
+    "pageIndex": 0,
+    "pageSize": 20,
+    "pageCount": 1,
+    "count": 1
+  },
+  "currentTime": 1234567890
+}
+```
+
+#### 10.3 获取单条消息
+- **接口**: `GET /tigase/getMessage`
+- **描述**: 获取指定消息详情
+- **参数**: 
+  ```json
+  {
+    "messageId": "消息ID",
+    "type": 1
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "操作成功",
+    "data": {
+      "messageId": "消息ID",
+      "type": 1,
+      "content": "消息内容",
+      "fromUserId": "发送者ID",
+      "fromUserName": "发送者昵称",
+      "toUserId": "接收者ID",
+      "roomJid": "群组JID",
+      "timeSend": 1640995200000,
+      "timeReceive": 1640995200000
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 10.4 发送消息
+- **接口**: `POST /tigase/sendMessage`
+- **描述**: 发送聊天消息
+- **参数**:
+```json
+{
+  "type": 1,                 // 消息类型：1文本，2图片，3语音，4视频，5文件
+  "content": "string",       // 消息内容
+  "toUserId": 123456,        // 接收者用户ID（单聊）
+  "roomJid": "string",       // 群组JID（群聊）
+  "messageId": "string",     // 消息ID
+  "timeSend": 1640995200000,  // 发送时间戳
+  "objectId": "string"       // 附件对象ID（可选）
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "messageId": "string",
+    "timeSend": 1640995200000,
+    "status": 1              // 发送状态：1成功，0失败
+  }
+}
+```
+
+#### 10.5 删除消息
+- **接口**: `POST /tigase/deleteMsg`
+- **描述**: 删除聊天消息
+- **参数**: 
+  ```json
+  {
+    "type": 1,                 // 删除类型：1单条删除，2批量删除
+    "messageId": "string",     // 消息ID
+    "roomJid": "string",       // 群组JID（群聊消息）
+    "del": 1                   // 删除标识：1删除
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "操作成功",
+    "data": {
+      "messageId": "消息ID",
+      "deleteTime": 1640995200000
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+### 11. 红包接口
+
+#### 11.1 发送红包
+- **接口**: `POST /redPacket/sendRedPacket`
+- **描述**: 发送红包
+- **参数**: 
+  ```json
+  {
+    "money": 10.00,
+    "count": 5,
+    "greetings": "恭喜发财",
+    "redType": 1,
+    "toUserId": "接收者ID",
+    "roomId": "群组ID"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "发送成功",
+    "data": {
+      "redId": "红包ID",
+      "money": 10.00,
+      "count": 5,
+      "greetings": "恭喜发财",
+      "redType": 1,
+      "sendTime": 1640995200000,
+      "sendUserId": "发送者ID",
+      "sendUserName": "发送者昵称",
+      "toUserId": "接收者ID",
+      "roomId": "群组ID"
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 11.2 获取红包详情
+- **接口**: `GET /redPacket/getRedPacket`
+- **描述**: 获取红包详细信息
+- **参数**: 
+  ```json
+  {
+    "redId": "红包ID"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "获取成功",
+    "data": {
+      "redId": "红包ID",
+      "money": 10.00,
+      "count": 5,
+      "greetings": "恭喜发财",
+      "redType": 1,
+      "sendTime": 1640995200000,
+      "sendUserId": "发送者ID",
+      "sendUserName": "发送者昵称",
+      "toUserId": "接收者ID",
+      "roomId": "群组ID",
+      "status": 1,
+      "remainCount": 3,
+      "remainMoney": 6.00
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 11.3 打开红包
+- **接口**: `POST /redPacket/openRedPacket`
+- **描述**: 打开/抢红包
+- **参数**: 
+  ```json
+  {
+    "redId": "红包ID"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "抢红包成功",
+    "data": {
+      "redId": "红包ID",
+      "money": 2.50,
+      "receiveTime": 1640995200000,
+      "receiveUserId": "接收者ID",
+      "receiveUserName": "接收者昵称",
+      "sendUserId": "发送者ID",
+      "sendUserName": "发送者昵称",
+      "greetings": "恭喜发财",
+      "isLucky": 0
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 11.4 获取红包领取记录
+- **接口**: `GET /redPacket/getRedReceivesByRedId`
+- **描述**: 获取红包的领取记录
+- **参数**: 
+  ```json
+  {
+    "redId": "红包ID"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "获取成功",
+    "data": [
+      {
+        "redId": "红包ID",
+        "money": 2.50,
+        "receiveTime": 1640995200000,
+        "receiveUserId": "接收者ID",
+        "receiveUserName": "接收者昵称",
+        "isLucky": 0
+      },
+      {
+        "redId": "红包ID",
+        "money": 3.50,
+        "receiveTime": 1640995300000,
+        "receiveUserId": "接收者ID2",
+        "receiveUserName": "接收者昵称2",
+        "isLucky": 1
+      }
+    ],
+    "currentTime": 1640995200000
+  }
+  ```
+
+### 12. 附近的人接口
+
+#### 12.0 更新位置信息
+- **接口**: `POST /user/location/update`
+- **描述**: 更新用户位置信息
+- **参数**:
+```json
+{
+  "longitude": 116.397128,   // 经度
+  "latitude": 39.916527,     // 纬度
+  "address": "string",       // 地址描述（可选）
+  "provinceId": 110000,      // 省份ID（可选）
+  "cityId": 110100           // 城市ID（可选）
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "updateTime": 1640995200000,
+    "longitude": 116.397128,
+    "latitude": 39.916527
+  }
+}
+```
+
+#### 12.1 获取附近的人
+- **接口**: `GET /nearby/nearbyUserWeb`
+- **描述**: 获取附近的用户列表
+- **参数**: 
+  ```json
+  {
+    "pageIndex": 0,            // 页码（从0开始）
+    "pageSize": 20,            // 每页数量
+    "nickname": "string",      // 昵称搜索（可选）
+    "longitude": 116.397128,   // 经度
+    "latitude": 39.916527,     // 纬度
+    "radius": 5000             // 搜索半径（米，可选，默认5000）
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "success",
+    "data": {
+      "pageIndex": 0,
+      "pageSize": 20,
+      "totalCount": 50,
+      "users": [
+        {
+          "userId": 123456,
+          "nickname": "用户昵称",
+          "sex": 1,
+          "distance": 1200,        // 距离（米）
+          "isOnline": true,
+          "lastActiveTime": 1640995200000
+        }
+      ]
+    }
+  }
+  ```
+
+### 13. 直播接口
+
+#### 13.1 获取直播间列表
+- **接口**: `GET /liveRoom/list`
+- **描述**: 获取直播间列表
+- **参数**: 
+  ```json
+  {
+    "pageIndex": 0,
+    "pageSize": 20
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "获取成功",
+    "data": {
+      "pageData": [
+        {
+          "roomId": "直播间ID",
+          "roomName": "直播间名称",
+          "roomDesc": "直播间描述",
+          "ownerId": "主播ID",
+          "ownerName": "主播昵称",
+          "avatar": "主播头像",
+          "cover": "直播间封面",
+          "status": 1,
+          "viewerCount": 100,
+          "createTime": 1640995200000,
+          "startTime": 1640995200000
+        }
+      ],
+      "pageIndex": 0,
+      "pageSize": 20,
+      "pageCount": 1,
+      "count": 1
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+### 14. 企业组织架构接口
+
+#### 14.1 获取用户所属企业
+- **接口**: `GET /org/company/getByUserId`
+- **描述**: 获取用户所属的企业信息
+- **参数**: 无
+- **返回**: 企业信息
+
+#### 14.2 创建企业
+- **接口**: `POST /org/company/create`
+- **描述**: 创建新企业
+- **参数**: 
+  ```json
+  {
+    "companyName": "公司名称",
+    "companyDesc": "公司描述",
+    "adminUserId": 123456,
+    "logo": "公司logo URL（可选）",
+    "address": "公司地址（可选）",
+    "telephone": "公司电话（可选）"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "创建成功",
+    "data": {
+      "companyId": "公司ID",
+      "companyName": "公司名称",
+      "createUserId": "创建者ID",
+      "createTime": 1640995200000,
+      "status": 1
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 14.3 修改企业信息
+- **接口**: `POST /org/company/modify`
+- **描述**: 修改企业信息
+- **参数**: 企业信息
+- **返回**: 修改结果
+
+#### 14.4 退出企业
+- **接口**: `POST /org/company/quit`
+- **描述**: 退出企业
+- **参数**: 无
+- **返回**: 退出结果
+
+#### 14.5 获取企业员工列表
+- **接口**: `GET /org/company/employees`
+- **描述**: 获取企业员工列表
+- **参数**: 
+  - `pageIndex`: 页码
+  - `pageSize`: 每页数量
+- **返回**: 员工列表
+
+#### 14.6 设置企业管理员
+- **接口**: `POST /org/company/setManager`
+- **描述**: 设置企业管理员
+- **参数**: 
+  ```json
+  {
+    "companyId": "公司ID",
+    "managerId": "[\"管理员ID1\",\"管理员ID2\"]"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "设置成功",
+    "data": {
+      "companyId": "公司ID",
+      "managerIds": ["管理员ID1", "管理员ID2"],
+      "updateTime": 1640995200000
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+### 15. 部门管理接口
+
+#### 15.1 创建部门
+- **接口**: `POST /org/department/create`
+- **描述**: 创建新部门
+- **参数**: 
+  ```json
+  {
+    "departName": "部门名称",
+    "createUserId": 123456,
+    "companyId": "所属公司ID",
+    "parentId": "父部门ID（可选，不填表示根部门）"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "创建成功",
+    "data": {
+      "departmentId": "部门ID",
+      "departName": "部门名称",
+      "companyId": "公司ID",
+      "parentId": "父部门ID",
+      "createUserId": "创建者ID",
+      "createTime": 1640995200000,
+      "status": 1
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 15.2 删除部门
+- **接口**: `POST /org/department/delete`
+- **描述**: 删除部门
+- **参数**:
+```json
+{
+  "departmentId": "string"  // 要删除的部门ID
+}
+```
+- **返回**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "success",
+  "data": {
+    "deleteTime": 1640995200000
+  }
+}
+```
+
+#### 15.3 获取部门员工列表
+- **接口**: `GET /org/departmemt/empList`
+- **描述**: 获取部门员工列表
+- **参数**: 
+  - `departmentId`: 部门ID
+- **返回**: 员工列表
+
+### 16. 员工管理接口
+
+#### 16.1 查找员工
+- **接口**: `GET /org/employee/findEmployee`
+- **描述**: 查找员工信息
+- **参数**: 查找条件
+- **返回**: 员工信息
+
+#### 16.2 更新员工信息
+- **接口**: `POST /org/employee/updateEmployee`
+- **描述**: 更新员工信息
+- **参数**: 员工信息
+- **返回**: 更新结果
+
+#### 16.3 添加员工
+- **接口**: `POST /org/employee/add`
+- **描述**: 添加新员工
+- **参数**: 
+  ```json
+  {
+    "departmentId": "部门ID",
+    "userIds": [123456, 789012],
+    "role": 1
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "添加成功",
+    "data": {
+      "addCount": 2,
+      "addTime": 1640995200000
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 16.4 删除员工
+- **接口**: `POST /org/employee/delete`
+- **描述**: 删除员工
+- **参数**: 
+  - `userId`: 用户ID
+- **返回**: 删除结果
+
+#### 16.5 修改员工职位
+- **接口**: `POST /org/employee/modifyPosition`
+- **描述**: 修改员工职位
+- **参数**: 
+  - `userId`: 用户ID
+  - `position`: 新职位
+- **返回**: 修改结果
+
+#### 16.6 获取员工角色
+- **接口**: `GET /org/employee/role`
+- **描述**: 获取员工角色信息
+- **参数**: 无
+- **返回**: 角色信息
+
+### 17. 登录认证接口
+
+#### 17.1 获取登录验证码
+- **接口**: `POST /basic/auth/getLoginCode`
+- **描述**: 获取登录验证码
+- **参数**: 
+  ```json
+  {
+    "areaCode": "+86",
+    "account": "手机号",
+    "salt": "随机盐值",
+    "apiKey": "API密钥"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "获取成功",
+    "data": {
+      "code": "验证码",
+      "salt": "盐值"
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 17.2 获取登录私钥
+- **接口**: `POST /basic/auth/getLoginPrivateKey`
+- **描述**: 获取登录私钥
+- **参数**: 
+  ```json
+  {
+    "userId": "用户ID",
+    "salt": "盐值",
+    "apiKey": "API密钥",
+    "pwd": "加密后的密码",
+    "areaCode": "+86",
+    "account": "手机号"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "获取成功",
+    "data": {
+      "privateKey": "私钥"
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 17.3 用户登录
+- **接口**: `POST /basic/auth/getUserLoginV1`
+- **描述**: 用户登录验证
+- **参数**: 
+  ```json
+  {
+    "salt": "盐值",
+    "userId": "用户ID",
+    "apiKey": "API密钥",
+    "pwd": "加密后的密码",
+    "code": "验证码",
+    "privateKey": "私钥"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "登录成功",
+    "data": {
+      "access_token": "访问令牌",
+      "userId": "用户ID",
+      "nickname": "用户昵称",
+      "telephone": "手机号",
+      "loginResult": "登录结果数据",
+      "httpKey": "HTTP密钥"
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 17.4 二维码登录检查
+- **接口**: `GET /qrCodeLoginCheck`
+- **描述**: 二维码登录检查
+- **参数**: 
+  ```json
+  {
+    "QRCodeKey": "二维码密钥"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "检查成功",
+    "data": {
+      "status": 1,
+      "QRCodeToken": "二维码令牌",
+      "userId": "用户ID",
+      "loginToken": "登录令牌",
+      "loginKey": "登录密钥"
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 17.5 自动登录
+- **接口**: `POST /basic/auth/userLoginAutoV1`
+- **描述**: 二维码扫描后自动登录
+- **参数**: 
+  ```json
+  {
+    "QRCodeToken": "二维码令牌",
+    "userId": "用户ID",
+    "loginToken": "登录令牌",
+    "loginKey": "登录密钥"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "登录成功",
+    "data": {
+      "access_token": "访问令牌",
+      "userId": "用户ID",
+      "nickname": "用户昵称",
+      "telephone": "手机号"
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+### 18. 客服系统接口
+
+#### 18.1 获取常用语
+- **接口**: `GET /CustomerService/commonText/get`
+- **描述**: 获取客服常用语列表
+- **参数**: 无
+- **返回**: 常用语列表
+
+#### 18.2 添加常用语
+- **接口**: `POST /CustomerService/commonText/add`
+- **描述**: 添加客服常用语
+- **参数**: 
+  - `content`: 常用语内容
+- **返回**: 添加结果
+
+#### 18.3 删除常用语
+- **接口**: `POST /CustomerService/commonText/delete`
+- **描述**: 删除客服常用语
+- **参数**: 
+  - `id`: 常用语ID
+- **返回**: 删除结果
+
+### 19. 验证码和安全接口
+
+#### 19.1 获取图片验证码
+- **接口**: `GET /getImgCode`
+- **描述**: 获取图片验证码
+- **参数**: 
+  ```json
+  {
+    "telephone": "手机号",
+    "areaCode": "+86"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "获取成功",
+    "data": {
+      "imgCode": "base64编码的验证码图片",
+      "codeId": "验证码ID"
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 19.2 发送短信验证码
+- **接口**: `POST /basic/randcode/sendSms`
+- **描述**: 发送短信验证码
+- **参数**: 
+  ```json
+  {
+    "telephone": "string",     // 手机号
+    "areaCode": "string",      // 区号，如"+86"
+    "type": 1,                 // 验证码类型：1注册，2登录，3重置密码
+    "imgCode": "string",       // 图片验证码（可选）
+    "imgCodeToken": "string"   // 图片验证码token（可选）
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "success",
+    "data": {
+      "sendTime": 1640995200000,
+      "expireTime": 1640995500000,  // 过期时间
+      "interval": 60               // 重发间隔（秒）
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 19.3 获取二维码登录密钥
+- **接口**: `GET /getQRCodeKey`
+- **描述**: 获取二维码登录密钥
+- **参数**: 无
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "获取成功",
+    "data": {
+      "QRCodeKey": "二维码密钥",
+      "expireTime": 1640995500000
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 19.4 检查二维码登录状态
+- **接口**: `GET /qrCodeLoginCheck`
+- **描述**: 检查二维码登录状态
+- **参数**: 
+  ```json
+  {
+    "QRCodeKey": "二维码密钥"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "检查成功",
+    "data": {
+      "status": 1,
+      "QRCodeToken": "二维码令牌",
+      "userId": "用户ID",
+      "loginToken": "登录令牌",
+      "loginKey": "登录密钥"
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+### 20. 文件上传接口
+
+#### 20.1 文件上传
+- **接口**: `POST /upload/UploadifyServlet`
+- **描述**: 上传文件到服务器，支持图片、音频、视频、文档等
+- **请求参数** (multipart/form-data):
+```json
+{
+  "file": "binary",          // 文件二进制数据（multipart/form-data）
+  "userId": 123456,          // 上传用户ID
+  "messageType": 2,          // 消息类型：2图片，3语音，4视频，5文件
+  "validTime": 0             // 有效期（秒，0表示永久）
+}
+```
+- **参数说明**:
+  - `type`: 文件类型 (1:图片, 2:音频, 3:视频, 4:文档)
+  - `validTime`: 文件有效期(秒)
+- **返回数据**:
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "上传成功",
+  "data": {
+    "oUrl": "http://域名:8089/upload/original/filename.jpg",
+    "tUrl": "http://域名:8089/upload/thumb/filename_thumb.jpg",
+    "fSize": 102400,
+    "width": 1920,
+    "height": 1080,
+    "duration": 0,
+    "objectId": "string"      // 文件对象ID
+  },
+  "currentTime": 1234567890
+}
+```
+
+#### 20.2 头像上传
+- **接口**: `POST /upload/UploadifyAvatarServlet`
+- **描述**: 上传用户头像
+- **参数**: 
+  ```json
+  {
+    "file": "头像文件(multipart/form-data)",
+    "userId": "用户ID"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "上传成功",
+    "data": {
+      "fileUrl": "文件访问URL",
+      "fileName": "文件名",
+      "fileSize": 102400,
+      "uploadTime": 1640995200000
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 20.3 语音上传
+- **接口**: `POST /upload/UploadVoiceServlet`
+- **描述**: 上传语音文件
+- **参数**: 
+  ```json
+  {
+    "file": "语音文件(multipart/form-data)",
+    "userId": "用户ID",
+    "length": 30
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "上传成功",
+    "data": {
+      "fileUrl": "语音文件URL",
+      "fileName": "文件名",
+      "fileSize": 51200,
+      "length": 30,
+      "uploadTime": 1640995200000
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 20.4 文件删除
+- **接口**: `POST /upload/deleteFileServlet`
+- **描述**: 删除服务器文件
+- **参数**: 
+  ```json
+  {
+    "url": "string"  // 要删除的文件URL
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "删除成功",
+    "data": {
+      "fileUrl": "已删除的文件URL",
+      "deleteTime": 1640995200000
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 20.5 检查文件MD5
+- **接口**: `POST /upload/checkMd5`
+- **描述**: 检查文件MD5，支持秒传
+- **参数**: 
+  ```json
+  {
+    "md5": "文件MD5值",
+    "fileName": "文件名",
+    "fileSize": 1024000
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "检查成功",
+    "data": {
+      "exists": true,
+      "fileUrl": "文件URL",
+      "md5": "文件MD5值",
+      "uploadTime": 1640995200000
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+#### 20.6 音频格式转换
+- **接口**: `POST /amrToMp3`
+- **描述**: 将AMR格式音频转换为MP3
+- **参数**: 
+  ```json
+  {
+    "amrUrl": "AMR文件URL"
+  }
+  ```
+- **返回**: 
+  ```json
+  {
+    "resultCode": 1,
+    "resultMsg": "转换成功",
+    "data": {
+      "mp3Url": "转换后的MP3文件URL",
+      "originalUrl": "原AMR文件URL",
+      "convertTime": 1640995200000,
+      "duration": 30
+    },
+    "currentTime": 1640995200000
+  }
+  ```
+
+## 通用参数说明
+
+### 请求头
+- `Content-Type`: application/x-www-form-urlencoded
+- `Authorization`: Bearer {access_token} (登录后接口)
+
+### 通用参数
+- `access_token`: 访问令牌 (登录后获得)
+- `secret`: 接口签名 (安全验证)
+- `time`: 请求时间戳
+- `language`: 语言标识 (zh/en)
+
+### 通用返回格式
+
+#### 标准响应结构
+所有API接口都遵循统一的返回格式：
+```json
+{
+  "resultCode": 1,
+  "resultMsg": "操作成功",
+  "data": {},
+  "currentTime": 1234567890
+}
+```
+
+#### 字段说明
+- `resultCode`: 结果码 (1:成功, 0:失败, 其他:特定错误)
+- `resultMsg`: 结果描述信息
+- `data`: 返回的具体数据，根据接口不同而变化
+- `currentTime`: 服务器当前时间戳
+
+#### 常见错误码
+- **0**: 操作失败
+- **1**: 操作成功
+- **-1**: 参数错误
+- **-2**: 用户未登录
+- **-3**: 权限不足
+- **-4**: 数据不存在
+- **-5**: 重复操作
+- **-6**: 系统错误
+- `1030101`: 缺少访问令牌
+- `1030102`: 访问令牌过期
+- `1010101`: 参数错误
+
+## 安全机制
+
+### 1. 接口签名
+- 使用HMAC-MD5算法生成签名
+- 签名内容: apiKey + 参数排序 + 时间戳
+- 防止接口被恶意调用
+
+### 2. 登录加固
+- 使用RSA非对称加密
+- 密码传输加密
+- 多重验证机制
+
+### 3. 访问控制
+- 基于Token的身份验证
+- 接口权限控制
+- 防重放攻击
+
+## WebSocket消息类型
+
+### 消息类型定义
+
+#### 基础消息类型
+- **1**: 文本消息
+```json
+{
+  "type": 1,
+  "content": "Hello World",
+  "fromUserId": 10001,
+  "toUserId": 10002,
+  "messageId": "msg_123456",
+  "timeSend": 1234567890
+}
+```
+
+- **2**: 图片消息
+```json
+{
+  "type": 2,
+  "content": "http://域名:8089/upload/image.jpg",
+  "objectId": "图片缩略图URL",
+  "fromUserId": 10001,
+  "toUserId": 10002,
+  "messageId": "msg_123456",
+  "timeSend": 1234567890
+}
+```
+
+- **3**: 位置消息
+```json
+{
+  "type": 3,
+  "content": "北京市朝阳区",
+  "location": {
+    "latitude": 39.9042,
+    "longitude": 116.4074
+  },
+  "fromUserId": 10001,
+  "toUserId": 10002,
+  "messageId": "msg_123456",
+  "timeSend": 1234567890
+}
+```
+
+- **4**: 语音消息
+```json
+{
+  "type": 4,
+  "content": "http://域名:8089/upload/audio.mp3",
+  "timeLen": 15,
+  "fromUserId": 10001,
+  "toUserId": 10002,
+  "messageId": "msg_123456",
+  "timeSend": 1234567890
+}
+```
+
+- **5**: 视频消息
+- **9**: 文件消息
+
+#### 特殊消息类型
+- **28**: 红包消息
+- **321**: 结束会话
+- **508**: 好友申请
+
+### 系统消息类型
+- `NEWSEE`: 新关注
+- `PASS`: 成为好友
+- `DELALL`: 删除好友
+- `DELSEE`: 取消关注
+- `BLACK`: 加入黑名单
+- `REFUSED`: 移出黑名单
+
+## 部署配置
+
+### Docker 配置
+- **Web端口**: 8080
+- **API端口**: 9094  
+- **WebSocket端口**: 9260
+- **文件上传端口**: 8088
+- **文件下载端口**: 8089
+
+### 环境变量
+- `MYSQL_HOST`: 数据库主机
+- `MYSQL_PORT`: 数据库端口
+- `MYSQL_DATABASE`: 数据库名
+- `MYSQL_USERNAME`: 数据库用户名
+- `MYSQL_PASSWORD`: 数据库密码
+- `REDIS_HOST`: Redis主机
+- `REDIS_PORT`: Redis端口
+
+### 配置文件位置
+- 主配置: `js/_coolchat-commons.js`
+- API密钥: `AppConfig.apiKey`
+- 服务器地址: `AppConfig.apiUrl`
+
+---
+
+**文档版本**: 1.0  
+**最后更新**: 2024年  
+**维护者**: 云聊开发团队

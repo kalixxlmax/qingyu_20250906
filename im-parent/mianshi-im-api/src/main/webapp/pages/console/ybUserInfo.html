@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>云钱包账户管理</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet" media="all">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet" media="all">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<div id="YopUserInfo_div">
+    <div class="layui-row background_white title_menu_place">
+        <div class="searchModule layui-form">
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">用户ID ：</label>
+                        <div class="layui-input-inline">
+                            <input id="userId" type="text" name="" class="layui-input"
+                                   placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch">
+                <div class="layui-form-item timeComponent">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">时间范围 ：</label>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" id="YopUserInfoDate" placeholder="请选择时间范围" type="text">
+                            <img src="/pages/console/images/draw/calendar.png" class="calendar_icon">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch characters_center">
+                <button class="layui-btn search_YopUserInfo motif_button_style">搜索</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="YopUserInfo" class="layui-card module_interval">
+        <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+            云钱包账户信息列表
+        </div>
+        <div class="layui-card-body layui_card_body_top">
+            <table id="YopUserInfo_table" lay-filter="YopUserInfo_table">
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="YopUserBill_div" style="display:none;">
+    <div class="layui-row background_white title_menu_place">
+        <div class="layui-col-md4">
+            <form id="BillType_form" class="layui-form" action="" style="float: left;">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                    <label class="layui-form-label">交易类型 ：</label>
+                    <div class="layui-input-inline">
+                    <select id="BillType" class="layui-select">
+                        <option value="">请选择</option>
+                        <option value="1">充值</option>
+                        <option value="2">提现</option>
+                        <option value="8">红包</option>
+                        <option value="3">转账</option>
+                    </select>
+                    </div>
+                </div>
+                </div>
+            </form>
+        </div>
+        <div class="layui-col-md4">
+            <div class="layui-form-item timeComponent" style="display: inline">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="padding: 9px 8px;width: 150px">时间范围 ：</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" id="YopUserBillDate" placeholder="请选择" type="text">
+                        <img src="/pages/console/images/draw/calendar.png" class="characters_center">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md12 characters_center">
+            <button class="layui-btn search_YopUserBill motif_button_style">搜索</button>
+        </div>
+    </div>
+
+    <div id="YopUserBill" class="layui-card module_interval">
+        <div class="layui-card-header">
+            <b class="layui_card_header_title">钱包用户账单</b>
+        </div>
+        <div class="layui-card-body">
+            <table id="YopUserBill_table" lay-filter="YopUserBill_table"></table>
+            <button onclick="YopUser.button_back()" class="layui-btn default_button_style" style="">
+                返回
+            </button>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="YopUserInfoBar">
+    {{#  if(d.status == 1){ }}
+    <a class="layui-btn layui-btn-xs freeze account-freeze default_button_style" lay-event="freeze">冻结</a>
+    {{#  } }}
+    {{#  if(d.status == -1){ }}
+    <a class="layui-btn layui-btn-xs unfreeze account-freeze default_button_style" lay-event="unfreeze">解冻</a>
+    {{#  } }}
+    <a class="layui-btn layui-btn-xs bill account-bill default_button_style" lay-event="bill">账单</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger delete account-delete" lay-event="delete">删除</a>
+</script>
+
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/ybUserInfo.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+
+</body>
+</html>

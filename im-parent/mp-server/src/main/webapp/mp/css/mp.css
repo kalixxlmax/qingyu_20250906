@@ -1,0 +1,507 @@
+/*顶部样式*/
+
+.mp-head {
+    background-color: #009688;
+    box-shadow: 0 1px 4px 0 rgba(238,238,238,0.5);
+}
+
+.mp-head-inner {
+    padding: 0 50px;
+    height: 60px;
+}
+.mp-head-inner>.mp-head-layout {
+    height: 100%;
+    position: relative;
+}
+.mp-head-layout-side {
+    float: left;
+}
+
+.mp-head-logo {
+    cursor:pointer;
+    padding-top: 15px;
+}
+
+
+.quit_login{
+    float:left; 
+    margin-left:40px;
+    margin-top: 6px;
+    width: 25px;
+}
+
+.quit_login:hover{
+    opacity: 0.6;
+}
+
+
+
+.mp-head-inner>.mp-head-layout>.mp-head-layout-extra {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.mp-head-inner>.mp-head-layout>.mp-head-layout-extra, .mp-head-inner>.mp-head-layout .weui-desktop-account {
+    height: 100%;
+}
+
+.mp-head-layout-extra {
+    margin-right: 5%;
+    float: right;
+}
+
+.mp-head-account-opr {
+    min-width: 24px;
+    white-space: nowrap;
+    margin-top: 8px;
+}
+
+/*.weui-desktop-operation-group {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    text-align: left;
+}*/
+
+/*.weui-desktop-operation-group.weui-desktop-account__opr .weui-desktop-operation-group_default {
+    height: auto;
+}*/
+
+/*.weui-desktop-operation-group_default {
+    color: #44B549;
+    display: inline-block;
+    vertical-align: middle;
+    height: 16px;
+    padding-bottom: 5px;
+}*/
+
+.mp-head-account-info {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    padding-left: 50px;
+    height: 40px;
+    margin: 0 8px 0 8px;
+}
+
+.mp-head-account-thumb {
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.mp-head-nickname {
+    display: block;
+   
+    color: #ffffff;
+}
+
+
+
+.user-online{
+    background-color: #09F175;
+}
+
+.user-back{
+    background-color: #ADADAD;
+}
+
+
+
+/*头像变灰*/
+.headChang{
+    -webkit-filter: grayscale(100%);
+    -webkit-filter: grayscale(1);
+    filter: grayscale(100%);
+}
+
+
+.mp-head-status {
+    font-weight: 400;
+    position: absolute;
+    left: 30px;
+    bottom: 0;
+    line-height: 300px;
+    width: 14px;
+    height: 14px;
+    border-radius: 100%;
+}
+
+
+
+
+
+
+.top_div{
+	height: 60px;
+	line-height: 60px;
+	color: white;
+}
+.top_div_p{
+	float:left;
+	font-size: 18px;
+	font-weight:bold;
+	color: white;
+}
+.top_logout{
+	margin-left: 10px;
+	margin-right: 10px;
+	color: white;
+}
+
+
+#mp_navBar>ul>li>a{
+    cursor:pointer;
+    padding: 0 50px;
+}
+
+.nav_check{
+    margin-right: 6%;
+}
+
+.head_language{
+    background-color: inherit !important;
+    left: 129px;
+    top: -12px;
+}
+
+
+.index_all{
+	/*display: none;*/
+	margin-top: 2%;
+	margin-left: 14%;
+}
+.index_div_one{
+	height: 200px;
+	line-height: 200px;
+	text-align: center;
+	background-color: #009688;
+}
+.index_div_body{
+	margin-top: 55px;
+	color: white;
+}
+.index_div_p{
+	cursor:pointer;
+	font-size: 14.5px;
+}
+.hide{
+	display: none;
+}
+.input_desc{
+	padding-top: 4px;
+	color: #c1c2c3;
+}
+
+.page_content {
+	/*display: block;*/
+	margin: 20px 100px;
+}
+
+/***
+	消息管理
+*/
+.message_list{
+	    min-width: 650px;
+}
+
+.message_item {
+    min-height: 46px;
+    border: 1px solid #e7e7eb;
+    padding: 15px 0;
+    margin-top: 10px;
+}
+
+.message_opr {
+    float: right;
+    margin-right: 100px;
+    margin-top: 7px;
+}
+
+.message_info {
+    margin-right: 150px;
+}
+
+.message_status {
+    float: right;
+    width: 100px;
+    min-height: 20px;
+	margin-top: 14px;
+    color: #8d8d8d;
+}
+
+
+.message_time {
+    float: right;
+    width: 180px;
+    min-height: 20px;
+    margin-top: 16px;
+    color: #8d8d8d;
+    font-size: 14px;
+}
+
+.user_info {
+    position: relative;
+    margin-left: 80px;
+    margin-right: 215px;
+}
+
+
+.user_info .remark_name {
+    color: #222;
+    margin-left: 8px;
+
+    /*font-size: 11px;*/
+    width: 290px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    height: 1.5em;
+
+}
+
+
+.user_info .avatar {
+    position: absolute;
+    top: 0;
+    left: -60px;
+}
+
+.user_info .avatar img {
+    width: 48px;
+    height: 48px;
+}
+
+/*.message_content.text {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}*/
+
+.message_content {
+    margin-left: 88px;
+    margin-right: 365px;
+    padding-top: 6px;
+    color: #8d8d8d;
+    word-wrap: break-word;
+    word-break: break-all;
+
+    width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    height: 1.5em;
+}
+
+
+.empty_tips{
+    padding: 100px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #8d8d8d;
+}
+
+.message_num{
+
+	position: relative;
+    min-width: 18px;
+    /* height: 18px; */
+    font-style: normal;
+    font-size: 12px;
+    text-align: center;
+    line-height: 18px;
+    border-radius: 10px;
+    background-color: #f74c1e;
+    padding: 1px 5px;
+    color: #FFFFFF;
+    font-family: '微软雅黑', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    /* display: inline; */
+    top: -22px;
+    left: -20px;
+}
+
+
+#fan th{
+    text-align: center;
+}
+
+#fan td{
+    text-align: center;
+}
+
+.search_fans{
+    margin: 0 20px;
+}
+
+.mp_imgZoom_div{
+    text-align:center;
+    display:table-cell;
+    vertical-align:middle;
+}
+.mp_imgZoom_img{
+    background-color: transparent;/*背景透明*/
+    box-shadow: 0 0 0 rgba(0,0,0,0);/*前景无阴影*/
+    margin: 0,5px;
+}
+/*.layui-form-selected dl {
+     height: 100px;
+ }*/
+.selectBytTwo{
+    /*两个下拉高度*/
+    height: 84px;
+}
+.selectByThree{
+    /*三个下拉高度*/
+    height: 120px;
+}
+.selectCommon{
+    /*正常下拉高度*/
+    height: 100px;
+}
+
+.layuiadmin-card-list p.layuiadmin-big-font {
+    font-size: 36px;
+    color: #666;
+    line-height: 36px;
+    padding: 5px 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-all;
+    white-space: nowrap;
+}
+/*公众号收费样式*/
+.chargeDiv{
+    background: #e6e6e6;
+    bottom: 0px;
+}
+.chargeDiv_title{
+    height: 78px;
+    background: white;
+    border-radius: 10px;
+    margin-left: 16px;
+    width: 98%;
+}
+.chargeDiv_title_desc{
+    margin: 2.5% 0px 0px 3%;
+    border-radius: 5px;
+}
+.chargeDiv_title_content{
+    height: 663px;
+    background: white;
+    border-radius: 20px;
+    width: 98%;
+    margin: 1% 0% 1% 1%;
+}
+.chargeDiv_title_content_height{
+    height: 662px;
+}
+.chargeDiv_form{
+    margin-left: 38%;
+    margin-top: 2%;
+    width: 30%;
+}
+
+.chargeDiv_form_lable{
+    margin-left: 70px;
+    width: 113px;
+}
+.chargeDiv_form_lable_1{
+    margin-left: 83px;
+    margin-top: 15px;
+    width: 113px;
+}
+.chargeDiv_form_sava{
+    margin-left: 31%;
+    margin-top: 32px;
+    width: 38%;
+}
+.chargeDiv_form_prompt{
+    margin-left: 33%;
+    margin-top: 32px;
+    width: 38%;
+    color: #009688;
+}
+
+.rewardDiv_form_sava{
+    margin-top: 20%;
+}
+
+/*关注公众号收费样式*/
+.reward_form_1{
+    margin-left: 70px;
+    width: 88px;
+}
+.reward_form_2{
+    margin-left: 83px;
+    margin-top: 15px;
+    width: 90px;
+}
+.reward_form_3{
+    margin-left: 70px;
+    width: 74px;
+}
+.reward_form_4{
+    margin-left: 70px;
+    width: 104px;
+    margin-top: 15px;
+}
+.reward_select{
+    float: left;
+    width: 13%;
+    margin-left: 43%;
+    margin-top: -119px;
+    height: 35px;
+    border: 1px solid #3498db;
+}
+.nav_child_over{
+    margin-left: 44px;
+    width: 113px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.line_charge_top{
+    margin-top: 15px;
+}
+
+.line_charge_bottom{
+    margin-bottom: 15px;
+}
+.reward_info{
+    float: left;
+    margin-left: 38%;
+    margin-top: -72px;
+}
+
+.layui-table-tool{
+    height: 70px;
+}
+
+.update-btn-float{
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    z-index: 1000;
+}
+.update-btn-place{
+    margin-right: 7%;
+}
+
+.common_question{
+    color: #5fafec;
+    font-weight: bold;
+}
+.line_reward_distance{
+    position: absolute;
+    margin-top: -39px;
+}
+
+.hintOption .layui-form-checkbox{
+    margin-bottom: 15px;
+}

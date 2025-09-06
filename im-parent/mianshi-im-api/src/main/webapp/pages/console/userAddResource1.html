@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加权限</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/pages/console/css/formSelects-v4.css" />
+<body>
+	<div class="layui-row">
+		<div class="layui-col-md1">&nbsp;</div>
+		<input id="pageCount" type="" name="" style="display: none">
+		<div id="userList" class="layui-col-md10">
+			<div class="layui-card admin_table" style="margin-top: 1%">
+				<div class="layui-card-header">用户添加权限</div>
+				<div class="layui-card-body">
+					<!-- 添加角色操作 -->
+					<form class="layui-form" id="add_role">
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">该角色权限</label>
+							<div class="layui-input-block">
+								<select name="select1" xm-select="select1">
+									<option value="">该角色管理员未分配权限</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">设置权限</label>
+							<div class="layui-input-block" id="zTreeSelectMAdd" readonly="readonly"></div>
+						</div>
+
+						<div class="layui-form-item">
+							<div class="layui-input-block" style="">
+								<a class="layui-btn" id="user_resource_from_add" style="margin-bottom: 10px;">确认授权</a>
+								<a class="layui-btn layui-btn-primary back" style="margin-bottom: 10px;">返回</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/admin.js"></script>
+<script src="/pages/console/js/formSelects-v4.min.js" type="text/javascript" charset="utf-8"></script>
+<script>
+	var resourceData = {}
+	var roleResource = {}
+	var userResource = {}
+	var datas = {}
+	$(function () {
+		//获取资源信息
+		$.ajax({
+			type:"POST",
+			url:request("/console/querySelectAllResource"),
+			data:{},
+			dataType:'json',
+			async:false,
+			success:function(result){
+				resourceData = result.data;
+			}
+		})
+
+		//该用户的权限
+		$.ajax({
+			type:"POST",
+			url:request("/console/getAllResource"),
+			data:{userId:localStorage.getItem("user_add_resource_userId")},
+			/*data:{userId:'10000010'},*/
+			dataType:'json',
+			async:false,
+			success:function(result){
+				 userResource = result.data.userResource;
+				 roleResource = result.data.roleResource;
+			}
+		})
+
+		//获取资源信息
+		$.ajax({
+			type:"POST",
+			url:request("/console/querySelectResource"),
+			data:{},
+			dataType:'json',
+			async:false,
+			success:function(result){
+				datas = result.data;
+				getResource();
+				layui.formSelects.disabled("select1");
+			}
+		})
+
+		//返回按钮
+		$(".back").click(function () {
+			window.location.href= localStorage.getItem("start_page");
+		})
+	})
+
+	layui.config({
+		base : '/pages/common/layui/lay/modules/zTreeSelectM/'
+	}).extend({
+		zTreeSelectM: 'zTreeSelectM'
+	}).use(['jquery','form','layer','laydate','table','laytpl','zTreeSelectM'],function(){
+
+		var form = layui.form,
+				layer = parent.layer === undefined ? layui.layer : top.layer,
+				$ = layui.jquery,
+				laydate = layui.laydate,
+				laytpl = layui.laytpl,
+				table = layui.table,
+				zTreeSelectM = layui.zTreeSelectM;
+
+
+
+		var _zTreeSelectMAdd = zTreeSelectM({
+			elem: '#zTreeSelectMAdd',//元素容器【必填】
+			data: resourceData,//候选数据【必填】
+			width: 1309.16,  //设置了长度
+			/*selected: [3,6,29],//默认值*/
+			max: 999,//最多选中个数，默认5
+			name: 'field',//input的name 不设置与选择器相同(去#.)
+			delimiter: ',',//值的分隔符
+			field: { idName: 'id', titleName: 'name' },//候选项数据的键名
+			zTreeSetting: { //zTree设置
+				view: {
+					dblClickExpand: true
+				},
+				check: {
+					enable: true,
+					chkboxType: { "Y": "", "Y": "" }
+				},
+				data: {
+					simpleData: {
+						enable: false
+					},
+					key: {
+						name: 'name',
+						children: 'children'
+					}
+				}
+			}
+		});
+		_zTreeSelectMAdd.set(userResource);
+
+
+		//用户添加权限表单提交
+		$("#user_resource_from_add").click(function () {
+			//角色权限
+			var sele =  _zTreeSelectMAdd.values;
+			var roleAuth = "";
+			for(var i = 0; i < sele.length; i++) {
+				if (!sele[i].isIndeterminate){
+					if (roleAuth === ""){
+						roleAuth = roleAuth+sele[i].id;
+					}else{
+						roleAuth = roleAuth+","+sele[i].id;
+					}
+				}
+			};
+			$.ajax({
+				type:"POST",
+				url:request("/console/updateUserResource"),
+				data:{
+					userId:localStorage.getItem("user_add_resource_userId"),
+					auth: roleAuth
+				},
+				dataType:'json',
+				async:false,
+				success:function(result){
+					if(result.resultCode==1){
+						layer.msg("授权成功！",{"icon":1});
+						setTimeout(function(){
+							window.location.href = localStorage.getItem("start_page");
+						}, 1500);
+					}else{
+						layer.msg(result.resultMsg,{"icon":5});
+					}
+				}
+			})
+		})
+	})
+
+
+	var formSelects = layui.formSelects;
+	function getResource(){
+		formSelects.data('select1', 'local', {
+			arr: datas
+		});
+		formSelects.value('select1', roleResource);
+	}
+</script>
+
+</body>
+</html>

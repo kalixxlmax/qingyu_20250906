@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet" media="all">
+<link href="/pages/console/css/chat.css" rel="stylesheet" media="all">
+<link rel="stylesheet" type="text/css" href="/pages/console/css/intltelinput.css"/>
+<link href="/pages/common/scrollbar/nanoscroller.css" rel="stylesheet">
+<link href="/pages/common/dropdown/dropdown.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<link href="/pages/console/css/userList.css" rel="stylesheet">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<div id="userList">
+    <!--用户列表 筛选-->
+    <div class="layui-row background_white title_menu_place userListSearch">
+        <div class="searchModule layui-form">
+            <!--关键字-->
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">昵称/手机号/用户ID：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input nickName" placeholder="请选择">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--状态-->
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">状态：</label>
+                        <div class="layui-input-inline">
+                            <select id="status" class="layui-select">
+                                <option value="">请选择</option>
+                                <option value="1">在线</option>
+                                <option value="0">离线</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--注册时间-->
+            <div class="searchBranch">
+                <div class="layui-form-item timeComponent">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">注册时间：</label>
+                        <div class="layui-input-inline">
+                            <input class="layui-input" id="userListMsgDate" placeholder="请选择" type="text">
+                            <img src="/pages/console/images/draw/calendar.png" class="calendar_icon">
+                        </div>
+                        <!--<button onclick="User.addUser()" class="layui-btn btn_addUser user-add">新增用户</button>
+                        <button onclick="User.autoCreateUser()" class="layui-btn btn_createUser user-add">生成机器人</button>
+                        <button class="layui-btn export_rand_user user-rebot">导出机器人</button>
+                        <button class="layui-btn export_telephone user-rebot" onclick="User.exportExcelPhone()">导出手机号</button>
+                        <button class="layui-btn" id="userDeviceInfo">用户设备</button>-->
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch characters_center">
+                <button class="layui-btn search_user motif_button_style" style="margin-top: -2.5px">搜索</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="layui-row background_white title_menu_place user_table module_interval">
+        <div class="layui-col-md12">
+            <span style="margin-left: 40px;margin-right:120px;">
+                所有用户账户余额统计：
+                <img class="loadingImg" src="/pages/console/images/loading.gif">
+                <cite class="allBalanceTotal"></cite>  元
+            </span>
+            <button onclick="User.balanceTotal()" class="layui-btn motif_button_style">统计余额</button>
+        </div>
+    </div>
+    <!-- <button class="layui-btn create_populer_inviteCode"  style="margin-left:100px;">生成推广型邀请码</button> -->
+
+    <!-- 账单页面的相关处理-->
+    <div class="billInfo" style="display: none;">
+        <div class="layui-row background_white title_menu_place">
+            <div class="searchModule layui-form">
+                <div class="searchBranch">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">账单类型：</label>
+                            <div class="layui-input-inline">
+                                <select id="operationType" class="layui-select">
+                                    <option value="0">请选择</option>
+                                    <option value="1">用户充值</option>
+                                    <option value="2">用户提现</option>
+                                    <option value="3">后台充值</option>
+                                    <option value="4">发送红包</option>
+                                    <option value="5">领取红包</option>
+                                    <option value="6">红包退款</option>
+                                    <option value="7">转账</option>
+                                    <!--<option value="7">转出</option>-->
+                                    <!--<option value="8">转入</option>-->
+                                    <option value="8">接受转账</option>
+                                    <option value="9">转账退回</option>
+                                    <option value="10">付款码付款</option>
+                                    <option value="11">付款码到账</option>
+                                    <option value="12">二维码付款</option>
+                                    <option value="13">二维码收款</option>
+                                    <option value="14">直播礼物送出</option>
+                                    <option value="15">直播礼物收入</option>
+                                    <option value="16">手工提现</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="searchBranch">
+                    <div class="layui-form-item timeComponent billTime">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">账单时间范围：</label>
+                            <div class="layui-input-inline">
+                                <input class="layui-input" id="userBillMsgDate" placeholder="请选择时间范围" type="text">
+                                <img src="/pages/console/images/draw/calendar.png" class="calendar_icon">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="searchBranch characters_center">
+                    <button class="layui-btn search_bill motif_button_style">搜索</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-card user_table module_interval" style="background: #FFFFFF;">
+        <div class="layui-card-header user_table_open table_topTitle_space">
+            <button onclick="User.addUser()" class="layui-btn btn_addUser user-add motif_button_style">新增用户</button>
+
+            <button class="layui-btn layui-btn-sm default_button_style groupButton"
+                    style="height: 38px;"
+                    lay-filter="test1"
+                    lay-dropdown="{menus: [{layIcon:'',txt: '生成机器人', txtClass: 'user-add', event:'autoCreateUser'},
+                                {layIcon: '',txt: '导出机器人', txtClass: 'user-rebot', event:'exportRandUser'},
+                                {layIcon: '', txt: '导出手机号', txtClass: 'user-rebot', event:'exportExcelPhone'}
+                                ]}">
+                <span>更多操作</span>
+                <i class="layui-icon layui-icon-triangle-d"></i>
+            </button>
+        </div>
+        <!--多选删除-->
+        <div class="mustDelete">
+            <img src="/pages/console/images/draw/question.png" class="small_icon">
+            <span class="chooseDeleteCount"></span>
+            <span class="checkDeleteUsers checkDelete" onclick="User.checkDeleteUsers()" lay-event="delete">删除
+            </span>
+        </div>
+        <div class="layui-card-header layui_card_header_title layui_card_header_spare_userList">
+            用户列表
+        </div>
+        <div class="layui-card-body">
+            <table id="user_list" lay-filter="user_list" style="table-layout:fixed;word-break:break-all;"></table>
+        </div>
+    </div>
+
+    <!-- 随机生成用户 -->
+    <div id="autoCreateUser" class="layui-card" style="display: none">
+        <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+            <tr>
+                <td>随机生成的用户数量</td>
+                <td><input id="userNum" type="" name="" class="layui-input" placeholder="请输入数量"
+                           onkeyup="value=value.replace(/[^\d]/g,'')"></td>
+            </tr>
+        </table>
+        <!-- <div class="characters_center padding_upDown_space">
+             <button onclick="" class="layui-btn motif_button_style">提交</button>
+             <button onclick="User.button_back()" class="layui-btn layui-btn-primary default_button_style" style="">返回</button>
+         </div>-->
+    </div>
+
+    <!-- 导出用户 -->
+    <div id="exportUser" class="layui-card module_interval" style="display: none">
+        <div class="layui-card-header">导出用户</div>
+        <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+            <tr>
+                <td>用户类型</td>
+                <td>
+                    <select id="userType" class="layui-select">
+                        <option value="1">普通用户</option>
+                        <option value="3">随机用户(系统自动生成)</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <div class="characters_center padding_upDown_space">
+            <button onclick="User.commit_exportUser()" class="layui-btn motif_button_style">导出</button>
+            <button onclick="User.button_back()" class="layui-btn layui-btn-primary default_button_style" style="">返回
+            </button>
+        </div>
+    </div>
+
+    <!-- 好友管理 -->
+    <div id="myFriends" class="layui-card" style="display: none;">
+        <div class="layui-card-header user_table_open table_topTitle_space">
+            <button id="friendsInfo_y"
+                    class="layui-btn motif_button_style friendsInfo"
+                    onclick="User.exportExcelFriends()">
+                导出好友明细
+            </button>
+        </div>
+        <!--多选删除-->
+        <div class="mustDelete">
+            <img src="/pages/console/images/draw/question.png" class="small_icon">
+            <span class="chooseDeleteCount"></span>
+            <span class="checkDeleteUsersFriends checkDelete" onclick="User.checkDeleteUsersFriends()"
+                  lay-event="delete">删除
+            </span>
+        </div>
+        <div class="layui-card-header layui_card_header_title layui_card_header_spare">用户 “<span type=""
+                                                                                                 class="disUserName"></span>”
+            的好友列表：
+        </div>
+        <div class="layui-card-body layui_card_body_top" style="padding: 0px 40px;">
+            <table id="myFriends_table" lay-filter="myFriends_table"></table>
+            <div class="characters_center padding_upDown_space">
+                <button onclick="User.button_back()" class="layui-btn layui-btn-primary default_button_style">
+                    返回
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="myBill layui-row title_menu_place background_white module_interval"
+         style="display: none;padding-left: 40px;">
+        <div class="layui-col-md2">
+            <span>总充值金额：<cite class="totalRecharge"></cite>  元</span>
+        </div>
+        <div class="layui-col-md2">
+            <span>总提现金额：<cite class="totalCash"></cite>  元</span>
+        </div>
+        <div class="layui-col-md2">
+            <span>发起转帐总额：<cite class="totalTransfer"></cite>  元</span>  <!-- 当前总转出金额-->
+        </div>
+        <div class="layui-col-md2">
+            <span>接收转帐总额：<cite class="totalAccount"></cite>  元</span>
+        </div>
+        <div class="layui-col-md2">
+            <span>总发送红包：<cite class="sendPacket"></cite>  元</span>
+        </div>
+        <div class="layui-col-md2">
+            <span>总接收红包：<cite class="receivePacket"></cite>  元</span>
+        </div>
+    </div>
+
+    <!-- 用户账单管理 -->
+    <div class="layui-card module_interval myBill" style="display: none;">
+        <div class="layui-card-header layui_card_header_p_title">用户 “<span type="" class="userBillName"></span>” 的账单列表：
+        </div>
+        <div class="layui-card-body" style="padding: 0px 40px;">
+            <table id="myBill_table" lay-filter="myBill_table">
+            </table>
+            <div class="characters_center">
+                <button onclick="User.button_back()"
+                        class="layui-btn layui-btn-primary default_button_style margin_upDown_space">返回
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!--用户账单明细-->
+    <div id="myBillInfo" class="layui-card module_interval" style="display: none;">
+        <div class="layui-card-header layui_card_header_p_title">账单详情</div>
+        <div class="layui-card-body">
+            <table id="myBill_table_Info" lay-filter="myBill_table_Info"></table>
+            <div class="characters_center">
+                <button onclick="User.button_back_userBillInfo()"
+                        class="layui-btn default_button_style margin_upDown_space">
+                    返回
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 红包流水 -->
+    <div id="receiveWater" class="layui-card module_interval" style="display: none;">
+        <div class="layui-card-header">红包领取详情</div>
+        <div class="layui-card-body">
+            <table id="receiveWater_table" lay-filter="receiveWater_table">
+
+            </table>
+            <button onclick="User.button_back_redBillInfo()" class="layui-btn layui-btn-primary default_button_style">
+                返回
+            </button>
+        </div>
+    </div>
+    <!--操作-->
+    <script type="text/html" id="redPageListBar">
+        <a class="layui-btn layui-btn-primary layui-btn-xs receiveWaterInfo" lay-event="receiveWaterInfo">领取详情</a>
+    </script>
+
+
+    <!-- 邀请码 -->
+    <div id="myInviteCode" class="layui-card" style="margin-top: 3%;display: none; padding:20px 30px; ">
+
+        <div class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <input type="text" class="layui-input invite_code_name" placeholder="邀请码" style="width:150px;">
+                </div>
+
+                <div class="layui-inline">
+                    <div class="layui-input-inline">
+                        <select class="inviteCodeStatus" lay-search="">
+                            <option value="-1">全部</option>
+                            <option value="0">未使用</option>
+                            <option value="1">已使用</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <button class="layui-btn search_inviteCode motif_button_style">搜索</button>
+                </div>
+
+                <div class="layui-inline" style="margin-left: 20px; ">
+                    <button class="layui-btn btn_create_register_InviteCode default_button_style">生成注册型邀请码</button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="layui-card-header">用户 “<span type="" class="disUserName"></span>” 的邀请码：</div>
+        <div class="layui-card-body">
+            <table id="myInviteCode_table" lay-filter="myInviteCode_table">
+
+            </table>
+            <button onclick="User.button_back()" class="layui-btn layui-btn-primary default_button_style">返回
+            </button>
+        </div>
+    </div>
+
+    <!-- 聊天记录 -->
+    <div id="friendsChatRecord" class="layui-card module_interval" style="display: none;">
+        <div class="layui-card-header layui_card_header_title title_menu_place">聊天记录详情</div>
+        <div class="layui-card-body table_padding">
+            <table id="friendsChatRecord_table" lay-filter="friendsChatRecord_table">
+            </table>
+            <div class="characters_center padding_upDown_space">
+                <button onclick="User.button_back_chatRecord()"
+                        class="layui-btn layui-btn-primary default_button_style">
+                    返回
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 设备信息 -->
+    <div id="equipmentInfo" class="layui-card module_interval" style="display: none;">
+        <div class="layui-card-header">设备信息</div>
+        <div class="layui-card-body">
+            <table id="equipmentInfo_table" lay-filter="equipmentInfo_table"></table>
+            <button onclick="User.button_back()" class="layui-btn layui-btn-primary default_button_style">返回
+            </button>
+        </div>
+    </div>
+
+    <!-- 多选操作 -->
+    <script type="text/html" id="toolbarUsers">
+        <div class="layui-btn-container">
+            <button id="operation" class="layui-btn layui-btn-sm default_button_style"
+                    onclick="User.operation('1')">关闭操作
+            </button>
+        </div>
+    </script>
+
+    <!--    <script type="text/html" id="toolbarUsersFriends">
+            <div class="layui-btn-container">
+                <button class="layui-btn default_button_style layui-btn-sm checkDeleteUsersFriends"
+                        onclick="User.checkDeleteUsersFriends()"
+                        lay-event="delete">多选删除
+                </button>
+                <button id="friendsInfo_y"
+                        class="layui-btn default_button_style table_default_btn_border layui-btn-sm friendsInfo"
+                        onclick="User.exportExcelFriends()">
+                    导出好友明细
+                </button>
+            </div>
+        </script>-->
+
+    <script type="text/html" id="toolbarUsersChatRecord">
+        <div class="layui-btn-container">
+            <button class="layui-btn default_button_style layui-btn-sm checkDeleteUsersFriends"
+                    onclick="User.toolbarUsersChatRecord()"
+                    lay-event="delete">多选删除
+            </button>
+        </div>
+    </script>
+
+
+    <script type="text/html" id="userListBar">
+        {{#  if(d.userId < 10100){ }}
+        <a class="layui-btn table_disabled_btn layui-btn-xs update user-update font_bule" lay-event="update">编辑</a>
+        {{#  }else{  }}
+        <a class="layui-btn table_default_btn layui-btn-xs update user-update font_bule" lay-event="update">编辑</a>
+        {{#  } }}
+
+        {{#  if(d.userId < 10100){ }}
+        <a class="layui-btn table_disabled_btn layui-btn-xs delete user-delete font_bule" lay-event="delete">删除</a>
+        {{#  }else{  }}
+        <a class="layui-btn table_default_btn layui-btn-xs delete user-delete font_bule" lay-event="delete">删除</a>
+        {{#  } }}
+
+        {{#  if(d.userId < 10100){ }}
+        <a class="layui-btn table_disabled_btn layui-btn-xs randUser user-randUser font_bule"
+           lay-event="randUser">重置密码</a>
+        {{#  }else{  }}
+        <a class="layui-btn table_default_btn layui-btn-xs randUser user-randUser font_bule"
+           lay-event="randUser">重置密码</a>
+        {{#  } }}
+
+
+        {{#  if(d.userId < 10100){ }}
+        {{#  if(d.status == 1){ }}
+        <a class="layui-btn table_disabled_btn layui-btn-xs locking user-lock font_bule" lay-event="locking">封号</a>
+        {{#  }else{  }}
+        <a class="layui-btn table_default_btn layui-btn-xs cancelLocking user-lock font_bule" lay-event="cancelLocking">解封</a>
+        {{#  } }}
+        {{#  }else{  }}
+        {{#  if(d.status == 1){ }}
+        <a class="layui-btn table_default_btn layui-btn-xs locking user-lock font_bule" lay-event="locking">封号</a>
+        {{#  }else{  }}
+        <a class="layui-btn table_default_btn layui-btn-xs cancelLocking user-lock font_bule" lay-event="cancelLocking">解封</a>
+        {{#  } }}
+        {{#  } }}
+
+        <!-- 实人认证信息 -->
+        {{#  if(d.realNameCertified == 1){ }}
+        <a class="layui-btn table_default_btn layui-btn-xs friends user-realNameCertified font_bule"
+           lay-event="realNameCertified">实名认证信息</a>
+        {{#  }else{  }}
+        {{#  } }}
+        <!-- 邀请码 -->
+        {{# if(localStorage.getItem("registerInviteCode")!="0"){ }}
+        <a class="layui-btn table_default_btn layui-btn-xs createInviteCode font_bule" lay-event="inviteCode">邀请码</a>
+        {{# } }}
+        <!--
+            {layIcon:'',txt: '充值', txtClass: 'user-recharge', event:'recharge'},
+                {layIcon: '',txt: '手工提现', txtClass: 'user-handCash', event:'handCash'},
+        -->
+        <button class="layui-btn layui-btn-sm font_bule layui-btn-xs table_default_btn"
+                lay-filter="test1"
+                lay-dropdown="
+                {menus: [
+                    {layIcon: '',txt: '手工提现', txtClass: 'user-handCash', event:'handCash'},
+                    {layIcon: '', txt: '账单', txtClass: 'user-bill', event:'bill'},
+                    {layIcon: '', txt: '充值', txtClass: 'user-bill', event:'recharge'},
+                    {layIcon: '', txt: '好友管理', txtClass: 'user-friends', event:'friends'},
+                    {layIcon: '', txt: '发送消息', txtClass: 'user-sendMsg', event:'sendMsg'},
+                    ]}">
+            <span>更多</span>
+            <i class="layui-icon layui-icon-triangle-d"></i>
+        </button>
+    </script>
+
+
+    <script type="text/html" id="delFriends">
+        <a class="layui-btn table_default_btn layui-btn-xs chatRecord" lay-event="chatRecord">聊天记录-列表</a>
+        <a class="layui-btn table_default_btn layui-btn-xs chatRecordWindow" lay-event="chatRecordWindow">聊天记录-弹窗</a>
+
+        {{#  if(d.status == -1){ }}
+        <a class="layui-btn table_default_btn layui-btn-xs deleteFriends" lay-event="deleteFriends">删除好友</a>
+        {{#  }else{  }}
+        <a class="layui-btn table_default_btn layui-btn-xs deleteFriends" lay-event="deleteFriends">删除好友</a>
+        {{#  } }}
+
+        {{#  if(d.status == -1){ }}
+        <a class="layui-btn table_default_btn layui-btn-xs moveBlacklist" lay-event="moveBlacklist">移除黑名单</a>
+        {{#  }else{  }}
+        <a class="layui-btn table_default_btn layui-btn-xs joinBlacklist" lay-event="joinBlacklist">加入黑名单</a>
+        {{#  } }}
+
+        <a class="layui-btn table_default_btn layui-btn-xs" lay-event="destroyFriendMessage">销毁双方聊天记录</a>
+    </script>
+
+    <script type="text/html" id="delChartRecord">
+        <a class="layui-btn layui-btn-danger layui-btn-xs deletechatRecord" lay-event="deletechatRecord">删除</a>
+    </script>
+
+    <!--邀请码相关操作-->
+    <script type="text/html" id="inviteCodeBar">
+        <a class="layui-btn layui-btn-xs updateInviteCode user-update font_bule" lay-event="updateInviteCode">修改邀请码</a>
+        {{#  if(d.totalTimes==1){ }}
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del_inviteCode">删除</a>
+        {{# }else{ }}
+        <input type="checkbox" name="status" value={{d.status}} lay-skin="switch" lay-text="开启|禁用" lay-filter="status"
+               {{ d.status== '1' ? 'checked' : '' }}>
+        {{# } }}
+    </script>
+
+    <script type="text/html" id="billOperation">
+        <a class="layui-btn layui-btn-xs table_default_btn  billDetails" lay-event="billDetails">账单详情</a>
+    </script>
+
+</div>
+
+<!-- 添加用户 -->
+<div id="addUser" class="background_white" style="display: none;">
+    <div id="addUserTitle" class="layui-card-header layui_card_header_p_title">新增用户</div>
+    <div class="table_padding">
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <td width="40%">用户参数</td>
+                <td width=60%">用户信息</td>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr>
+                <td>用户昵称</td>
+                <td><input id="userId" type="" name="" style="display: none"><input id="userName" type="" name=""
+                                                                                    class="layui-input"></td>
+            </tr>
+            <tr>
+                <td>手机号码</td>
+                <td><input id="telephone" type="" name="" class="layui-input"></td>
+            </tr>
+            <tr class="password">
+                <td>密码</td>
+                <td><input id="password" name="" class="layui-input"></td>
+            </tr>
+
+            <tr>
+                <td>性别</td>
+                <td>
+                    <form class="layui-form" action="" style="padding: 0px;">
+                        <div class="layui-form-item" style="margin-bottom: 0px;">
+                            <select id="sex" class="layui-select" style="width: 100%">
+                                <option selected="selected" value="">请选择</option>
+                                <option value="0">女</option>
+                                <option value="1">男</option>
+                            </select>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr id="descriptionIteam">
+                <td>个人签名</td>
+                <td><input id="description" type="" name="" class="layui-input"></td>
+            </tr>
+            <tr id="accountIteam">
+                <td>通讯号</td>
+                <td><input id="account" type="" maxlength="16" name="" class="layui-input"
+                           onkeyup="value=value.replace(/[^\w\.\/]/ig,'')"></td>
+            </tr>
+            <tr id="withdrawBurnReadTimeIteam">
+                <td>撤回或即焚后的保留时长</td>
+                <td><input id="withdrawBurnReadTime" type="" name="" class="layui-input"
+                           placeholder="撤回或阅后即焚后的消息保留时间，0表示不保留，单位：秒"
+                           value="-1" lay-verify="required|number|operationCount" autocomplete="off"></td>
+            </tr>
+            <tr>
+                <td>是否设置为公众号</td>
+                <td>
+                    <form class="layui-form" action="" style="padding: 0px;">
+                        <div class="layui-form-item" style="margin-bottom: 0px;">
+                            <select id="isPublic" class="layui-select" style="width: 100%">
+                                <option selected="selected" value="">请选择</option>
+                                <option value="0">否</option>
+                                <option value="2">是</option>
+                                <!--<option value="1">否</option>-->
+                            </select>
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr id="InviteCodeIteam">
+                <td>邀请码</td>
+                <td><input id="InviteCode" type="" name="" class="layui-input"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="background_white characters_center padding_upDown_space">
+        <button onclick="User.commit_addUser()" class="layui-btn motif_button_style">提交</button>
+        <button onclick="User.button_back()" class="layui-btn layui-btn-primary default_button_style">返回</button>
+    </div>
+</div>
+
+<!-- 发送消息 -->
+<div id="pushToUser" class="background_white module_interval" style="display: none">
+    <div class="layui-card-header layui_card_header_p_title">
+        发送消息
+    </div>
+    <div class="layui-card-body table_padding">
+        <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+            <thead>
+            <tr>
+                <td width="40%">参数</td>
+                <td width="60%">信息</td>
+            </tr>
+            </thead>
+            <tr>
+                <td>接收的用户Id</td>
+                <td><input id="push_userId" type="text" readonly="readonly" class="layui-input"></td>
+            </tr>
+            <tr>
+                <td>发送者昵称</td>
+                <td>
+                    <input id="push_name" type="text" class="layui-input" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>消息内容</td>
+                <td>
+                    <textarea id="push_context" class="layui-textarea" placeholder="请输入内容"></textarea>
+                </td>
+            </tr>
+        </table>
+        <div class="characters_center padding_upDown_space">
+            <button onclick="User.commit_push()" class="layui-btn motif_button_style">发送</button>
+            <button onclick="User.button_back()" class="layui-btn layui-btn-primary default_button_style">返回
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- 分配角色 -->
+<div id="secrityRole" class="layui-col-md10" style="display: none">
+    <div class="layui-card-header">修改角色</div>
+    <div class="layui-card-body">
+        <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+            <tr>
+                <td>当前角色</td>
+                <td><input id="role" placeholder="管理员未分配角色" type="text" readonly="readonly" class="layui-input"></td>
+            </tr>
+            <tr>
+                <td>修改角色为</td>
+                <td>
+                    <select name="select1" readonly xm-select="select1" xm-select-max="1">
+                        <option value="">请选择角色状态</option>
+                        <!--<option value="1">北京</option>-->
+                    </select>
+                </td>
+            </tr>
+
+        </table>
+        <button onclick="User.addRole()" class="layui-btn motif_button_style">确定</button>
+        <button onclick="User.button_back()" class="layui-btn default_button_style">返回
+        </button>
+    </div>
+</div>
+
+<!-- 实人认证详情 -->
+<form id="realPerson" style="display:none;">
+    <div class="layui-form-item" style="margin-top: 15px">
+        <label class="layui-form-label" style="width: 140px">身份证账号：</label>
+        <div class="layui-input-block" style="margin-left: 180px">
+            <input type="text" id="certifiedAccount" lay-verify="required" autocomplete="off" class="layui-input"
+                   readonly>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="width: 140px">用户真实姓名：</label>
+        <div class="layui-input-block" style="margin-left: 180px">
+            <input type="text" id="certifiedName" lay-verify="required" autocomplete="off" class="layui-input" readonly>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="width: 140px">认证信息地址：</label>
+        <div class="layui-input-block" style="margin-left: 180px">
+            <input type="text" id="certifiedAddress" lay-verify="required" autocomplete="off" class="layui-input"
+                   readonly>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="width: 140px">认证图片背面：</label>
+        <div class="layui-input-block" style="margin-left: 180px">
+            <img id="backImageUrl" src=""
+                 style="max-width: 300px;max-height:400px;border-radius: 10px;box-shadow: 1px 1px 5px #888888;">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="width: 140px">认证图片正面：</label>
+        <div class="layui-input-block" style="margin-left: 180px">
+            <img id="frontImageUrl" src=""
+                 style="max-width: 300px;max-height:400px;border-radius: 10px;box-shadow: 1px 1px 5px #888888;">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="width: 140px">人像正面照图片：</label>
+        <div class="layui-input-block" style="margin-left: 180px">
+            <img id="faceImageUrl" src=""
+                 style="max-width: 300px;max-height:400px;border-radius: 10px;box-shadow: 1px 1px 5px #888888;">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label" style="width: 140px">证件有效期开始时间：</label>
+        <div class="layui-input-block" style="margin-left: 180px">
+            <input type="text" id="startDate" lay-verify="required" autocomplete="off" class="layui-input"
+                   placeholder="格式为：yyyy-MM-dd" readonly>
+        </div>
+    </div>
+</form>
+
+<!-- 聊天图片点击放大显示区 -->
+<div id='imgZoom_div' style="display: none;"></div>
+
+<!--聊天记录面板-->
+<div id="mp_chatPanel" class="customer_message_panel" style="display:none;overflow: hidden;">
+    <div class="panel-body" style="padding: 0px;height:800px">
+        <div id='messagePanel' class="nano coolchat_message_show_area" style="height: 800px;">
+            <div class="nano-content" style="right:0">
+                <div id="messageContainer" style="overflow: hidden;padding: 0 13px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 充值金额 -->
+<div id="recharge_amount_div" class="layui-col-md10" style="display: none">
+
+    <form id="set_dead_line_form" class="layui-form" action="" style="margin-top: 60px;padding: 0px;">
+        <div class="layui-form-item">
+            <label class="layui-form-label">充值金额</label>
+            <div class="layui-input-block">
+                <input type="text"  placeholder="请选择到期日期" autocomplete="off"
+                       oninput="Common.input_num_negative(this)"
+                       class="layui-input  recharge_amount">
+            </div>
+        </div>
+    </form>
+
+
+</div>
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+<input id="userList_limlt" value="15" type="hidden">
+
+<!-- <script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script> -->
+<script type="text/javascript" src="/pages/common/jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/console/js/encrypt/intlTelInput.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<!-- 加解密 -->
+<script type="text/javascript" src="./js/encrypt/crypto-js.js"></script>
+<script type="text/javascript" src="./js/encrypt/jsencrypt.min.js"></script>
+<script type="text/javascript" src="./js/encrypt/elliptic.js"></script>
+<script type="text/javascript" src="./js/encrypt/encryptUtils.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<!-- 滚动条相关  -->
+<script type="text/javascript" src="/pages/common/scrollbar/jquery.nanoscroller.js"></script>
+<script type="text/javascript" src="/pages/common/scrollbar/jquery.nicescroll.js"></script>
+<!-- 播放语音 -->
+<script type="text/javascript" src="/pages/console/js/common/BenzAMRRecorder.min.js"></script>
+<script type="text/javascript" src="/pages/js/_coolchat-commons.js"></script>
+<!-- 百度地图 -->
+<!--<script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=jKNQmZGpICFGGVpZL2qMIWz5FQQG14PW"></script>-->
+<script type="text/javascript" src="/pages/console/js/common/baidu-map.js"></script>
+<script type="text/javascript" src="/pages/console/js/chatRelated.js"></script>
+<script type="text/javascript" src="/pages/console/js/userList.js"></script>
+<!-- 日期选择器 -->
+<script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        //日期时间选择器
+        laydate.render({
+            elem: '#birthday'
+            , type: 'datetime'
+            , max: 1 //最大时间
+        });
+    })
+
+</script>
+
+</body>
+</html>

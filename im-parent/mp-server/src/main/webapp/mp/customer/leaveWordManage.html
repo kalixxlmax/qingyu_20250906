@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/mp/css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+    <!-- 留言管理  -->
+    <div class="layui-row" style="height: 100%">
+        <div id="leaveWord_table" class="layui-card" style="margin-top: 1%;">
+           
+            <div class="layui-card-body">
+                <table id="leaveWord_list" lay-filter="leaveWord_list" style="table-layout:fixed;word-break:break-all;" >
+                    
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script type="text/html" id="leaveWordTopBar">
+            <input type="text" name="" class="layui-input search_leaveWord_keyword" style="width: 15%;display: inline" placeholder="手机号|邮箱|留言内容|客服id" data-locale="leaveWord_searchInfo" >
+            <a class="layui-btn layui-btn-sm"  lay-event="search_leaveword" data-locale="menu_search">搜索</a>
+    </script>
+
+    <!-- 表格操作列 -->
+    <script type="text/html" id="leaveWordOptionBar">
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del_leaveword">删除</a>
+    </script>
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="/mp/common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+
+    <script type="text/javascript">
+        
+        layui.use(['layer','table'],function(){
+            var layer = parent.layer === undefined ? layui.layer : top.layer,
+                $ = layui.jquery,
+                table = layui.table;
+
+                //留言列表
+                var tableInLeaveWord = table.render({
+                    elem: '#leaveWord_list'
+                    ,toolbar: '#leaveWordTopBar'
+                    ,url: request(mpCommon.serviceUrl+"/customerService/admin/leaveWordList")
+                    ,id: 'leaveWord_list'
+                    ,page: true
+                    ,curr: 0
+                    ,limit: mpCommon.limit
+                    ,limits: mpCommon.limits
+                    ,groups: 7
+                    ,cols: [[ //表头
+
+                        // {field: 'idStr', title: mpLanguage.getLanguageName('record_Id'), width:120}
+                        {field: 'visitor_userId', title: mpLanguage.getLanguageName('caller_Id'), width:93}
+                        ,{field: 'address', title: mpLanguage.getLanguageName('leaveWord_area'), width:130}
+                        ,{field: 'telephone', title: mpLanguage.getLanguageName('telephont_number'),sort:'true', width:120}
+                        ,{field: 'name', title: mpLanguage.getLanguageName('content_name'), width:150}
+                        ,{field: 'email', title: mpLanguage.getLanguageName('email_address'), width:150}
+                        ,{field: 'content', title: mpLanguage.getLanguageName('message_content'), width:200}
+                        //private byte state; //0未分配  1.处理中  2已解决
+                        ,{field: 'state', title:  mpLanguage.getLanguageName('reception_status'),sort:'true', width:120,templet:function(d){
+                                return (d.state == 0 ? mpLanguage.getLanguageName('unabsorbed') : d.state == 1 ? mpLanguage.getLanguageName('processing') : mpLanguage.getLanguageName('resolved'))
+                            }
+                         }
+                        ,{field: 'service_userId', title: mpLanguage.getLanguageName('reception_Id'),sort:'true', width:120}
+                        ,{field: 'service_name', title: mpLanguage.getLanguageName('reception_nickname'), width:120}
+                        
+                        ,{field: 'replayContent', title: mpLanguage.getLanguageName('reply_content'), width:200}
+                        ,{field: 'createTime', title: mpLanguage.getLanguageName('create_time'),sort:'true', width:150,templet:function(d){
+                                return (new Date(d.createTime)).format("yyyy-MM-dd hh:mm:ss");
+                            }}
+                        ,{fixed: 'right', width: 150,title: mpLanguage.getLanguageName('operation'), align:'center', toolbar: '#leaveWordOptionBar'}
+                    ]]
+                    ,done:function(res, curr, count){
+                        // checkRequst(res);
+
+                       //initLanguage();
+                        layui.form.render();
+                    }
+
+                });
+
+
+                 //表头监听
+                table.on('toolbar(leaveWord_list)', function(obj){
+                    
+                    var layEvent = obj.event,  data = obj.data;
+                    
+                    if (layEvent === 'search_leaveword'){ //搜索
+                        LeaveWord.reloadLeaveWord();
+                    }
+
+                });
+
+                // 菜单操作项
+                table.on('tool(leaveWord_list)', function(obj){
+                    var layEvent = obj.event,  data = obj.data;
+                   
+                    if(layEvent==='del_leaveword'){ //删除
+
+                        layer.confirm('确定删除该留言吗？', function(index){
+                          LeaveWord.deleteLeaveWord(data.id);
+                          obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                          layer.close(index);
+                        });
+
+                    }
+
+                });
+
+
+
+                var LeaveWord = {
+
+                    deleteLeaveWord : function(leaveWordId){
+                        
+                        mpCommon.invoke2({
+                            url :'/customerService/admin/realDelLeaveWord',
+                            data : {
+                                leaveWordId : leaveWordId
+                            },
+                            success : function(result) {
+                                if(result.resultCode == 1){
+                                    layer.msg("删除留言成功" ,{"icon":1});
+                                }else{
+                                    layer.msg(result.resultMsg,{"icon":2});
+                                }
+                            },
+                            error : function(result) {
+                               layer.msg(mpLanguage.getLanguageName('failed_load_data'));
+                            }
+                        });
+                    },
+                    reloadLeaveWord : function(){
+
+                        //重载表格数据
+                        tableInLeaveWord.reload({
+                          where: { //设定异步数据接口的额外参数，任意设
+                            keyword : $(".search_leaveWord_keyword").val()
+                          }
+                          ,page: {
+                            curr: 1 //重新从第 1 页开始
+                          }
+                        });
+
+
+                    }
+
+
+                };
+
+
+       });
+
+
+    </script>
+
+
+
+
+</body>
+</html>

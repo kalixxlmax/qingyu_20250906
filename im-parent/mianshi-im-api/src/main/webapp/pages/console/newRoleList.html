@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>管理员</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<body>
+<!--搜索操作-->
+<div class="layui-row background_white title_menu_place">
+    <div class="layui-form searchModule">
+        <div class="searchBranch">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">帐号：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="" class="layui-input admin_keyword" placeholder="请输入">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch characters_center">
+            <button class="layui-btn search_admin motif_button_style">搜索</button>
+        </div>
+    </div>
+</div>
+
+<!--用户列表-->
+<div class="layui-card admin_table module_interval">
+	<div class="layui-card-header table_topTitle_space">
+		<button class="layui-btn  btn_addAdmin motif_button_style">新增</button>
+	</div>
+    <div class="layui-card-header layui_card_header_title layui_card_header_spare">用户列表</div>
+    <div class="layui-card-body layui_card_body_top">
+        <table id="admin_list" lay-filter="admin_list" style="table-layout:fixed;word-break:break-all;">
+        </table>
+    </div>
+</div>
+
+
+<!-- 设置管理员 -->
+<div id="add_admin" style="display: none">
+    <form id="add_admin_form" style="padding: 27px 40px 0px 40px;">
+        <input type="text" required lay-verify="required" placeholder="输入不带区号的手机号码" autocomplete="off"
+               class="layui-input  admin_accunt">
+    </form>
+</div>
+
+
+<!--操作-->
+<script type="text/html" id="adminListBar">
+    <a class="layui-btn table_default_btn layui-btn-xs delete admin-delete" lay-event="delete">删除</a>
+
+    <a class="layui-btn table_default_btn layui-btn-xs randUser admin-randUser" lay-event="randUser">重置密码</a>
+    {{#  if(d.status == 1){ }}
+    <a class="layui-btn table_default_btn layui-btn-xs locking admin-locking" lay-event="locking">禁用</a>
+    {{#  }else{  }}
+    <a class="layui-btn table_default_btn layui-btn-xs cancelLocking admin-locking" lay-event="cancelLocking">解禁</a>
+    {{#  } }}
+    <a class="layui-btn table_default_btn layui-btn-xs resource admin-resource supperAdmin"
+       lay-event="resource">定义权限</a>
+</script>
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+<input id="admin_last" value="15" type="hidden">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="/pages/console/js/newRoleList.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+
+
+</body>
+</html>

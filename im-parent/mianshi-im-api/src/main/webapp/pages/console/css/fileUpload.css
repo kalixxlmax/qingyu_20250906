@@ -1,0 +1,48 @@
+.photo_div{
+    padding-top: 9px;
+}
+.photo_div{
+    display: block;
+    position: relative;
+    margin-left: 4px;
+    padding-right: 175px;
+    line-height: 1.6;
+    vertical-align: middle;
+    padding-top: 1px;
+}
+.photo_p{
+    margin-top: 5px;
+    padding-bottom: 6px;
+    color: #9e9f9f
+}
+.file_span{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1.6;
+}
+.file_ul{
+    position: absolute;
+    top: 100%;
+    left: 0;
+    white-space: nowrap;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+}
+.file_div{
+    position: absolute;
+    top: 0px; left: 0px;
+    width: 106px;
+    height: 27px;
+    overflow: hidden;
+    bottom: auto;
+    right: auto;
+}
+.file_label{
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: pointer;
+    background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>comm-parent</artifactId>
+        <groupId>com.basic.common</groupId>
+        <version>1.0</version>
+		<relativePath>../pom.xml</relativePath>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <properties>
+        <basic-common.version>1.0</basic-common.version>
+		<fastjson.version>1.2.70</fastjson.version>
+    </properties>
+
+    <groupId>com.basic.commons</groupId>
+    <artifactId>basic-utils</artifactId>
+    <version>1.0</version>
+	
+	 <dependencies>
+		<dependency>
+		  <groupId>junit</groupId>
+		  <artifactId>junit</artifactId>
+		  <version>4.13.1</version>
+		  <scope>test</scope>
+		</dependency>
+
+		<!-- <dependency>
+			 <groupId>com.basic.common</groupId>
+			 <artifactId>common-core</artifactId>
+			 <version>1.0</version>
+			 <scope>compile</scope>
+		 </dependency>-->
+		<dependency>
+				<groupId>com.alibaba</groupId>
+				<artifactId>fastjson</artifactId>
+				<version>${fastjson.version}</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.26</version>
+		</dependency>
+		 <dependency>
+			 <groupId>commons-codec</groupId>
+			 <artifactId>commons-codec</artifactId>
+			 <version>1.15</version>
+		 </dependency>
+	 </dependencies>
+  
+  <build>
+
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<encoding>UTF-8</encoding>
+					 <compilerArguments> 
+	                   <extdirs>lib</extdirs> 
+	                 </compilerArguments> 
+				</configuration>
+			</plugin>
+
+		</plugins>
+  </build>
+
+
+</project>

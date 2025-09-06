@@ -1,0 +1,49 @@
+2025-06-21 16:56 - com.basic.UploadApplication Starting UploadApplication on alexking.local with PID 16920 (/Users/alexking/Desktop/部署/20250609开发消息修改+禁言/未命名文件夹/server-main/upload/target/classes started by alexking in /Users/alexking/Desktop/部署/20250609开发消息修改+禁言/未命名文件夹/server-main)
+2025-06-21 16:56 - com.basic.UploadApplication No active profile set, falling back to default profiles: default
+2025-06-21 16:56 - org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-8088"]
+2025-06-21 16:56 - org.apache.catalina.core.StandardService Starting service [Tomcat]
+2025-06-21 16:56 - org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.21]
+2025-06-21 16:56 - org.apache.jasper.servlet.TldScanner At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+2025-06-21 16:56 - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext
+2025-06-21 16:56 - com.basic.task.FileDeleteTask class com.basic.task.FileDeleteTask======> init >
+2025-06-21 16:56 - com.basic.config.WebConfigurer File service access path:e:/data/www/resources/
+2025-06-21 16:56 - com.basic.redisson.RedissonConfiguration  initRedissonClient mode single address null database 0
+2025-06-21 16:56 - com.basic.redisson.RedissonConfiguration redisson single start 
+2025-06-21 16:56 - org.redisson.Version Redisson 3.16.4
+2025-06-21 16:57 - org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-8088"]
+2025-06-21 16:57 - com.basic.UploadApplication Started UploadApplication in 21.411 seconds (JVM running for 38.015)
+2025-06-21 16:57 - com.basic.UploadApplication upload config ======================>
+2025-06-21 16:57 - com.basic.UploadApplication {
+  domain = http://192.168.0.90:8094/files/
+  isBackDomain = 1
+  isOpenfastDFS = 0
+  fastdfsDomain = http://192.168.0.90:80/
+  dbUri = mongodb://192.168.101.84:27017/resources
+  delFileUri = mongodb://192.168.101.84:27017/resources
+  openTask = 1
+  basePath = e:/data/www/resources/
+  beginIndex = 22
+  uTemp = e:/data/www/resources/temp/
+  nTemp = e:/data/www/resources/%1$s/%2$s/
+  oTemp = e:/data/www/resources/%1$s/%2$s/
+  tTemp = e:/data/www/resources/%1$s/%2$s/
+  thumbnailSize = 100
+  imageFilter = gif|jpg|jpeg|bmp|png|webp
+  audioFilter = acc|amr|mp3|
+  videoFilter = mp4|flv|wmv|
+  amr2mp3 = 0
+}
+2025-06-21 16:57 - com.basic.UploadApplication ==========================================================================>
+2025-06-21 16:57 - com.basic.UploadApplication FastDFS config ======================>
+2025-06-21 16:57 - com.basic.UploadApplication {
+  g_connect_timeout(ms) = 2000
+  g_network_timeout(ms) = 30000
+  g_charset = UTF-8
+  g_anti_steal_token = false
+  g_secret_key = FastDFS1234567890
+  g_tracker_http_port = 80
+  trackerServers = 192.168.0.90:22122
+}
+2025-06-21 16:57 - com.basic.UploadApplication ============================> 上传服务启动成功 请放心使用  ===========>
+2025-06-21 16:57 - com.basic.UploadApplication === HttpServlet  init  openTask 1
+2025-06-21 16:57 - com.basic.task.FileDeleteTask class com.basic.task.FileDeleteTask======> init >

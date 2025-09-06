@@ -1,0 +1,134 @@
+[
+		{
+			"title": "首页",
+			"imgUrl": "/pages/console/images/menu/index_img_light.png",
+			"href": "",
+			"visitPath": "",
+			"isSelect": true,
+			"groupName":"homePage",
+			"isHomePage":true,
+			"defaultId": ""
+		},
+		{
+			"title": "初始配置",
+			"imgUrl": "/pages/console/images/menu/config_img.png",
+			"href": "/pages/console/system_running_config.html",
+			"visitPath": "初始配置 -> 服务端配置 -> 服务端运行参数 ",
+			"isSelect": false,
+			"groupName":"config",
+			"isHomePage":false,
+			"defaultId": "system_running_config"
+		},
+		{
+			"title": "账户管理",
+			"imgUrl": "/pages/console/images/menu/account_img.png",
+			"href": "/pages/console/userList.html",
+			"visitPath": "账户管理 -> 用户管理 ",
+			"isSelect": false,
+			"groupName":"accountManagement",
+			"isHomePage":false,
+			"defaultId": "userList"
+		},
+		{
+			"title": "权限管理",
+			"imgUrl": "/pages/console/images/menu/auth_img.png",
+			"href": "/pages/console/roleManage.html",
+			"visitPath": "权限管理 -> 角色管理 ",
+			"isSelect": false,
+			"groupName":"authManagement",
+			"isHomePage":false,
+			"defaultId": "roleManage"
+		},
+		{
+			"title": "消息管理",
+			"imgUrl": "/pages/console/images/menu/message_img.png",
+			"href": "/pages/console/messageList.html",
+			"visitPath": "消息管理 -> 单聊消息 ",
+			"isSelect": false,
+			"groupName":"messageManagement",
+			"isHomePage":false,
+			"defaultId": "messageList"
+		},
+		{
+			"title": "敏感词",
+			"imgUrl": "/pages/console/images/menu/sensitivityWord_img.png",
+			"href": "/pages/console/keyword.html",
+			"visitPath": "敏感词 -> 敏感词管理 ",
+			"isSelect": false,
+			"groupName":"sensitiveWordManagement",
+			"isHomePage":false,
+			"defaultId": "keyword"
+		},
+		{
+			"title": "财务管理",
+			"imgUrl": "/pages/console/images/menu/finance_img.png",
+			"href": "/pages/console/redEnvelope.html",
+			"visitPath": "财务管理 -> 红包管理 ",
+			"isSelect": false,
+			"groupName":"financeManagement",
+			"isHomePage":false,
+			"defaultId": "redEnvelope"
+		},
+		{
+			"title": "内容管理",
+			"imgUrl": "/pages/console/images/menu/content_img.png",
+			"href": "/pages/console/report.html",
+			"visitPath": "内容管理 -> 举报管理 ",
+			"isSelect": false,
+			"groupName":"contentManagement",
+			"isHomePage":false,
+			"defaultId": "report"
+		},
+		{
+			"title": "直播管理",
+			"imgUrl": "/pages/console/images/menu/live_img.png",
+			"href": "/pages/console/liveRoom.html",
+			"visitPath": "直播管理 -> 直播间 ",
+			"isSelect": false,
+			"groupName":"liveManagement",
+			"isHomePage":false,
+			"defaultId": "liveRoom"
+		},
+		{
+			"title": "推送管理",
+			"imgUrl": "/pages/console/images/menu/push_img.png",
+			"href": "/pages/console/push_config.html",
+			"visitPath": "推送管理 -> 推送配置 ",
+			"isSelect": false,
+			"groupName":"pushManagement",
+			"isHomePage":false,
+			"defaultId": "push_config"
+		},
+		{
+			"title": "文件管理",
+			"imgUrl": "/pages/console/images/menu/file_img.png",
+			"href": "/pages/console/resourceItem.html",
+			"visitPath": "文件管理 -> 文件资源 ",
+			"isSelect": false,
+			"groupName":"fileManagement",
+			"isHomePage":false,
+			"defaultId": "resourceItem"
+		},
+		{
+			"title": "开放平台",
+			"imgUrl": "/pages/console/images/menu/open_img.png",
+			"href": "/pages/console/openAdmin.html",
+			"visitPath": "开放平台 -> 移动应用管理 ",
+			"isSelect": false,
+			"groupName":"openManagement",
+			"isHomePage":false,
+			"defaultId": "openAdmin"
+		},
+		{
+			"title": "公司管理",
+			"imgUrl": "/pages/console/images/menu/staff_img.png",
+			"href": "/pages/console/companyMsg.html",
+			"visitPath": "公司管理 -> 公司管理 ",
+			"isSelect": false,
+			"groupName":"staffManagement",
+			"isHomePage":false,
+			"defaultId": "companyMsg"
+		}
+]
+
+

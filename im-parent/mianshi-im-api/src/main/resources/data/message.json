@@ -1,0 +1,1549 @@
+[
+  {
+    "code" : "0",
+    "zh" : "接口调用失败",
+    "en" : "Connection Failed",
+    "big5" : "接口調用失敗",
+    "ur" : "کنکشن ناکام",
+    "type" : "error"
+  },
+  {
+    "code" : "1",
+    "zh" : "接口调用成功",
+    "en" : "Connection Successful",
+    "big5" : "接口調用成功",
+    "ur" : "کنکشن کامیاب",
+    "type" : "success"
+  },
+  {
+    "code" : "10001",
+    "zh" : "系统繁忙",
+    "en" : "System is busy",
+    "big5" : "系統繁忙",
+    "ur" : "سسٹم مصروف ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "10002",
+    "zh" : "功能未开放",
+    "en" : "Function not open",
+    "big5" : "功能 未開放",
+    "ur" : "فعالیت دستیاب نہیں",
+    "type" : "error"
+  },
+  {
+    "code" : "10003",
+    "zh" : "旧版功能已禁用,请升级更新最新版本",
+    "en" : "Please upgrade to update the latest version",
+    "big5" : "舊版功能已禁用,請升級更新最新版本",
+    "ur" : "پرانی خصوصیات بند کر دی گئی ہیں، براہ کرم تازہ ترین ورژن کو اپ ڈیٹ کریں",
+    "type" : "error"
+  },
+  {
+    "code" : "10101",
+    "zh" : "有数据不能删除",
+    "en" : "Data cannot be deleted",
+    "big5" : "有數據不能刪除",
+    "ur" : "ڈیٹا حذف نہیں کیا جا سکتا",
+    "type" : "error"
+  },
+  {
+    "code" : "10102",
+    "zh" : "数据不存在或已删除",
+    "en" : "Data does not exist or has been deleted",
+    "big5" : "數據不存在或已刪除",
+    "ur" : "ڈیٹا موجود نہیں ہے یا حذف کر دیا گیا ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "10110",
+    "zh" : "权限验证失败",
+    "en" : "Permission confirmation failed",
+    "big5" : "權限驗證失敗",
+    "ur" : "اجازت کی تصدیق ناکام",
+    "type" : "error"
+  },
+  {
+    "code" : "10111",
+    "zh" : "权限不足",
+    "en" : "Insufficient permissions",
+    "big5" : "權限不足",
+    "ur" : "اجازت ناکافی ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "1010101",
+    "zh" : "请求参数验证失败，缺少必填参数或参数错误",
+    "en" : "Verification failed - lack of required parameters or wrong parameters",
+    "big5" : "請求參數驗證失敗，缺少必填參數或參數錯誤",
+    "ur" : "تصدیق ناکام - ضروری پیرامیٹرز کی کمی یا غلط پیرامیٹرز",
+    "type" : "error"
+  },
+  {
+    "code" : "1010102",
+    "zh" : "缺少请求参数",
+    "en" : "Lack of required parameters",
+    "big5" : "缺少請求參數",
+    "ur" : "ضروری پیرامیٹرز کی کمی",
+    "type" : "error"
+  },
+  {
+    "code" : "1020101",
+    "zh" : "接口内部异常",
+    "en" : "Abnormal internal connection",
+    "big5" : "接口內部異常",
+    "ur" : "اندرونی کنکشن کی خرابی",
+    "type" : "error"
+  },
+  {
+    "code" : "1020102",
+    "zh" : "链接已失效",
+    "en" : "The link has expired",
+    "big5" : "链接已失效",
+    "ur" : "لنک کی معیاد ختم ہو گئی ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "1030101",
+    "zh" : "缺少访问令牌",
+    "en" : "Lack of access token",
+    "big5" : "缺少訪問令牌",
+    "ur" : "ایکسس ٹوکن کی کمی",
+    "type" : "error"
+  },
+  {
+    "code" : "1030102",
+    "zh" : "访问令牌过期或无效",
+    "en" : "Access token expired or invalid",
+    "big5" : "訪問令牌過期或無效",
+    "ur" : "ایکسس ٹوکن کی معیاد ختم یا غلط",
+    "type" : "error"
+  },
+  {
+    "code" : "1030112",
+    "zh" : "身份认证已失效,请重新登陆",
+    "en" : "Identity authentication has expired, please re-login",
+    "big5" : "身份認證已失效,請重新登陸",
+    "ur" : "شناختی تصدیق کی معیاد ختم ہو گئی ہے، براہ کرم دوبارہ لاگ ان کریں",
+    "type" : "error"
+  },
+  {
+    "code" : "1030113",
+    "zh" : "身份认证信息已过期,请重新登陆",
+    "en" : "Identity authentication information has expired, please log in again",
+    "big5" : "身份認證信息已過期,請重新登陸",
+    "ur" : "شناختی تصدیق کی معلومات کی معیاد ختم ہو گئی ہے، براہ کرم دوبارہ لاگ ان کریں",
+    "type" : "error"
+  },
+  {
+    "code" : "1040100",
+    "zh" : "帐号已存在",
+    "en" : "The account already exists",
+    "big5" : "帳號已存在",
+    "ur" : "اکاؤنٹ پہلے ہی موجود ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "1040101",
+    "zh" : "帐号不存在",
+    "en" : "The account does not exist",
+    "big5" : "帳號不存在",
+    "ur" : "اکاؤنٹ موجود نہیں ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "1040102",
+    "zh" : "帐号或密码错误",
+    "en" : "The account or password is invalid",
+    "big5" : "帳號或密碼錯誤",
+    "ur" : "اکاؤنٹ یا پاس ورڈ غلط ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "1040103",
+    "zh" : "原密码错误",
+    "en" : "The original password is invalid",
+    "big5" : "原密碼錯誤",
+    "ur" : "اصل پاس ورڈ غلط ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "1040104",
+    "zh" : "验证码错误或登录密码错误",
+    "en" : "Incorrect verification code or login password",
+    "big5" : "驗證碼錯誤或登陸密碼錯誤",
+    "ur" : "تصدیقی کوڈ یا لاگ ان پاس ورڈ غلط ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "1040105",
+    "zh" : "发送验证码失败,请重发!",
+    "en" : "Sending of verification code failed, please re-send!",
+    "big5" : "發送驗證碼失敗,請重發!",
+    "ur" : "تصدیقی کوڈ بھیجنے میں ناکامی، براہ کرم دوبارہ بھیجیں!",
+    "type" : "error"
+  },
+  {
+    "code" : "1040106",
+    "zh" : "请不要频繁请求短信验证码，等待{0}秒后再次请求",
+    "en" : "Please wait {0} seconds to request again",
+    "big5" : "請不要頻繁請求短信驗證碼，等待{0}秒後再次請求",
+    "ur" : "براہ کرم بار بار ایس ایم ایس تصدیقی کوڈ کی درخواست نہ کریں، {0} سیکنڈ انتظار کریں اور دوبارہ درخواست کریں",
+    "type" : "error"
+  },
+  {
+    "code" : "1040107",
+    "zh" : "手机号码已注册!",
+    "en" : "This phone number has been registered!",
+    "big5" : "手機號碼已註冊!",
+    "ur" : "یہ فون نمبر پہلے ہی رجسٹرڈ ہے!",
+    "type" : "error"
+  },
+  {
+    "code" : "1040108",
+    "zh" : "请输入用户昵称",
+    "en" : "Please enter a user nickname",
+    "big5" : "請輸入用戶暱稱",
+    "ur" : "براہ کرم صارف کا نک نیم درج کریں",
+    "type" : "error"
+  },
+
+    {
+      "code" : "1040304",
+      "zh" : "账号被锁定",
+      "en" : "Account locked",
+      "big5" : "賬號被鎖定",
+      "ur" : "اکاؤنٹ لاک ہو گیا ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "1040205",
+      "zh" : "不能联系自己!",
+      "en" : "Cannot contact yourself",
+      "big5" : "不能聯系自己!",
+      "ur" : "خود سے رابطہ نہیں کر سکتے!",
+      "type" : "error"
+    },
+    {
+      "code" : "1040305",
+      "zh" : "第三方登录未绑定手机号码",
+      "en" : "Third party login is not bound to mobile number",
+      "big5" : "第三方登錄未綁定手機號碼",
+      "ur" : "تیسری پارٹی کی لاگ ان موبائل نمبر سے منسلک نہیں ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "1040306",
+      "zh" : "第三方登录提示账号不存在",
+      "en" : "Third party login prompt account does not exist",
+      "big5" : "第三方登錄提示賬號不存在",
+      "ur" : "تیسری پارٹی کی لاگ ان اکاؤنٹ موجود نہیں ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "1040307",
+      "zh" : "二维码未被扫取",
+      "en" : "QR code is not swiped",
+      "big5" : "二維碼未被掃取",
+      "ur" : "QR کوڈ اسکین نہیں کیا گیا",
+      "type" : "error"
+    },
+    {
+      "code" : "1040308",
+      "zh" : "二维码已扫码未登录",
+      "en" : "QR code has been scanned and not registered",
+      "big5" : "二維碼已掃碼未登錄",
+      "ur" : "QR کوڈ اسکین کر لیا گیا ہے اور رجسٹرڈ نہیں ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "1040309",
+      "zh" : "二维码已扫码登录",
+      "en" : "QR code has been scanned and registered",
+      "big5" : "二維碼已掃碼登錄",
+      "ur" : "QR کوڈ اسکین کر لیا گیا ہے اور لاگ ان ہو چکا ہے",
+      "type" : "success"
+    },
+    {
+      "code" : "1040310",
+      "zh" : "二维码已失效，请重新扫码登录",
+      "en" : "QR code time out",
+      "big5" : "二維碼已失效，請重新掃碼登錄",
+      "ur" : "QR کوڈ کی مدت ختم ہو گئی ہے، براہ کرم دوبارہ اسکین کریں",
+      "type" : "success"
+    },
+    {
+      "code" : "1040316",
+      "zh" : "第三方账号已绑定",
+      "en" : "Third party account is bound",
+      "big5" : "協力廠商帳號已綁定",
+      "ur" : "تیسری پارٹی کا اکاؤنٹ منسلک ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "1040317",
+      "zh" : "账号已经绑定过其他第三方账号",
+      "en" : "Account has been bound to other third party accounts",
+      "big5" : "帳號已經綁定過其他協力廠商帳號",
+      "ur" : "اکاؤنٹ پہلے ہی دوسرے تیسری پارٹی کے اکاؤنٹس سے منسلک ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "100107",
+      "zh" : "请填写手机号",
+      "en" : "Please fill in your phone number",
+      "big5" : "請填寫手機號",
+      "ur" : "براہ کرم اپنا فون نمبر درج کریں",
+      "type" : "error"
+    },
+    {
+      "code" : "100108",
+      "zh" : "手机号未注册",
+      "en" : "Mobile number is not registered",
+      "big5" : "手機號未註冊",
+      "ur" : "موبائل نمبر رجسٹرڈ نہیں ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "100109",
+      "zh" : "不提供注册功能，仅限内部使用",
+      "en" : "No registration function is provided for internal use only",
+      "big5" : "不提供註冊功能，僅限內部使用",
+      "ur" : "رجسٹریشن کی فعالیت فراہم نہیں کی گئی، صرف اندرونی استعمال کے لیے",
+      "type" : "error"
+    },
+    {
+      "code" : "100110",
+      "zh" : "数据已提交，请等待管理员审核",
+      "en" : "Data has been submitted, please wait for administrator review",
+      "big5" : "數據已經提交，請等待管理員審核",
+      "ur" : "ڈیٹا جمع کر دیا گیا ہے، براہ کرم منتظم کی جائزہ کا انتظار کریں",
+      "type" : "success"
+    },
+    {
+      "code" : "100203",
+      "zh" : "该网页地址已被举报",
+      "en" : "The webpage address has been reported",
+      "big5" : "該網頁地址已被舉報",
+      "ur" : "ویب پیج ایڈریس کی رپورٹ کی گئی ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "100205",
+      "zh" : "手机号已注册",
+      "en" : "Phone number is registered",
+      "big5" : "手機號已註冊",
+      "ur" : "فون نمبر پہلے ہی رجسٹرڈ ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "100206",
+      "zh" : "用户注册失败",
+      "en" : "User registration failed",
+      "big5" : "用戶註冊失敗",
+      "ur" : "صارف کی رجسٹریشن ناکام ہو گئی",
+      "type" : "error"
+    },
+    {
+      "code" : "100207",
+      "zh" : "获取用户信息失败",
+      "en" : "Failed to get user information",
+      "big5" : "獲取用戶信息失敗",
+      "ur" : "صارف کی معلومات حاصل کرنے میں ناکامی",
+      "type" : "error"
+    },
+    {
+      "code" : "100208",
+      "zh" : "绑定关系不存在",
+      "en" : "Binding relationship does not exist",
+      "big5" : "綁定關係不存在",
+      "ur" : "منسلک تعلق موجود نہیں ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "100209",
+      "zh" : "新旧密码一致,请重新输入",
+      "en" : "The old and new passwords are the same, please re-enter",
+      "big5" : "新舊密碼一致,請重新輸入",
+      "ur" : "پرانا اور نیا پاس ورڈ ایک ہی ہے، براہ کرم دوبارہ درج کریں",
+      "type" : "error"
+    },
+    {
+      "code" : "100210",
+      "zh" : "设置免打扰失败",
+      "en" : "Set DND failure",
+      "big5" : "設置免打擾失敗",
+      "ur" : "DND سیٹ کرنے میں ناکامی",
+      "type" : "error"
+    },
+    {
+      "code" : "100211",
+      "zh" : "该用户不存在",
+      "en" : "this user does not exist",
+      "big5" : "該用戶不存在",
+      "ur" : "یہ صارف موجود نہیں ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "100212",
+      "zh" : "缺少通讯号",
+      "en" : "Missing communication number",
+      "big5" : "缺少通訊號",
+      "ur" : "رابطہ نمبر غائب ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "100213",
+      "zh" : "通讯号错误",
+      "en" : "Communication number error",
+      "big5" : "通訊號錯誤",
+      "ur" : "رابطہ نمبر غلط ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "100214",
+      "zh" : "缺少code",
+      "en" : "Missing code",
+      "big5" : "缺少code",
+      "ur" : "کوڈ غائب ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "100215",
+      "zh" : "获取openid失败",
+      "en" : "Failed to get openid",
+      "big5" : "獲取openid失敗",
+      "ur" : "openid حاصل کرنے میں ناکامی",
+      "type" : "error"
+    },
+    {
+      "code" : "100216",
+      "zh" : "短信验证码不能为空",
+      "en" : "SMS verification code cannot be empty",
+      "big5" : "短信驗證碼不能為空",
+      "ur" : "SMS تصدیقی کوڈ خالی نہیں ہو سکتا",
+      "type" : "error"
+    },
+    {
+      "code" : "100217",
+      "zh" : "获取支付宝授权authInfo失败",
+      "en" : "Obtaining Alipay authorization authInfo failed",
+      "big5" : "獲取支付寶授權authInfo失敗",
+      "ur" : "Alipay کی مجاز authInfo حاصل کرنے میں ناکامی",
+      "type" : "error"
+    },
+    {
+      "code" : "100219",
+      "zh" : "禁止访问对方朋友圈",
+      "en" : "No visits to each other's circle of friends",
+      "big5" : "禁止訪問對方朋友圈",
+      "ur" : "ایک دوسرے کے دوستوں کے دائرے تک رسائی کی ممانعت",
+      "type" : "error"
+    },
+    {
+      "code" : "100220",
+      "zh" : "用户密钥不存在!",
+      "en" : "User Rsa key does not exist",
+      "big5" : "用戶密鑰不存在",
+      "ur" : "صارف کا RSA کلید موجود نہیں ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "100222",
+      "zh" : "密码错误",
+      "en" : "Password error.",
+      "big5" : "密码错误",
+      "ur" : "پاس ورڈ غلط ہے",
+      "type" : "error"
+    },
+    {
+      "code" : "100223",
+      "zh" : "关闭手机联系人功能",
+      "en" : "Turn off the mobile phone contact function",
+      "big5" : "關閉手機連絡人功能",
+      "ur" : "موبائل فون رابطہ کی فعالیت بند کریں",
+      "type" : "error"
+    },
+    {
+      "code" : "100224",
+      "zh" : "没有权限打开地址位置相关设置",
+      "en" : "No permission to open address location related settings",
+      "big5" : "沒有許可權打開地址位置相關設定",
+      "ur" : "پتہ کی جگہ سے متعلقہ سیٹنگز کو کھولنے کی اجازت نہیں",
+      "type" : "error"
+    }
+
+,
+  {
+    "code" : "105002",
+    "zh" : "不支持收藏",
+    "en" : "Does not support collection",
+    "big5" : "不支持收藏",
+    "ur" : "محفوظ کرنے کی حمایت نہیں کرتا",
+    "type" : "error"
+  },
+  {
+    "code" : "105003",
+    "zh" : "当前设置不保存单聊聊天记录,暂不支持收藏",
+    "en" : "The current setting does not save single-chat chat history, and does not support collection at this time",
+    "big5" : "當前設置不保存單聊聊天記錄,暫不支持收藏",
+    "ur" : "موجودہ سیٹنگ واحد چیٹ کی تاریخ کو محفوظ نہیں کرتی، اور اس وقت محفوظ کرنے کی حمایت نہیں کرتی",
+    "type" : "error"
+  },
+  {
+    "code" : "100401",
+    "zh" : "该群组已被后台锁定",
+    "en" : "The group has been locked in the background",
+    "big5" : "該群組已被後台鎖定",
+    "ur" : "گروپ پس منظر میں لاک کر دیا گیا ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100402",
+    "zh" : "群成员上限不能低于当前群成员人数",
+    "en" : "The group member ceiling cannot be lower than the current group member number",
+    "big5" : "群成員上限不能低於當前群成員人數",
+    "ur" : "گروپ کے اراکین کی حد موجودہ گروپ کے اراکین کی تعداد سے کم نہیں ہو سکتی",
+    "type" : "error"
+  },
+  {
+    "code" : "100403",
+    "zh" : "请指定新群主",
+    "en" : "Please specify a new owner",
+    "big5" : "請指定新群主",
+    "ur" : "براہ کرم ایک نیا مالک مقرر کریں",
+    "type" : "error"
+  },
+  {
+    "code" : "100404",
+    "zh" : "不能转让群组给自己",
+    "en" : "Can't transfer group to yourself",
+    "big5" : "不能轉讓群組給自己",
+    "ur" : "گروپ کو خود کو منتقل نہیں کر سکتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100405",
+    "zh" : "对方不是群成员不能转让",
+    "en" : "The other party is not a member of the group and cannot be transferred",
+    "big5" : "對方不是群成員不能轉讓",
+    "ur" : "دوسرا فریق گروپ کا رکن نہیں ہے، منتقل نہیں کر سکتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100406",
+    "zh" : "不能禁言群主",
+    "en" : "Can't ban the owner",
+    "big5" : "不能禁言群主",
+    "ur" : "مالک کو خاموش نہیں کر سکتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100407",
+    "zh" : "不是好友不能邀请",
+    "en" : "Not friends can't invite",
+    "big5" : "不是好友不能邀請",
+    "ur" : "دوست نہیں ہیں، مدعو نہیں کر سکتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100408",
+    "zh" : "隐身人不可以邀请用户加群",
+    "en" : "Invisible people can't invite users to add groups",
+    "big5" : "隱身人不可以邀請用戶加群",
+    "ur" : "خفیہ افراد صارفین کو گروپ میں مدعو نہیں کر سکتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100409",
+    "zh" : "该成员不在群组中",
+    "en" : "This member is not in the group",
+    "big5" : "該成員不在群組中",
+    "ur" : "یہ رکن گروپ میں نہیں ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100410",
+    "zh" : "不能移出群主",
+    "en" : "Can't move out of the group owner",
+    "big5" : "不能移出群主",
+    "ur" : "گروپ کے مالک کو باہر نہیں نکال سکتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100411",
+    "zh" : "群组不存在",
+    "en" : "Group does not exist",
+    "big5" : "群组不存在",
+    "ur" : "گروپ موجود نہیں ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100412",
+    "zh" : "群主不能设置为管理员",
+    "en" : "The group owner cannot be set as an administrator",
+    "big5" : "群主不能設置為管理員",
+    "ur" : "گروپ کے مالک کو منتظم کے طور پر مقرر نہیں کیا جا سکتا",
+    "type" : "error"
+  },
+  {
+    "code" : "100413",
+    "zh" : "该成员不是隐身人",
+    "en" : "This member is not an invisible person",
+    "big5" : "該成員不是隱身人",
+    "ur" : "یہ رکن خفیہ شخص نہیں ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100414",
+    "zh" : "该成员不是监控人",
+    "en" : "This member is not a monitor",
+    "big5" : "該成員不是監控人",
+    "ur" : "یہ رکن مانیٹر نہیں ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100415",
+    "zh" : "群组已过期失效",
+    "en" : "Group has expired",
+    "big5" : "群組已過期失效",
+    "ur" : "گروپ کی مدت ختم ہو گئی ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100416",
+    "zh" : "群助手已存在",
+    "en" : "Group assistant already exists",
+    "big5" : "群助手已存在",
+    "ur" : "گروپ اسسٹنٹ پہلے ہی موجود ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100417",
+    "zh" : "群助手不存在",
+    "en" : "Group assistant does not exist",
+    "big5" : "群助手不存在",
+    "ur" : "گروپ اسسٹنٹ موجود نہیں ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100418",
+    "zh" : "关键字已存在",
+    "en" : "Keyword already exists",
+    "big5" : "關鍵字已存在",
+    "ur" : "کلیدی لفظ پہلے ہی موجود ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100419",
+    "zh" : "关键字不存在",
+    "en" : "The keyword does not exist",
+    "big5" : "關鍵字不存在",
+    "ur" : "کلیدی لفظ موجود نہیں ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100420",
+    "zh" : "删除失败",
+    "en" : "Failed to delete",
+    "big5" : "刪除失敗",
+    "ur" : "حذف کرنے میں ناکامی",
+    "type" : "error"
+  },
+  {
+    "code" : "100421",
+    "zh" : "邀请群成员需要群主同意",
+    "en" : "Invite group members to ask the owner to agree",
+    "big5" : "邀請群成員需要群主同意",
+    "ur" : "گروپ کے اراکین کو مدعو کرنے کے لیے مالک کی رضامندی درکار ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100422",
+    "zh" : "该后台管理员状态异常",
+    "en" : "The background administrator status is abnormal",
+    "big5" : "該後台管理員狀態異常",
+    "ur" : "پچھلے انتظامیہ کی حیثیت غیر معمولی ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100423",
+    "zh" : "群人数已达到上限，加入人数过多",
+    "en" : "The number of people has reached the upper limit",
+    "big5" : "群人數已達到上限，加入人數過多",
+    "ur" : "گروپ کی تعداد نے زیادہ سے زیادہ حد کو پہنچا دیا ہے، شامل ہونے والے لوگوں کی تعداد بہت زیادہ ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100424",
+    "zh" : "不能转让群组给隐身人",
+    "en" : "Cannot transfer group to invisible person",
+    "big5" : "不能轉讓群組給隱身人",
+    "ur" : "گروپ کو خفیہ شخص کو منتقل نہیں کر سکتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100460",
+    "zh" : "该邀请已过期",
+    "en" : "The invitation has expired",
+    "big5" : "该邀请已过期",
+    "ur" : "یہ دعوت نامہ منسوخ ہو چکا ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "1004241",
+    "zh" : "不能转让群组给黑名单成员",
+    "en" : "Cannot transfer group to blacklist members",
+    "big5" : "不能轉讓群組給黑名單成員",
+    "ur" : "گروپ کو بلیک لسٹ کے اراکین کو منتقل نہیں کر سکتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100501",
+    "zh" : "不能添加自己",
+    "en" : "Can't add yourself",
+    "big5" : "不能添加自己",
+    "ur" : "خود کو شامل نہیں کر سکتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100502",
+    "zh" : "添加好友失败",
+    "en" : "Add friend failed",
+    "big5" : "添加好友失敗",
+    "ur" : "دوست شامل کرنے میں ناکامی",
+    "type" : "error"
+  },
+  {
+    "code" : "100503",
+    "zh" : "用户禁止二维码添加好友",
+    "en" : "User prohibits QR code to add friends",
+    "big5" : "用戶禁止二維碼添加好友",
+    "ur" : "صارف QR کوڈ کے ذریعے دوست شامل کرنے کی اجازت نہیں دیتا",
+    "type" : "error"
+  },
+  {
+    "code" : "100504",
+    "zh" : "用户禁止名片添加好友",
+    "en" : "User prohibits business card from adding friends",
+    "big5" : "用戶禁止名片添加好友",
+    "ur" : "صارف بزنس کارڈ کے ذریعے دوست شامل کرنے کی اجازت نہیں دیتا",
+    "type" : "error"
+  },
+  {
+    "code" : "100505",
+    "zh" : "用户禁止从群组中添加好友",
+    "en" : "Users are prohibited from adding friends from the group",
+    "big5" : "用戶禁止從群組中添加好友",
+    "ur" : "صارفین گروپ سے دوست شامل کرنے کی اجازت نہیں دیتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100506",
+    "zh" : "用户禁止手机号搜索添加好友",
+    "en" : "Users are prohibited from adding friends through phone number search",
+    "big5" : "用戶禁止手機號搜索添加好友",
+    "ur" : "صارفین فون نمبر کی تلاش کے ذریعے دوست شامل کرنے کی اجازت نہیں دیتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100507",
+    "zh" : "用户禁止昵称搜索添加好友",
+    "en" : "Users are prohibited from adding friends through nickname search",
+    "big5" : "用戶禁止暱稱搜索添加好友",
+    "ur" : "صارفین نک نیم کی تلاش کے ذریعے دوست شامل کرنے کی اجازت نہیں دیتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100508",
+    "zh" : "不能操作自己",
+    "en" : "Can't operate yourself",
+    "big5" : "不能操作自己",
+    "ur" : "خود پر کارروائی نہیں کر سکتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100509",
+    "zh" : "不能重复操作",
+    "en" : "Cannot repeat operation",
+    "big5" : "不能重複操作",
+    "ur" : "عمل کو دہرا نہیں سکتے",
+    "type" : "error"
+  },
+  {
+    "code" : "100510",
+    "zh" : "对方不是你的好友",
+    "en" : "The other party is not your friend",
+    "big5" : "對方不是你的好友",
+    "ur" : "دوسرا فریق آپ کا دوست نہیں ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100511",
+    "zh" : "好友不存在",
+    "en" : "Friend does not exist",
+    "big5" : "好友不存在",
+    "ur" : "دوست موجود نہیں ہے",
+    "type" : "error"
+  },
+  {
+    "code" : "100512",
+    "zh" : "对方已经是你的好友",
+    "en" : "The other party is already your friend",
+    "big5" : "對方已經是你的好友",
+    "ur" : "دوسرا فریق پہلے سے آپ کا دوست ہے",
+    "type" : "error"
+  }
+,
+  {
+    "code": "100513",
+    "zh": "好友不在我的黑名单中",
+    "en": "Friends are not on my blacklist",
+    "big5": "好友不在我的黑名單中",
+    "ur": "دوست میری بلیک لسٹ میں نہیں ہیں",
+    "type": "error"
+  },
+  {
+    "code": "100514",
+    "zh": "关注成功",
+    "en": "Followed",
+    "big5": "關注成功",
+    "ur": "فالو کامیاب",
+    "type": "success"
+  },
+  {
+    "code": "100515",
+    "zh": "关注成功已互为好友",
+    "en": "Focus on success has become friends",
+    "big5": "關注成功已互為好友",
+    "ur": "فالو کامیاب، اب دوست ہیں",
+    "type": "success"
+  },
+  {
+    "code": "100516",
+    "zh": "关注失败",
+    "en": "Focus on failure",
+    "big5": "關注失敗",
+    "ur": "فالو ناکام",
+    "type": "error"
+  },
+  {
+    "code": "100517",
+    "zh": "已被对方添加到黑名单",
+    "en": "Has been added to the blacklist by the other party",
+    "big5": "已被對方添加到黑名單",
+    "ur": "آپ کو دوسرے فریق نے بلیک لسٹ میں شامل کر دیا ہے",
+    "type": "error"
+  },
+  {
+    "code": "100518",
+    "zh": "用户禁止添加好友",
+    "en": "Users are forbidden to add friends",
+    "big5": "用戶禁止添加好友",
+    "ur": "صارف دوست شامل کرنے سے منع کرتا ہے",
+    "type": "error"
+  },
+  {
+    "code": "100520",
+    "zh": "没有通讯录好友",
+    "en": "No address book friends",
+    "big5": "沒有通訊錄好友",
+    "ur": "کوئی ایڈریس بک دوست نہیں ہے",
+    "type": "error"
+  },
+  {
+    "code": "100521",
+    "zh": "用户:{0}增加好友超过限制数量",
+    "en": "user:{0} add more friends than the limit",
+    "big5": "用戶:{0}增加好友超過限制數量",
+    "ur": "صارف:{0} نے دوستوں کی تعداد کی حد تجاوز کر لی ہے",
+    "type": "error"
+  },
+  {
+    "code": "100522",
+    "zh": "对方开启了付费添加好友",
+    "en": "The other party opened a paid friend",
+    "big5": "對方開啟了付費添加好友",
+    "ur": "دوسرے فریق نے پیڈ دوست شامل کرنے کی سہولت فعال کر دی ہے",
+    "type": "error"
+  },
+  {
+    "code": "100523",
+    "zh": "对方开启了付费加关注",
+    "en": "The other party opened the payment and attention",
+    "big5": "對方開啟了付費加關注",
+    "ur": "دوسرے فریق نے پیڈ فالو کی سہولت فعال کر دی ہے",
+    "type": "error"
+  },
+  {
+    "code": "100601",
+    "zh": "创建失败",
+    "en": "Creation failed",
+    "big5": "創建失敗",
+    "ur": "تخلیق ناکام",
+    "type": "error"
+  },
+  {
+    "code": "100602",
+    "zh": "公司名称已存在",
+    "en": "Company name already exists",
+    "big5": "公司名稱已存在",
+    "ur": "کمپنی کا نام پہلے سے موجود ہے",
+    "type": "error"
+  },
+  {
+    "code": "100603",
+    "zh": "公司不存在",
+    "en": "Company does not exist",
+    "big5": "公司不存在",
+    "ur": "کمپنی موجود نہیں ہے",
+    "type": "error"
+  },
+  {
+    "code": "100604",
+    "zh": "部门名称重复",
+    "en": "Duplicate department name",
+    "big5": "部門名稱重複",
+    "ur": "محکمہ کا نام دہرا ہے",
+    "type": "error"
+  },
+  {
+    "code": "100605",
+    "zh": "该用户不属于客服部门",
+    "en": "This user is not part of the customer service department",
+    "big5": "該用戶不屬於客服部門",
+    "ur": "یہ صارف کسٹمر سروس ڈیپارٹمنٹ کا حصہ نہیں ہے",
+    "type": "error"
+  },
+  {
+    "code": "100606",
+    "zh": "该部门不能删除",
+    "en": "The department cannot delete",
+    "big5": "該部門不能刪除",
+    "ur": "یہ محکمہ حذف نہیں کیا جا سکتا",
+    "type": "error"
+  },
+  {
+    "code": "100607",
+    "zh": "会话人数过多请稍后重试",
+    "en": "Too many people in the conversation, please try again later",
+    "big5": "會話人數過多請稍後重試",
+    "ur": "بات چیت میں بہت زیادہ لوگ ہیں، براہ کرم بعد میں دوبارہ کوشش کریں",
+    "type": "error"
+  },
+  {
+    "code": "100608",
+    "zh": "缺少公司Id或部门Id，请在管理后台设置",
+    "en": "No companyId or departmentId, please set it in administration background",
+    "big5": "缺少公司Id或部門Id，請在管理後臺設置",
+    "ur": "کمپنی ID یا محکمہ ID غائب ہے، براہ کرم انتظامی پس منظر میں سیٹ کریں",
+    "type": "error"
+  },
+  {
+    "code": "100701",
+    "zh": "分组名称已存在",
+    "en": "The group name already exists",
+    "big5": "分組名稱已存在",
+    "ur": "گروپ کا نام پہلے سے موجود ہے",
+    "type": "error"
+  },
+  {
+    "code": "100702",
+    "zh": "修改失败",
+    "en": "fail to edit",
+    "big5": "修改失敗",
+    "ur": "ترمیم ناکام",
+    "type": "error"
+  },
+  {
+    "code": "100801",
+    "zh": "群标识码名已被使用",
+    "en": "Group identification code name has been used",
+    "big5": "群標識碼名已被使用",
+    "ur": "گروپ شناختی کوڈ نام پہلے ہی استعمال ہو چکا ہے",
+    "type": "error"
+  },
+  {
+    "code": "100802",
+    "zh": "群标识码已添加",
+    "en": "Group ID has been added",
+    "big5": "群標識碼已添加",
+    "ur": "گروپ آئی ڈی پہلے ہی شامل ہو چکی ہے",
+    "type": "error"
+  },
+  {
+    "code": "100803",
+    "zh": "添加失败",
+    "en": "add failed",
+    "big5": "添加失敗",
+    "ur": "شامل کرنا ناکام",
+    "type": "error"
+  },
+  {
+    "code": "100804",
+    "zh": "群标识码名不能为空",
+    "en": "Group ID code name cannot be empty",
+    "big5": "群標識碼名不能為空",
+    "ur": "گروپ آئی ڈی کوڈ نام خالی نہیں ہو سکتا",
+    "type": "error"
+  },
+  {
+    "code": "100805",
+    "zh": "群标识码不存在",
+    "en": "Group identification code does not exist",
+    "big5": "群標識碼不存在",
+    "ur": "گروپ شناختی کوڈ موجود نہیں ہے",
+    "type": "error"
+  },
+  {
+    "code": "100901",
+    "zh": "您的直播间已被锁住",
+    "en": "Your live room has been locked",
+    "big5": "您的直播間已被鎖住",
+    "ur": "آپ کا لائیو روم لاک ہو چکا ہے",
+    "type": "error"
+  },
+  {
+    "code": "100902",
+    "zh": "用户不在该房间",
+    "en": "User is not in the room",
+    "big5": "用戶不在該房間",
+    "ur": "صارف اس کمرے میں نہیں ہے",
+    "type": "error"
+  },
+  {
+    "code": "100903",
+    "zh": "该直播间尚未开播，请刷新再试",
+    "en": "The live room has not yet started, please refresh and try again",
+    "big5": "該直播間尚未開播，請刷新再試",
+    "ur": "یہ لائیو روم ابھی شروع نہیں ہوا، براہ کرم تازہ کریں اور دوبارہ کوشش کریں",
+    "type": "error"
+  },
+  {
+    "code": "100904",
+    "zh": "该房间不存在",
+    "en": "The room does not exist",
+    "big5": "該房間不存在",
+    "ur": "یہ کمرہ موجود نہیں ہے",
+    "type": "error"
+  },
+  {
+    "code": "100905",
+    "zh": "直播间被禁言",
+    "en": "The live room is muted",
+    "big5": "直播間被禁言",
+    "ur": "لائیو روم کو خاموش کر دیا گیا ہے",
+    "type": "error"
+  },
+  {
+    "code": "100906",
+    "zh": "该用户已在禁言名单中",
+    "en": "The user is already on the mute list",
+    "big5": "該用戶已在禁言名單中",
+    "ur": "یہ صارف پہلے ہی مٹ لسٹ میں ہے",
+    "type": "error"
+  },
+  {
+    "code": "100907",
+    "zh": "房间人数已达上限",
+    "en": "Room capacity reached",
+    "big5": "房間人數已達上限",
+    "ur": "کمرے کی گنجائش حد تک پہنچ چکی ہے",
+    "type": "error"
+  }
+
+,
+  {
+    "code": "103201",
+    "zh": "分享目标不存在",
+    "en": "Sharing goals do not exist",
+    "big5": "分享目标不存在",
+    "ur": "شیئرنگ کے اہداف موجود نہیں ہیں",
+    "type": "error"
+  },
+  {
+    "code": "103202",
+    "zh": "重复分享",
+    "en": "repeat to share",
+    "big5": "重复分享",
+    "ur": "دہرائی شیئرنگ",
+    "type": "error"
+  },
+  {
+    "code": "104001",
+    "zh": "余额不足",
+    "en": "Insufficient balance",
+    "big5": "余額不足",
+    "ur": "بیلنس ناکافی",
+    "type": "error"
+  },
+  {
+    "code": "104002",
+    "zh": "支付密码未设置",
+    "en": "Payment password is not set",
+    "big5": "支付密碼未設置",
+    "ur": "ادائیگی کا پاسورڈ سیٹ نہیں ہے",
+    "type": "error"
+  },
+  {
+    "code": "104003",
+    "zh": "支付密码错误",
+    "en": "Payment password is invalid",
+    "big5": "支付密码错误",
+    "ur": "ادائیگی کا پاسورڈ غلط ہے",
+    "type": "error"
+  },
+  {
+    "code": "104004",
+    "zh": "余额异常",
+    "en": "balance Exception",
+    "big5": "余额异常",
+    "ur": "بیلنس میں خرابی",
+    "type": "error"
+  },
+  {
+    "code": "104005",
+    "zh": "没有选择支付方式!",
+    "en": "Payment mode has not been selected!",
+    "big5": "沒有選擇支付方式!",
+    "ur": "ادائیگی کا طریقہ منتخب نہیں کیا گیا!",
+    "type": "error"
+  },
+  {
+    "code": "104006",
+    "zh": "请输入正确的金额",
+    "en": "Please enter the correct amount",
+    "big5": "請輸入正確的金額",
+    "ur": "براہ کرم صحیح رقم درج کریں",
+    "type": "error"
+  },
+  {
+    "code": "104007",
+    "zh": "已超过单次充值最高限制",
+    "en": "The maximum limit for a single recharge has been exceeded",
+    "big5": "已超過單次充值最高限制",
+    "ur": "ایک بار کی ریچارج کی زیادہ سے زیادہ حد تجاوز کر گئی ہے",
+    "type": "error"
+  },
+  {
+    "code": "104008",
+    "zh": "没有选择支付类型",
+    "en": "No payment type selected",
+    "big5": "沒有選擇支付類型",
+    "ur": "ادائیگی کی قسم منتخب نہیں کی گئی",
+    "type": "error"
+  },
+  {
+    "code": "104009",
+    "zh": "重复 扣款",
+    "en": "Duplicate charge",
+    "big5": "重複 扣款",
+    "ur": "دہرائی گئی کٹوتی",
+    "type": "error"
+  },
+  {
+    "code": "104010",
+    "zh": "音视频通话需要是付费添加好友",
+    "en": "Audio and video calls need to be paid to add friends",
+    "big5": "音視頻通話需要是付費添加好友",
+    "ur": "آڈیو اور ویڈیو کالز کے لیے دوستوں کو شامل کرنے کی ادائیگی کی ضرورت ہے",
+    "type": "error"
+  },
+  {
+    "code": "104101",
+    "zh": "红包总金额超过限制",
+    "en": "The total amount of red envelopes exceeds the limit",
+    "big5": "紅包總金額超過限制",
+    "ur": "سرخ لفافوں کی کل رقم حد سے تجاوز کر گئی ہے",
+    "type": "error"
+  },
+  {
+    "code": "104102",
+    "zh": "每人最少 0.01元 !",
+    "en": "At least 0.01 yuan per person!",
+    "big5": "每人最少 0.01元 !",
+    "ur": "فی شخص کم از کم 0.01 یوان!",
+    "type": "error"
+  },
+  {
+    "code": "104103",
+    "zh": "你已经领取了该红包",
+    "en": "You've got the red envelope.",
+    "big5": "你已經領取了該紅包",
+    "ur": "آپ نے سرخ لفافہ حاصل کر لیا ہے",
+    "type": "error"
+  },
+  {
+    "code": "100101",
+    "zh": "该红包已过期！",
+    "en": "The red envelope has expired!",
+    "big5": "該紅包已已过期！",
+    "ur": "سرخ لفافہ ختم ہو چکا ہے!",
+    "type": "success"
+  },
+  {
+    "code": "100102",
+    "zh": "你手太慢啦已经被领完了",
+    "en": "Your hand is too slow, you have already been taken",
+    "big5": "你手太慢啦已經被領完了",
+    "ur": "آپ کی رفتار بہت سست ہے، یہ پہلے ہی لے لیا گیا ہے",
+    "type": "success"
+  },
+  {
+    "code": "104106",
+    "zh": "红包个数大于房间人数",
+    "en": "The number of red packets is greater than the number of rooms",
+    "big5": "紅包個數大於房間人數",
+    "ur": "سرخ لفافوں کی تعداد کمرے کی تعداد سے زیادہ ہے",
+    "type": "error"
+  },
+  {
+    "code": "104107",
+    "zh": "回复不能为空",
+    "en": "Reply cannot be empty",
+    "big5": "回復不能為空",
+    "ur": "جواب خالی نہیں ہوسکتا",
+    "type": "error"
+  },
+  {
+    "code": "104108",
+    "zh": "超过单笔群红包发送的最大个数",
+    "en": "Exceeds the maximum number of single group red packets sent",
+    "big5": "超過單筆群紅包發送的最大個數",
+    "ur": "ایک گروپ کے سرخ لفافے بھیجنے کی زیادہ سے زیادہ تعداد تجاوز کر گئی ہے",
+    "type": "error"
+  },
+  {
+    "code": "104109",
+    "zh": "您的余额不足，请立即充值。\n通话剩余时长：{0}s",
+    "en": "Your balance is insufficient, please recharge now.\nCall remaining time: {0}s",
+    "big5": "您的餘額不足，請立即充值。\n通話剩餘時長：{0}s",
+    "ur": "آپ کا بیلنس ناکافی ہے، براہ کرم فوراً ریچارج کریں۔\nکال کا باقی وقت: {0}s",
+    "type": "error"
+  },
+  {
+    "code": "100301",
+    "zh": "该转账已超过24小时",
+    "en": "The transfer has been more than 24 hours",
+    "big5": "該轉賬已超過24小時",
+    "ur": "یہ منتقلی 24 گھنٹے سے زیادہ ہو چکی ہے",
+    "type": "error"
+  },
+  {
+    "code": "100302",
+    "zh": "该转账已完成或退款",
+    "en": "The transfer has been completed or refunded",
+    "big5": "該轉賬已完成或退款",
+    "ur": "یہ منتقلی مکمل ہو چکی ہے یا رقم واپس کی گئی ہے",
+    "type": "error"
+  },
+  {
+    "code": "104203",
+    "zh": "收款人不正确",
+    "en": "The payee is incorrect",
+    "big5": "收款人不正確",
+    "ur": "ادائیگی کرنے والا شخص غلط ہے",
+    "type": "error"
+  },
+  {
+    "code": "104301",
+    "zh": "提现不能低于最低限制",
+    "en": "Cash withdrawal cannot be lower than the minimum limit",
+    "big5": "提現不能低於最低限制",
+    "ur": "نقدی کی واپسی کم از کم حد سے کم نہیں ہو سکتی",
+    "type": "error"
+  },
+  {
+    "code": "104302",
+    "zh": "提现失败",
+    "en": "Cash withdrawal failure",
+    "big5": "提現失敗",
+    "ur": "نقدی کی واپسی ناکام",
+    "type": "error"
+  },
+  {
+    "code": "104303",
+    "zh": "请先微信授权没有授权不能提现",
+    "en": "Please start with WeChat authorization without authorization",
+    "big5": "請先微信授權沒有授權提現",
+    "ur": "براہ کرم پہلے وی چیٹ کی اجازت حاصل کریں، اجازت کے بغیر رقم نکالنا ممکن نہیں ہے",
+    "type": "error"
+  }
+,
+    {
+      "code": "100436",
+      "zh": "该用户实名认证失败，请检查信息是否填写正确!",
+      "en": "The user's real name authentication failed, please check if the information is filled in correctly!",
+      "big5": "該用戶實名認證失敗，請檢查信息是否填寫正確!",
+      "ur": "اس صارف کی اصلی نام کی تصدیق ناکام ہو گئی ہے، براہ کرم چیک کریں کہ معلومات صحیح طریقے سے بھری گئی ہیں!",
+      "type": "error"
+    },
+    {
+      "code": "100437",
+      "zh": "一键登录取号失败,请稍后再试!",
+      "en": "One-click login failed to get number, please try again later!",
+      "big5": "一鍵登錄取號失敗,請稍後再試!",
+      "ur": "ایک کلک لاگ ان نمبر حاصل کرنے میں ناکام رہا، براہ کرم بعد میں دوبارہ کوشش کریں!",
+      "type": "error"
+    },
+    {
+      "code": "100438",
+      "zh": "该身份信息已经绑定到{0}账号，请解绑后重新绑定",
+      "en": "This identity information has been bound to the {0} account, please unbind and rebind",
+      "big5": "該身份信息已經綁定到{0}賬號，請解綁後重新綁定",
+      "ur": "یہ شناختی معلومات {0} اکاؤنٹ کے ساتھ منسلک ہے، براہ کرم ان بائنڈ کریں اور دوبارہ بائنڈ کریں",
+      "type": "error"
+    },
+    {
+      "code": "100439",
+      "zh": "实人认证请求失败",
+      "en": "Real authentication request failed",
+      "big5": "實人認證請求失敗",
+      "ur": "اصلی تصدیق کی درخواست ناکام ہو گئی",
+      "type": "error"
+    },
+    {
+      "code": "100440",
+      "zh": "实人认证未通过，请稍后再试",
+      "en": "Real person authentication failed, please try again later",
+      "big5": "實人認證未通過，請稍後再試",
+      "ur": "اصلی تصدیق ناکام ہو گئی، براہ کرم بعد میں دوبارہ کوشش کریں",
+      "type": "error"
+    },
+    {
+      "code": "100441",
+      "zh": "该用户未实人认证",
+      "en": "The user is not authenticated",
+      "big5": "該用戶未實人認證",
+      "ur": "اس صارف کی تصدیق نہیں ہوئی",
+      "type": "error"
+    },
+    {
+      "code": "100442",
+      "zh": "群组内管理员数量已达到上限",
+      "en": "The number of administrators in the group has reached the limit",
+      "big5": "群組內管理員數量已達到上限",
+      "ur": "گروپ میں منتظمین کی تعداد حد تک پہنچ چکی ہے",
+      "type": "error"
+    },
+    {
+      "code": "100443",
+      "zh": "用户已经在群组内",
+      "en": "User is already in the group",
+      "big5": "用户已经在群组内",
+      "ur": "صارف پہلے ہی گروپ میں ہے",
+      "type": "error"
+    },
+    {
+      "code": "100444",
+      "zh": "用户{0}已开启被邀请加群确认,已经发送邀请加群",
+      "en": "User {0} has opened the invitation to add group confirmation, has sent an invitation to add group",
+      "big5": "用戶{0}已開啟被邀請加群確認,已經發送邀請加群",
+      "ur": "صارف {0} نے گروپ میں شامل ہونے کی تصدیق کی دعوت کھول دی ہے، گروپ میں شامل ہونے کے لیے دعوت بھیج دی گئی ہے",
+      "type": "error"
+    },
+    {
+      "code": "100445",
+      "zh": "苹果登录信息已过期请重试",
+      "en": "Apple login information has expired, please try again",
+      "big5": "蘋果登錄信息已過期請重試",
+      "ur": "ایپل لاگ ان کی معلومات کی مدت ختم ہو گئی ہے، براہ کرم دوبارہ کوشش کریں",
+      "type": "error"
+    },
+    {
+      "code": "100446",
+      "zh": "苹果登录失败",
+      "en": "Apple login failed",
+      "big5": "蘋果登錄失敗",
+      "ur": "ایپل لاگ ان ناکام",
+      "type": "error"
+    },
+    {
+      "code": "100447",
+      "zh": "用户 {0} 已经在群组内",
+      "en": "User {0} is already in the group",
+      "big5": "用戶 {0} 已經在群組內",
+      "ur": "صارف {0} پہلے ہی گروپ میں ہے",
+      "type": "error"
+    },
+    {
+      "code": "100448",
+      "zh": "群主设置了付费入群,请付费加入群组",
+      "en": "The owner has set up a paid group membership, please pay to join the group",
+      "big5": "群主設置了付費入群,請付費加入群組",
+      "ur": "گروپ کے مالک نے ادا شدہ گروپ ممبرشپ کا تعین کیا ہے، براہ کرم گروپ میں شامل ہونے کے لیے ادائیگی کریں",
+      "type": "error"
+    },
+    {
+      "code": "106000",
+      "zh": "抱歉! 尚未开通红包相关功能!",
+      "en": "Sorry! RadPacket function not available!",
+      "big5": "抱歉! 尚未開通紅包相關功能!",
+      "ur": "معذرت! ریڈ پیکٹ کی خصوصیات دستیاب نہیں ہیں!",
+      "type": "error"
+    },
+    {
+      "code": "106001",
+      "zh": "抱歉! 尚未开通支付相关功能!",
+      "en": "Sorry! Payment function not available!",
+      "big5": "抱歉! 尚未開通支付相關功能!",
+      "ur": "معذرت! ادائیگی کی خصوصیات دستیاب نہیں ہیں!",
+      "type": "error"
+    },
+    {
+      "code": "106002",
+      "zh": "参数异常",
+      "en": "params is error",
+      "big5": "參數異常",
+      "ur": "پیرامیٹرز میں خرابی",
+      "type": "error"
+    },
+    {
+      "code": "104510",
+      "zh": "管理后台未填写支付配置",
+      "en": "Management background did not fill in the payment configuration",
+      "big5": "管理後臺未填寫支付配置",
+      "ur": "انتظامی پس منظر نے ادائیگی کی ترتیبات مکمل نہیں کیں",
+      "type": "error"
+    },
+    {
+      "code": "200001",
+      "zh": "公众号打赏红包未被全部领取",
+      "en": "Not all the red envelopes for public accounts have been received",
+      "big5": "公眾號打賞紅包未被全部領取",
+      "ur": "پبلک اکاؤنٹس کے لیے تمام سرخ لفافے وصول نہیں ہوئے ہیں",
+      "type": "error"
+    },
+    {
+      "code": "200002",
+      "zh": "未开启付费加好友功能",
+      "en": "The paid friend feature is not enabled",
+      "big5": "未開啟付費加好友功能",
+      "ur": "ادا شدہ دوست خصوصیت فعال نہیں ہے",
+      "type": "error"
+    },
+    {
+      "code": "200006",
+      "zh": "短信发送频繁",
+      "en": "Frequent text messaging",
+      "big5": "短信發送頻繁",
+      "ur": "مسلسل ایس ایم ایس بھیجنے",
+      "type": "error"
+    },
+    {
+      "code": "1030103",
+      "zh": "暂无数据",
+      "en": "Data Is Null",
+      "big5": "暫無數據",
+      "ur": "ڈیٹا دستیاب نہیں",
+      "type": "error"
+    },
+    {
+      "code": "1030104",
+      "zh": "删除任务提交成功",
+      "en": "Delete task submitted successfully",
+      "big5": "刪除任務提交成功",
+      "ur": "ٹاسک حذف کرنے کی درخواست کامیابی کے ساتھ جمع کر دی گئی",
+      "type": "success"
+    },
+    {
+      "code": "100460",
+      "zh": "该邀请已过期",
+      "en": "The invitation has expired",
+      "big5": "該邀請已過期",
+      "ur": "دعوت کی مدت ختم ہو چکی ہے",
+      "type": "error"
+    },
+    {
+      "code": "300001",
+      "zh": "设置数值超过限制:{0}元",
+      "en": "Set the value above the limit:{0} dollars",
+      "big5": "設置數值超過限制:{0}元",
+      "ur": "ویلیو کی حد سے تجاوز کر گئی ہے: {0} روپے",
+      "type": "error"
+    },
+    {
+      "code": "300002",
+      "zh": "无效的 Id",
+      "en": "Invalid Id",
+      "big5": "無效的 Id",
+      "ur": "غلط آئی ڈی",
+      "type": "error"
+    },
+    {
+      "code": "300003",
+      "zh": "参数不允许为空!",
+      "en": "param is not allow empty!",
+      "big5": "參數不允許為空!",
+      "ur": "پیرامیٹر خالی نہیں ہوسکتا!",
+      "type": "error"
+    },
+    {
+      "code": "400001",
+      "zh": "群成员人数限制 不能大于 最大群人数",
+      "en": "The group membership limit shall not be greater than the maximum group size",
+      "big5": "群成員人數限制 不能大於 最大群人數",
+      "ur": "گروپ کی ممبرشپ کی حد زیادہ نہیں ہونی چاہیے: زیادہ سے زیادہ گروپ کے سائز سے",
+      "type": "error"
+    },
+    {
+      "code": "700008",
+      "zh": "该留言已被删除",
+      "en": "The message has been deleted",
+      "big5": "該留言已被刪除",
+      "ur": "یہ پیغام حذف کر دیا گیا ہے",
+      "type": "error"
+    },
+    {
+      "code": "200005",
+      "zh": "正在审核中",
+      "en": "Under review",
+      "big5": "正在審核中",
+      "ur": "جائزہ کے تحت",
+      "type": "error"
+    },
+    {
+      "code": "100111",
+      "zh": "个性签名不合法!",
+      "en": "Personal signatures are illegal!",
+      "big5": "個性簽名不合法",
+      "ur": "ذاتی دستخط غیر قانونی ہیں!",
+      "type": "error"
+    },
+    {
+      "code": "400002",
+      "zh": "无效的角色编号!",
+      "en": "Invalid role number!",
+      "big5": "無效的角色編號",
+      "ur": "غلط کردار نمبر!",
+      "type": "error"
+    },
+    {
+      "code": "400003",
+      "zh": "该资源下有数据不能删除!",
+      "en": "Data in this resource cannot be deleted!",
+      "big5": "該資源下有數據不能刪除",
+      "ur": "اس وسائل میں ڈیٹا کو حذف نہیں کیا جا سکتا!",
+      "type": "error"
+    },
+    {
+      "code": "400004",
+      "zh": "元素权限不能为空!",
+      "en": "Element permissions cannot be empty!",
+      "big5": "元素權限不能為空",
+      "ur": "عنصر کی اجازت خالی نہیں ہو سکتی!",
+      "type": "error"
+    },
+    {
+      "code": "400005",
+      "zh": "元素权限已存在!",
+      "en": "The element permission already exists!",
+      "big5": "元素權限已存在",
+      "ur": "عنصر کی اجازت پہلے سے موجود ہے!",
+      "type": "error"
+    }
+
+
+
+]
+

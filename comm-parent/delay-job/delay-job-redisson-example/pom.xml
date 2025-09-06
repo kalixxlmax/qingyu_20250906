@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.2.RELEASE</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.basic</groupId>
+    <artifactId>delay-job-redisson-example</artifactId>
+    <version>1.0</version>
+    <properties>
+        <!-- Environment Settings -->
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Spring Settings -->
+        <spring-cloud.version>Greenwich.SR3</spring-cloud.version>
+        <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
+        <basic-common.version>1.0</basic-common.version>
+
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.basic</groupId>
+            <artifactId>delay-job-redisson-producer</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.basic</groupId>
+            <artifactId>delay-job-redisson-consumer</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.basic</groupId>
+            <artifactId>delay-job-db</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.basic</groupId>
+            <artifactId>delay-job-default</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-json</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
+            <version>${spring-cloud-alibaba.version}</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

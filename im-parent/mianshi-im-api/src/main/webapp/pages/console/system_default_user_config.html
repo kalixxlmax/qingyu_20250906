@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="format-detection" content="telephone=no">
+	<link rel="stylesheet" href="/pages/common/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="./css/public.css" media="all" />
+	<link rel="stylesheet" href="/pages/console/css/commonStyle.css" media="all" />
+</head>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+	<div class="visitPath"></div>
+</div>
+<form class="layui-form layui_form_set spare_bottom">
+	<!--用户默认隐私设置：只对新注册用户生效-->
+	<table class="layui-table buildUserConfig layui_table_set">
+		<colgroup>
+			<col width="25%">
+			<col width="26%">
+			<col width="25%">
+		</colgroup>
+		<thead>
+		<tr>
+			<th>参数说明</th>
+			<th>参数值</th>
+			<th>变量名</th>
+			<th>参数说明</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>默认漫游时长</td>
+			<td>
+				<select  class="layui-input-inline roamingTime">
+					<option value="-2">不漫游</option>
+					<option value="-1">永久</option>
+					<option value="0.04">一小时</option>
+					<option value="1">1天</option>
+					<option value="7">一周</option>
+					<option value="30">一月</option>
+					<option value="120">一季</option>
+					<option value="365">一年</option>
+				</select>
+			</td>
+			<td>roamingTime</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>默认过期销毁时长</td>
+			<td>
+				<select class="layui-input-inline outTimeDestroy">
+					<option value="-1">永久</option>
+					<option value="0.04">一小时</option>
+					<option value="1">一天</option>
+					<option value="7">一周</option>
+					<option value="30">一月</option>
+					<option value="120">一季</option>
+					<option value="365">一年</option>
+				</select>
+			</td>
+			<td>outTimeDestroy</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>是否需要好友验证</td>
+			<td>
+				<select class="layui-input-inline isFriendsVerify">
+					<option value="1">是</option>
+					<option value="0">否</option>
+				</select>
+			</td>
+			<td>isFriendsVerify</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>是否支持多点登录</td>
+			<td>
+				<select class="layui-input-inline isMultiLogin">
+					<option value="1">是</option>
+					<option value="0">否</option>
+				</select>
+			</td>
+			<td>
+				isMultiLogin
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>消息来时是否振动</td>
+			<td>
+				<select class="layui-input-inline isVibration">
+					<option value="1">是</option>
+					<option value="0">否</option>
+				</select>
+			</td>
+			<td>
+				isVibration
+			</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>让对方知道我正在输入</td>
+			<td>
+				<select class="layui-input-inline isTyping">
+					<option value="1">开启</option>
+					<option value="0">关闭</option>
+				</select>
+			</td>
+			<td>isTyping</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>使用google地图</td>
+			<td>
+				<select class="layui-input-inline isUseGoogleMap">
+					<option value="1">开启</option>
+					<option value="0">关闭</option>
+				</select>
+			</td>
+			<td>isUseGoogleMap</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>允许通过手机号搜索我</td>
+			<td>
+				<select class="layui-input-inline phoneSearch">
+					<option value="1">开启</option>
+					<option value="0">关闭</option>
+				</select>
+			</td>
+			<td>phoneSearch</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>允许通过昵称搜索我</td>
+			<td>
+				<select class="layui-input-inline nameSearch">
+					<option value="1">开启</option>
+					<option value="0">关闭</option>
+				</select>
+			</td>
+			<td>nameSearch</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>允许安卓APP进程保活</td>
+			<td>
+				<select class="layui-input-inline isKeepalive">
+					<option value="1">开启</option>
+					<option value="0">关闭</option>
+				</select>
+			</td>
+			<td>isKeepalive</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>针对个人是否开启位置相关服务</td>
+			<td>
+				<select class="layui-input-inline isOpenPrivacyPosition">
+					<option value="1">开启</option>
+					<option value="0">关闭</option>
+				</select>
+			</td>
+			<td>isOpenPrivacyPosition</td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td>显示消息阅读状态</td>
+			<td>
+				<select class="layui-input-inline isShowMsgState">
+					<option value="1">开启</option>
+					<option value="0">关闭</option>
+				</select>
+			</td>
+			<td>isShowMsgState</td>
+			<td></td>
+		</tr>
+
+		<tr>
+			<td>允许别人看见我的上次上线时间</td>
+			<td>
+				<select class="layui-input-inline showLastLoginTime">
+					<option value="-1">所有人不显示</option>
+					<option value="1">所有人显示</option>
+					<option value="2">所有好友显示</option>
+					<option value="3">手机联系人显示</option>
+				</select>
+			</td>
+			<td>showLastLoginTime</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>允许别人看见我的手机号</td>
+			<td>
+				<select class="layui-input-inline showTelephone">
+					<option value="-1">所有人不显示</option>
+					<option value="1">所有人显示</option>
+					<option value="2">所有好友显示</option>
+					<option value="3">手机联系人显示</option>
+				</select>
+			</td>
+			<td>showTelephone</td>
+			<td></td>
+		</tr>
+		<tr class="tableHoverWhite characters_center">
+			<td colspan="4" style="border-bottom: 1px solid transparent">
+				<button class="layui-btn save sys-sava motif_button_style" lay-submit="" lay-filter="systemConfig">保存
+				</button>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+</form>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="./js/system_default_user_config.js"></script>
+</body>
+</html>

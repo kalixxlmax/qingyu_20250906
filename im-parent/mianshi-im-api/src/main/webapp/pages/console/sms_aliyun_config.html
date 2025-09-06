@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/pages/common/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="./css/public.css" media="all"/>
+    <link rel="stylesheet" href="/pages/console/css/commonStyle.css" media="all"/>
+    <link rel="stylesheet" href="/pages/console/css/sms_config.css" media="all"/>
+</head>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<form class="layui-form spare_bottom">
+	<!-- 阿里云短信 -->
+    <table class="layui-table mag0 table-top-interval aliyunConfig">
+        <colgroup>
+            <col width="25%">
+            <col width="26%">
+            <col width="25%">
+        </colgroup>
+        <thead>
+        <tr>
+            <th>参数说明</th>
+            <th>参数值</th>
+            <th>变量名</th>
+            <th>参数详细说明</th>
+        </tr>
+        </thead>
+        <thead>
+        <tr>
+            <td>云通信短信API产品</td>
+            <td><input type="" name="" class="layui-input product" placeholder="请输入云通信短信API！"></td>
+            <td>product</td>
+            <td>云通信短信API产品,无需替换</td>
+        </tr>
+        <tr>
+            <td>产品域名</td>
+            <td><input type="" name="" class="layui-input domain" placeholder="请输入产品域名！"></td>
+            <td>domain</td>
+            <td>产品域名,无需替换</td>
+        </tr>
+        <tr>
+            <td>AK key</td>
+            <td><input type="" name="" class="layui-input accesskeyid" placeholder="AK key！"></td>
+            <td>accesskeyid</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>AK value</td>
+            <td><input type="" name="" class="layui-input accesskeysecret" placeholder="AK value！"></td>
+            <td>accesskeysecret</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>短信签名</td>
+            <td><input type="" name="" class="layui-input signname" placeholder="请输入短信签名！"></td>
+            <td>signname</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>中文短信模板标识</td>
+            <td><input type="" name="" class="layui-input chinase_templetecode" placeholder="请输入中文短信模板标识！"></td>
+            <td>chinase_templetecode</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>国际短信模板</td>
+            <td><input type="" name="" class="layui-input international_templetecode" placeholder="请输入国际短信模板！"></td>
+            <td>international_templetecode</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>云钱包开户短信验证码模板标识</td>
+            <td><input type="" name="" class="layui-input cloudWalletVerification" placeholder="请输入云钱包开户短信验证码模板标识！">
+            </td>
+            <td>cloudWalletVerification</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>云钱包开户通知短信模板</td>
+            <td><input type="" name="" class="layui-input cloudWalletNotification" placeholder="请输入云钱包开户通知短信模板！">
+            </td>
+            <td>cloudWalletNotification</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>实人认证服务的业务场景标识</td>
+            <td><input type="" name="" class="layui-input bizType" placeholder="请输入实人认证服务的业务场景标识！"></td>
+            <td>bizType</td>
+            <td>阿里云其他业务属性字段</td>
+        </tr>
+        <tr class="tableHoverWhite">
+            <td colspan="4" class="characters_center" style="border-bottom: 1px solid transparent;">
+                <button class="layui-btn smsConfig-sava sava-btn-place motif_button_style" lay-submit="" lay-filter="systemConfig">保存</button>
+            </td>
+        </tr>
+        </thead>
+    </table>
+</form>
+
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="./js/sms_aliyun_config.js"></script>
+</body>
+</html>

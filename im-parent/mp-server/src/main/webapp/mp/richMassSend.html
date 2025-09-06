@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>富文本编辑群发消息</title>
+<link href="./common/layui/css/layui.css" rel="stylesheet">
+	<style>
+		.photo_div{
+			padding-top: 9px;
+		}
+		.photo_div{
+			display: block;
+			position: relative;
+			margin-left: 4px;
+			padding-right: 175px;
+			line-height: 1.6;
+			vertical-align: middle;
+			padding-top: 1px;
+		}
+		.photo_p{
+			margin-top: 5px;
+			padding-bottom: 6px;
+			color: #9e9f9f
+		}
+		.file_span{
+			position: relative;
+			display: inline-block;
+			vertical-align: middle;
+			line-height: 1.6;
+		}
+		.file_ul{
+			position: absolute;
+			top: 100%;
+			left: 0;
+			white-space: nowrap;
+			background-color: #fff;
+			border: 1px solid #e6e6e6;
+		}
+		.file_div{
+			position: absolute;
+			top: 0px; left: 0px;
+			width: 106px;
+			height: 27px;
+			overflow: hidden;
+			bottom: auto;
+			right: auto;
+		}
+		.file_label{
+			opacity: 0;
+			width: 100%;
+			height: 100%;
+			display: block;
+			cursor: pointer;
+			background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+		}
+	</style>
+</head>
+<body>
+	<div class="layui-container">
+		<div class="layui-row">
+			<div class="layui-col-md12" style="margin-top: 1%;padding: 1%;">
+				<p>大标题</p>
+				<input class="layui-input" placeholder="请输入标题" id="title" name="body">
+			</div>
+
+			<div class="layui-col-md12" style="margin-top: 1%;padding: 1%;">
+				<p>小标题</p>
+				<input class="layui-input" placeholder="请输入小标题" id="sub" name="body">
+			</div>
+
+			<div class="layui-col-md12" style="margin-top: 1%;padding: 1%;">
+				<p>来源所属</p>
+				<input class="layui-input" placeholder="请输入来源所属" id="contentFrom" name="body">
+			</div>
+
+			<div class="layui-col-md12" style="margin-top: 1%;padding: 1%;">
+				<p>内容</p>
+				<div id="div1">
+					<p><b>请您输入要群发的内容</b></p>
+				</div>
+			</div>
+			<div class="layui-col-md12" style="margin-top: 1%;padding: 1%;">
+				<div style="content: '\200B';display: block;clear: both;padding-bottom: 15px;word-break: normal;">
+					<label style="width: 4em;margin-top: 7px;float: left;margin-right: 1em;font-size: 14px;">首页图片</label>
+					<div style="clear: both;height: 0 !important;display: block;line-height: 0;padding-top: 2px;display: table-cell;vertical-align: top;float: none;width: auto;">
+						<div style="width: 510px;margin-bottom: 40px;">
+							<div class="photo_div">
+								<p class="photo_p">请选择首页图片</p>
+								<span class="file_span">
+										<a  href="javascript:;" class="layui-btn">选择文件</a>
+										<ul class="file_ul"></ul>
+										<div class="file_div">
+											<label onclick="operation.selectSmallFile()" class="file_label"></label>
+										</div>
+									</span>
+								<img id="uploadSmall_url" src="" style="width: 35px">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<button class="layui-btn layui-btn-lg sendMessage" style="margin: 1%;margin-left: 50%;">发送</button>
+
+			<!-- 示例 -->
+			<div class="layui-row layui-col-space10">
+				<div class="layui-col-md10" style="margin-left: 10%;margin-top: 2%;height: 2%;">
+					<h1>示例</h1>
+					<img alt="" style="margin-left: 34%" src="./images/pushOne.png">
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<form id="uploadSmallFileFrom" name="uploadSmallFileFrom" action="" method="post" enctype="multipart/form-data">
+		<input id="photoSmallUrl" type="hidden" name="photoSmallUrl">
+		<input id="photoSmallUpload" lay-filter="photoSmallUpload" onchange="operation.upload()" name="myfile" type="file" style="display: none;" accept="image/bmp,image/png,image/jpeg,image/jpg,image/gif">
+	</form>
+
+
+	<script type="text/javascript" src="./common/layui/layui.all.js"></script>
+	<script type="text/javascript" src="./js/config.js"></script>
+	<script type="text/javascript" src="./js/mp_commons.js"></script>
+
+	<script type="text/javascript" src="./common/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="./common/jquery/jquery.md5.js"></script>
+	<!-- 文件上传 -->
+	<script type="text/javascript" src="./js/jquery.form.js"></script>
+	<script type="text/javascript" src="./js/mp_dataUtils.js"></script>
+	<script type="text/javascript" src="/mp/common/wangEditor_4.5/dist/wangEditor.js"></script>
+
+	<script>
+
+		//上传图片地址
+		var images = [];
+		$(function () {
+			//用户编号
+			var userId = 0;
+			var data = eval('(' + localStorage.getItem('loginData') + ')');
+			userId = data.userId;
+
+			//上传路径
+			var uploadUrl = "";
+			$.ajax({
+				url:'/mp/config',
+				async:false,
+				success:function(result){
+					uploadUrl =	result.data.uploadAddr+"upload/UploadServlet";
+					//uploadUrl =	"http://192.168.0.105:8088/upload/UploadServlet";
+					$("#uploadSmallFileFrom").attr("action",uploadUrl);
+				}
+
+
+			});
+
+			//创建wangEditor对象
+			const E = window.wangEditor;
+			//初始化
+			const editor = new E('#div1');
+			// 设置编辑区域高度
+			editor.config.height = 300;
+			// 配置 server 接口地址
+			editor.config.uploadImgServer = uploadUrl;
+			//上传图片格式
+			editor.config.uploadImgAccept = ['jpg', 'jpeg', 'png', 'gif', 'bmp'];
+			editor.config.uploadImgParams = {
+				userId: userId,
+				version: "1"
+			};
+			//超时时间
+			editor.config.uploadImgTimeout = 10 * 1000;
+			editor.config.uploadImgHooks = {
+				before: function(xhr) {
+					if (mpCommon.isNil(uploadUrl)){
+						return {
+							prevent: true,
+							msg: '上传图片失败,请稍后尝试.'
+						}
+					}
+				},
+				customInsert : function(insertImgFn, result) {
+					console.log('customInsert', result);
+					var oUrl = result.data.images[0].oUrl;
+					images.push(oUrl);
+					insertImgFn(oUrl);
+				}
+			}
+			/**
+			 * 文本域内容发生变化
+			 */
+			editor.config.onchange = function (html) {
+				let imgs = operation.getSrc(html);
+				operation.getRemoveImg(imgs);
+			}.bind(this);
+
+			editor.create();
+
+			//发送消息
+			$(".sendMessage").click(function () {
+				var title = $("#title").val();
+				var htmlContent = editor.txt.html();
+				var img = $('#uploadSmall_url').attr('src');
+				var sub = $("#sub").val();
+				var contentFrom = $("#contentFrom").val();
+				if (mpCommon.isNil(title)){
+					layui.layer.msg("请输入标题", {"icon": 2});
+					return;
+				}
+				if (mpCommon.isNil(sub)){
+					layui.layer.msg("请输入小标题", {"icon": 2});
+					return;
+				}
+				if (mpCommon.isNil(contentFrom)){
+					layui.layer.msg("请输入所属来源", {"icon": 2});
+					return;
+				}
+				if (mpCommon.isNil(htmlContent)){
+					layui.layer.msg("请输入内容", {"icon": 2});
+					return;
+				}
+				if (mpCommon.isNil(img)){
+					layui.layer.msg("请选择图片", {"icon": 2});
+					return;
+				}
+				mpCommon.invoke({
+					url : '/mp/send/rich/test/message',
+					data : {
+						details:htmlContent,
+						title:title,
+						img:img,
+						sub:sub,
+						contentFrom:contentFrom
+					},
+					success : function(result) {
+						if (result.resultCode == 1) {
+							layui.layer.alert("发送成功!");
+							editor.txt.clear();
+							$("#title").val('');
+							$('#uploadSmall_url').attr('src','');
+							$("#sub").val('');
+							$("#contentFrom").val('');
+						}
+					},
+					error : function(result) {
+						layui.layer.alert("发送失败");
+					}
+				});
+			})
+		})
+
+		var operation={
+			// 上传
+			upload:function(){
+				$("#uploadSmallFileFrom").ajaxSubmit(function(data){
+					var obj = eval("("+data+")");
+					console.log(obj);
+					$("#uploadSmall_url").attr("src",obj.data.images[0].oUrl);
+				})
+			},
+			// 选择文件
+			selectSmallFile:function(){
+				$("#photoSmallUpload").click();
+			},
+			//获取文本全部src值
+			getSrc:function (html) {
+				var imgReg = /<img.*?(?:>|\/>)/gi
+				// 匹配src属性
+				var srcReg = /src=[\\"]?([^\\"]*)[\\"]?/i
+				var arr = html.match(imgReg)
+				let imgs = []
+				if (arr) {
+					for (let i = 0; i < arr.length; i++) {
+						var src = arr[i].match(srcReg)[1]
+						imgs.push(src)
+					}
+				}
+				return imgs
+			},
+			//查询删除掉的图片
+			getRemoveImg:function (imgs) {
+				images.forEach(function (e) {
+					if (!imgs.includes(e)){
+						operation.removeResource(e);
+						images.remove(e);
+					}
+				})
+			},
+			removeResource:function (url) {
+				var split = url.split("/");
+				var len = split.length;
+				mpCommon.invoke({
+					url : '/mp/delete/resource',
+					data : {
+						url:split[len-1]
+					},
+					success : function(result) {
+						if(result.resultCode == 1){
+							console.log("删除图片成功");
+						}
+					},
+					error : function(result) {
+						console.log("删除图片失败");
+					}
+				});
+			}
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>添加权限</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<link href="/pages/console/css/roleAddResource.css" rel="stylesheet">
+<body>
+<div id="userList">
+    <div class="layui-card">
+        <div class="layui-card-header layui_card_header_p_title">权限列表</div>
+        <div class="layui-card-body">
+            <div class="page-wrapper">
+                <table id="demoTreeTable1"></table>
+				<div class="characters_center padding_upDown_space">
+                    <button class="layui-btn motif_button_style" id="role_resource_from_add">确认授权</button>
+                    <button class="layui-btn table_default_btn back table_default_btn_border">返回</button>
+				</div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/admin.js"></script>
+
+	<script>
+		var resourceData = {}
+		var roleResource = {}
+		$(function () {
+			//获取资源信息
+			$.ajax({
+				type:"POST",
+				url:request("/console/querySelectAllResource"),
+				data:{},
+				dataType:'json',
+				async:false,
+				success:function(result){
+					resourceData = result.data;
+				}
+			})
+
+			//该角色的权限
+			$.ajax({
+				type:"POST",
+				url:request("/console/queryRoleResourceId"),
+				data:{roleId:localStorage.getItem("role_add_resource_roleId")},
+				/*data:{userId:'10000010'},*/
+				dataType:'json',
+				async:false,
+				success:function(result){
+					roleResource = result.data;
+					console.log(roleResource ,"..",result.data);
+				}
+			})
+
+			//返回按钮
+			$(".back").click(function () {
+				window.location.href= localStorage.getItem("start_page");
+			})
+		})
+
+		layui.config({
+			base: '/pages/console/'
+		}).extend({
+			treeTable: 'treeTable/treeTable'
+		}).use(['layer', 'util', 'treeTable'], function () {
+			var $ = layui.jquery;
+			var layer = layui.layer;
+			var util = layui.util;
+			var treeTable = layui.treeTable;
+
+			// 渲染表格
+			var insTb = treeTable.render({
+				elem: '#demoTreeTable1',
+				data: resourceData,
+				tree: {
+					iconIndex: 2
+				},
+				cols: [
+					{type: 'numbers'},
+					{type: 'checkbox'},
+					{field: 'resourceName', title: '资源名称'},
+					{field: 'resourceUrl', title: '接口路径', width: 160,templet : function (d) {
+						if (d.isView == 1){
+							return "";
+						}else{
+							return d.resourceUrl
+						}}},
+					{field: 'resourceAuth', title: '权限', width: 160,templet : function (d) {
+						if (d.isView == 1){
+							return "";
+						}else {
+							return d.resourceAuth
+						}}},
+					{field: 'type', title: '类型', width: 160,templet : function (d) {
+						if (d.isView == 1){
+							return "";
+						}else if(d.type == 0){
+							return "按钮";
+						}else if(d.type == 1){
+							return "菜单";
+						}}},
+					{field: 'status', title: '状态', width: 170,templet : function (d) {
+						if (d.isView == 1){
+							return "";
+						} else if(d.status == -1){
+							return "禁用";
+						} else if(d.status == 1){
+							return "正常";
+						}
+					}
+					}
+				],
+				style: 'margin-top:0;'
+			});
+
+			//设置
+			insTb.setChecked(roleResource);
+			//设置表头为白色
+			$(".layui-table thead tr")[0].style.backgroundColor = "white";
+			//用户添加权限表单提交
+			$("#role_resource_from_add").click(function () {
+				//角色权限
+				var sele =  insTb.checkStatus();
+				var roleAuth = "";
+				for(var i = 0; i < sele.length; i++) {
+					if (!sele[i].isIndeterminate){
+						if (roleAuth === ""){
+							roleAuth = roleAuth+sele[i].id;
+						}else{
+							roleAuth = roleAuth+","+sele[i].id;
+						}
+					}
+				};
+				console.log('角色权限+',roleAuth);
+
+				$.ajax({
+					type:"POST",
+					url:request("/console/updateRoleResource"),
+					data:{
+						roleId:localStorage.getItem("role_add_resource_roleId"),
+						auth: roleAuth
+					},
+					dataType:'json',
+					async:false,
+					success:function(result){
+						if(result.resultCode==1){
+							layer.msg("授权成功！",{"icon":1});
+							setTimeout(function(){
+								window.location.href = localStorage.getItem("start_page");
+							}, 1500);
+						}else{
+							layer.msg(result.resultMsg,{"icon":5});
+						}
+					}
+				})
+			})
+		});
+</script>
+</body>
+</html>

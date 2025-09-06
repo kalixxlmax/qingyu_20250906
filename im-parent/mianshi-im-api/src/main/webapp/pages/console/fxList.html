@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>发现列表</title>
+</head>
+<link href="../common/layui/css/layui.css" rel="stylesheet">
+<link href="css/commonStyle.css" rel="stylesheet">
+<style type="text/css">
+    .layui-table-cell {
+        height: 100px;
+    }
+</style>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<div id="music_div">
+
+    <div id="musicList" class="layui-card module_interval">
+        <div class="table_topTitle_space" style="position: relative;z-index: 11;">
+            <button onclick="Music.addMusic()" class="layui-btn btn_addLive music-delete motif_button_style">添加
+            </button>
+        </div>
+        <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+            发现列表
+        </div>
+        <div class="layui-card-body layui_card_body_top">
+            <table id="music_table" lay-filter="music_table"></table>
+        </div>
+    </div>
+
+    <div id="updateMusic" style="display: none;">
+        <div class="layui-card module_interval">
+            <div class="layui-card-header layui_card_header_title">修改</div>
+            <div class="layui-card-body layui-form">
+                <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+                    <tr>
+                        <td>名称</td>
+                        <td><input id="name_update" type="text" name="" class="layui-input"></td>
+                    </tr>
+                    <tr>
+                        <td>跳转地址</td>
+                        <td><input id="url_update" type="text" name="" class="layui-input" lay-verify="required"></td>
+                    </tr>
+                    <tr>
+                        <td>排序</td>
+                        <td><input id="sort_update" type="text" name="" class="layui-input"></td>
+                    </tr>
+                    <tr>
+                        <td>图标</td>
+                        <td>
+                            <button type="button" class="layui-btn default_button_style" id="test2">
+                                <i class="layui-icon">&#xe67c;</i>上传图标
+                            </button>
+                            <span id="musicPath_update"></span>
+                        </td>
+                    </tr>
+                </table>
+                <div class="characters_center padding_upDown_space">
+                    <button onclick="Music.commit_updateMusic()" class="layui-btn addLiveRoombtn motif_button_style">提交
+                    </button>
+                    <button onclick="Music.btn_back()" class="layui-btn default_button_style" style="">返回
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="addMusic" style="display: none;">
+    <div class="layui-card">
+        <div class="layui-card-header layui_card_header_title">
+            新增
+        </div>
+        <div class="layui-card-body layui-form">
+            <table cellspacing="0" cellpadding="0" border="0" class="layui-table">
+                <tr>
+                    <td>名称</td>
+                    <td><input id="name" type="text" name="" class="layui-input" lay-verify="required"></td>
+                </tr>
+                <tr>
+                    <td>跳转地址</td>
+                    <td><input id="url" type="text" name="" class="layui-input" lay-verify="required"></td>
+                </tr>
+                <tr>
+                    <td>排序</td>
+                    <td><input id="sort" type="text" name="" class="layui-input" lay-verify="required"></td>
+                </tr>
+                <tr>
+                    <td>图标</td>
+                    <td>
+                        <button type="button" class="layui-btn default_button_style" id="test1">
+                            <i class="layui-icon">&#xe67c;</i>上传图标
+                        </button>
+                        <span id="musicPath"></span>
+                    </td>
+                </tr>
+            </table>
+            <div class="characters_center padding_upDown_space">
+                <button onclick="Music.commit_addMusic()" class="layui-btn addLiveRoombtn motif_button_style">提交
+                </button>
+                <button onclick="Music.btn_back()" class="layui-btn default_button_style">返回</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input id="music_limlt" value="15" type="hidden">
+
+<!--操作-->
+<script type="text/html" id="musicListBar">
+    <a class="layui-btn table_default_btn layui-btn-xs delete music-delete" lay-event="delete">删除</a>
+    <a class="layui-btn table_default_btn layui-btn-xs delete music-update" lay-event="update">修改</a>
+</script>
+
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+<input type="" name="" id="save_roomId" style="display: none;">
+
+<script type="text/javascript" src="../common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="../common/layui/layui.all.js"></script>
+<script type="text/javascript" src="../common/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.form.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/console_ui.js"></script>
+<script type="text/javascript" src="js/authorityManagement.js"></script>
+<script type="text/javascript" src="js/fxList.js"></script>
+
+
+<script>
+    layui.use('upload', function () {
+        var upload = layui.upload;
+
+        var uploadMusicUrl = Config.uploadUrl;
+        if (uploadMusicUrl == null || uploadMusicUrl == "") {
+            uploadMusicUrl = Config.getConfig().uploadUrl + "/upload/UploadifyServlet";
+        }
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1' //绑定元素
+            , url: uploadMusicUrl //上传接口
+            , accept: 'images' //允许上传的文件类型
+            , before: function (obj) { //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+                var files = this.files = obj.pushFile();
+                var size = "";
+                $.each(files, function (key, values) {
+                    size = values.size;
+                });
+                if (size == 0 || size == "") {
+                    layer.msg('图片文件大小为0,请重新选择！', {icon: 2});
+                    return;
+                }
+                layer.load(); //上传loading
+            }, done: function (res) {
+                layer.closeAll('loading'); //关闭loading
+                console.log(res);
+                $("#musicPath").html(Common.filterHtmlData(res.url));
+                $("#musicPath").show();
+            }
+            , error: function () {
+                layer.closeAll('loading');
+                layer.msg('上传失败！', {icon: 2});
+            }
+        });
+
+        var uploadInst2 = upload.render({
+            elem: '#test2' //绑定元素
+            , url: uploadMusicUrl //上传接口
+            , accept: 'images' //允许上传的文件类型
+            , before: function (obj) { //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+                var files = this.files = obj.pushFile();
+                var size = "";
+                $.each(files, function (key, values) {
+                    size = values.size;
+                });
+                if (size == 0 || size == "") {
+                    layer.msg('图片文件大小为0,请重新选择！', {icon: 2});
+                    return;
+                }
+                layer.load(); //上传loading
+            }, done: function (res) {
+                layer.closeAll('loading'); //关闭loading
+                console.log(res);
+                $("#musicPath_update").html(Common.filterHtmlData(res.url));
+                $("#musicPath_update").show();
+            }
+            , error: function () {
+                layer.closeAll('loading');
+                layer.msg('上传失败！', {icon: 2});
+            }
+        });
+    });
+</script>
+</body>
+</html>

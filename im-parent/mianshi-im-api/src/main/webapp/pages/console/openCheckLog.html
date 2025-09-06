@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>开放平台审核日志</title>
+    <link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+</head>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<!--搜索操作-->
+<div class="layui-row background_white title_menu_place">
+    <div class="layui-form searchModule">
+        <div class="searchBranch">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">申请用户ID ：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="" class="layui-input openCheckLog_keyword" placeholder="请输入">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch characters_center">
+            <button class="layui-btn search_openApp motif_button_style">搜索</button>
+        </div>
+    </div>
+</div>
+<!-- 日志列表 -->
+<div id="openCheckLogList" class="layui-card module_interval">
+    <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+		日志列表
+	</div>
+    <div class="layui-card-body layui_card_body_top">
+        <table id="openCheckLog_table" lay-filter="openCheckLog_table"></table>
+    </div>
+</div>
+
+<!--操作-->
+<script type="text/html" id="openCheckLogListBar">
+    <!-- <a class="layui-btn table_default_btn layui-btn-xs detail checkLog-detail" lay-event="detail">详情</a> -->
+    <a class="layui-btn table_default_btn layui-btn-xs del checkLog-delete" lay-event="del">删除</a>
+</script>
+
+<!--隐藏框-->
+<input id="openChexkLog_limlt" value="15" type="hidden">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="/pages/console/js/openCheckLog.js"></script>
+</body>
+</html>

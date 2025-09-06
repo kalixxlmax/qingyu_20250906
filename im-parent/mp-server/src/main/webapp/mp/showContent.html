@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="format-detection" content="telephone=no" />
+<title>富文本编辑发送消息</title>
+<link href="./common/layui/css/layui.css" rel="stylesheet">
+<link href="./css/showContent.css" rel="stylesheet">
+</head>
+<body>
+	<!--标题-->
+	<div class="layui-row">
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4">&nbsp;</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4" style="font-size: 15px;line-height: 1.4;margin: 1.5% 1% 1% 0%;font-weight: bold;">
+			<h2 id="showTitle"></h2>
+		</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4"></div>
+	</div>
+
+	<!--时间-->
+	<div class="layui-row" style="position: relative;top: -18px;">
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4">&nbsp;</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4" style="margin-bottom: 1%;color: #BBBBBB;font-size: 15px;">
+			<span id="contentFrom" style="color: #18407D;margin-right: 12px;"></span>
+			<span id="showTime"></span>
+		</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4"></div>
+	</div>
+
+	<!--内容-->
+	<div class="layui-row" style="padding-left: 28px;padding-right: 30px;position: relative;top: -20px;">
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4">&nbsp;</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4">
+			<div id="showContent" style="word-wrap: break-word;">
+			</div>
+		</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4"></div>
+	</div>
+
+	<!--底部内容-->
+	<div class="layui-row">
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4">&nbsp;</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4">
+			<div id="showButtom" style="margin-top: 32px;margin-bottom: 15%;">
+			</div>
+		</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4"></div>
+	</div>
+
+	<!--分割线-->
+	<div class="layui-row">
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4">&nbsp;</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4">
+			<hr style="margin: auto;">
+		</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4"></div>
+	</div>
+
+
+	<!--留言-->
+	<div class="layui-row" id="showCommentContent" style="display: none;">
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4">&nbsp;</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4">
+			<div>
+				<!--评论-->
+				<div class="layui-col-xs12 layui-col-sm12 layui-col-md12" style="margin: 1% 1% 0% 0%;">
+					<div class="comment_div">
+						<ul class="comment_content_interval">
+							<li id="commentFrame" style="display: none;">
+								<div class="layui-form-item layui-form-text">
+									<label class="form-label_">
+										<img src="" onerror="this.src='./images/ic_avatar.png'" class="comment_head_">
+									</label>
+									<textarea placeholder="请输入留言内容，留言后将对所有人可见" class="layui-textarea commentText" style="width: 86%;"></textarea>
+								</div>
+								<div class="layui-form-item">
+									<div class="layui-input-block">
+										<button class="layui-btn" onclick="sendComment()">发送</button>
+										<button class="layui-btn layui-btn-primary" onclick="closeCommentBtn()">关闭</button>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<div id="showComment">
+						<span class="comment_head_title_left">留言内容</span><span class="writeComment comment_head_title_right" onclick="writeCommentBtn()">写留言</span>
+						<ul class="flow-default" style="margin-top: 7%;" id="LAY_demo2">
+							<li>
+								<!--<div class="layui-form-item layui-form-text" style="margin-bottom: 6%;">
+                                    <label class="form-label_">
+                                        <img src="https://test.chat.co:8087/files//u/0/10000/202012/o/0ff4fa8b6cdd4a3eaee2d89076bbaaa9.jpg" onerror="this.src='./images/ic_avatar.png'" class="comment_head">
+                                    </label>
+                                    <span class="comment_nickname">名字</span>
+									<span style="float: right;">
+										&lt;!&ndash;<img src="./images/praise.png" class="like_234567" onclick="giveLike('234567')" width="20px" height="20px">
+										<span class="likeCount_234567" style="font-size: 14px;color: rgb(136, 136, 136);">500</span>&ndash;&gt;
+									</span>
+									<br/>
+                                    <span class="comment_content_font_size">留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容留言内容</span>
+                                </div>-->
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4"></div>
+	</div>
+
+	<!--提示错误信息-->
+	<div class="layui-row" id="errorLay"  style="background: #e6e6e6;display: none;">
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4">&nbsp;</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4">
+			<span id="errorMsg">网络异常，请稍后加载留言</span>
+		</div>
+		<div class="layui-col-xs12 layui-col-sm12 layui-col-md4"></div>
+	</div>
+
+
+	<form id="showMsgInfo" style="display:none;">
+		<div class="layui-row" style="text-align: center;">
+			<p class="layui-btn layui-btn-primary layui-btn-xs comment_content_send layui-btn-disabled" style="float: right;height: 26px;" onclick="sendComment()">发送</p>
+			<img src="./images/close.png" onclick="closeDialog()" style="float: left;">
+			<p style="margin: 18px 0px 20px 0px;font-size: 16px;">写留言</p>
+		</div>
+		<textarea placeholder="请输入留言内容，留言后将对所有人可见" class="layui-textarea comment_content" style="border-width: 0px;" oninput="isInputContent(this)"></textarea>
+	</form>
+
+
+
+	<script type="text/javascript" src="./common/layui/layui.all.js"></script>
+	<script type="text/javascript" src="./js/config.js"></script>
+	<script type="text/javascript" src="./common/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="./common/jquery/jquery.md5.js"></script>
+	<script type="text/javascript" src="./js/showContent.js"></script>
+</body>
+</html>

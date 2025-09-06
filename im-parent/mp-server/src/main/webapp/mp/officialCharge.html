@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>公众号打赏</title>
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="./css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-md12 chargeDiv_title">
+        <h1 data-locale="reward_title" style="margin-top: 17px;margin-left: 2%;">
+          <label>关注公众号打赏</label>
+        </h1>
+    </div>
+
+    <div class="layui-col-md10 chargeDiv_title_content">
+        <form class="layui-form" lay-filter="example">
+            <div class="layui-form-item" style="float: right;margin: 45px 45px 0px 0px;">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="close" checked id="switchReward" lay-skin="switch" lay-filter="switchReward" lay-text="ON|OFF">
+                </div>
+            </div>
+        </form>
+        <div>
+            <form class="layui-form chargeDiv_form">
+                <input type="text"  class="layui-input switch_flag" style="display: none;">
+
+                <div class="layui-form-item">
+                    <label class="" data-locale="reward_exceptional_number">打赏人数 ：</label>
+                    <div class="layui-form-item">
+                        <input type="text" name="title" required  lay-verify="required" placeholder="请输入打赏人数 !" autocomplete="off" class="layui-input line_charge_top line_charge_bottom sendCount" data-locale="exceptional_number" onkeyup="value=operation.zhzs(this.value)"  onblur="operation.count_reward_money(this)">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="">打赏金额 ：</label>
+                    <input type="text" name="title" placeholder="请输入您需要打赏单个人的金额 !" autocomplete="off" class="layui-input line_charge_top line_charge_bottom totalPrice"  oninput="operation.input_num(this)" onblur="operation.count_reward_money(this)">
+                    <div class="layui-word-aux">平台将收取<label class="officialRewardScaleMoney"></label>%手续费</div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="" >需付总金额 ：</label>
+                    <input type="text" name="title" autocomplete="off" class="layui-input line_charge_top line_charge_bottom sumPrice layui-disabled" readonly="readonly" >
+                    <div class="layui-word-aux">此金额为根据您设置的人数 * 打赏单个用户的金额+手续费</div>
+                </div>
+
+                <div class="layui-form-item">
+                    <label class="" data-locale="note">备注 ：</label>
+                    <input type="text" name="title" placeholder="恭喜发财，大吉大利" autocomplete="off" class="layui-input line_charge_top remark" data-locale="good_luck_words" style="margin-bottom: 13%;" maxlength="20">
+                </div>
+
+                <label class="line_reward_distance" data-locale="setTime">设置时间 ：</label>
+                <select class="reward_select delayDate" style="margin-top: -5px;">
+                    <option value="60">一分钟</option>
+                    <option value="86400" data-locale="one_day">一天</option>
+                    <option value="172800" data-locale="two_day">二天</option>
+                    <option value="259200" data-locale="three_days">三天</option>
+                    <option value="345600" data-locale="four_days">四天</option>
+                    <option value="432000" data-locale="five_days">五天</option>
+                    <option value="604800" data-locale="one_week">一周</option>
+                    <option value="2592000" data-locale="one_month">一个月</option>
+                </select>
+                <a class="layui-btn chargeDiv_form_sava rewardDiv_form_sava" id="rewardDiv_form_sava" onclick="operation.setOfficialPacketSettings()" data-locale="menu_submit" style="margin-top: 35px;">提交</a>
+            </form>
+            <div class="layui-form-mid layui-word-aux reward_info" data-locale="attention">当用户关注你后根据您设置的时间，用户将领取你的打赏。</div>
+        </div>
+    </div>
+</div>
+
+    <script type="text/html" id="fansTopBar">
+            <input type="text" name="" class="layui-input search_fans_keyword" style="width: 15%;display: inline" placeholder="粉丝昵称" data-locale="fans_nickName" >
+            <a class="layui-btn layui-btn-sm"  lay-event="search_fans" data-locale="menu_search">搜索</a>
+    </script>
+
+    <script type="text/html" id="fansOptionBar">
+            <a class="layui-btn layui-btn-danger layui-btn-sm"  lay-event="del_fans" data-locale="btn_delete">删除</a>
+            <a class="layui-btn layui-btn-sm"  lay-event="send_msg" data-locale="send_message">发消息</a>
+    </script>
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="./common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+    <script type="text/javascript" src="./js/mp_httpApi.js"></script>
+
+     <script type="text/javascript">
+         //公众号打赏红包总金额设置最大值
+         var officialPacketRedPacketMax;
+         //公众号打赏平台分成比列
+         var officialRewardScale;
+
+         layui.use(['jquery','form','layer','laydate'],function(){
+             var form = layui.form,
+                 layer = parent.layer === undefined ? layui.layer : top.layer,
+                 $ = layui.jquery,
+                 laydate = layui.laydate;
+
+             //监听指定开关
+             form.on('switch(switchReward)', function(data){
+                 var flag = data.elem.checked;
+                 var content  =  flag ? mpLanguage.getLanguageName('isOpen_exceptional') : mpLanguage.getLanguageName('isClose_exceptional');
+                 layer.confirm( content , {
+                     btn: [mpLanguage.getLanguageName('select_yes'),mpLanguage.getLanguageName('select_no')] //按钮
+                 }, function(){
+                     if (flag){
+                         $(".switch_flag").val("1");
+                         operation.setOfficialPacketIsOpen("1");
+                         $("#rewardDiv_form_sava").attr("onclick","operation.setOfficialPacketSettings()");
+                         $("#rewardDiv_form_sava").removeClass("layui-btn-disabled");
+                     }else{
+                         operation.setOfficialPacketIsOpen("0");
+                         $(".switch_flag").val("0");
+                         $("#rewardDiv_form_sava").attr("onclick","");
+                         $("#rewardDiv_form_sava").addClass("layui-btn-disabled");
+                     }
+
+                     layer.msg(mpLanguage.getLanguageName('operation_successful'), {icon: 1})
+                 }, function(){
+                     data.elem.checked = !flag;
+                     form.render();
+                 });
+             });
+       });
+
+         //初始化
+         $(function () {
+             $(".reward_charge").hide();
+             operation.getOfficialPacketIsOpen();
+             operation.init_charge();
+         })
+
+         //操作
+        var operation = {
+            //获取关注公众号红包设置
+            setOfficialPacketSettings:function () {
+
+             var sendCount = $(".sendCount").val();
+             if (mpCommon.isNil(sendCount)){
+                 layui.layer.msg(mpLanguage.getLanguageName('exceptional_number'));
+                 return;
+             }
+
+             var totalPrice = $(".totalPrice").val();
+             if (mpCommon.isNil(totalPrice)){
+                layui.layer.msg(mpLanguage.getLanguageName('input_reward_amount'));
+                return;
+             }
+
+             var remark = $(".remark").val();
+             if (mpCommon.isNil(remark)){
+                 layui.layer.msg(mpLanguage.getLanguageName('input_note'));
+                 return;
+             }
+
+             var delayDate = $(".delayDate").val();
+             if (mpCommon.isNil(delayDate)){
+                 layui.layer.msg(mpLanguage.getLanguageName('select_send_time'));
+                 return;
+             }
+
+             if (parseInt(totalPrice) > officialPacketRedPacketMax){
+                 $(".reward_charge").empty();
+                 $(".reward_charge").append("注意: 打赏总金额不能超过"+ officialPacketRedPacketMax +"元。");
+                 $(".reward_charge").show();
+                 return;
+             }else {
+                 $(".reward_charge").hide();
+             }
+             mpCommon.invoke({
+                 url : '/mp/edit/officialPacket',
+                 data : {
+                     sendPrice:totalPrice,
+                     sendCount:sendCount,
+                     remark:remark,
+                     delayDate:delayDate,
+                     isOpen:$(".switch_flag").val()
+                 },
+                 success : function(result) {
+                     if (result.resultCode == 1){
+                         layui.layer.msg(mpLanguage.getLanguageName('send_success'));
+                     }else{
+                         layer.msg(result.resultMsg , {icon: 5});
+                     }
+                 },
+                 error : function(result) {
+                     layui.layer.msg(mpLanguage.getLanguageName('failed_send'));
+                 }
+             });
+         }
+
+            //获取打赏开关
+            ,getOfficialPacketIsOpen:function () {
+                mpCommon.invoke({
+                    url : '/mp/find/officialPacketIsOpen',
+                    data : {},
+                    success : function(result) {
+                        console.log(result);
+                        if (result.resultCode == 1){
+                            if (result.data == undefined){
+                                //默认为关闭
+                                $('#switchReward').removeAttr("checked");
+                                $("#switchReward").attr("disabled");
+                                $(".switch_flag").val("0");
+                                $("#rewardDiv_form_sava").attr("onclick","");
+                                $("#rewardDiv_form_sava").addClass("layui-btn-disabled");
+                                layui.form.render();
+                                return;
+                            }
+                            if (result.data == 1){
+                                //设置开关为打开
+                                $("#switchReward").attr("checked");
+                                $('#switchReward').removeAttr("disabled");
+                                $(".switch_flag").val("1");
+                                $("#rewardDiv_form_sava").attr("onclick","operation.setOfficialPacketSettings()");
+                                $("#rewardDiv_form_sava").removeClass("layui-btn-disabled");
+                                layui.form.render();
+                            }else{
+                                //设置开关为关闭
+                                $('#switchReward').removeAttr("checked");
+                                $("#switchReward").attr("disabled");
+                                $(".switch_flag").val("0");
+                                $("#rewardDiv_form_sava").attr("onclick","");
+                                $("#rewardDiv_form_sava").addClass("layui-btn-disabled");
+                                layui.form.render();
+                            }
+                        }
+                    },
+                    error : function(result) {
+                        layui.layer.msg(mpLanguage.getLanguageName('load_data'));
+                    }
+                });
+            }
+
+            //设置打赏开关
+            ,setOfficialPacketIsOpen:function (data) {
+                mpCommon.invoke({
+                    url : '/mp/edit/officialPacket/open',
+                    data : {
+                        isOpen:data
+                    },
+                    success : function(result) {
+                        if (result.resultCode == 1){
+                            /*layui.layer.msg(mpLanguage.getLanguageName('operation_successful'));*/
+                        }
+                    },
+                    error : function(result) {
+                        layui.layer.msg(mpLanguage.getLanguageName('operation_failed'));
+                    }
+                });
+            }
+
+            //初始化信息
+            ,init_charge:function () {
+                //获取
+                mpCommon.invoke({
+                    url : '/mp//find/pay/config',
+                    data : {},
+                    success : function(result) {
+                        if (result.resultCode == 1){
+                            officialPacketRedPacketMax = result.data.officialPacketRedPacketMax;
+                            officialRewardScale = result.data.officialRewardScale;
+                            $(".officialRewardScaleMoney").html(officialRewardScale * 100);
+                        }
+                    },
+                    error : function(result) {
+                        layui.layer.msg(mpLanguage.getLanguageName('operation_failed'));
+                    }
+                });
+            }
+
+            ,zhzs:function (value){
+                value = value.replace(/[^\d]/g,'');
+                if(''!=value){
+                    value = parseInt(value);
+                }
+                return value;
+            }
+
+            // 格式化限制数字文本框输入，只能数字或者两位小数
+            ,input_num:function (obj){
+                // 清除"数字"和"."以外的字符
+                obj.value = obj.value.replace(/[^\d.]/g,"");
+                // 只能输入两个小数
+                obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');
+            }
+
+            // 计算打赏需支付的总金额
+            ,count_reward_money:function (){
+                var sendCount = $(".sendCount").val();
+                var totalPrice = $(".totalPrice").val();
+                if (null != sendCount && null != totalPrice){
+                    var sum =  (sendCount * totalPrice) + (sendCount * totalPrice * officialRewardScale);
+                    $(".sumPrice").val(sum);
+                }else{
+                    $(".sumPrice").val("");
+                }
+            }
+        }
+
+     </script>
+</body>
+</html>

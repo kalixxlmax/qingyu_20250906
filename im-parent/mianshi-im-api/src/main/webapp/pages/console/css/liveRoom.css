@@ -1,0 +1,15 @@
+#liveRoomMsg .layui-card-body .layui-form ,#liveRoomUser .layui-card-body .layui-form{
+    padding: 0px;
+}
+
+#liveRoomMsg .layui-card-body,#liveRoomUser .layui-card-body{
+    padding: 0px 40px;
+}
+
+.roomNameDiv{
+    display: none;
+}
+
+.searchLive{
+    display: none;
+}

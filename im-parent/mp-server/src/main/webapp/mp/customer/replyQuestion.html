@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/mp/css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+    <!-- 自动回复问题管理  -->
+    <div class="layui-row">
+        <div id="replyQuestion_table" class="layui-card" style="margin-top: 1%;">
+           <!--  <div class="layui-card-header" style="text-align: center;">
+                <p data-locale="serviceList">自动回复问题列表</p>
+            </div> -->
+            <div class="layui-card-body">
+                <table id="replyQuestion_list" lay-filter="replyQuestion_list" style="table-layout:fixed;word-break:break-all;" >
+                    
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="hide_area">
+
+            <div id="addQuestion" class="layui-form" lay-filter="addQuestion" style="display: none;">
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block" style="margin: 0 auto;padding: 10px 20px;">
+                        <input type="text" required  lay-verify="required" placeholder="请输入问题" autocomplete="off" lay-verify="number" class="layui-input question" style="margin: 20px 0; ">
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label" style="padding-left: 0; width: 60px;">问题类型</label>
+                            <div class="layui-input-inline">
+                                <select name="questionType" class="questionType">
+                                    <option value="1">普通问题</option>
+                                    <option value="2">常用问题</option>
+                                </select>
+                            </div>
+                        </div>
+
+                      
+                        <input type="text" required  lay-verify="required" placeholder="请输入匹配关键词,多个之间用逗号‘，’分隔" autocomplete="off" lay-verify="number" class="layui-input keywordStr" style="margin: 20px 0;">
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label" style="padding-left: 0; width: 90px;">回复消息类型</label>
+                            <div class="layui-input-inline">
+                                <select name="answerType" class="answerType">
+                                    <option value="1">文本</option>
+                                    <option value="2">图片</option>
+                                    <option value="3">语音</option>
+                                    <option value="6">视频</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <textarea name="answerContent" placeholder="请输入回复内容" class="layui-textarea answerContent" style="margin: 20px 0;"></textarea>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+
+
+
+
+    <!-- 表头操作项 -->
+    <script type="text/html" id="replyQuestionTopBar">
+            <input type="text" name="" class="layui-input search_question_keyword" style="width: 15%;display: inline" placeholder="问题|关键词" data-locale="faqOrKeyword" >
+            <a class="layui-btn layui-btn-sm"  lay-event="search_question" data-locale="menu_search">搜索</a>
+            <a class="layui-btn layui-btn-sm" lay-event="add_question"   data-locale="addFAQ">添加问题</a>
+    </script>
+
+    <!-- 表格操作列 -->
+    <script type="text/html" id="replyQuestionOptionBar">
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit" data-locale="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" data-locale="btn_delete">删除</a>
+    </script>
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="/mp/common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+
+    <script type="text/javascript" src="/mp/customer/js/replyQuestion.js"></script>
+
+
+</body>
+</html>

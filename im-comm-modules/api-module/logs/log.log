@@ -1,0 +1,664 @@
+2022-05-24 00:00:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 00:00:00.392 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 00:00:00,elapsed is 390
+2022-05-24 00:02:51.272 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:05:00.016 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 00:05:00.017 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 00:05:00,elapsed is 14
+2022-05-24 00:05:51.272 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:08:51.272 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:10:00.010 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 00:10:00.011 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 00:10:00,elapsed is 10
+2022-05-24 00:11:51.273 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:14:51.274 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:15:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 00:15:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 00:15:00,elapsed is 5
+2022-05-24 00:17:51.274 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:20:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 00:20:00.011 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 00:20:00,elapsed is 9
+2022-05-24 00:20:51.274 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:24:24.114 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:25:32.843 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 00:25:32.843 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 00:25:32,elapsed is 4
+2022-05-24 00:27:24.115 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:29:59.771 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 12:29:59
+2022-05-24 00:29:59.773 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 00:29:59,elapsed is 3
+2022-05-24 00:30:00.012 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 00:30:00.013 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 00:30:00,elapsed is 10
+2022-05-24 00:30:24.115 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:33:24.115 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:35:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 00:35:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 00:35:00,elapsed is 4
+2022-05-24 00:36:24.116 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:39:24.116 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:40:00.005 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 00:40:00.005 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 00:40:00,elapsed is 4
+2022-05-24 00:42:24.117 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:45:00.010 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 00:45:00.011 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 00:45:00,elapsed is 10
+2022-05-24 00:45:24.117 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:48:24.117 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:50:00.005 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 00:50:00.005 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 00:50:00,elapsed is 5
+2022-05-24 00:51:24.117 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:55:03.259 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:55:39.145 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 00:55:39.145 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 00:55:39,elapsed is 5
+2022-05-24 00:58:03.260 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 00:59:59.655 - com.basic.im.redpack.service.RedPacketManagerImpl 红包超时未领取的数量 ======> 0
+2022-05-24 00:59:59.655 - com.basic.im.task.CommTask 刷新红包成功,耗时6毫秒
+2022-05-24 00:59:59.659 - c.basic.im.pay.service.impl.SkTransferManagerImpl 转账超时未领取的数量 ======> 0
+2022-05-24 00:59:59.659 - com.basic.im.task.CommTask 刷新转账成功,耗时10毫秒
+2022-05-24 00:59:59.665 - com.basic.im.task.CommTask 最高在线用户======》  0
+2022-05-24 00:59:59.666 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHourTask,executeTime is 2022-05-24 00:59:59,elapsed is 19
+2022-05-24 00:59:59.877 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 12:59:59
+2022-05-24 00:59:59.879 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 00:59:59,elapsed is 3
+2022-05-24 01:00:00.007 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 01:00:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 01:00:00,elapsed is 5
+2022-05-24 01:01:03.260 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:04:03.260 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:05:00.021 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 01:05:00.021 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 01:05:00,elapsed is 19
+2022-05-24 01:07:03.261 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:10:00.016 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 01:10:00.016 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 01:10:00,elapsed is 15
+2022-05-24 01:10:03.261 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:13:03.261 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:15:00.007 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 01:15:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 01:15:00,elapsed is 5
+2022-05-24 01:16:03.262 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:19:03.263 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:20:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 01:20:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 01:20:00,elapsed is 5
+2022-05-24 01:22:03.264 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:25:32.073 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 01:25:32.074 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 01:25:32,elapsed is 11
+2022-05-24 01:25:35.327 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:28:35.328 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:29:59.881 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 01:29:59
+2022-05-24 01:29:59.885 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 01:29:59,elapsed is 9
+2022-05-24 01:30:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 01:30:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 01:30:00,elapsed is 10
+2022-05-24 01:31:35.329 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:34:35.330 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:35:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 01:35:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 01:35:00,elapsed is 11
+2022-05-24 01:37:35.330 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:40:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 01:40:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 01:40:00,elapsed is 4
+2022-05-24 01:40:35.331 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:43:35.332 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:45:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 01:45:00.011 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 01:45:00,elapsed is 10
+2022-05-24 01:46:35.332 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:49:35.333 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:50:00.005 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 01:50:00.005 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 01:50:00,elapsed is 4
+2022-05-24 01:52:35.333 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:55:32.979 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 01:55:32.979 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 01:55:32,elapsed is 4
+2022-05-24 01:56:08.309 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:59:08.309 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 01:59:56.409 - com.basic.im.task.CommTask Day_Count 当前时间:2022-05-24 01:59:56
+2022-05-24 01:59:56.416 - com.basic.im.task.CommTask Day_Count 最高在线用户======》   0
+2022-05-24 01:59:56.417 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusDay,executeTime is 2022-05-24 01:59:56,elapsed is 11
+2022-05-24 01:59:59.795 - com.basic.im.redpack.service.RedPacketManagerImpl 红包超时未领取的数量 ======> 0
+2022-05-24 01:59:59.795 - com.basic.im.task.CommTask 刷新红包成功,耗时4毫秒
+2022-05-24 01:59:59.798 - c.basic.im.pay.service.impl.SkTransferManagerImpl 转账超时未领取的数量 ======> 0
+2022-05-24 01:59:59.798 - com.basic.im.task.CommTask 刷新转账成功,耗时7毫秒
+2022-05-24 01:59:59.802 - com.basic.im.task.CommTask 最高在线用户======》  0
+2022-05-24 01:59:59.802 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHourTask,executeTime is 2022-05-24 01:59:59,elapsed is 20
+2022-05-24 01:59:59.879 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 01:59:59
+2022-05-24 01:59:59.881 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 01:59:59,elapsed is 4
+2022-05-24 02:00:00.012 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 02:00:00.013 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 02:00:00,elapsed is 11
+2022-05-24 02:02:08.310 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:05:00.016 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 02:05:00.017 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 02:05:00,elapsed is 16
+2022-05-24 02:05:08.310 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:08:08.311 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:10:00.007 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 02:10:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 02:10:00,elapsed is 4
+2022-05-24 02:11:08.311 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:14:08.312 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:15:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 02:15:00.011 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 02:15:00,elapsed is 10
+2022-05-24 02:17:08.312 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:20:00.009 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 02:20:00.011 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 02:20:00,elapsed is 10
+2022-05-24 02:20:08.312 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:23:08.313 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:25:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 02:25:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 02:25:00,elapsed is 10
+2022-05-24 02:26:42.376 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:29:42.376 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:30:34.064 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 02:30:34
+2022-05-24 02:30:34.066 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 02:30:34,elapsed is 4
+2022-05-24 02:30:34.066 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 02:30:34.066 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 02:30:34,elapsed is 4
+2022-05-24 02:32:42.377 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:35:00.021 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 02:35:00.021 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 02:35:00,elapsed is 19
+2022-05-24 02:35:42.377 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:38:42.378 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:40:00.009 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 02:40:00.010 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 02:40:00,elapsed is 8
+2022-05-24 02:41:42.378 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:44:42.378 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:45:00.008 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 02:45:00.009 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 02:45:00,elapsed is 7
+2022-05-24 02:47:42.379 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:50:00.005 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 02:50:00.005 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 02:50:00,elapsed is 3
+2022-05-24 02:50:42.379 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:53:42.379 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 02:55:00.010 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 02:55:00.011 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 02:55:00,elapsed is 9
+2022-05-24 02:57:16.325 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:00:16.325 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:00:33.824 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 03:00:33
+2022-05-24 03:00:33.828 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 03:00:33,elapsed is 6
+2022-05-24 03:00:33.835 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 03:00:33.836 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 03:00:33,elapsed is 14
+2022-05-24 03:00:33.842 - com.basic.im.redpack.service.RedPacketManagerImpl 红包超时未领取的数量 ======> 0
+2022-05-24 03:00:33.843 - com.basic.im.task.CommTask 刷新红包成功,耗时21毫秒
+2022-05-24 03:00:33.846 - c.basic.im.pay.service.impl.SkTransferManagerImpl 转账超时未领取的数量 ======> 0
+2022-05-24 03:00:33.846 - com.basic.im.task.CommTask 刷新转账成功,耗时24毫秒
+2022-05-24 03:00:33.849 - com.basic.im.task.CommTask 最高在线用户======》  0
+2022-05-24 03:00:33.850 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHourTask,executeTime is 2022-05-24 03:00:33,elapsed is 29
+2022-05-24 03:03:16.326 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:05:00.008 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 03:05:00.008 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 03:05:00,elapsed is 7
+2022-05-24 03:06:16.326 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:09:16.327 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:10:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 03:10:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 03:10:00,elapsed is 5
+2022-05-24 03:12:16.328 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:15:00.012 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 03:15:00.013 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 03:15:00,elapsed is 12
+2022-05-24 03:15:16.328 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:18:16.329 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:20:00.027 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 03:20:00.028 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 03:20:00,elapsed is 26
+2022-05-24 03:21:16.329 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:24:16.329 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:25:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 03:25:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 03:25:00,elapsed is 4
+2022-05-24 03:27:16.330 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:30:30.037 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 03:30:30
+2022-05-24 03:30:30.039 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 03:30:30,elapsed is 3
+2022-05-24 03:30:30.040 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 03:30:30.040 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 03:30:30,elapsed is 4
+2022-05-24 03:30:46.367 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:33:46.367 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:35:00.007 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 03:35:00.008 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 03:35:00,elapsed is 7
+2022-05-24 03:36:46.368 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:39:46.368 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:40:00.030 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 03:40:00.031 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 03:40:00,elapsed is 30
+2022-05-24 03:42:46.369 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:45:00.012 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 03:45:00.013 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 03:45:00,elapsed is 4
+2022-05-24 03:45:46.370 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:48:46.370 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:50:00.008 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 03:50:00.008 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 03:50:00,elapsed is 7
+2022-05-24 03:51:46.371 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:54:46.371 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 03:55:00.008 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 03:55:00.008 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 03:55:00,elapsed is 7
+2022-05-24 03:57:46.371 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:00:26.028 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 04:00:26
+2022-05-24 04:00:26.030 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 04:00:26,elapsed is 4
+2022-05-24 04:00:26.030 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 04:00:26.031 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 04:00:26,elapsed is 5
+2022-05-24 04:00:26.032 - com.basic.im.redpack.service.RedPacketManagerImpl 红包超时未领取的数量 ======> 0
+2022-05-24 04:00:26.032 - com.basic.im.task.CommTask 刷新红包成功,耗时5毫秒
+2022-05-24 04:00:26.035 - c.basic.im.pay.service.impl.SkTransferManagerImpl 转账超时未领取的数量 ======> 0
+2022-05-24 04:00:26.035 - com.basic.im.task.CommTask 刷新转账成功,耗时8毫秒
+2022-05-24 04:00:26.040 - com.basic.im.task.CommTask 最高在线用户======》  0
+2022-05-24 04:00:26.040 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHourTask,executeTime is 2022-05-24 04:00:26,elapsed is 14
+2022-05-24 04:00:26.042 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteMucMsgRecord 2022-05-24 04:00:26
+2022-05-24 04:00:26.198 - com.basic.im.task.CommTask 累积清除   2022-05-09 04:00:26  前的  0  条系统日志记录
+2022-05-24 04:00:26.416 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeDayTask,executeTime is 2022-05-24 04:00:26,elapsed is 390
+2022-05-24 04:01:16.379 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:04:16.379 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:05:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 04:05:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 04:05:00,elapsed is 11
+2022-05-24 04:07:16.381 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:10:00.024 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 04:10:00.024 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 04:10:00,elapsed is 23
+2022-05-24 04:10:16.381 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:13:16.381 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:15:00.010 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 04:15:00.010 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 04:15:00,elapsed is 8
+2022-05-24 04:16:16.382 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:19:16.382 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:20:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 04:20:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 04:20:00,elapsed is 4
+2022-05-24 04:22:16.383 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:25:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 04:25:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 04:25:00,elapsed is 5
+2022-05-24 04:25:16.383 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:28:16.383 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:30:32.068 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 04:30:32
+2022-05-24 04:30:32.072 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 04:30:32,elapsed is 5
+2022-05-24 04:30:32.079 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 04:30:32.079 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 04:30:32,elapsed is 12
+2022-05-24 04:31:48.451 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:34:48.452 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:35:00.007 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 04:35:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 04:35:00,elapsed is 5
+2022-05-24 04:37:48.453 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:40:00.007 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 04:40:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 04:40:00,elapsed is 6
+2022-05-24 04:40:48.453 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:43:48.453 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:45:00.015 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 04:45:00.015 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 04:45:00,elapsed is 14
+2022-05-24 04:46:48.454 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:49:48.455 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:50:00.010 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 04:50:00.011 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 04:50:00,elapsed is 10
+2022-05-24 04:52:48.455 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:55:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 04:55:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 04:55:00,elapsed is 9
+2022-05-24 04:55:48.455 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:58:48.455 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 04:59:59.779 - com.basic.im.redpack.service.RedPacketManagerImpl 红包超时未领取的数量 ======> 0
+2022-05-24 04:59:59.780 - com.basic.im.task.CommTask 刷新红包成功,耗时9毫秒
+2022-05-24 04:59:59.784 - c.basic.im.pay.service.impl.SkTransferManagerImpl 转账超时未领取的数量 ======> 0
+2022-05-24 04:59:59.785 - com.basic.im.task.CommTask 刷新转账成功,耗时14毫秒
+2022-05-24 04:59:59.794 - com.basic.im.task.CommTask 最高在线用户======》  0
+2022-05-24 04:59:59.794 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHourTask,executeTime is 2022-05-24 04:59:59,elapsed is 25
+2022-05-24 05:00:00.001 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 05:00:00
+2022-05-24 05:00:00.003 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 05:00:00,elapsed is 3
+2022-05-24 05:00:00.004 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 05:00:00.004 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 05:00:00,elapsed is 4
+2022-05-24 05:02:18.224 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:05:18.224 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:05:29.772 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 05:05:29.772 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 05:05:29,elapsed is 4
+2022-05-24 05:08:18.225 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:10:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 05:10:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 05:10:00,elapsed is 10
+2022-05-24 05:11:18.225 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:14:18.226 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:15:00.007 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 05:15:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 05:15:00,elapsed is 5
+2022-05-24 05:17:18.226 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:20:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 05:20:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 05:20:00,elapsed is 10
+2022-05-24 05:20:18.227 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:23:18.227 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:25:00.008 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 05:25:00.008 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 05:25:00,elapsed is 6
+2022-05-24 05:26:18.228 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:29:18.228 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:29:59.879 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 05:29:59
+2022-05-24 05:29:59.883 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 05:29:59,elapsed is 8
+2022-05-24 05:30:00.009 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 05:30:00.009 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 05:30:00,elapsed is 9
+2022-05-24 05:32:47.367 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:35:29.146 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 05:35:29.147 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 05:35:29,elapsed is 8
+2022-05-24 05:35:47.368 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:38:47.369 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:40:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 05:40:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 05:40:00,elapsed is 11
+2022-05-24 05:41:47.369 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:44:47.370 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:45:00.016 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 05:45:00.016 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 05:45:00,elapsed is 14
+2022-05-24 05:47:47.370 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:50:00.005 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 05:50:00.005 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 05:50:00,elapsed is 5
+2022-05-24 05:50:47.371 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:53:47.371 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:55:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 05:55:00.011 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 05:55:00,elapsed is 10
+2022-05-24 05:56:47.371 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:59:47.372 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 05:59:59.760 - com.basic.im.redpack.service.RedPacketManagerImpl 红包超时未领取的数量 ======> 0
+2022-05-24 05:59:59.761 - com.basic.im.task.CommTask 刷新红包成功,耗时9毫秒
+2022-05-24 05:59:59.763 - c.basic.im.pay.service.impl.SkTransferManagerImpl 转账超时未领取的数量 ======> 0
+2022-05-24 05:59:59.763 - com.basic.im.task.CommTask 刷新转账成功,耗时11毫秒
+2022-05-24 05:59:59.768 - com.basic.im.task.CommTask 最高在线用户======》  0
+2022-05-24 05:59:59.768 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHourTask,executeTime is 2022-05-24 05:59:59,elapsed is 18
+2022-05-24 05:59:59.879 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 05:59:59
+2022-05-24 05:59:59.880 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 05:59:59,elapsed is 3
+2022-05-24 06:00:00.008 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 06:00:00.008 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 06:00:00,elapsed is 7
+2022-05-24 06:03:17.396 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:05:30.027 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 06:05:30.027 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 06:05:30,elapsed is 4
+2022-05-24 06:06:17.396 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:09:17.396 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:10:00.005 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 06:10:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 06:10:00,elapsed is 5
+2022-05-24 06:12:17.397 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:15:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 06:15:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 06:15:00,elapsed is 10
+2022-05-24 06:15:17.398 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:18:17.398 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:20:00.005 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 06:20:00.005 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 06:20:00,elapsed is 3
+2022-05-24 06:21:17.398 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:24:17.399 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:25:00.004 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 06:25:00.005 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 06:25:00,elapsed is 4
+2022-05-24 06:27:17.399 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:29:59.769 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 06:29:59
+2022-05-24 06:29:59.774 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 06:29:59,elapsed is 6
+2022-05-24 06:30:00.005 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 06:30:00.005 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 06:30:00,elapsed is 5
+2022-05-24 06:30:17.399 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:33:17.399 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:35:30.789 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 06:35:30.789 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 06:35:30,elapsed is 6
+2022-05-24 06:36:48.184 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:39:48.184 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:40:00.013 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 06:40:00.014 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 06:40:00,elapsed is 12
+2022-05-24 06:42:48.184 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:45:00.005 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 06:45:00.005 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 06:45:00,elapsed is 4
+2022-05-24 06:45:48.185 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:48:48.185 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:50:00.007 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 06:50:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 06:50:00,elapsed is 5
+2022-05-24 06:51:48.186 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:54:48.186 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:55:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 06:55:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 06:55:00,elapsed is 4
+2022-05-24 06:57:48.187 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 06:59:59.644 - com.basic.im.redpack.service.RedPacketManagerImpl 红包超时未领取的数量 ======> 0
+2022-05-24 06:59:59.644 - com.basic.im.task.CommTask 刷新红包成功,耗时3毫秒
+2022-05-24 06:59:59.646 - c.basic.im.pay.service.impl.SkTransferManagerImpl 转账超时未领取的数量 ======> 0
+2022-05-24 06:59:59.646 - com.basic.im.task.CommTask 刷新转账成功,耗时5毫秒
+2022-05-24 06:59:59.650 - com.basic.im.task.CommTask 最高在线用户======》  0
+2022-05-24 06:59:59.650 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHourTask,executeTime is 2022-05-24 06:59:59,elapsed is 9
+2022-05-24 06:59:59.878 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 06:59:59
+2022-05-24 06:59:59.882 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 06:59:59,elapsed is 7
+2022-05-24 07:00:00.005 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 07:00:00.005 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 07:00:00,elapsed is 3
+2022-05-24 07:00:48.187 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:03:48.187 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:05:31.271 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 07:05:31.271 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 07:05:31,elapsed is 5
+2022-05-24 07:07:19.455 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:10:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 07:10:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 07:10:00,elapsed is 5
+2022-05-24 07:10:19.455 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:13:19.456 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:15:00.012 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 07:15:00.013 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 07:15:00,elapsed is 11
+2022-05-24 07:16:19.456 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:19:19.457 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:20:00.015 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 07:20:00.015 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 07:20:00,elapsed is 14
+2022-05-24 07:22:19.458 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:25:00.011 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 07:25:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 07:25:00,elapsed is 10
+2022-05-24 07:25:19.459 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:28:19.459 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:29:59.879 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 07:29:59
+2022-05-24 07:29:59.883 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 07:29:59,elapsed is 8
+2022-05-24 07:30:00.014 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 07:30:00.015 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 07:30:00,elapsed is 14
+2022-05-24 07:31:19.460 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:34:19.460 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:35:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 07:35:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 07:35:00,elapsed is 5
+2022-05-24 07:37:50.343 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:40:30.885 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 07:40:30.886 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 07:40:30,elapsed is 4
+2022-05-24 07:40:50.344 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:43:50.345 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:45:00.009 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 07:45:00.009 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 07:45:00,elapsed is 7
+2022-05-24 07:46:50.345 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:49:50.346 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:50:00.008 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 07:50:00.009 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 07:50:00,elapsed is 8
+2022-05-24 07:52:50.346 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:55:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 07:55:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 07:55:00,elapsed is 4
+2022-05-24 07:55:50.347 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:58:50.347 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 07:59:59.755 - com.basic.im.redpack.service.RedPacketManagerImpl 红包超时未领取的数量 ======> 0
+2022-05-24 07:59:59.755 - com.basic.im.task.CommTask 刷新红包成功,耗时3毫秒
+2022-05-24 07:59:59.757 - c.basic.im.pay.service.impl.SkTransferManagerImpl 转账超时未领取的数量 ======> 0
+2022-05-24 07:59:59.758 - com.basic.im.task.CommTask 刷新转账成功,耗时6毫秒
+2022-05-24 07:59:59.763 - com.basic.im.task.CommTask 最高在线用户======》  0
+2022-05-24 07:59:59.763 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHourTask,executeTime is 2022-05-24 07:59:59,elapsed is 12
+2022-05-24 07:59:59.877 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 07:59:59
+2022-05-24 07:59:59.879 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 07:59:59,elapsed is 2
+2022-05-24 08:00:00.007 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 08:00:00.008 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 08:00:00,elapsed is 6
+2022-05-24 08:01:50.348 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:04:50.349 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:05:00.010 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 08:05:00.010 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 08:05:00,elapsed is 10
+2022-05-24 08:08:22.280 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:10:31.935 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 08:10:31.935 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 08:10:31,elapsed is 5
+2022-05-24 08:11:22.280 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:14:22.281 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:15:00.008 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 08:15:00.008 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 08:15:00,elapsed is 7
+2022-05-24 08:17:22.282 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:20:00.009 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 08:20:00.010 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 08:20:00,elapsed is 8
+2022-05-24 08:20:22.282 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:23:22.283 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:25:00.005 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 08:25:00.005 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 08:25:00,elapsed is 4
+2022-05-24 08:26:22.283 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:29:22.284 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:29:59.878 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 08:29:59
+2022-05-24 08:29:59.880 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 08:29:59,elapsed is 4
+2022-05-24 08:30:00.009 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 08:30:00.009 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 08:30:00,elapsed is 6
+2022-05-24 08:32:22.284 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:35:00.008 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 08:35:00.009 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 08:35:00,elapsed is 8
+2022-05-24 08:35:22.285 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:38:22.286 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:40:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 08:40:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 08:40:00,elapsed is 6
+2022-05-24 08:41:22.287 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:44:22.287 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:45:00.012 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 08:45:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 08:45:00,elapsed is 9
+2022-05-24 08:47:22.288 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:50:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 08:50:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 08:50:00,elapsed is 6
+2022-05-24 08:50:22.288 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:53:22.289 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:55:00.016 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 08:55:00.017 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 08:55:00,elapsed is 14
+2022-05-24 08:56:22.294 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:59:22.295 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 08:59:59.881 - com.basic.im.redpack.service.RedPacketManagerImpl 红包超时未领取的数量 ======> 0
+2022-05-24 08:59:59.881 - com.basic.im.task.CommTask 刷新红包成功,耗时4毫秒
+2022-05-24 08:59:59.884 - c.basic.im.pay.service.impl.SkTransferManagerImpl 转账超时未领取的数量 ======> 0
+2022-05-24 08:59:59.884 - com.basic.im.task.CommTask 刷新转账成功,耗时7毫秒
+2022-05-24 08:59:59.889 - com.basic.im.task.CommTask 最高在线用户======》  0
+2022-05-24 08:59:59.889 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHourTask,executeTime is 2022-05-24 08:59:59,elapsed is 14
+2022-05-24 09:00:00.007 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 09:00:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 09:00:00,elapsed is 5
+2022-05-24 09:00:00.017 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 09:00:00
+2022-05-24 09:00:00.018 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 09:00:00,elapsed is 16
+2022-05-24 09:02:22.295 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:05:00.007 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 09:05:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 09:05:00,elapsed is 5
+2022-05-24 09:05:22.296 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:08:22.296 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:10:00.087 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 09:10:00.088 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 09:10:00,elapsed is 8
+2022-05-24 09:11:22.301 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:14:22.302 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:15:00.060 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 09:15:00.061 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 09:15:00,elapsed is 16
+2022-05-24 09:17:22.302 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:20:00.027 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 09:20:00.027 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 09:20:00,elapsed is 4
+2022-05-24 09:20:22.302 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:23:22.303 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:25:00.027 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 09:25:00.028 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 09:25:00,elapsed is 5
+2022-05-24 09:26:22.303 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:29:22.304 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:30:00.007 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 09:30:00
+2022-05-24 09:30:00.010 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 09:30:00,elapsed is 9
+2022-05-24 09:30:00.012 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 09:30:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 09:30:00,elapsed is 11
+2022-05-24 09:32:22.304 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:35:00.008 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 09:35:00.008 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 09:35:00,elapsed is 6
+2022-05-24 09:35:22.304 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:38:22.305 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:40:00.009 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 09:40:00.009 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 09:40:00,elapsed is 9
+2022-05-24 09:41:22.305 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:44:22.306 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:45:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 09:45:00.026 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 09:45:00,elapsed is 24
+2022-05-24 09:47:22.306 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:50:00.015 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 09:50:00.015 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 09:50:00,elapsed is 5
+2022-05-24 09:50:22.307 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:53:22.307 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:55:00.016 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 09:55:00.016 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 09:55:00,elapsed is 14
+2022-05-24 09:56:22.308 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 09:59:22.308 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:00:00.006 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 10:00:00
+2022-05-24 10:00:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 10:00:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 10:00:00,elapsed is 5
+2022-05-24 10:00:00.007 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 10:00:00,elapsed is 4
+2022-05-24 10:00:00.021 - com.basic.im.redpack.service.RedPacketManagerImpl 红包超时未领取的数量 ======> 0
+2022-05-24 10:00:00.021 - com.basic.im.task.CommTask 刷新红包成功,耗时6毫秒
+2022-05-24 10:00:00.023 - c.basic.im.pay.service.impl.SkTransferManagerImpl 转账超时未领取的数量 ======> 0
+2022-05-24 10:00:00.023 - com.basic.im.task.CommTask 刷新转账成功,耗时8毫秒
+2022-05-24 10:00:00.028 - com.basic.im.task.CommTask 最高在线用户======》  0
+2022-05-24 10:00:00.028 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHourTask,executeTime is 2022-05-24 10:00:00,elapsed is 26
+2022-05-24 10:02:22.309 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:05:00.017 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 10:05:00.018 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 10:05:00,elapsed is 17
+2022-05-24 10:05:22.310 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:08:22.311 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:10:00.015 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 10:10:00.015 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 10:10:00,elapsed is 14
+2022-05-24 10:11:22.312 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:14:22.312 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:15:00.017 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 10:15:00.017 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 10:15:00,elapsed is 15
+2022-05-24 10:17:22.312 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:20:00.014 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 10:20:00.014 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 10:20:00,elapsed is 12
+2022-05-24 10:20:22.313 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:23:22.313 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:25:00.055 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 10:25:00.055 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 10:25:00,elapsed is 35
+2022-05-24 10:26:22.313 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:29:22.313 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:30:00.010 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 10:30:00.011 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 10:30:00,elapsed is 9
+2022-05-24 10:30:00.020 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 10:30:00
+2022-05-24 10:30:00.021 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 10:30:00,elapsed is 4
+2022-05-24 10:32:22.314 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:35:00.019 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 10:35:00.019 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 10:35:00,elapsed is 6
+2022-05-24 10:35:22.314 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:38:22.315 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:40:00.061 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 10:40:00.061 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 10:40:00,elapsed is 9
+2022-05-24 10:41:22.315 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:44:22.316 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:45:00.012 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 10:45:00.013 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 10:45:00,elapsed is 11
+2022-05-24 10:47:22.316 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:50:00.014 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 10:50:00.015 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 10:50:00,elapsed is 14
+2022-05-24 10:50:22.321 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:53:22.321 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:55:00.006 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 10:55:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 10:55:00,elapsed is 4
+2022-05-24 10:56:22.322 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 10:59:22.322 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 11:00:00.007 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 11:00:00
+2022-05-24 11:00:00.012 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 11:00:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 11:00:00,elapsed is 11
+2022-05-24 11:00:00.012 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 11:00:00,elapsed is 10
+2022-05-24 11:00:00.017 - com.basic.im.redpack.service.RedPacketManagerImpl 红包超时未领取的数量 ======> 0
+2022-05-24 11:00:00.017 - com.basic.im.task.CommTask 刷新红包成功,耗时12毫秒
+2022-05-24 11:00:00.021 - c.basic.im.pay.service.impl.SkTransferManagerImpl 转账超时未领取的数量 ======> 0
+2022-05-24 11:00:00.022 - com.basic.im.task.CommTask 刷新转账成功,耗时16毫秒
+2022-05-24 11:00:00.028 - com.basic.im.task.CommTask 最高在线用户======》  0
+2022-05-24 11:00:00.028 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHourTask,executeTime is 2022-05-24 11:00:00,elapsed is 25
+2022-05-24 11:02:22.323 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 11:05:00.007 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 11:05:00.008 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 11:05:00,elapsed is 6
+2022-05-24 11:05:22.323 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 11:08:22.324 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 11:10:00.005 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 11:10:00.006 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 11:10:00,elapsed is 5
+2022-05-24 11:11:22.324 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 11:14:22.324 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 11:15:00.015 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 11:15:00.015 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 11:15:00,elapsed is 14
+2022-05-24 11:17:22.325 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 11:20:00.184 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 11:20:01.073 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 11:20:01,elapsed is 893
+2022-05-24 11:20:22.325 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 11:23:22.325 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 11:25:00.016 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 11:25:00.079 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 11:25:00,elapsed is 77
+2022-05-24 11:26:22.326 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 11:28:18.694 - com.basic.mianshi.Application Starting Application on PC-20200911YSRU with PID 22504 (E:\code\hongxin\im-hongxin\im-parent\mianshi-im-api\target\classes started by Administrator in E:\code\hongxin\im-hongxin\im-comm-modules\api-module)
+2022-05-24 11:28:18.702 - com.basic.mianshi.Application No active profile set, falling back to default profiles: default
+2022-05-24 11:28:29.001 - org.apache.coyote.http11.Http11NioProtocol Initializing ProtocolHandler ["http-nio-8094"]
+2022-05-24 11:28:29.002 - org.apache.catalina.core.StandardService Starting service [Tomcat]
+2022-05-24 11:28:29.002 - org.apache.catalina.core.StandardEngine Starting Servlet engine: [Apache Tomcat/9.0.21]
+2022-05-24 11:28:29.186 - o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] Initializing Spring embedded WebApplicationContext
+2022-05-24 11:28:29.248 - com.basic.redisson.RedissonConfiguration  initRedissonClient mode single address redis://192.168.101.80:6379 database 9
+2022-05-24 11:28:29.268 - com.basic.redisson.RedissonConfiguration redisson single start 
+2022-05-24 11:28:29.881 - com.basic.redisson.RedissonConfiguration redisson create end 
+2022-05-24 11:28:30.337 - com.basic.mongodb.springdata.MongoConfiguration  init getHotMongoClient  uri mongodb://192.168.101.84:27017 dbname imapi 
+2022-05-24 11:28:30.615 - com.basic.mongodb.springdata.MongoConfiguration  init mongoClient  uri mongodb://192.168.101.84:27017 dbname imapi 
+2022-05-24 11:28:35.660 - c.b.im.config.AjCaptchaServiceAutoConfiguration 自定义配置项：AjCaptchaProperties{type=DEFAULT, jigsaw='', picClick='', waterMark='我的水印', waterFont='宋体', fontType='宋体', slipOffset='5', aesStatus=true, interferenceOptions='0', cacheNumber='1000', timingClear='180', cacheType=local}
+2022-05-24 11:28:35.664 - c.anji.captcha.service.impl.CaptchaServiceFactory supported-captchaCache-service:[redis, local]
+2022-05-24 11:28:35.668 - c.anji.captcha.service.impl.CaptchaServiceFactory supported-captchaTypes-service:[clickWord, default, blockPuzzle]
+2022-05-24 11:28:35.684 - com.anji.captcha.util.ImageUtils 初始化底图:{"SLIDING_BLOCK":["1.png","3.png","5.png","2.png","4.png","6.png"],"ORIGINAL":["1.png","3.png","5.png","2.png","4.png","6.png"],"PIC_CLICK":["1.png","3.png","5.png","2.png","4.png","6.png"]}
+2022-05-24 11:28:35.684 - c.anji.captcha.service.impl.AbstractCaptchaService --->>>初始化验证码底图<<<---
+2022-05-24 11:28:35.685 - c.anji.captcha.service.impl.AbstractCaptchaService 初始化local缓存...
+2022-05-24 11:28:35.686 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 11:28:39.227 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.ExecutorConfig$$EnhancerBySpringCGLIB$$3738469,method is taskExecutor,executeTime is 2022-05-24 11:28:39,elapsed is 39
+2022-05-24 11:28:39.252 - s.d.s.w.PropertySourcedRequestMappingHandlerMapping Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+2022-05-24 11:28:40.681 - o.a.r.s.support.DefaultRocketMQListenerContainer running container: DefaultRocketMQListenerContainer{consumerGroup='my-consumer-keywordMessage', nameServer='192.168.101.82:9876', topic='keywordMessage', consumeMode=CONCURRENTLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING}
+2022-05-24 11:28:40.681 - o.a.r.s.a.ListenerContainerConfiguration Register the listener to container, listenerBeanName:keywordConsumer, containerBeanName:org.apache.rocketmq.spring.support.DefaultRocketMQListenerContainer_1
+2022-05-24 11:28:41.024 - o.a.r.s.support.DefaultRocketMQListenerContainer running container: DefaultRocketMQListenerContainer{consumerGroup='consumer-userStatusMessage', nameServer='192.168.101.82:9876', topic='userStatusMessage', consumeMode=CONCURRENTLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING}
+2022-05-24 11:28:41.024 - o.a.r.s.a.ListenerContainerConfiguration Register the listener to container, listenerBeanName:userStatusConsumer, containerBeanName:org.apache.rocketmq.spring.support.DefaultRocketMQListenerContainer_2
+2022-05-24 11:28:41.368 - o.a.r.s.support.DefaultRocketMQListenerContainer running container: DefaultRocketMQListenerContainer{consumerGroup='first_name_change_group', nameServer='192.168.101.82:9876', topic='first_name_change_topic', consumeMode=CONCURRENTLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING}
+2022-05-24 11:28:41.368 - o.a.r.s.a.ListenerContainerConfiguration Register the listener to container, listenerBeanName:firstNameChangeListener, containerBeanName:org.apache.rocketmq.spring.support.DefaultRocketMQListenerContainer_3
+2022-05-24 11:28:41.396 - s.d.s.web.plugins.DocumentationPluginsBootstrapper Context refreshed
+2022-05-24 11:28:41.436 - s.d.s.web.plugins.DocumentationPluginsBootstrapper Found 1 custom documentation plugin(s)
+2022-05-24 11:28:41.565 - s.d.spring.web.scanners.ApiListingReferenceScanner Scanning for api listing references
+2022-05-24 11:28:43.144 - org.apache.coyote.http11.Http11NioProtocol Starting ProtocolHandler ["http-nio-8094"]
+2022-05-24 11:28:43.153 - org.apache.coyote.http11.Http11NioProtocol Pausing ProtocolHandler ["http-nio-8094"]
+2022-05-24 11:28:43.153 - org.apache.catalina.core.StandardService Stopping service [Tomcat]
+2022-05-24 11:28:43.182 - org.apache.coyote.http11.Http11NioProtocol Stopping ProtocolHandler ["http-nio-8094"]
+2022-05-24 11:28:43.182 - org.apache.coyote.http11.Http11NioProtocol Destroying ProtocolHandler ["http-nio-8094"]
+2022-05-24 11:28:43.243 - o.a.r.s.support.DefaultRocketMQListenerContainer container destroyed, DefaultRocketMQListenerContainer{consumerGroup='first_name_change_group', nameServer='192.168.101.82:9876', topic='first_name_change_topic', consumeMode=CONCURRENTLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING}
+2022-05-24 11:28:43.244 - o.a.r.s.support.DefaultRocketMQListenerContainer container destroyed, DefaultRocketMQListenerContainer{consumerGroup='consumer-userStatusMessage', nameServer='192.168.101.82:9876', topic='userStatusMessage', consumeMode=CONCURRENTLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING}
+2022-05-24 11:28:43.244 - o.a.r.s.support.DefaultRocketMQListenerContainer container destroyed, DefaultRocketMQListenerContainer{consumerGroup='my-consumer-keywordMessage', nameServer='192.168.101.82:9876', topic='keywordMessage', consumeMode=CONCURRENTLY, selectorType=TAG, selectorExpression='*', messageModel=CLUSTERING}
+2022-05-24 11:28:44.066 - RocketmqRemoting closeChannel: close the connection to remote address[192.168.101.82:10911] result: true
+2022-05-24 11:28:44.067 - RocketmqRemoting closeChannel: close the connection to remote address[192.168.101.82:9876] result: true
+2022-05-24 11:28:44.073 - RocketmqRemoting closeChannel: close the connection to remote address[192.168.101.82:10911] result: true
+2022-05-24 11:28:44.073 - RocketmqRemoting closeChannel: close the connection to remote address[192.168.101.82:9876] result: true
+2022-05-24 11:29:22.326 - com.anji.captcha.util.CacheUtil local缓存刷新,清除过期数据
+2022-05-24 11:30:00.013 - com.basic.im.task.CommTask 刷新用户状态统计======》 0
+2022-05-24 11:30:00.033 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is refreshUserStatusCount,executeTime is 2022-05-24 11:30:00,elapsed is 24
+2022-05-24 11:30:00.037 - com.basic.im.dao.impl.TigaseMsgDaoImpl =====> deleteChatMsgRecord 2022-05-24 11:30:00
+2022-05-24 11:30:00.048 - com.basic.im.aspect.TaskAspect execute task success,class is com.basic.im.task.CommTask,method is executeHalfAnHourTask,executeTime is 2022-05-24 11:30:00,elapsed is 13

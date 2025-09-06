@@ -1,0 +1,65 @@
+spring:
+  application:
+    name: message-push-8093
+  main:
+    web-application-type: NONE                # 不占用端口启动
+    allow-bean-definition-overriding: true    # 允许循环覆盖 Bean
+  messages:
+    encoding: UTF-8
+
+server:
+  port: 8093
+
+# Mongodb Properties（数据库配置）
+mongoconfig:
+  dbName: imapi
+  roomDbName: imRoom
+  username:
+  password:
+  uri: mongodb://192.168.0.171:28018
+  connectTimeout: 20000
+  maxWaitTime: 20000
+  socketTimeout: 20000
+  mapPackage: cn.xyz.mianshi.vo
+
+# Redis Properties
+redisson:
+  database: 0
+  password:
+  timeout: 10000
+  pingTimeout: 10000
+  address: redis://192.168.0.171:6379
+  connectTimeout: 10000
+  pingConnectionInterval: 500
+
+rocketmq:
+  name-server: 192.168.0.171:9876
+  producer:
+    group: xmpp-producer
+    send-message-timeout: 30000
+
+admin:
+  systemUsers: 10001:10001,10002:10002,10003:10003,10004:10004
+
+imConfig:
+  host: 192.168.0.171
+  port: 5666
+  pingTime: 10000
+  serverToken: token
+
+# 日志配置
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm} - %logger{50} %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm} - %logger{50} %msg%n'
+
+
+  # 监控端点配置
+  # 自定义端点路径  将  /actuator/{id}为/manage/{id}
+  #management.endpoints.web.base-path=/manage
+  #management.endpoints.web.exposure.include=*
+
+management:
+  metrics:
+    tags:
+     application: message-push-8093

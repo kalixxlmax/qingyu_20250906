@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>im-comm-modules</artifactId>
+        <groupId>com.basic.im.modules</groupId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <packaging>jar</packaging>
+    <version>${im-module.vserion}</version>
+    <description>yl 公共工具类核心包</description>
+    <artifactId>redpack-module</artifactId>
+
+    <properties>
+       
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>com.basic.im.modules</groupId>
+            <artifactId>user-core</artifactId>
+            <version>${im-module.vserion}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.basic.im.modules</groupId>
+            <artifactId>pay-module</artifactId>
+            <version>${im-module.vserion}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.basic.im.modules</groupId>
+            <artifactId>common-api</artifactId>
+            <version>${im-module.vserion}</version>
+            <scope>compile</scope>
+        </dependency>
+
+
+    </dependencies>
+
+
+</project>

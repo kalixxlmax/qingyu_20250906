@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/mp/css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+   
+
+    <div class="layui-row">
+        <div class="layui-card" style="margin-top: 1%;">
+           <!--  <div class="layui-card-header" style="text-align: center;">
+                <p data-locale="serviceList">客服列表</p>
+            </div> -->
+            <div class="layui-card-body">
+
+                <input type="text" name="" class="layui-input search_service_keyword" style="width: 15%;display: inline" placeholder="菜单内容/编号" data-locale="service_name" >
+                <a class="layui-btn layui-btn-sm"  lay-event="search_fans" data-locale="menu_search">搜索</a>
+                <a class="layui-btn layui-btn-sm"  id = "add_firstMenu" data-locale="">添加一级菜单</a>
+
+
+                <table id="replyMenu_table"  style="table-layout:fixed;word-break:break-all;margin-top: 20px; " >
+                    
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="hide_area">
+
+            <div id="addMenu" class="layui-form" style="margin:20px 40px 10px 40px;display: none;">
+                <div class="layui-form-item">
+                    <div class="layui-input-block" style="margin: 0 auto;">
+                        <input type="text" required  lay-verify="required" placeholder="请输入菜单编号,例如 01" autocomplete="off" lay-verify="number" class="layui-input menuNo" style="margin: 10px 0; ">
+
+                         <input type="text" required  lay-verify="required" placeholder="请输入菜单文本" autocomplete="off" lay-verify="number" class="layui-input menuText">
+
+                        <!-- <textarea name="answer" placeholder="" class="layui-textarea answer"></textarea> -->
+                    </div>
+                </div>
+            </div>  
+
+
+            <div id="addAutoReply" class="layui-form" style="display: none;">
+                <div class="layui-form-item">
+                     <div class="layui-input-block" style="margin: 0 auto;padding: 10px 20px;">
+                       
+                        <!-- <div class="layui-inline">
+                            <label class="layui-form-label" style="padding-left: 0; width: 90px;">回复消息类型</label>
+                            <div class="layui-input-inline">
+                                <select name="answerType" class="answerType">
+                                    <option value="1">文本</option>
+                                    <option value="2">图片</option>
+                                    <option value="3">语音</option>
+                                    <option value="6">视频</option>
+                                </select>
+                            </div>
+                        </div> -->
+
+                        <div class="layui-inline">
+                            <label class="layui-form-label" style="padding-left: 0; width: 60px;">回复内容</label>
+                            <textarea name="replyContent" placeholder="请输入回复内容" class="layui-textarea replyContent" style="width: 220px;"></textarea>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        
+    </div>
+     
+
+
+    <!-- 表格操作列 -->
+    <script type="text/html" id="replyMenuBar">
+            
+        <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="modify_menu">修改内容</a> 
+
+        {{# if(!d.haveChild){                        }}  <!-- //没有子集 -->
+
+        {{#   if(""!=d.event){                       }}  <!-- //有事件 -->
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit_event">编辑事件</a>
+        {{#   }else if(!mpCommon.isNil(d.autoReply)) {          }}  <!-- //有自动回复 -->
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="modify_reply">编辑自动回复</a>
+        {{#   }else{                                 }}  <!-- //没有事件也没有自动回复 -->
+                <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add_subMenu">添加子菜单</a>
+        {{#      if(""==d.event && mpCommon.isNil(d.autoReply) ){              }} <!-- //没有事件且没有自动回复 -->
+                      <a class="layui-btn layui-btn-xs" lay-event="bind_event">绑定事件</a>
+                      <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add_reply">添加自动回复</a>
+        {{#      }                                   }}
+
+        {{#   }                                      }}
+              
+        {{# } else if(""==d.event && mpCommon.isNil(d.autoReply)) {    }} <!-- 有子集的情况 -->
+            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="add_subMenu">添加子菜单</a>
+        {{# }                               }}
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del_menu">删除</a>
+    </script>
+
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="/mp/common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+    <script type="text/javascript" src="/mp/customer/js/replyMenu.js"></script>
+
+
+
+</body>
+</html>

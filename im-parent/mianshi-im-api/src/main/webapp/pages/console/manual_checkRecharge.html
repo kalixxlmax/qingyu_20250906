@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>扫码手动充值-审核充值申请</title>
+    <link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+</head>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<!--搜索操作-->
+<div class="layui-row background_white title_menu_place">
+    <div class="searchModule layui-form">
+        <div class="searchBranch">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">用户ID ：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="" class="layui-input checkRecharge_keyword" placeholder="请输入"
+                               oninput="value=value.replace(/[^\d]/g,'')">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch">
+            <div class="layui-form-item timeComponent">
+                <div class="layui-inline">
+                    <label class="layui-form-label">充值的时间范围：</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" id="checkRechargeDate" placeholder="请选择时间范围" type="text">
+                        <img src="/pages/console/images/draw/calendar.png" class="calendar_icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch characters_center">
+            <button class="layui-btn  search_checkRecharge motif_button_style">搜索</button>
+        </div>
+    </div>
+</div>
+<!--统计金额-->
+<div class="layui-row title_menu_place transfer_div background_white module_interval" style="padding-left: 40px;">
+    <div class="layui-col-md2">
+        <span>总充值申请金额：<cite class="totalRecharge"></cite>  元</span>
+    </div>
+    <div class="layui-col-md2">
+        <span>审核成功金额：<cite class="successRecharge"></cite>  元</span>
+    </div>
+    <div class="layui-col-md2">
+        <span>审核失败总额：<cite class="failureRecharge"></cite>  元</span>  <!-- 当前总转出金额-->
+    </div>
+    <div class="layui-col-md2">
+        <span>申请中总额：<cite class="applyRecharge"></cite>  元</span>
+    </div>
+</div>
+<!-- 接收账户列表 -->
+<div id="RechargeList_table" class="layui-card module_interval">
+    <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+        充值申请列表
+    </div>
+    <div class="layui-card-body layui_card_body_top">
+        <table id="checkRecharge_table" lay-filter="checkRecharge_table"></table>
+    </div>
+    <div id="totalRechagre">
+        <div class="layui-card-body">
+            <table id="myBill_table" lay-filter="myBill_table">
+            </table>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="checkRechargeBar">
+    {{#  if(d.status == 1){ }}
+    <a class="layui-btn layui-btn-xs approve scanGathering-pass table_default_btn" lay-event="approve">通过审核</a>
+    <a class="layui-btn layui-btn-xs ignore scanGathering-ignore table_default_btn" lay-event="ignore">忽略</a>
+    {{#  } }}
+    {{#  if(d.status == 2||d.status == -1){ }}
+    <a class="layui-btn layui-btn-xs layui-btn-disabled scanGathering-pass table_disabled_btn" lay-event="">通过审核</a>
+    <a class="layui-btn layui-btn-xs layui-btn-disabled scanGathering-ignore table_disabled_btn" lay-event="">忽略</a>
+    {{#  } }}
+    <a class="layui-btn layui-btn-xs layui-btn-danger delete scanGathering-delete table_default_btn" lay-event="delete">删除</a>
+</script>
+</body>
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.form.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="./js/manual_checkRecharge.js"></script>
+</html>

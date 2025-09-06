@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.basic.mongodb.springdata.MongoConfiguration,\
+org.springframework.boot.autoconfigure.context.MessageSourceAutoConfiguration

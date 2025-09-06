@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>权限管理——元素管理</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet" media="all"/>
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet"/>
+<link href="/pages/console/css/resourceManage.css" rel="stylesheet"/>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<div class="layui-card">
+    <div class="layui-card-body" id="roleTable_list">
+        <div style="padding: 24px 40px 24px 40px;">
+            <button class="layui-btn layui-btn-sm default_button_style addResourceButtom"
+                    onclick="info.addResource()" id="add_role_btn">添加元素
+            </button>
+        </div>
+
+        <table id="resource_table"></table>
+
+    </div>
+</div>
+
+
+<!-- 添加元素操作 -->
+<form class="layui-form" id="add_resource">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">元素名称：</label>e
+        <div class="layui-input-block">
+            <input type="text" id="resourceName" placeholder="请输入元素名称" lay-verify="required"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">元素路径：</label>
+        <div class="layui-input-block">
+            <input type="text" id="resourceUrl" placeholder="请输入元素路径" lay-verify="required"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">元素权限：</label>
+        <div class="layui-input-block">
+            <input type="text" id="resourceAuth" placeholder="请输入元素权限" lay-verify="required"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">元素类型：</label>
+        <div class="layui-input-block">
+            <select id="resourceType" name="selects">
+                <option value="">请选择</option>
+                <option value="0">按钮</option>
+                <option value="1">左侧菜单</option>
+                <option value="2">头部菜单</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">元素状态：</label>
+        <div class="layui-input-block">
+            <select id="resourceStatus" name="selects">
+                <option value="">请选择</option>
+                <option value="1">使用</option>
+                <option value="-1">禁用</option>
+            </select>
+        </div>
+    </div>
+</form>
+
+
+<!-- 编辑元素操作 -->
+<form class="layui-form" id="update_resource" style="display:none;">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">编号：</label>
+        <div class="layui-input-block">
+            <input type="text" id="resourceId" readonly lay-verify="required" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">元素名称：</label>
+        <div class="layui-input-block">
+            <input type="text" id="resourceNameUp" placeholder="请输入元素名称" lay-verify="required"
+                   autocomplete="off" class="layui-input" readonly>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">元素路径：</label>
+        <div class="layui-input-block">
+            <input type="text" id="resourceUrlUp" placeholder="请输入元素路径" lay-verify="required"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">元素类型：</label>
+        <div id="resourceTypeUp" class="layui-input-block">
+            <select id="resourceTyepUp"
+                    style="height: 39px;width: 17%;border: 1px solid;border-color: #D2D2D2!important;">
+                <option value="">请选择</option>
+                <option value="0">按钮</option>
+                <option value="1">左侧菜单</option>
+                <option value="2">头部菜单</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">元素状态：</label>
+        <div class="layui-input-block">
+            <select id="resourceStatusUp" name="resourceStatusUp"
+                    style="height: 39px;width: 17%;border: 1px solid;border-color: #D2D2D2!important;">
+                <option value="">请选择角色状态</option>
+                <option value="1">使用</option>
+                <option value="-1">禁用</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">元素权限：</label>
+        <div class="layui-input-block">
+            <input type="text" id="resourceAuthUp" placeholder="请输入元素权限" lay-verify="required"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+</form>
+
+
+
+<script type="text/html" id="operationBar">
+    <span class="layui-btn layui-btn-xs table_default_btn resourceInfo-edit" onclick="info.updateResource('{{d.id}}','{{d.pid}}')">编辑</span>
+    <span class="layui-btn layui-btn-xs table_default_btn resourceInfo-delete" onclick="info.deleteResource('{{d.id}}')">删除</span>
+    <span class="layui-btn layui-btn-xs table_default_btn resourceInfo-add" onclick="info.addPidResource('{{d.id}}')">添加子元素</span>
+</script>
+
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="/pages/console/js/resourceManage.js"></script>
+</body>
+</html>

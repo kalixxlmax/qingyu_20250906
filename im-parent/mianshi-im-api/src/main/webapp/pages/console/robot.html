@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>机器人列表</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<div id="redPage_div">
+    <div class="characters_center">
+        <div class="redPage_btn_div">
+            <div class="layui-row background_white">
+                <div class="layui-col-md12">
+                    <input id="toUserName" type="text" name="" class="layui-input" style="width: 67%;display: inline;"
+                           placeholder="请输入机器人账号">
+                    <button class="layui-btn search_live motif_button_style"
+                            style="margin-left: -8px;margin-top: -3px;background-color: #FF6666;">搜索
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="redEnvelope" class="layui-card">
+        <!--<div class="layui-card-header user_table_open table_topTitle_space">
+            <button class="layui-btn layui-btn-sm deleteRobot rob-delete layui-btn-primary table_default_btn table_default_btn_border" lay-event="deleteRobot"
+                    onclick="Robot.checkDeleteRobot()">多选删除
+            </button>
+        </div>-->
+
+        <!--多选删除-->
+        <div class="mustDelete">
+            <img src="/pages/console/images/draw/question.png" class="small_icon">
+            <span class="chooseDeleteCount"></span>
+            <span class="checkDeleteUsers checkDelete" onclick="Robot.checkDeleteRobot()" lay-event="delete">删除
+            </span>
+        </div>
+        <div class="layui-card-header layui_card_header_title layui_card_header_spare">机器人列表</div>
+        <div class="layui-card-body layui_card_body_top">
+            <table id="robot_table" lay-filter="robot_table"></table>
+        </div>
+    </div>
+
+    <input id="robot_limlt" value="15" type="hidden">
+
+    <!--操作-->
+    <script type="text/html" id="robotPageListBar">
+        <a class="layui-btn table_default_btn layui-btn-xs delete rob-delete table_default_btn" lay-event="delete">删除</a>
+        <a class="layui-btn table_default_btn layui-btn-xs updatePassword rob-updatePassword table_default_btn"
+           lay-event="updatePassword">重置密码</a>
+        <a class="layui-btn table_default_btn layui-btn-xs resource rob-resource supperAdmin table_default_btn"
+           lay-event="resource">定义权限</a>
+    </script>
+</div>
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="./js/robot.js"></script>
+
+</body>
+</html>

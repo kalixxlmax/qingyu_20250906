@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>管理后台</title>
+    <link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/pages/console/css/public.css" rel="stylesheet">
+    <link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+    <link href="/pages/console/css/promptMessage.css" rel="stylesheet">
+</head>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<div id="errorMessageList">
+    <div class="hintInfo_btn_div">
+		<div class="layui-row background_white title_menu_place">
+            <div class="searchModule layui-form">
+                <div class="searchBranch">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">Code ：</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="" class="layui-input" id="code" placeholder="请输入">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="searchBranch characters_center">
+                    <button class="layui-btn motif_button_style" onclick="Pro.findPromptList()">搜索</button>
+                </div>
+            </div>
+		</div>
+    </div>
+
+    <div class="layui-card background_white module_interval">
+        <div class="layui-card hitiInfo_table">
+            <div class="layui-card-header table_topTitle_space">
+                <button class="layui-btn btn_add hitiInfo-add motif_button_style" onclick="Pro.addErrorMessage()">新增提示信息</button>
+            </div>
+            <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+                提示信息管理
+			</div>
+            <div class="layui-card-body layui_card_body_top">
+                <table id="hitiInfoList_table" lay-filter="hitiInfoList_table"
+                       style="table-layout:fixed;word-break:break-all;">
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div id="addErrorMessage" class="background_white" style="display: none">
+    <div class="layui-card-header layui_card_header_p_title messageTitle">
+		修改提示消息
+	</div>
+    <div class="layui-card-body table_padding">
+        <table class="layui-table layui-form">
+            <thead>
+            <tr>
+                <th width="40%">提示消息参数</th>
+                <th width="60%">提示消息信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            <input id="_id" style="display: none">
+            <tr>
+                <td>Code</td>
+                <td><input id="codeNum" type="" name="" class="layui-input info" onblur="Pro.onblurCode()"></td>
+            </tr>
+            <tr>
+                <td>Type</td>
+                <td>
+                    <select id="type" class="layuiSelect">
+                        <option value="error">error</option>
+                        <option value="success">success</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>中文</td>
+                <td><input id="zh" type="" name="" class="layui-input info"></td>
+            </tr>
+            <tr>
+                <td>英文</td>
+                <td><input id="en" type="" name="" class="layui-input info"></td>
+            </tr>
+            <tr>
+                <td>繁体</td>
+                <td><input id="big5" type="" name="" class="layui-input info"></td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="characters_center padding_upDown_space">
+            <button onclick="Pro.commit_errorMessage()" class="layui-btn motif_button_style insertBtn">新增</button>
+            <button onclick="Pro.update_errorMessage()" class="layui-btn motif_button_style updateBtn">确认修改</button>
+            <button onclick="Pro.update_bak()" class="layui-btn default_button_style" style="">返回</button>
+        </div>
+    </div>
+</div>
+
+<!--列表操作-->
+<script type="text/html" id="hitiInfoListBar">
+    <button class='layui-btn layui-btn-danger layui-btn-xs delete hitiInfo-delete font_bule table_default_btn' lay-event="delete">删除</button>
+    <button class='layui-btn layui-btn-xs update hitiInfo-update closeTablePopup font_bule table_default_btn' lay-event="modify"
+            onclick="Common.closeTablePopup()">修改
+    </button>
+</script>
+
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+<input id="promptMessage_limlt" value="15" type="hidden">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="/pages/console/js/promptMessage.js"></script>
+
+</body>
+</html>

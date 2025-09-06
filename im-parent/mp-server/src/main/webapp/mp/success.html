@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>成功页面</title>
+    <link href="./common/layui/css/layui.css" rel="stylesheet" media="all"/>
+    <link href="./css/register.css" rel="stylesheet" media="all">
+    <link rel="icon" href="./images/favicon.ico">
+</head>
+    <style>
+       #container-context{
+           margin-top: 10px;
+           height: 200px;
+       }
+        #but {
+            position: absolute;
+            left: 520px;
+            bottom: -60px;
+        }
+        .layui-nav .layui-this:after,.layui-nav-bar,.layui-nav-tree .layui-nav-itemed:after {
+            background-color:#fff;
+        }
+    </style>
+<body>
+<ul class="layui-nav">
+    <li class="layui-nav-item" style="margin-left: 45%">
+        <a href="" style="color: black;font-size: 20px"><img src="./images/favicon.ico" class="layui-nav-img">公众号注册</a>
+    </li>
+</ul>
+
+    <div class="layui-container" id="container-context" style="margin-top: 1px">
+        <div class="layui-row">
+            <div class="layui-col-md12">
+                <h1 style="text-align: center;margin: 50px 0px 0px 0px;">
+                    提交成功！审核中......
+                </h1>
+                <button class="layui-btn layui-btn-radius layui-btn-primary layui-btn-lg" id="but" >返回</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="./common/jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="./common/jquery/jquery.md5.js"></script>
+    <script type="text/javascript" src="./common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="./js/mp_success.js"></script>
+</body>
+</html>

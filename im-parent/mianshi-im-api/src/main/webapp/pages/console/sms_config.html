@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/pages/common/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="./css/public.css" media="all"/>
+    <link rel="stylesheet" href="/pages/console/css/commonStyle.css" media="all"/>
+    <link rel="stylesheet" href="/pages/console/css/sms_config.css" media="all"/>
+</head>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<form class="layui-form spare_bottom">
+	<!--全局短信配置-->
+    <table class="layui-table mag0 table-top-interval applicationConfig">
+        <colgroup>
+            <col width="25%">
+            <col width="26%">
+            <col width="25%">
+        </colgroup>
+        <thead>
+            <tr>
+                <th>参数说明</th>
+                <th>参数值</th>
+                <th>变量名</th>
+                <th>参数详细说明</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>是否发送短信验证码</td>
+            <td>
+                <select class="layui-input-inline openSMS">
+                    <option value="0">关闭</option>
+                    <option value="1">开启</option>
+                </select>
+            </td>
+            <td>openSMS</td>
+            <td>是否发送短信验证码</td>
+        </tr>
+        <tr class="tableHoverWhite">
+            <td colspan="4" class="characters_center" style="border-bottom: 1px solid transparent;">
+                <button class="layui-btn smsConfig-sava sava-btn-place motif_button_style" lay-submit="" lay-filter="systemConfig">保存</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="./js/sms_config.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>线路管理</title>
+</head>
+<link href="../common/layui/css/layui.css" rel="stylesheet" media="all">
+<link href="css/commonStyle.css" rel="stylesheet" media="all">
+<link href="css/roleManage.css" rel="stylesheet" media="all">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<!--标题-->
+<div id="title" class="layui-col-md12 background_white layui_card_header_title margin_upDown_space" style="display: none;">
+
+</div>
+<!--角色列表-->
+<div id="role_table" class="layui-card">
+    <div class="layui-card-header table_topTitle_space">
+        <button class="layui-btn layui-btn-sm role1-add motif_button_style" onclick="Manage.addRole()">
+            添加收款账号
+        </button>
+    </div>
+    <div class="layui-card-body" id="roleTable_list" style="margin-top: -28px;">
+        <table id="config_list" lay-filter="config_list" style="table-layout:fixed;word-break:break-all;"></table>
+    </div>
+</div>
+
+
+<!-- 添加角色操作 -->
+<form class="layui-form" id="add_role">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">收款人名字</label>
+        <div class="layui-input-block">
+            <input type="text" id="roleName" placeholder="请输入收款账号" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">收款人账户</label>
+        <div class="layui-input-block">
+            <input type="text" id="roleDesc" placeholder="请输入收款人账户" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+</form>
+
+
+<!-- 修改角色操作 -->
+<form id="update_role" class="layui-form">
+    <div class="layui-form-item input_left">
+        <label class="layui-form-label">编号</label>
+        <div class="layui-input-block">
+            <input type="text" id="roleIdUpdate" readonly="" placeholder="请输入角色名称" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item input_left">
+        <label class="layui-form-label">名称</label>
+        <div class="layui-input-block">
+            <input type="text" id="roleNameUpdate" placeholder="请输入角色名称" lay-verify="required" autocomplete="off" class="layui-input" readonly="">
+        </div>
+    </div>
+
+    <div class="layui-form-item input_left">
+        <label class="layui-form-label">描述</label>
+        <div class="layui-input-block">
+            <input type="text" id="roleDescUpdate" placeholder="请输入角色描述信息" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item input_left">
+        <label class="layui-form-label">状态</label>
+        <div class="layui-input-block">
+            <select id="roleStatusUpdate" name="roleStatusUpdate" style="height: 39px;width: 17%;border: 1px solid;border-color: #D2D2D2!important;">
+                <option value="">请选择角色状态</option>
+                <option value="1">使用</option>
+                <option value="-1">禁用</option>
+            </select>
+        </div>
+    </div>
+</form>
+
+
+<!-- 详情角色操作 -->
+<form class="layui-form" id="desc_role">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色名称</label>
+        <div class="layui-input-block">
+            <input type="text" id="roleNameDesc" readonly="" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色描述</label>
+        <div class="layui-input-block">
+            <input type="text" id="roleDescDesc" readonly="" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">角色状态</label>
+        <div class="layui-input-block">
+            <select id="roleStatusDesc" readonly="" name="selects">
+                <option value="">请选择角色状态</option>
+                <option value="1">使用</option>
+                <option value="-1">禁用</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">分配权限</label>
+        <div class="layui-input-block">
+            <select name="select1" readonly="" xm-select="select1">
+                <option value="">请选择角色状态</option>
+                <!--<option value="1">北京</option>-->
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block padding_upDown_space">
+            <a class="layui-btn back default_button_style">返回</a>
+        </div>
+    </div>
+</form>
+
+
+<!--操作-->
+<script type="text/html" id="userListBar">
+    <a class="layui-btn layui-btn-xs delete role1-delete font_bule table_default_btn" lay-event="delete">删除</a>
+</script>
+
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+<input id="userList_limlt" value="15" type="hidden">
+
+<script type="text/javascript" src="../common/jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="../common/layui/layui.all.js"></script>
+<script type="text/javascript" src="../assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/console_ui.js"></script>
+<script type="text/javascript" src="js/authorityManagement.js"></script>
+<script type="text/javascript" src="js/lineConfig.js"></script>
+
+</body>
+</html>

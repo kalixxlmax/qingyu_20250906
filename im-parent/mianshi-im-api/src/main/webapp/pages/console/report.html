@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>举报管理</title>
+    <link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+</head>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<!--搜索操作-->
+<div class="layui-row background_white title_menu_place">
+    <div class="searchModule layui-form">
+        <div class="searchBranch">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">举报的人ID ：</label>
+                    <div class="layui-input-inline">
+                        <input id="sender" type="text" name="" class="layui-input" placeholder="请输入">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">被举报的人ID ：</label>
+                    <div class="layui-input-inline">
+                        <input id="receiver" type="text" name="" class="layui-input" placeholder="请输入">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">举报类型 ：</label>
+                    <div class="layui-input-inline">
+                        <select id="complaint_select" class="layui-select" lay-verify="required" value="">
+                            <option value="">请选择</option>
+                            <option value="0">被举报的人</option>
+                            <option value="1">被举报的群组</option>
+                            <option value="2">被举报的网页</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch characters_center">
+            <button class="layui-btn  search_report motif_button_style">搜索</button>
+        </div>
+    </div>
+</div>
+<!-- 举报列表 -->
+<div id="reportList" class="layui-card module_interval">
+    <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+        举报列表
+    </div>
+    <div class="layui-card-body layui_card_body_top">
+        <table id="report_table" lay-filter="report_table"></table>
+    </div>
+</div>
+
+
+<!-- 举报信息预览 -->
+<form id="showMsgInfo" style="display:none;">
+    <div class="layui-form-item">
+        <p class="layui-form-label" id="msgTitle" style="width: 650px;text-align: left"></p><br/><br/><br/>
+        <div class="layui-input-block" id="msgContent">
+
+        </div>
+    </div>
+</form>
+
+<input id="report_limlt" value="15" type="hidden">
+<input id="pageCount" name="" style="display: none">
+
+<script type="text/html" id="reportUserListBar">
+    <a class="layui-btn layui-btn-xs delete report-delete table_default_btn" lay-event="delete">删除</a>
+    {{#  if(d.toUserStatus == 1){ }}
+    <a class="layui-btn layui-btn-xs lockingUser report-lockingUser table_default_btn" lay-event="lockingUser">封号</a>
+    {{#  }else{  }}
+    <a class="layui-btn layui-btn-xs cancelLockingUser report-lockingUser table_default_btn"
+       lay-event="cancelLockingUser">解封</a>
+    {{#  } }}
+    <!-- 朋友圈或者短视频添加预览的功能 -->
+    {{#  if(d.reportType == 4 || d.reportType == 5){ }}
+    <a class="layui-btn layui-btn-xs lockingUser report-lockingUser table_default_btn" lay-event="preview">预览</a>
+    {{#  }else{  }}
+    {{#  } }}
+</script>
+
+<script type="text/html" id="reportRoomListBar">
+    <a class="layui-btn layui-btn-xs layui-btn-danger delete table_default_btn" lay-event="delete">删除</a>
+    {{#  if(d.roomStatus == 1){ }}
+    <a class="layui-btn layui-btn-xs lockingRoom table_default_btn" lay-event="lockingRoom">封群</a>
+    {{#  }else{  }}
+    <a class="layui-btn layui-btn-xs cancelLockingRoom table_default_btn" lay-event="cancelLockingRoom">解封</a>
+    {{#  } }}
+</script>
+
+<script type="text/html" id="reportWebListBar">
+    <a class="layui-btn layui-btn-xs layui-btn-danger delete table_default_btn" lay-event="delete">删除</a>
+    {{#  if(d.webStatus == 1){ }}
+    <a class="layui-btn layui-btn-xs lockingWeb table_default_btn" lay-event="lockingWeb">禁用被举报网页</a>
+    {{#  }else{  }}
+    <a class="layui-btn layui-btn-xs cancelLockingWeb table_default_btn" lay-event="cancelLockingWeb">解禁被举报网页</a>
+    {{#  } }}
+</script>
+
+</body>
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="./js/report.js"></script>
+</html>

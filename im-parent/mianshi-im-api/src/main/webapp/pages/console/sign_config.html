@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>签到配置</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet" media="all">
+<link href="/pages/console/css/fileUpload.css" rel="stylesheet" media="all">
+<link href="/pages/assets/css/bootstrap.css" rel="stylesheet" media="all">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet" media="all">
+<link href="/pages/console/css/sign_config.css" rel="stylesheet" media="all">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<div class="layui-row">
+    <form class="layui-form">
+        <table class="layui-table mag0">
+            <thead>
+            <tr>
+                <th>天数</th>
+                <th>奖励</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>第一天</td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-addon input-group-addon_sub">-</div>
+                        <input type="text" class="form-control signDay_1"
+                               oninput="Common.input_num_negative(this)" value="0">
+                        <div class="input-group-addon input-group-addon_add">+</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>第二天</td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-addon input-group-addon_sub">-</div>
+                        <input type="text" class="form-control signDay_2"
+                               oninput="Common.input_num_negative(this)" value="0">
+                        <div class="input-group-addon input-group-addon_add">+</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>第三天</td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-addon input-group-addon_sub">-</div>
+                        <input type="text" class="form-control signDay_3"
+                               oninput="Common.input_num_negative(this)" value="0">
+                        <div class="input-group-addon input-group-addon_add">+</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>第四天</td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-addon input-group-addon_sub">-</div>
+                        <input type="text" class="form-control signDay_4"
+                               oninput="Common.input_num_negative(this)" value="0">
+                        <div class="input-group-addon input-group-addon_add">+</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>第五天</td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-addon input-group-addon_sub">-</div>
+                        <input type="text" class="form-control signDay_5"
+                               oninput="Common.input_num_negative(this)" value="0">
+                        <div class="input-group-addon input-group-addon_add">+</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>第六天</td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-addon input-group-addon_sub">-</div>
+                        <input type="text" class="form-control signDay_6"
+                               oninput="Common.input_num_negative(this)" value="0">
+                        <div class="input-group-addon input-group-addon_add">+</div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>第七天</td>
+                <td>
+                    <div class="input-group">
+                        <div class="input-group-addon input-group-addon_sub">-</div>
+                        <input type="text" class="form-control signDay_7"
+                               oninput="Common.input_num_negative(this)" value="0">
+                        <div class="input-group-addon input-group-addon_add">+</div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+    <div class="background_white padding_upDown_space characters_center">
+        <button class="layui-btn motif_button_style" onclick="operationSign_.submitFrom()">保存
+        </button>
+    </div>
+</div>
+
+</body>
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/jquery.form.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script>
+    var singData = 7;
+    var operationSign_ = {
+        submitFrom: function () {
+            var str = "";
+            var values_ = document.getElementsByClassName("form-control");
+            for (var i = 0; i < values_.length; i++) {
+                if (Common.isNil(values_[i].value)) {
+                    layer.msg("请填写第" + (i + 1) + "天奖励金额", {"icon": 2});
+                    return;
+                }
+                str += (i + 1) + ":" + values_[i].value + ",";
+            }
+            console.log(str);
+            var values = $(".form-control").val();
+            if (Common.isNil(values)) {
+                layer.msg("请设置奖励金额", {"icon": 2});
+                return;
+            }
+
+            Common.invoke({
+                url: request('/console/sign/config/set'),
+                data: {
+                    signStr: str,
+                },
+                success: function (result) {
+                    if (result.resultCode == 1) {
+                        layer.msg("保存成功！", {"icon": 1});
+                    }
+                }
+            })
+        },
+        /**
+         * 计算数值
+         * @param sekector 选择器
+         * @param number 天数
+         * @param type 类型  0=加法  1=减法
+         */
+        calculateValue: function (sekector, number, type) {
+            if (type == 0) {
+                var value = $("." + sekector).val();
+                $("." + sekector).val(Common.isNil(value) == true ? 1 : parseInt(value) + 1);
+            } else if (type == 1) {
+                var value = $("." + sekector).val();
+                $("." + sekector).val(Common.isNil(value) == true ? 0 : parseInt(value) - 1 < 0 ? 0 : parseInt(value) - 1);
+            }
+        }
+    }
+
+
+    $(function () {
+        /*$("#uploadSmallFileFrom").attr("action", Config.getConfig().uploadUrl + "upload/UploadifyServlet");*/
+        Common.invoke({
+            url: request('/console/sign/config/get'),
+            data: {},
+            success: function (result) {
+                if (result.resultCode == 1) {
+                    var str = result.data;
+                    var str_ = str.replace("{", "").replace("}", "").replace(/\"/g, "");
+                    var signCount = str_.split(",");
+                    for (var i = 0; i < signCount.length; i++) {
+                        var signDay = signCount[i].split(":");
+                        $(".signDay_" + signDay[0]).val(Common.getMoneyCentConvertYuan_(signDay[1]));
+                    }
+                }
+            }
+        })
+
+        /*累加*/
+        $(".input-group-addon_add").click(function () {
+            var classList = this.previousSibling.previousElementSibling.classList;
+            operationSign_.calculateValue(classList[1], classList[1].substring(classList[1].indexOf("_") + 1, classList[1].length), 0)
+        })
+
+        /*累减*/
+        $(".input-group-addon_sub").click(function () {
+            console.log(this.nextSibling)
+            var classList = this.nextSibling.nextElementSibling.classList;
+            operationSign_.calculateValue(classList[1], classList[1].substring(classList[1].indexOf("_") + 1, classList[1].length), 1)
+        })
+
+        //调用父级页面的Js函数
+        window.parent.getJointVisitPath();
+    })
+</script>
+</html>

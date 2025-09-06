@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/pages/common/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="./css/public.css" media="all"/>
+    <link rel="stylesheet" href="/pages/console/css/commonStyle.css" media="all"/>
+    <link rel="stylesheet" href="/pages/console/css/clientConfig.css" media="all"/>
+    <title>客户端系统配置</title>
+</head>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+
+<form class="layui-form layui_form_set spare_bottom">
+    <table class="layui-table clientConfig layui_table_set">
+        <colgroup>
+            <col width="25%">
+            <col width="26%">
+            <col width="25%">
+        </colgroup>
+        <thead>
+        <tr>
+            <th>参数说明</th>
+            <th>参数值</th>
+            <th>变量名</th>
+            <th>参数说明</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>通讯服务地址(ip)</td>
+            <td>
+                <input type="text" class="layui-input XMPPHost" lay-verify="required"
+                       placeholder="请输入通讯服务器地址主机域名或者ip">
+            </td>
+            <td>XMPPHost</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>通讯服务域名</td>
+            <td>
+                <input type="text" class="layui-input XMPPDomain" lay-verify="required" placeholder="请输入通讯服务域名或者ip">
+            </td>
+            <td>XMPPDomain</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>接口URL</td>
+            <td><input type="text" class="layui-input apiUrl" placeholder=""></td>
+            <td>apiUrl</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>头像下载URL</td>
+            <td><input type="text" class="layui-input downloadAvatarUrl" placeholder=""></td>
+            <td>downloadAvatarUrl</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>资源下载URL</td>
+            <td><input type="text" class="layui-input downloadUrl" placeholder=""></td>
+            <td>downloadUrl</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>资源上传URL</td>
+            <td><input type="text" class="layui-input uploadUrl" placeholder=""></td>
+            <td>uploadUrl</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>视频服务器URL</td>
+            <td><input type="text" class="layui-input jitsiServer" placeholder=""></td>
+            <td>jitsiServer</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>直播服务器URL</td>
+            <td><input type="text" class="layui-input liveUrl" placeholder=""></td>
+            <td>liveUrl</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>短视频拍摄上限时长</td>
+            <td><input type="text" class="layui-input videoLength" placeholder="" onblur="funVideoLength()"></td>
+            <td>videoLength</td>
+            <td>秒为单位</td>
+        </tr>
+        <tr>
+            <td>IOS应用AppleId</td>
+            <td><input type="text" class="layui-input appleId" placeholder=""></td>
+            <td>appleId</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>APP下载页网址</td>
+            <td><input type="text" class="layui-input website" placeholder=""></td>
+            <td>website</td>
+            <td>APP下载页网址,用于生成二维码链接</td>
+        </tr>
+        <tr>
+            <td>头部导航栏背景图</td>
+            <td><input type="text" class="layui-input headBackgroundImg" placeholder=""></td>
+            <td>headBackgroundImg</td>
+            <td>发现页的顶部导航图</td>
+        </tr>
+        <!--<tr>
+            <td>软件启动的首页名称</td>
+            <td><input type="text" class="layui-input homeName" placeholder=""></td>
+            <td>homeName</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>软件启动的首页地址</td>
+            <td><input type="text" class="layui-input homeAddress" placeholder=""></td>
+            <td>homeAddress</td>
+            <td></td>
+        </tr>-->
+
+        <tr>
+            <td>是否开放红包</td>
+            <td>
+                <select class="layui-input-inline displayRedPacket">
+                    <option value="1">开启</option>
+                    <option value="0">关闭</option>
+                </select>
+
+            </td>
+            <td>displayRedPacket</td>
+            <td></td>
+        </tr>
+
+        <!--<tr>
+            <td>是否开启公众号模块</td>
+            <td>
+                    <select class="layui-input-inline enableMpModule">
+                      <option value="1">开启</option>
+                      <option value="0">关闭</option>
+                </select>
+            </td>
+            <td>enableMpModule</td>
+            <td></td>
+        </tr>-->
+
+        <tr>
+            <td>是否启用端对端消息加密</td>
+            <td>
+                <select class="layui-input-inline isOpenSecureChat">
+                    <option value="1">开启</option>
+                    <option value="0">关闭</option>
+                </select>
+
+            </td>
+            <td>isOpenSecureChat</td>
+            <td>是否开启非对称消息加密</td>
+        </tr>
+        <tr>
+            <td>启用模块</td>
+            <td style="line-height: 40px;">
+                <input name="enablePayModule" class="enablePayModule" lay-skin="primary" title="支付模块" type="checkbox"
+                       lay-filter="startModules">
+                <input name="enableWxPay" class="enableWxPay" lay-skin="primary" title="微信支付" type="checkbox"
+                       lay-filter="startModules">
+                <input name="enableAliPay" class="enableAliPay" lay-skin="primary" title="支付宝支付" type="checkbox"
+                       lay-filter="startModules">
+                <input name="enableMpModule" class="enableMpModule" lay-skin="primary" title="公众号模块" type="checkbox"
+                       lay-filter="startModules">
+                <input name="enableOpenModule" class="enableOpenModule" lay-skin="primary" title="开放平台模块"
+                       type="checkbox" lay-filter="startModules">
+                <input name="enableOpenSquare" class="enableOpenSquare" lay-skin="primary" title="广场模块"
+                       type="checkbox" lay-filter="startModules">
+            </td>
+            <td>enable**Module</td>
+            <td>勾选需要启用的模块</td>
+        </tr>
+
+
+        <!--<tr>
+            <td>是否启用已读消息回执</td>
+            <td>
+                <select class="layui-input-inline isOpenReadReceipt">
+                    <option value="1">开启</option>
+                    <option value="0">关闭</option>
+                </select>
+            </td>
+            <td>isOpenReadReceipt</td>
+            <td></td>
+        </tr>-->
+        <tr>
+            <td>客户端是否开启UI</td>
+            <td>
+                <select class="layui-input-inline isOpenUI">
+                    <option value="1">开启</option>
+                    <option value="0">关闭</option>
+                </select>
+            </td>
+            <td>isOpenUI</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td > 客户端界面顺序 </td>
+
+            <td class="layui-form-item interfaceOrder">
+                <!--<div class="layui-form-item">-->
+                <div class="layui-inline" style="width:80px;">
+                    <label class="layui-form-label" style="padding:0; width: 30px; line-height : 38px;" >好友</label>
+                    <div class="layui-input-inline" style="width:30px;">
+                        <input type="text" name="friend" lay-verify="required|number" autocomplete="off" class="layui-input friend">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width:80px;">
+                    <label class="layui-form-label" style="padding : 0; width: 30px; line-height : 38px;" >群组</label>
+                    <div class="layui-input-inline" style="width:30px;">
+                        <input type="text" name="room" lay-verify="required|number"  autocomplete="off" class="layui-input room">
+                    </div>
+                </div>
+                <div class="layui-inline" style="width:80px;">
+                    <label class="layui-form-label" style=" padding : 0; width: 30px; line-height: 38px;" >同事</label>
+                    <div class="layui-input-inline" style="width:30px;">
+                        <input type="text" name="company" lay-verify="required|number" autocomplete="off" class="layui-input company">
+                    </div>
+                </div>
+                <!--</div>-->
+            </td>
+
+            <td >interfaceOrder</td>
+            <td ></td>
+
+        </tr>
+
+
+        <tr>
+            <td>启用手机联系人</td>
+            <td>
+                <select class="layui-input-inline showContactsUser">
+                    <option value="1">开启</option>
+                    <option value="0">关闭</option>
+                </select>
+            </td>
+            <td pc>showContactsUser</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>是否开启注册</td>
+            <td>
+                <select class="layui-input-inline isOpenRegister">
+                    <option value="1">开启</option>
+                    <option value="0">关闭</option>
+                </select>
+            </td>
+            <td pc>isOpenRegister</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>是否开启好友搜索功能</td>
+            <td>
+                <select class="layui-input-inline hideSearchByFriends">
+                    <option value="1">开启</option>
+                    <option value="0">关闭</option>
+                </select>
+
+            </td>
+            <td pc>hideSearchByFriends</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>是否开启普通用户搜索好友</td>
+            <td>
+                <select class="layui-input-inline isCommonFindFriends">
+                    <option value="0">开启</option>
+                    <option value="1">关闭</option>
+                </select>
+
+            </td>
+            <td pc>isCommonFindFriends</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>是否开启普通用户创建群组</td>
+            <td>
+                <select class="layui-input-inline isCommonCreateGroup">
+                    <option value="0">开启</option>
+                    <option value="1">关闭</option>
+                </select>
+
+            </td>
+            <td pc>isCommonCreateGroup</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>是否开启群组搜索</td>
+            <td>
+                <select class="layui-input-inline isOpenRoomSearch">
+                    <option value="0">开启</option>
+                    <option value="1">关闭</option>
+                </select>
+
+            </td>
+            <td pc>isOpenRoomSearch</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>是否开启位置相关服务</td>
+            <td>
+                <select class="layui-input-inline isOpenPositionService">
+                    <option value="1">开启</option>
+                    <option value="0">关闭</option>
+                </select>
+
+            </td>
+            <td>isOpenPositionService</td>
+            <td>APP全局的一个地址位置开关选项</td>
+        </tr>
+
+        <tr>
+            <td>普通用户是否允许加好友</td>
+            <td>
+                <select class="layui-input-inline allowAddFriend">
+                    <option value="1">开启</option>
+                    <option value="0">关闭</option>
+                </select>
+
+            </td>
+            <td>allowAddFriend</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>IOS推送平台</td>
+            <td>
+                <select class="layui-input-inline isOpenAPNSorJPUSH">
+                    <option value="0">APNS 推送</option>
+                    <option value="1">极光推送_开发版</option>
+                    <option value="2">极光推送_生产版</option>
+                </select>
+
+            </td>
+            <td>isOpenAPNSorJPUSH</td>
+            <td>IOS极光推送需要区分证书类型，开发版即开发证书打的包反之。</td>
+        </tr>
+
+        <tr>
+            <td>是否第三方登录免注册</td>
+            <td>
+                <select class="layui-input-inline isNoRegisterThirdLogin">
+                    <option value="0">关闭</option>
+                    <option value="1">开启</option>
+                </select>
+            </td>
+            <td>isNoRegisterThirdLogin</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>是否开启旧设备登录授权</td>
+            <td>
+                <select class="layui-input-inline isOpenAuthSwitch">
+                    <option value="1">开启</option>
+                    <option value="0">关闭</option>
+                </select>
+            </td>
+            <td>isOpenAuthSwitch</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>是否开启上架模式</td>
+            <td>
+                <select class="layui-input-inline upperShelf">
+                    <option value="1">开启</option>
+                    <option value="0">关闭</option>
+                </select>
+            </td>
+            <td>upperShelf</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>APP热门应用界面展示项</td>
+            <td style="line-height: 40px;">
+                <input name="lifeCircle" class="lifeCircle" lay-skin="primary" title="生活圈" type="checkbox"
+                       lay-filter="appCheckbox">
+                <input name="videoMeeting" class="videoMeeting" lay-skin="primary" title="视频会议" type="checkbox"
+                       lay-filter="appCheckbox">
+                <input name="liveVideo" class="liveVideo" lay-skin="primary" title="视频直播" type="checkbox"
+                       lay-filter="appCheckbox">
+                <input name="shortVideo" class="shortVideo" lay-skin="primary" title="短视频" type="checkbox"
+                       lay-filter="appCheckbox">
+                <input name="peopleNearby" class="peopleNearby" lay-skin="primary" title="附近的人" type="checkbox"
+                       lay-filter="appCheckbox">
+                <!--					<input name="scan" class="scan" lay-skin="primary" title="扫一扫" type="checkbox" lay-filter="appCheckbox">-->
+            </td>
+            <td>popularAPP</td>
+            <td>热门应用动态展示</td>
+        </tr>
+        <tr>
+            <td>生活圈,短视频模块标签列表</td>
+            <td>
+                <textarea cols="30" rows="6"class="layui-textarea lableListStr"></textarea>
+            </td>
+            <td>
+                lableListStr  #分割标签 示例 #美食#招聘
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>公司名称</td>
+            <td><input type="text" class="layui-input companyName" placeholder=" "></td>
+            <td>companyName</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>版权信息</td>
+            <td><input type="text" class="layui-input copyright" placeholder=" "></td>
+            <td>copyright</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>Android最新版本号</td>
+            <td><input type="text" class="layui-input androidVersion" placeholder=" "></td>
+            <td>androidVersion</td>
+            <td><br>示例：101，对应版本号1.0.1</br></td>
+        </tr>
+        <tr>
+            <td>Android最新下载URL</td>
+            <td><input type="text" class="layui-input androidAppUrl" placeholder=" "></td>
+            <td>androidAppUrl</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Android更新说明</td>
+            <td><input type="text" class="layui-input androidExplain" placeholder=" "></td>
+            <td>androidExplain</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>IOS最新版本号</td>
+            <td><input type="text" class="layui-input iosVersion" placeholder=" "></td>
+            <td>iosVersion</td>
+            <td><br>示例：101，对应版本号1.0.1</br></td>
+        </tr>
+        <tr>
+            <td>IOS最新下载URL</td>
+            <td><input type="text" class="layui-input iosAppUrl" placeholder=" "></td>
+            <td>iosAppUrl</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>IOS更新说明</td>
+            <td><input type="text" class="layui-input iosExplain" placeholder=" "></td>
+            <td>iosExplain</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>PC最新版本号</td>
+            <td><input type="text" class="layui-input pcVersion" placeholder=" "></td>
+            <td>pcVersion</td>
+            <td><br>示例：101，对应版本号1.0.1</br></td>
+        </tr>
+        <tr>
+            <td>PC最新下载URL</td>
+            <td><input type="text" class="layui-input pcAppUrl" placeholder=" "></td>
+            <td>pcAppUrl</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>PC更新说明</td>
+            <td><input type="text" class="layui-input pcExplain" placeholder=" "></td>
+            <td>pcExplain</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>MAC最新版本号</td>
+            <td><input type="text" class="layui-input macVersion" placeholder=" "></td>
+            <td>macVersion</td>
+            <td><br>示例：101，对应版本号1.0.1</br></td>
+        </tr>
+        <tr>
+            <td>MAC最新下载URL</td>
+            <td><input type="text" class="layui-input macAppUrl" placeholder=" "></td>
+            <td>macAppUrl</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>MAC更新说明</td>
+            <td><input type="text" class="layui-input macExplain" placeholder=" "></td>
+            <td>macExplain</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Android禁用版本号</td>
+            <td><input type="text" class="layui-input androidDisable" placeholder=" "></td>
+            <td>androidDisable</td>
+            <td>凡低于此版本号的禁用<br>示例：5.1.0</br></td>
+        </tr>
+        <tr>
+            <td>IOS禁用版本号</td>
+            <td><input type="text" class="layui-input iosDisable" placeholder=" "></td>
+            <td >iosDisable</td>
+            <td>凡低于此版本号的禁用<br>示例：5.1.0</br></td>
+        </tr>
+        <tr>
+            <td>PC禁用版本号</td>
+            <td><input type="text" class="layui-input pcDisable" placeholder=" "></td>
+            <td>pcDisable</td>
+            <td>凡低于此版本号的禁用<br>示例：5.1.0</br></td>
+        </tr>
+        <tr>
+            <td>Mac禁用版本号</td>
+            <td><input type="text" class="layui-input macDisable" placeholder=" "></td>
+            <td>macDisable</td>
+            <td>凡低于此版本号的禁用<br>示例：5.1.0</br></td>
+        </tr>
+        <tr class="tableHoverWhite characters_center">
+            <td colspan="4" style="border-bottom: 1px solid transparent;">
+                <button class="layui-btn save cli-sava motif_button_style" lay-submit="" lay-filter="systemConfig">保存
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="./js/clientConfig.js"></script>
+</body>
+</html>

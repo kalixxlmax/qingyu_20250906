@@ -1,0 +1,8 @@
+#praiseMsg .layui-card-body .layui-form{
+    padding: 0px;
+}
+
+.mustDelete{
+    top: 24px;
+    margin-bottom: 20px;
+}

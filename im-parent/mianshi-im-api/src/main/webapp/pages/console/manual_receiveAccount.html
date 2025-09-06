@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>扫码手动充值-收款账户管理</title>
+    <link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+    <link href="/pages/console/css/manual_receiveAccount.css" rel="stylesheet">
+</head>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<!--搜索操作-->
+<div id="receiveAccountList">
+    <div class="layui-row background_white title_menu_place">
+        <div class="searchModule layui-form">
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">账户名称 ：</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="" class="layui-input receiveAccount_keyword"
+                                   placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch">
+                <form class="layui-form">
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">账户类型 ：</label>
+                            <div class="layui-input-inline">
+                                <select id="receiveAccount_select" class="layui-select" lay-verify="required" value="">
+                                    <option value="0">请选择</option>
+                                    <option value="1">微信账户</option>
+                                    <option value="2">支付宝账户</option>
+                                    <option value="3">银行卡账户</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="searchBranch characters_center">
+                <button class="layui-btn  search_receiveAccount motif_button_style">搜索</button>
+            </div>
+        </div>
+    </div>
+    <!-- 接收账户列表 -->
+    <div id="receiveAccountList_table" class="layui-card module_interval">
+        <div class="layui-card-header table_topTitle_space">
+            <button class="layui-btn add_receiveAccount_btn gathering-add motif_button_style">添加收款人</button>
+        </div>
+        <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+            收款账户列表
+        </div>
+        <div class="layui-card-body layui_card_body_top">
+            <table id="receiveAccount_table" lay-filter="receiveAccount_table"></table>
+        </div>
+    </div>
+</div>
+<!--添加收款用户-->
+<div id="AddreceiveAccount" class="background_white" style="display: none">
+    <input type="text" id="updateReceiveAccountId" style="display: none">
+    <div id="addUserTitle" class="layui-card-header layui_card_header_p_title">新增收款用户</div>
+    <table class="layui-table layui-form">
+        <thead>
+        <tr>
+            <th width="40%">收款参数</th>
+            <th width="60%">账户信息</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>账户类型</td>
+            <td>
+                <select class="layui-select" lay-verify="required" name="" id="add_Account_type"
+                        lay-filter="account_type">
+                    <option value="1">微信账户</option>
+                    <option value="2">支付宝账户</option>
+                    <option value="3">银行账户</option>
+                </select>
+            </td>
+        </tr>
+        <tr id="url_tr">
+            <td>收款码</td>
+            <td>
+                <button class="layui-btn default_button_style" onclick="ManualPay.selectUpdateCodeMsg()">选择收款码</button>
+                <span id="receiveCodeImg_update"></span>
+                <form id="uploadreceiveCodeImg" name="uploadreceiveCodeImg" action="" method="post"
+                      enctype="multipart/form-data" style="display: none;">
+                    <input id="uploadCodeImg" type="file" name="file" onchange="ManualPay.uploadCodeMsg()"
+                           accept=".png,.jpg,.jpeg,.gif,.psd,.tiff,.swf,.svg,.bmp">
+                </form>
+            </td>
+        </tr>
+        <tr id="name_tr">
+            <td>账户名称</td>
+            <td><input id="name" type="" name="" class="layui-input"></td>
+        </tr>
+        <tr id="payNo_tr">
+            <td>微信或支付宝账号</td>
+            <td><input id="payNo" type="" name="" class="layui-input"></td>
+        </tr>
+        <tr id="bankCard_tr">
+            <td>银行卡号</td>
+            <td><input id="bankCard" type="" name="" class="layui-input"></td>
+        </tr>
+        <tr id="bankName_tr">
+            <td>开户银行名称</td>
+            <td><input id="bankName" type="" name="" class="layui-input"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="background_white characters_center padding_upDown_space">
+        <button onclick="ManualPay.commit_addReceiveAccount()" class="layui-btn addLiveRoombtn motif_button_style">提交</button>
+        <button onclick="ManualPay.btn_back()" class="layui-btn default_button_style" style="">返回</button>
+    </div>
+</div>
+
+
+<script type="text/html" id="receiveAccountBar">
+    <a class="layui-btn layui-btn-xs updateAccountInfo gathering-update table_default_btn"
+       lay-event="updateAccountInfo">修改</a>
+    <a class="layui-btn layui-btn-xs layui-btn-danger delete gathering-delete table_default_btn" lay-event="delete">删除</a>
+</script>
+</body>
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.form.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="./js/manual_receiveAccount.js"></script>
+</html>

@@ -1,0 +1,520 @@
+{
+	"contentManagement": [
+		{
+			"title": "服务器配置",
+			"resourceAuth": "server:menu",
+			"icon": "&#xe716;",
+			"href": "",
+			"spread": true,
+			"systemConfig": true,
+			"groupName": "config",
+			"children": [
+				{
+					"title": "服务器运行参数",
+					"resourceAuth": "server:menu",
+					"icon": "&#xe857;",
+					"href": "/pages/console/system_running_config.html",
+					"groupName": "config",
+					"id": "system_running_config"
+				},
+				{
+					"title": "用户默认隐私",
+					"resourceAuth": "server:menu",
+					"icon": "&#xe857;",
+					"href": "/pages/console/system_default_user_config.html",
+					"groupName": "config",
+					"id": "system_default_user_config"
+				},
+				{
+					"title": "建立群组默认参数",
+					"resourceAuth": "server:menu",
+					"icon": "&#xe857;",
+					"href": "/pages/console/system_default_room_config.html",
+					"groupName": "config",
+					"id":"system_default_room_config"
+				}
+			]
+		},
+		{
+			"title": "客户端配置",
+			"resourceAuth": "client:menu",
+			"icon": "&#xe7ae;",
+			"href": "/pages/console/clientConfig.html",
+			"spread": false,
+			"groupName": "config",
+			"id":"clientConfig"
+		},
+		{
+			"title": "集群配置",
+			"resourceAuth": "colony:menu",
+			"icon": "&#xe656;",
+			"href": "/pages/console/clusterConfig.html",
+			"spread": false,
+			"groupName": "config",
+			"id":"clusterConfig"
+		},
+		{
+			"title": "支付配置",
+			"resourceAuth": "pay:menu",
+			"icon": "&#xe656;",
+			"href": "/pages/console/payConfig.html",
+			"spread": false,
+			"groupName": "config",
+			"id":"payConfig"
+		},
+		{
+			"title": "热门主页配置",
+			"resourceAuth": "homePage:menu",
+			"icon": "&#xe68e;",
+			"href": "/pages/console/fxList.html",
+			"spread": false,
+			"groupName": "config",
+			"id":"homePage"
+		},
+		{
+			"title": "全站公告配置",
+			"resourceAuth": "notice:menu",
+			"icon": "&#xe667;",
+			"href": "/pages/console/websiteNotice.html",
+			"spread": false,
+			"sensitiveWords": true,
+			"groupName": "config",
+			"id":"websiteNotice"
+		},
+		{
+			"title": "签到配置",
+			"resourceAuth": "sign:menu",
+			"icon": "&#xe642;",
+			"href": "/pages/console/sign_config.html",
+			"spread": false,
+			"sensitiveWords": true,
+			"groupName": "config",
+			"id":"sign_config"
+		},
+		{
+			"title": "短信配置",
+			"resourceAuth": "server:menu",
+			"icon": "&#xe716;",
+			"href": "",
+			"spread": false,
+			"systemConfig": true,
+			"groupName": "config",
+			"children": [
+				{
+					"title": "全局短信配置",
+					"languageName": "smsConfiguration",
+					"resourceAuth": "sms:menu",
+					"icon": "&#xe618;",
+					"href": "/pages/console/sms_config.html",
+					"id":"sms_config"
+				}, {
+					"title": "阿里云短信配置",
+					"languageName": "smsConfiguration",
+					"resourceAuth": "sms:menu",
+					"icon": "&#xe618;",
+					"href": "/pages/console/sms_aliyun_config.html",
+					"id":"sms_aliyun_config"
+				}, {
+					"title": "天天国际短信配置",
+					"languageName": "smsConfiguration",
+					"resourceAuth": "sms:menu",
+					"icon": "&#xe618;",
+					"href": "/pages/console/sms_tistilo_config.html",
+					"id":"sms_tistilo_config"
+				}
+			]
+		},
+
+		{
+			"title": "角色管理",
+			"resourceAuth": "securityRole:meun",
+			"icon": "&#xe770;",
+			"href": "/pages/console/roleManage.html",
+			"spread": false,
+			"adminUser": true,
+			"groupName": "authManagement",
+			"id":"roleManage"
+		},
+		{
+			"title": "交互元素",
+			"resourceAuth": "resourceInfo:menu",
+			"icon": "&#xe716;",
+			"href": "/pages/console/resourceManage.html",
+			"spread": false,
+			"customer": true,
+			"groupName": "authManagement",
+			"id":"resourceManage"
+		},
+		{
+			"title": "授权IP管理",
+			"resourceAuth": "allowRequestClient:menu",
+			"icon": "&#xe716;",
+			"href": "/pages/console/allowRequestClient.html",
+			"spread": false,
+			"customer": true,
+			"groupName": "authManagement",
+			"id":"allowRequestClient"
+		},
+		{
+			"title": "用户管理",
+			"resourceAuth": "user:menu",
+			"icon": "&#xe66f;",
+			"href": "/pages/console/userList.html",
+			"spread": false,
+			"groupName": "accountManagement",
+			"id":"userList"
+		},
+		{
+			"title": "群组管理",
+			"resourceAuth": "group:menu",
+			"icon": "&#xe770;",
+			"href": "/pages/console/roomList.html",
+			"spread": false,
+			"roomList": true,
+			"groupName": "accountManagement",
+			"id":"roomList"
+		},
+		{
+			"title": "单聊消息",
+			"resourceAuth": "single:menu",
+			"icon": "&#xe63a;",
+			"href": "/pages/console/messageList.html",
+			"spread": false,
+			"messageList": true,
+			"groupName": "messageManagement",
+			"id":"messageList"
+		},
+		{
+			"title": "销毁聊天",
+			"resourceAuth": "destroy:menu",
+			"icon": "&#xe640;",
+			"href": "/pages/console/destroyMessage.html",
+			"spread": false,
+			"messageList": true,
+			"groupName": "messageManagement",
+			"id":"destroyMessage"
+		},
+		{
+			"title": "红包管理",
+			"resourceAuth": "redpack:menu",
+			"icon": "&#xe65e;",
+			"href": "/pages/console/redEnvelope.html",
+			"spread": false,
+			"redEnvelope": true,
+			"groupName": "financeManagement",
+			"id":"redEnvelope"
+		},
+		{
+			"title": "系统账单",
+			"resourceAuth": "billingSystem:menu",
+			"icon": "&#xe62a;",
+			"href": "",
+			"spread": false,
+			"recharge": true,
+			"groupName": "financeManagement",
+			"children": [
+				{
+					"title": "账单统计",
+					"resourceAuth": "sysBill:menu",
+					"icon": "&#xe632;",
+					"href": "/pages/console/billCount.html",
+					"id":"billCount"
+				},
+				{
+					"title": "充值记录",
+					"resourceAuth": "sysRecharge:menu",
+					"icon": "&#xe632;",
+					"href": "/pages/console/appRecharge.html",
+					"id":"appRecharge"
+				},
+				{
+					"title": "提现记录",
+					"resourceAuth": "sysWithdraw:menu",
+					"icon": "&#xe632;",
+					"href": "/pages/console/raiseCash.html",
+					"id":"raiseCash"
+				},
+				{
+					"title": "转账记录",
+					"resourceAuth": "sysTransfer:menu",
+					"icon": "&#xe632;",
+					"href": "/pages/console/transfer.html",
+					"id":"transfer"
+				},
+				{
+					"title": "付款记录",
+					"resourceAuth": "sysPayment:menu",
+					"icon": "&#xe632;",
+					"href": "/pages/console/paymentCode.html",
+					"id":"paymentCode"
+				}
+			]
+		},
+		{
+			"title": "扫码手动充值",
+			"resourceAuth": "scanCode:menu",
+			"icon": "&#xe62a;",
+			"href": "",
+			"spread": false,
+			"recharge": true,
+			"groupName": "financeManagement",
+			"children": [
+				{
+					"title": "收款者管理",
+					"resourceAuth": "gathering:menu",
+					"icon": "&#xe632;",
+					"href": "/pages/console/manual_receiveAccount.html",
+					"id":"manual_receiveAccount"
+				},
+				{
+					"title": "充值申请管理",
+					"resourceAuth": "scanGathering:menu",
+					"icon": "&#xe632;",
+					"href": "/pages/console/manual_checkRecharge.html",
+					"id":"manual_checkRecharge"
+				},
+				{
+					"title": "提现申请管理",
+					"resourceAuth": "scanRecharge:menu",
+					"icon": "&#xe632;",
+					"href": "/pages/console/manual_checkWithdraw.html",
+					"id":"manual_checkWithdraw"
+				}
+			]
+		},
+		{
+			"title": "提现方式配置",
+			"resourceAuth": "withdrawal:menu",
+			"icon": "&#xe642;",
+			"href": "/pages/console/withdrawalConfig.html",
+			"spread": false,
+			"sensitiveWords": true,
+			"groupName": "config",
+			"id":"withdrawal_config"
+		},
+
+		{
+			"title": "直 播 间",
+			"resourceAuth": "liveRoom:menu",
+			"icon": "&#xe857;",
+			"href": "/pages/console/liveRoom.html",
+			"spread": false,
+			"groupName": "liveManagement",
+			"id":"liveRoom"
+		},
+		{
+			"title": "礼&nbsp&nbsp&nbsp&nbsp&nbsp物",
+			"resourceAuth": "gift:menu",
+			"icon": "&#xe600;",
+			"href": "/pages/console/gift.html",
+			"spread": false,
+			"groupName": "liveManagement",
+			"id":"gift"
+		},
+		{
+			"title": "主播收入小计",
+			"resourceAuth": "liveIncome:menu",
+			"icon": "&#xe65e;",
+			"href": "/pages/console/incomeTotal.html",
+			"spread": false,
+			"groupName": "liveManagement",
+			"id":"incomeTotal"
+		},
+		{
+			"title": "移动应用管理",
+			"resourceAuth": "appUse:menu",
+			"icon": "&#xe857;",
+			"href": "/pages/console/openAdmin.html",
+			"spread": false,
+			"groupName": "openManagement",
+			"id":"openAdmin"
+		},
+		{
+			"title": "网站应用管理",
+			"resourceAuth": "webUse:menu",
+			"icon": "&#xe857;",
+			"href": "/pages/console/openWebApp.html",
+			"spread": false,
+			"groupName": "openManagement",
+			"id":"openWebApp"
+		},
+		{
+			"title": "小游戏应用管理",
+			"resourceAuth": "miniGam:menu",
+			"icon": "&#xe857;",
+			"href": "/pages/console/openMiniGame.html",
+			"spread": false,
+			"groupName": "openManagement",
+			"id":"openMiniGame"
+		},
+		{
+			"title": "开发者管理",
+			"resourceAuth": "developer:menu",
+			"icon": "&#xe857;",
+			"href": "/pages/console/openDeveloper.html",
+			"spread": false,
+			"groupName": "openManagement",
+			"id":"openDeveloper"
+		},
+		{
+			"title": "审核日志",
+			"resourceAuth": "checkLog:menu",
+			"icon": "&#xe65e;",
+			"href": "/pages/console/openCheckLog.html",
+			"spread": false,
+			"groupName": "openManagement",
+			"id":"openCheckLog"
+		},
+		{
+			"title": "第三方登录",
+			"resourceAuth": "sdkLogin:menu",
+			"icon": "&#xe6b2;",
+			"href": "/pages/console/bindingSDK.html",
+			"spread": false,
+			"complaint": true,
+			"groupName": "accountManagement",
+			"id":"bindingSDK"
+		},
+		{
+			"title": "举报管理",
+			"resourceAuth": "report:menu",
+			"icon": "&#xe6b2;",
+			"href": "/pages/console/report.html",
+			"spread": false,
+			"complaint": true,
+			"groupName": "contentManagement",
+			"id":"report"
+		},
+		{
+			"title": "朋 友 圈",
+			"resourceAuth": "socialCircle:menu",
+			"icon": "&#xe6af;",
+			"href": "/pages/console/msg.html",
+			"spread": false,
+			"msgInfo": true,
+			"groupName": "contentManagement",
+			"id":"msg"
+		},
+		{
+			"title": "文件资源",
+			"languageName": "fileResource",
+			"icon": "&#xe705;",
+			"href": "/pages/console/resourceItem.html",
+			"spread": false,
+			"interfaceLogs": true,
+			"groupName": "fileManagement",
+			"id":"resourceItem"
+		},
+		{
+			"title": "音乐管理",
+			"resourceAuth": "music:menu",
+			"icon": "&#xe6fc;",
+			"href": "/pages/console/music.html",
+			"spread": false,
+			"music": true,
+			"groupName": "fileManagement",
+			"id":"music"
+		},
+		{
+			"title": "提示信息",
+			"resourceAuth": "hintMsg:menu",
+			"icon": "&#xe702;",
+			"href": "/pages/console/promptMessage.html",
+			"spread": false,
+			"tipsMsg": true,
+			"groupName": "messageManagement",
+			"id":"promptMessage"
+		},
+		{
+			"title": "敏感词管理",
+			"resourceAuth": "hintManage:menu",
+			"icon": "&#xe857;",
+			"href": "/pages/console/keyword.html",
+			"spread": false,
+			"groupName": "sensitiveWordManagement",
+			"id":"keyword"
+		},
+		{
+			"title": "敏感词拦截记录",
+			"resourceAuth": "hintIntercept:menu",
+			"icon": "&#xe857;",
+			"href": "/pages/console/keywordIntercept.html",
+			"spread": false,
+			"groupName": "sensitiveWordManagement",
+			"id":"keywordIntercept"
+		},
+		{
+			"title": "推送配置",
+			"resourceAuth": "message:menu",
+			"icon": "&#xe618;",
+			"href": "/pages/console/push_config.html",
+			"spread": false,
+			"groupName": "pushManagement",
+			"id":"push_config"
+		},
+		{
+			"title": "全员通知",
+			"resourceAuth": "sendMsg:menu",
+			"icon": "&#xe645;",
+			"href": "/pages/console/fullPush.html",
+			"spread": false,
+			"sensitiveWords": true,
+			"groupName": "pushManagement",
+			"id":"fullPush"
+		},
+		{
+			"title": "推送设备",
+			"languageName": "pushDevice",
+			"resourceAuth": "pushDevice:menu",
+			"icon": "&#xe645;",
+			"href": "/pages/console/pushDevice.html",
+			"spread": false,
+			"sensitiveWords": true,
+			"groupName": "pushManagement",
+			"id":"pushDevice"
+		},
+		{
+			"title": "推送记录",
+			"languageName": "pushDevice",
+			"resourceAuth": "pushDevice:menu",
+			"icon": "&#xe63c;",
+			"href": "/pages/console/pushContentList.html",
+			"spread": false,
+			"sensitiveWords": true,
+			"groupName": "pushManagement",
+			"id":"pushContentList"
+		},
+		{
+			"title": "接口日志",
+			"resourceAuth": "apilog:menu",
+			"icon": "&#xe60e;",
+			"href": "/pages/console/sysApiLog.html",
+			"spread": false,
+			"interfaceLogs": true,
+			"groupName": "contentManagement",
+			"id":"sysApiLog"
+		},
+		{
+			"title": "公众号审核",
+			"resourceAuth": "official:menu",
+			"icon": "&#xe678;",
+			"href": "/pages/console/officialList.html",
+			"spread": false,
+			"interfaceLogs": true,
+			"groupName": "contentManagement",
+			"id":"officialList"
+		},
+		{
+			"title": "公司管理",
+			"resourceAuth": "colleague:menu",
+			"icon": "&#xe613;",
+			"href": "/pages/console/companyMsg.html",
+			"spread": false,
+			"publicNum": true,
+			"groupName": "staffManagement",
+			"id":"companyMsg"
+		}
+	]
+}
+
+

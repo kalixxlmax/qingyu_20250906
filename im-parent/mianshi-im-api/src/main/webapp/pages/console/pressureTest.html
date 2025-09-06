@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>压力测试</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<body>
+<div class="layui-row">
+	<div id="redPage_div">
+		<div class="redPage_btn_div layui-row background_white title_menu_place">
+			<div class="layui-col-md3">
+				<div class="layui-form-item">
+					<div class="layui-inline">
+						<label class="layui-form-label">群组名称：</label>
+						<div class="layui-input-inline">
+							<input id="roomName" type="text" name="" class="layui-input" placeholder="请输入">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="layui-col-md3 characters_center">
+				<button class="layui-btn search_live motif_button_style">搜索</button>
+			</div>
+		</div>
+		<div id="roomList" class="layui-card layui-col-md12 module_interval">
+			<div class="layui-card-header layui_card_header_title">群组列表</div>
+			<div class="layui-card-body">
+				<table id="room_table" lay-filter="room_table"></table>
+			</div>
+		</div>
+	</div>
+	<div id="test_div" class="layui-col-md12 module_interval">
+		<div id="redEnvelope1" class="layui-card">
+			<div class="layui-card-header layui_card_header_title">压力测试</div>
+			<!--<div class="layui-card-body">
+				<table id="robot_table1" lay-filter="robot_table"></table>
+			</div>-->
+			<div class="layui-form" style="padding: 22px 22px;">
+				<!--<label>已选择的群组：</label>
+				<input type="text" class="layui-input checkBoxGroup" >-->
+				<input type="text" class="layui-input sendTotal" placeholder="默认每个群组中发送100条">
+				<label style="display:block;margin-top: 15px">请输入每个群组发送者总人数：</label>
+				<input type="text" class="layui-input sendPeopleNum" placeholder="默认每个群组最大发送人数为100">
+				<label style="display:block;margin-top: 15px">请输入每条消息间隔时间(秒)：</label>
+				<input type="text" class="layui-input timeInterval" placeholder="默认时间间隔为30毫秒">
+				<button class="layui-btn sendMsg default_button_style">发送</button>
+				<label style="display:block;margin-top: 15px">注：该压测工具用于测试当前服务器配置下消息发送的频率峰值，流程：模拟真实用户加群建立长连接，消息发送，选择的群组和发送人数越多请求耗时随之增加。</label>
+			</div>
+		</div>
+	</div>
+	<div id="result" class="layui-col-md12">
+		<div id="resultTest" class="layui-card module_interval">
+			<div class="layui-card-header">测试结果综合数据展示</div>
+			<div class="layui-form">
+				<label style="display:block;margin-top: 15px">测试的批次：</label>
+				<input type="text" class="layui-input timeStr" >
+				<label style="display:block;margin-top: 15px">发送总数：</label>
+				<input type="text" class="layui-input sendTotalNum" >
+				<label style="display:block;margin-top: 15px">发送总用时(毫秒)：</label>
+				<input type="text" class="layui-input sendTotalNumTime" >
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="./js/pressureTeset.js"></script>
+</body>
+</html>

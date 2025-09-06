@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>销毁聊天记录</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet" media="all">
+<link href="/pages/console/css/fileUpload.css" rel="stylesheet" media="all">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet" media="all">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<div class="layui-row">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <div class="layui-form-item" style="padding: 35px;">
+                <fieldset class="layui-elem-field">
+                    <legend>注</legend>
+                    <div class="layui-field-box" style="color: red;">
+                        一键销毁系统所有聊天记录，销毁聊天记录包括单聊记录，群聊记录，以及系统聊天记录。<br/>
+                        请注意，销毁后的聊天记录将不可恢复！
+                    </div>
+                </fieldset>
+                <button class="layui-btn layui-btn-lg destroyAllSystemMessage motif_button_style">销毁系统聊天记录</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 校验 -->
+<form id="showMsgInfo" style="display: none;">
+    <div class="layui-form-item">
+        <p class="layui-form-label" id="msgTitle" style="width: 300px;text-align: left"></p><br/>
+        <div class="layui-input-block" id="msgContent">
+            <div class="layui-form-item">
+                <div class="layui-input-inline">
+                    <input type="password" id="sub_password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <p style="color: red;">请输入当前管理员登录密码</p>
+        </div>
+    </div>
+</form>
+
+</body>
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/jquery.form.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script>
+    $(function () {
+        $(".destroyAllSystemMessage").click(function () {
+            layer.open({
+                type: 1,
+                title: "校验信息",
+                offset: ['50px'],
+                btn: ['确定', '取消'],
+                area: ['400px', '210px'],
+                shadeClose: true,
+                shade: [0.5, '#393D49'],
+                content: $("#showMsgInfo"),
+                yes: function (index, layero) {
+                    if (Common.isNil($("#sub_password").val())) {
+                        layer.msg("请输入当前管理员登录密码！", {icon: 2, time: 2000});
+                        return;
+                    }
+                    Common.invoke({
+                        url: request('/console/destroyAllSystemMessage'),
+                        data: {
+                            password: $.md5($("#sub_password").val())
+                        },
+                        success: function (result) {
+                            if (result.resultCode == 1) {
+                                layer.msg("销毁成功！", {icon: 1, time: 2000});
+                            }
+                        }
+                    })
+                    layui.layer.close(index);
+                }
+            });
+        })
+
+		//调用父级页面的Js函数
+		window.parent.getJointVisitPath();
+    })
+</script>
+</html>

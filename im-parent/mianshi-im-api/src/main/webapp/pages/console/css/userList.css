@@ -1,0 +1,49 @@
+.user_table .user_table_open .groupButton:hover ,.layui-btn-container .layui-btn:hover{
+    opacity: .8;
+    filter: alpha(opacity=80);
+    font-size: 14px;
+    color: black;
+    cursor:pointer;
+}
+.operationClass {
+    position: absolute;
+    right: 360px;
+}
+
+.layui-table thead tr td {
+    background: #FAFAFA;
+    border-radius: 5px 5px 0px 0px;
+    color: #333333;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#myFriends .layui-form ,.myBill .layui-form{
+    background: #FFFFFF;
+    padding: 0;
+}
+
+.user_table_open{
+    padding: 24px 40px 0px 40px;
+    z-index: 100;
+}
+.user_table .layui-card-body {
+    margin-top: -13px;
+}
+#operation{
+    margin-left: 78%;
+    margin-top: 11px;
+}
+
+#friendsChatRecord .layui-form{
+    padding: 0px;
+}
+
+
+.layui-layer .layui-layer-ico1{
+    color: #0c5460;
+}
+
+.loadingImg{
+    display: none;
+}

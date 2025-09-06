@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>设置公众号收费</title>
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="./css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+<div class="layui-row">
+    <div class="layui-col-md12 chargeDiv_title">
+        <h1 class="chargeDiv_title_desc" data-locale="set_charge">设置公众号收费</h1>
+    </div>
+
+    <div class="layui-col-md10 chargeDiv_title_content">
+        <form class="layui-form">
+            <div class="layui-form-item" style="float: right;margin: 45px 45px 0px 0px;">
+                <label class="layui-form-label"></label>
+                <div class="layui-input-block">
+                    <input type="checkbox" checked  id="switchCharge" lay-skin="switch" lay-filter="switchCharge" lay-text="ON|OFF">
+                </div>
+            </div>
+        </form>
+        <div style="margin-top: 110px;">
+            <div class="layui-container">
+                <img src="" style="margin-left: 48%;width: 110px;" id="avatar_1">
+            </div>
+
+            <form class="layui-form chargeDiv_form">
+                <input type="text" style="display: none;" id="switch_charge">
+                <label class="" data-locale="account_name">公众号名称 ：</label>
+                <input type="text" name="title" placeholder="" autocomplete="off" class="layui-input line_charge_top line_charge_bottom charge_userName" readonly>
+
+                <label class="" data-locale="set_attention_paid">设置关注付费（元） ：</label>
+                <div class="layui-form-item">
+                    <input type="text" name="title" required  lay-verify="required" placeholder="请输入设置金额 !"  autocomplete="off" class="layui-input line_charge_top payAddFriend" data-locale="set_money" oninput="reward.input_num(this)">
+                </div>
+                <label class="prompt_charge" style="color: red;margin-left: 31%;font-size: 10px;">注意: 设置关注付费金额不能超过10元。</label>
+                <a class="layui-btn chargeDiv_form_sava" id="chargeDiv_form_sava" onclick="reward.charge_From_Submit()" data-locale="menu_submit">提交</a>
+                <p class="chargeDiv_form_prompt" data-locale="poundage_prompt">(平台将收取10%手续费)</p>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <script type="text/html" id="fansTopBar">
+            <input type="text" name="" class="layui-input search_fans_keyword" style="width: 15%;display: inline" placeholder="粉丝昵称" data-locale="fans_nickName" >
+            <a class="layui-btn layui-btn-sm"  lay-event="search_fans" data-locale="menu_search">搜索</a>
+    </script>
+
+    <script type="text/html" id="fansOptionBar">
+            <a class="layui-btn layui-btn-danger layui-btn-sm"  lay-event="del_fans" data-locale="btn_delete">删除</a>
+            <a class="layui-btn layui-btn-sm"  lay-event="send_msg" data-locale="send_message">发消息</a>
+    </script>
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="./common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+    <script type="text/javascript" src="./js/mp_httpApi.js"></script>
+
+     <script type="text/javascript">
+         var payAttentionMax;
+         var officialPacketRedPacketMax;
+
+         layui.use(['jquery','form','layer','laydate'],function(){
+             var form = layui.form,
+                 layer = parent.layer === undefined ? layui.layer : top.layer,
+                 $ = layui.jquery,
+                 laydate = layui.laydate;
+
+            //监听指定开关
+            form.on('switch(switchCharge)', function(data){
+                var flag = data.elem.checked;
+
+                var content = flag ? mpLanguage.getLanguageName("isOpen_charge") : mpLanguage.getLanguageName('charge_prompt') ;
+                layer.confirm(content, {
+                    btn: [mpLanguage.getLanguageName('select_yes'),mpLanguage.getLanguageName('select_no')] //按钮
+                }, function(){
+                    if (flag){
+                        //开启
+                        $("#switch_charge").val("0");
+                        $(".payAddFriend")[0].classList.remove("layui-disabled");
+                        $(".chargeDiv_form_sava")[0].classList.remove("layui-btn-disabled");
+                        $(".chargeDiv_form_sava").attr("onclick","UI.charge_From_Submit()");
+                        $(".payAddFriend").attr("disabled",false);
+                        reward.charge_From_Submit();
+                    }else{
+                        //关闭
+                        $("#switch_charge").val("-1");
+                        $(".payAddFriend")[0].classList.add("layui-disabled");
+                        $(".chargeDiv_form_sava")[0].classList.add("layui-btn-disabled");
+                        $(".chargeDiv_form_sava").attr("onclick","");
+                        $(".payAddFriend").val("");
+                        $(".payAddFriend").attr("disabled",true);
+                        reward.charge_From_Submit();
+                    }
+                    layui.form.render();
+                    layer.close(layer.index);
+                }, function(){
+                    data.elem.checked = !flag;
+                    form.render();
+                });
+            });
+
+       });
+
+         $(function () {
+             $("#avatar_1").attr('src', mpCommon.getAvatarUrl(getLoginData().userId));
+             $(".prompt_charge").hide();
+             reward.init_charge();
+         })
+
+      var reward = {
+          //公众号收费表单提交
+          charge_From_Submit:function () {
+             var payAddFriend;
+             var data_1 = $("#switch_charge").val();
+             var data_2 = $(".payAddFriend").val();
+
+             if (data_1 == -1){
+                 payAddFriend = "-1";
+             }else if (mpCommon.isNil(data_2)){
+                 payAddFriend = "0";
+             }else{
+                 payAddFriend = data_2;
+             }
+             if (parseInt(payAddFriend) > payAttentionMax){
+                 $(".prompt_charge").empty();
+                 $(".prompt_charge").append("注意: 设置关注付费金额不能超过"+ payAttentionMax +"元。");
+                 $(".prompt_charge").show();
+                 return;
+             }else{
+                 $(".prompt_charge").hide();
+             }
+
+             payAddFriend = mpCommon.regYuanToFen(mpCommon.toDecimal2(payAddFriend),100);
+             mpCommon.invoke({
+                 url : '/mp/set/payAddFriend',
+                 data : {
+                     payAddFriend:payAddFriend
+                 },
+                 success : function(result) {
+                     if (payAddFriend != -1){
+                         $(".payAddFriend").val(mpCommon.getMoneyCentConvertYuan(payAddFriend));
+                         layer.msg(mpLanguage.getLanguageName('submit_success'), {icon: 1});
+                     }
+                 },
+                 error : function(result) {
+                     layer.msg(mpLanguage.getLanguageName('operation_failed'), {icon: 5});
+                 }
+             });
+         }
+
+          ,init_charge:function () {
+              var data = eval('(' + localStorage.getItem('loginData') + ')');
+              $(".charge_userName").val(data.nickname);
+
+              mpCommon.invoke({
+                  url : '/mp/find/payAddFriend',
+                  data : {},
+                  success : function(result) {
+
+                      if (result.data < 0){
+                          //关闭
+                          $("#switchCharge").removeAttr("checked");
+                          $('#switchCharge').attr("disabled");
+                          $("#switch_charge").val("-1");
+                          $(".payAddFriend")[0].classList.add("layui-disabled");
+                          $(".chargeDiv_form_sava")[0].classList.add("layui-btn-disabled");
+                          $(".chargeDiv_form_sava").attr("onclick","");
+                          $(".payAddFriend").val("");
+                          $(".payAddFriend").attr("disabled",true);
+                          layui.form.render();
+                      }else{
+                          $("#switchCharge").attr("checked");
+                          $('#switchCharge').removeAttr("disabled");
+                          $("#switch_charge").val("0");
+                          $(".payAddFriend")[0].classList.remove("layui-disabled");
+                          $(".chargeDiv_form_sava")[0].classList.remove("layui-btn-disabled");
+                          $(".chargeDiv_form_sava").attr("onclick","reward.charge_From_Submit()");
+                          $(".payAddFriend").attr("disabled",false);
+                          $(".payAddFriend").val(mpCommon.getMoneyCentConvertYuan(result.data));
+                          layui.form.render();
+                      }
+                  },
+                  error : function(result) {
+                      layui.layer.msg(mpLanguage.getLanguageName('operation_failed'));
+                  }
+              });
+              //获取
+              mpCommon.invoke({
+                  url : '/mp/find/pay/config',
+                  data : {},
+                  success : function(result) {
+                      if (result.resultCode == 1){
+                          officialPacketRedPacketMax = result.data.officialPacketRedPacketMax;
+                          payAttentionMax = result.data.payAttentionMax;
+                      }
+                  },
+                  error : function(result) {
+                      layui.layer.msg(mpLanguage.getLanguageName('operation_failed'));
+                  }
+              });
+          }
+
+          // 格式化限制数字文本框输入，只能数字或者两位小数
+          ,input_num:function (obj){
+              // 清除"数字"和"."以外的字符
+              obj.value = obj.value.replace(/[^\d.]/g,"");
+              // 只能输入两个小数
+              obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/,'$1$2.$3');
+          }
+      }
+     </script>
+</body>
+</html>

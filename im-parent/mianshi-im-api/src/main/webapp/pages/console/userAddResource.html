@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加权限</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<body>
+<div id="userList" class="background_white">
+	<div class="layui-card  module_interval">
+		<div class="layui-card-header layui_card_header_title">权限列表</div>
+		<div class="layui-card-body">
+			<div class="page-wrapper">
+				<table id="demoTreeTable1"></table>
+				<div class="layui-col-md12 characters_center background_white layui_card_header_buttom">
+					<a class="layui-btn motif_button_style" id="user_resource_from_add" style="margin-bottom: 10px;">确认授权</a>
+					<a class="layui-btn table_default_btn table_default_btn_border back" style="margin-bottom: 10px;">返回</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/admin.js"></script>
+
+	<script>
+		var resourceData = {}
+		var userResource = {}
+		$(function () {
+			//调用父级页面的Js函数
+			window.parent.getJointVisitPath();
+			//获取资源信息
+			$.ajax({
+				type:"POST",
+				url:request("/console/querySelectAllResource"),
+				data:{},
+				dataType:'json',
+				async:false,
+				success:function(result){
+					resourceData = result.data;
+				}
+			})
+
+			//该用户的权限
+			$.ajax({
+				type:"POST",
+				url:request("/console/getAllResource"),
+				data:{userId:localStorage.getItem("user_add_resource_userId")},
+				/*data:{userId:'10000010'},*/
+				dataType:'json',
+				async:false,
+				success:function(result){
+					userResource = result.data;
+				}
+			})
+
+			//返回按钮
+			$(".back").click(function () {
+				window.location.href= localStorage.getItem("start_page");
+			})
+		})
+
+		layui.config({
+			base: '/pages/console/'
+		}).extend({
+			treeTable: 'treeTable/treeTable'
+		}).use(['layer', 'util', 'treeTable'], function () {
+			var $ = layui.jquery;
+			var layer = layui.layer;
+			var util = layui.util;
+			var treeTable = layui.treeTable;
+
+			// 渲染表格
+			var insTb = treeTable.render({
+				elem: '#demoTreeTable1',
+				data: resourceData,
+				tree: {
+					iconIndex: 2
+				},
+				cols: [
+					{type: 'numbers'},
+					{type: 'checkbox'},
+					{field: 'resourceName', title: '资源名称', width: '12%'},
+					{field: 'resourceUrl', title: '接口路径', width: '12%'},
+					{field: 'resourceAuth', title: '权限', width: '13%'},
+					{field: 'type', title: '类型', width: '12%',templet : function (d) {
+							if(d.type == 0)
+								return "按钮";
+							else if(d.type == 1)
+								return "菜单";
+						}},
+					{field: 'status', title: '状态', width: '12%',templet : function (d) {
+							if(d.status == -1)
+								return "禁用";
+							else if(d.status == 1)
+								return "正常";
+						}}
+				],
+				style: 'margin-top:0;'
+			});
+
+			//设置
+			insTb.setChecked(userResource);
+
+			//用户添加权限表单提交
+			$("#user_resource_from_add").click(function () {
+				//角色权限
+				var sele =  insTb.checkStatus();
+				var roleAuth = "";
+				for(var i = 0; i < sele.length; i++) {
+					if (!sele[i].isIndeterminate) {
+						if (roleAuth === "") {
+							roleAuth = roleAuth + sele[i].id;
+						} else {
+							roleAuth = roleAuth + "," + sele[i].id;
+						}
+					}
+				};
+
+				$.ajax({
+					type:"POST",
+					url:request("/console/updateUserResource"),
+					data:{
+						updateUserId:localStorage.getItem("user_add_resource_userId"),
+						authority: roleAuth
+					},
+					dataType:'json',
+					async:false,
+					success:function(result){
+						if(result.resultCode==1){
+							layer.msg("授权成功！",{"icon":1});
+							setTimeout(function(){
+								window.location.href = localStorage.getItem("start_page");
+							}, 1500);
+						}else{
+							layer.msg(result.resultMsg,{"icon":5});
+						}
+					}
+				})
+			})
+		});
+</script>
+</body>
+</html>

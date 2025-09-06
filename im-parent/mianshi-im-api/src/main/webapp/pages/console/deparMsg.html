@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>部门</title>
+    <meta charset="utf-8"/>
+    <link href="/pages/common/layui/css/layui.css" rel="stylesheet" media="all"/>
+    <link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+    <link href="/pages/console/css/deparMsg.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="background_white layui-row table_div">
+    <div class="searchBranch characters_center">
+        <button class="layui-btn layui-btn motif_button_style" id="totalDep">创建部门</button>
+    </div>
+    <div class="searchBranch characters_center">
+        <button class="layui-btn layui-btn motif_button_style" onclick="info.employeeInput()">员工导入</button>
+    </div>
+    <div class="searchBranch characters_center">
+        <button class="layui-btn layui-btn motif_button_style" onclick="info.departmentInput()">部门导入</button>
+    </div>
+    <table id="demoTreeTable1"></table>
+    <div class="characters_center padding_upDown_space">
+        <a href="javascript:history.go(-1)" class="layui-btn default_button_style"
+           style="margin-left: 13px">返回</a>
+    </div>
+</div>
+
+<!--修改部门-->
+<form class="layui-form" id="from_bm_update" style="display: none;">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">新部门名称：</label>
+        <div class="layui-input-block">
+            <input type="text" id="newDepartName" placeholder="请输入新部门名称" lay-verify="required"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">移动自部门：</label>
+        <div class="layui-input-block">
+            <select id="moveDep" lay-verify="required">
+                <option value="0">不移动</option>
+            </select>
+        </div>
+    </div>
+</form>
+
+
+<!--添加部门表单-->
+<form class="layui-form" id="from_bm_add">
+    <label class="layui-form-label">部门名称：</label>
+    <div class="layui-input-block">
+        <input type="text" id="departName" placeholder="请输入部门名称" lay-verify="required"
+               autocomplete="off" class="layui-input">
+    </div>
+</form>
+
+
+<!--添加员工-->
+<form class="layui-form" id="from_bm_addEmp">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">手机号码</label>
+        <div class="layui-input-block">
+            <input type="text" id="bm-userId" placeholder="请输入员工手机号码" lay-verify="required"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工角色</label>
+        <div class="layui-input-block">
+            <select id="bm_role" lay-verify="required">
+                <option value="0">普通员工</option>
+                <option value="1">部门管理者</option>
+                <option value="2">公司管理员</option>
+                <!--<option value="3">公司创建者</option>-->
+            </select>
+        </div>
+    </div>
+</form>
+
+<!--修改员工信息-->
+<form class="layui-form" id="from_yg_update">
+
+    <input type="hidden" id="depId">
+    <input type="hidden" id="chatNum">
+    <input type="hidden" id="companyId">
+    <input type="hidden" id="isPause">
+    <input type="hidden" id="userId">
+    <input type="hidden" id="operationType">
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工昵称：</label>
+        <div class="layui-input-block">
+            <input type="text" id="nickname" lay-verify="required" readonly="readonly" autocomplete="off"
+                   class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">修改部门：</label>
+        <div class="layui-input-block">
+            <select name="dep" id="dep" lay-verify="required">
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">员工角色：</label>
+        <div class="layui-input-block">
+            <select id="role" lay-verify="required">
+                <option value="0">普通员工</option>
+                <option value="1">部门管理者</option>
+                <option value="2">公司管理员</option>
+                <!--<option value="3">公司创建者</option>-->
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">头衔：</label>
+        <div class="layui-input-block">
+            <input type="text" id="position" lay-verify="required" autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否客服：</label>
+        <div class="layui-input-block">
+            <select id="isCustomer" lay-verify="required">
+                <option value="1">是</option>
+                <option value="0">否</option>
+            </select>
+        </div>
+    </div>
+</form>
+
+<!--部门导入-->
+<form class="layui-form" id="employeeInput">
+    <div class="layui-form-item characters_center">
+        <a href="" class="layui-btn motif_button_style employeeUploadUrl">下载xlsx模板</a>
+        <button type="button" class="layui-btn motif_button_style" id="employeeUpload"><i class="layui-icon"></i>上传文件</button>
+    </div>
+</form>
+
+<!--员工导入-->
+<form class="layui-form" id="departmentInput">
+    <div class="layui-form-item characters_center">
+        <a href="" class="layui-btn layui-btn motif_button_style departmentUploadUrl">下载xlsx模板</a>
+        <button type="button" class="layui-btn motif_button_style" id="departmentUpload"><i class="layui-icon"></i>上传文件</button>
+        <!-- <input type="file" name="file" id="test20">-->
+    </div>
+</form>
+
+
+<!--工具列-->
+<script type="text/html" id="operationBar">
+    {{#  if(d.isMenu == 0){ }}
+        <a class="layui-btn layui-btn-xs table_default_btn" onclick="info.updateDep('{{d.id}}','{{d.name}}')">修改</a>
+        <a class="layui-btn layui-btn-xs table_default_btn" onclick="info.deleteDep('{{d.id}}')">删除</a>
+        <a class="layui-btn layui-btn-xs table_default_btn" onclick="info.addDep('{{d.id}}')">创建部门</a>
+        <a class="layui-btn layui-btn-xs table_default_btn" onclick="info.addEmp('{{d.id}}')">添加员工</a>
+    {{#  }else{  }}
+        <a class="layui-btn layui-btn-xs table_default_btn" onclick="info.updateEmp('{{d.id}}')">修改</a>
+        <a class="layui-btn layui-btn-xs table_default_btn" onclick="info.delEmp('{{d.userId}}','{{d.parentId}}')">删除</a>
+    {{#  } }}
+</script>
+<script type="texr/html" id="huojianjun">
+</script>
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/deparMsg.js"></script>
+</body>
+</html>

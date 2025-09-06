@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>开放平台移动应用管理</title>
+    <link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+</head>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<!--搜索操作-->
+<div class="layui-row background_white title_menu_place searchOpenWebApp">
+    <div class="layui-form searchModule">
+        <div class="searchBranch">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">应用名称：</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input openApp_keyword" name="" placeholder="请输入"
+                               type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch characters_center">
+            <button class="layui-btn search_openWebApp motif_button_style">搜索</button>
+        </div>
+    </div>
+</div>
+
+<!-- 应用列表 -->
+<div class="layui-card module_interval" id="openWebAppList">
+    <div class="layui-card-header user_table_open table_topTitle_space">
+        <button class="layui-btn applicationList webUse-applicationList motif_button_style" onclick="WebApp.applicationList()">申请列表</button>
+    </div>
+    <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+        应用列表
+    </div>
+    <div class="layui-card-body layui_card_body_top">
+        <table id="openWebApp_table" lay-filter="openWebApp_table"></table>
+    </div>
+</div>
+<!-- 应用申请列表 -->
+<div class="layui-card module_interval" id="openApp_ApplicationList" style="display: none;">
+    <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+		应用申请列表
+	</div>
+    <div class="layui-card-body table_padding">
+        <table class="layui-table">
+            <thead>
+            <tr>
+                <td>申请用户Id</td>
+                <td>应用名称</td>
+                <td>应用简介</td>
+                <td>应用官网</td>
+                <td>申请时间</td>
+                <td>操作</td>
+            </tr>
+            </thead>
+            <tbody id="openWebApp_Applicationtbody">
+
+            </tbody>
+        </table>
+        <div class="layui-box layui-laypage layui-laypage-default" id="laypage">
+
+        </div>
+        <div class="characters_center padding_upDown_space">
+            <button class="layui-btn  btn_openApp default_button_style" onclick="WebApp.back()" style="display: none;">返回</button>
+        </div>
+    </div>
+</div>
+<!-- app详情 -->
+<div class="layui-card module_interval" id="appDetail" style="display: none;">
+    <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+		APP详情
+	</div>
+    <div class="layui-card-body layui-form">
+        <table class="layui-table mag0">
+            <colgroup>
+                <col width="25%">
+                <col width="45%">
+                <col>
+            </colgroup>
+            <thead>
+            <tr>
+                <th>参数说明</th>
+                <th>参数值</th>
+                <!-- <th>变量名</th> -->
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr style="display: none;">
+                <td></td>
+                <td id="app_Id"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>状态</td>
+                <td id="status" style="color: red"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>申请人Id</td>
+                <td id="accountId"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>应用名称</td>
+                <td id="appName"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>应用简介</td>
+                <td id="appIntroduction"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>应用官网</td>
+                <td id="appUrl"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>网站信息扫描件</td>
+                <td id="webInfoImg"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>应用小图片</td>
+                <td id="appsmallImg"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>应用大图片</td>
+                <td id="appImg"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>appId</td>
+                <td id="appId"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>appSecret</td>
+                <td id="appSecret"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>授权回调域名</td>
+                <td id="callbackUrl"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>分享权限</td>
+                <td id="isAuthShare"></td>
+                <td id="shareOperate"></td>
+            </tr>
+            <tr>
+                <td>登陆权限</td>
+                <td id="isAuthLogin"></td>
+                <td id="loginOperate"></td>
+            </tr>
+            <tr>
+                <td>支付权限</td>
+                <td id="isAuthPay"></td>
+                <td id="payOperate"></td>
+            </tr>
+            <tr>
+                <td>支付回调域名</td>
+                <td id="payCallBackUrl"></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>群助手权限</td>
+                <td id="isGroupHelper"></td>
+                <td id="HelperOperate"></td>
+            </tr>
+            <tr>
+                <td>创建时间</td>
+                <td id="createTime"></td>
+                <td></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="magt0 layui-center">
+        <div class="padding_upDown_space">
+            <button class="layui-btn motif_button_style" id="approvedAPP" onclick="WebApp.approvedAPP(1)">
+                通过审核
+            </button>
+            <button class="layui-btn default_button_style" id="reasonFailure" onclick="WebApp.approvedAPP(2)">
+                审核失败
+            </button>
+            <button class="layui-btn default_button_style" id="disable" onclick="WebApp.approvedAPP(-1)"
+                    style="display: none;">禁用/下架
+            </button>
+            <button class="layui-btn default_button_style" id="undisable" onclick="WebApp.approvedAPP(1)"
+                    style="display: none;">解禁
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!--操作-->
+<script id="openWebAppListBar" type="text/html">
+    <!-- <a class="layui-btn layui-btn-xs chatRecord webUse-chatRecord" lay-event="chatRecord">聊天记录</a>
+     <a class="layui-btn layui-btn-primary layui-btn-xs member webUse-member" lay-event="member">成员管理</a>
+     <a class="layui-btn layui-btn-primary layui-btn-xs randUser webUse-randUser" lay-event="randUser">添加随机用户</a>
+     <a class="layui-btn layui-btn-primary layui-btn-xs modifyConf webUse-modifyConf" lay-event="modifyConf">修改配置</a>
+     <a class="layui-btn layui-btn-primary  layui-btn-xs msgCount webUse-msgCount" lay-event="msgCount">消息统计</a>-->
+    <a class="layui-btn table_default_btn layui-btn-xs detail webUse-detail" lay-event="detail">详情</a>
+    <a class="layui-btn table_default_btn layui-btn-xs del webUse-delete" lay-event="del">删除</a>
+</script>
+
+<!--隐藏框-->
+<input id="pageCount" name="" style="display: none" type="">
+<input id="openWebApp_limlt" type="hidden" value="15">
+
+<script src="/pages/common/jquery/jquery.min.js" type="text/javascript"></script>
+<script src="/pages/console/assets/xss-filters.1.2.7.min.js" type="text/javascript"></script>
+<script src="/pages/common/layui/layui.all.js" type="text/javascript"></script>
+<script src="/pages/assets/js/jquery.md5.js" type="text/javascript"></script>
+<script src="./js/common.js" type="text/javascript"></script>
+<script src="./js/console_ui.js" type="text/javascript"></script>
+<script src="/pages/console/js/authorityManagement.js" type="text/javascript"></script>
+<script src="/pages/console/js/openWebApp.js" type="text/javascript"></script>
+</body>
+</html>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>即时通讯公众号</title>
+    <link href="./common/layui/css/layui.css" rel="stylesheet" media="all"/>
+    <link href="./css/register.css" rel="stylesheet" media="all">
+    <link rel="icon" href="./images/favicon.ico">
+
+    <style>
+        .layui-nav .layui-this:after,.layui-nav-bar,.layui-nav-tree .layui-nav-itemed:after {
+            background-color:#fff;
+        }
+        .photo_div{
+           padding-top: 9px;
+        }
+        .file_span_img{
+            margin-right: 40px;
+        }
+        .photo_div{
+            display: block;
+            position: relative;
+            margin-left: 4px;
+            padding-right: 175px;
+            line-height: 1.6;
+            vertical-align: middle;
+            padding-top: 1px;
+        }
+        .photo_p{
+            margin-top: 5px;
+            padding-bottom: 6px;
+            color: #9e9f9f
+        }
+        .file_span{
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+            line-height: 1.6;
+        }
+        .file_ul{
+            position: absolute;
+            top: 100%;
+            left: 0;
+            white-space: nowrap;
+            background-color: #fff;
+            border: 1px solid #e6e6e6;
+        }
+        .file_div{
+            position: absolute;
+            top: 0px; left: 0px;
+            width: 106px;
+            height: 27px;
+            overflow: hidden;
+            bottom: auto;
+            right: auto;
+        }
+        .file_label{
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            cursor: pointer;
+            background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+        }
+    </style>
+</head>
+<body>
+    <!--<div id="chat-title">
+        <div style="display:inline-block;">
+            <img src="./images/favicon.ico" class="chat-img">
+            <h2 id="chat-title-context">公众号注册</h2>
+        </div>
+    </div>-->
+    <ul class="layui-nav">
+        <li class="layui-nav-item" style="margin-left: 45%">
+            <a href="" style="color: black;font-size: 20px"><img src="./images/favicon.ico" class="layui-nav-img">公众号注册</a>
+        </li>
+    </ul>
+    <div class="layui-container" id="container-context">
+        <div class="layui-row">
+            <div class="layui-col-md12">
+                <div class="chat-desktop">
+                    基本注册信息
+                </div>
+
+                <!--表单-->
+                <form class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">手机号码</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="telephone" required  lay-verify="required" id="telephone" placeholder="请输入手机号" maxlength="11" autocomplete="off" class="layui-input">
+                        </div>
+                        <div  style="color: red;padding-top: 8px;"></div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">验证码</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="randcode" id="randcode" required lay-verify="required" placeholder="请输入验证码" autocomplete="off" class="layui-input">
+                        </div>
+                        <button class="layui-btn layui-btn-radius layui-btn-primary chat-code code" id="sendCode">获取验证码</button>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码</label>
+                        <div class="layui-input-inline">
+                            <input type="password" name="password" required lay-verify="required" id="password" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">确认密码</label>
+                        <div class="layui-input-inline">
+                            <input type="password" name="againPassword" required lay-verify="required"  id="againPassword" placeholder="请输入确认密码" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <!--分割-->
+                    <div class="chat-space">
+                    </div>
+
+                    <div class="chat-desktop">
+                        企业基本信息
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">企业名称</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="companyName" required id="companyName"  lay-verify="required" placeholder="请输入企业名称" autocomplete="off" class="layui-input">
+                            <div class="layui-form-mid layui-word-aux"  style="margin-left: 2px">需严格按照营业执照填写</div>
+                        </div>
+
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">营业执照注册号</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="companyBusinessLicense" id="companyBusinessLicense" required  lay-verify="required" placeholder="请输入营业执照注册号   " autocomplete="off" class="layui-input">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux" style="margin-left: 150px">请输入15位营业执照注册号或18位的统一社会信用代码</div>
+                    </div>
+
+                    <div style="content: '\200B';display: block;clear: both;padding-bottom: 15px;word-break: normal;padding-left: 76px;">
+                        <label style="width: 4em;margin-top: 7px;float: left;margin-right: 1em;font-size: 14px;">工商执照</label>
+                        <div style="clear: both;height: 0 !important;display: block;line-height: 0;padding-top: 2px;display: table-cell;vertical-align: top;float: none;width: auto;">
+                            <div style="width: 510px;margin-bottom: 40px;">
+                                <div class="photo_div">
+                                    <p class="photo_p">请上传公司工商执照图片</p>
+                                    <span class="file_span">
+									<a  href="javascript:;" class="layui-btn">选择文件</a>
+									<ul class="file_ul"></ul>
+									<div class="file_div">
+										<label onclick="UploadInfo.selectSmallFile()" class="file_label"></label>
+									</div>
+								</span>
+                                    <img id="uploadSmall_url" src="" style="width: 35px">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--选择城市-->
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">企业地区</label>
+                        <div class="layui-input-inline layui-form"  style="width: 20%" >
+                            <select name="country" id="country" lay-filter="country">
+                                <option value="1">请选择国家</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline layui-form" style="width: 20%">
+                            <select name="province" id="province" lay-filter="province">
+                                <option value="">请选择省份</option>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline layui-form" style="width: 20%">
+                            <select name="city" id="city" lay-filter="city">
+                                <option value="">请选择城市</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">详细地址</label>
+                        <div class="layui-input-block">
+                            <textarea name="desc" id="desc" placeholder="请输入详细地址" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">企业类型</label>
+                        <div class="layui-input-block">
+                            <input type="radio" class="companyType" name="companyType" value="1" title="企业">
+                            <input type="radio" class="companyType" name="companyType" value="0" title="个体工商户" checked>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">管理员姓名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="adminName" required id="adminName"  lay-verify="required" placeholder="请输入管理员姓名" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">管理员身份证号码</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="adminID" required id="adminID" lay-verify="required" placeholder="请输入管理员身份证号码" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">管理员手机号码</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="adminTelephone" required id="adminTelephone" maxlength="11" lay-verify="required" placeholder="请输入管理员手机号码" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="formDemo" type="button" >立即注册</button>
+                            <button type="" class="layui-btn layui-btn-primary">返回</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <form id="uploadSmallFileFrom" name="uploadSmallFileFrom" action="" method="post" enctype="multipart/form-data">
+            <input id="photoSmallUrl" type="hidden" name="photoSmallUrl">
+            <input id="photoSmallUpload" lay-filter="photoSmallUpload" onchange="UploadInfo.upload()" name="myfile" type="file" style="display: none;" accept="image/bmp,image/png,image/jpeg,image/jpg,image/gif">
+        </form>
+
+    <script type="text/javascript" src="./common/jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="./common/jquery/jquery.md5.js"></script>
+    <script type="text/javascript" src="./common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="./js/config.js"></script>
+    <script type="text/javascript" src="./js/addr.js"></script>
+    <script type="text/javascript" src="./js/mp_register.js"></script>
+    <script type="text/javasript" src="./common/jquery/jquery.md5.js"></script>
+
+        <!-- 文件上传 -->
+        <script type="text/javascript" src="./js/jquery.form.js"></script></div>
+</body>
+</html>

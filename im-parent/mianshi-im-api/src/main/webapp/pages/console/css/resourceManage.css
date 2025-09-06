@@ -1,0 +1,8 @@
+#add_resource, #update_resource{
+    display: none;
+    padding-top: 24px;
+}
+
+#update_resource .layui-form-label, #add_resource .layui-form-label{
+    padding: 9px 0px;
+}

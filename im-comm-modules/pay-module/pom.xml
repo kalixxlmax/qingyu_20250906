@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>im-comm-modules</artifactId>
+        <groupId>com.basic.im.modules</groupId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <packaging>jar</packaging>
+    <version>${im-module.vserion}</version>
+    <description>yl 支付核心包</description>
+    <artifactId>pay-module</artifactId>
+
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.basic.im.modules</groupId>
+            <artifactId>comm-maven-pom</artifactId>
+            <version>${im-module.vserion}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alipay.sdk</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>3.4.49.ALL</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpcore -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>${httpcore.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>${commons-httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.basic.im.modules</groupId>
+            <artifactId>user-core</artifactId>
+            <version>${im-module.vserion}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>${tomcat.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom2</artifactId>
+            <version>${jdom2.version}</version>
+            <scope>compile</scope>
+        </dependency>
+         <dependency>
+             <groupId>com.basic.im.modules</groupId>
+             <artifactId>open-module</artifactId>
+             <version>${im-module.vserion}</version>
+             <exclusions>
+                  <exclusion>
+                      <groupId>im-comm-modules</groupId>
+                      <artifactId>room-module</artifactId>
+                  </exclusion>
+             </exclusions>
+         </dependency>
+
+        <dependency>
+            <groupId>com.basic.im.modules</groupId>
+            <artifactId>common-api</artifactId>
+            <version>${im-module.vserion}</version>
+        </dependency>
+    </dependencies>
+</project>

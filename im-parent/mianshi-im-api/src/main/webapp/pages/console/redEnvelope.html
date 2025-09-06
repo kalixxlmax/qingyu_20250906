@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>红包列表</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<!--搜索操作-->
+<div class="redPage_btn_div">
+    <div class="layui-row background_white title_menu_place">
+        <div class="layui-form searchModule">
+            <div class="searchBranch">
+                <div class="layui-form-item" style="">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">红包状态：</label>
+                        <div class="layui-input-inline">
+                            <select id="status" class="layui-select">
+                                <option value="">请选择</option>
+                                <option value="1">发出</option>
+                                <option value="2">已领完</option>
+                                <option value="-1">已退款</option>
+                                <option value="3">未领完退款</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label" style="width: 90px;">发送人昵称：</label>
+                        <div class="layui-input-inline">
+                            <input id="toUserName" type="text" name="" class="layui-input"
+                                   placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch">
+                <button class="layui-btn search_live motif_button_style">搜索</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="redEnvelope" class="layui-card module_interval">
+    <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+		红包列表
+	</div>
+    <div class="layui-card-body layui_card_body_top">
+        <table id="redEnvelope_table" lay-filter="redEnvelope_table"></table>
+    </div>
+</div>
+
+<!-- 红包流水 -->
+<div id="receiveWater" class="layui-card" style="display: none;">
+    <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+		红包领取详情
+	</div>
+    <div class="layui-card-body layui_card_body_top">
+        <table id="receiveWater_table" lay-filter="receiveWater_table">
+
+        </table>
+        <div class="characters_center">
+            <button onclick="Red.btn_back()" class="layui-btn background_white default_button_style margin_upDown_space">返回
+            </button>
+        </div>
+    </div>
+</div>
+
+<input id="redEnvlope_limlt" value="15" type="hidden">
+
+<!--操作-->
+<script type="text/html" id="redPageListBar">
+    <a class="layui-btn layui-btn-xs receiveWaterInfo redback-info table_default_btn"
+       lay-event="receiveWaterInfo">领取详情</a>
+</script>
+<!--隐藏框-->
+<input id="pageCount" type="" name="" style="display: none">
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="./js/redEnvelope.js"></script>
+</body>
+</html>

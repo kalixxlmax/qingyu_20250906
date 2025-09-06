@@ -1,0 +1,96 @@
+.layui-form-radio>i:hover, .layui-form-radioed>i {
+    color: #54CBC3;
+}
+table tbody tr td .layui-input{
+    width: 100%;
+    border-radius: 5px;
+}
+
+/*修改分页样式*/
+.layui-table-view .layui-table td {
+    padding: 9px 15px;
+    border-top: none;
+    border-left: none;
+}
+
+.layui-table-view .layui-table th {
+    padding: 9px 15px;
+    border-top: none;
+    border-left: none;
+}
+
+.layui-table thead tr, .layui-table-click, .layui-table-header, .layui-table-hover, .layui-table-mend, .layui-table-patch, .layui-table-tool, .layui-table-total, .layui-table-total tr, .layui-table[lay-even] tr:nth-child(2n) {
+     background-color: #FFFFFF;
+}
+
+.layui-table-tool{
+    border-bottom: 0px;
+}
+
+.layui-table-body {
+    margin-bottom: 0px;
+}
+
+.layui-table-page .layui-laypage {
+    margin: 0;
+    float: right;
+}
+
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #FF6666;
+}
+
+.layui-table-view .layui-table {
+    width: 100%;
+}
+
+#urlConfigList .layui-table td, #urlConfigList .layui-table th,#centerConfigList .layui-table td, #centerConfigList .layui-table th {
+    padding: 12px 15px;
+}
+.layui-tab-title{
+    margin: 0px 40px;
+}
+
+.layui-tab-title li{
+    border: 1px solid #E1E3E6;
+    border-bottom: 1px  solid transparent;
+    border-radius: 4px 4px 0px 0px;
+    margin-right: 40px;
+    border-bottom: 2px solid transparent;
+}
+
+.layui-tab-title .layui-this {
+    border: 1px solid #E1E3E6;
+    color: #FF6666;
+    position: relative;
+    top: -2px;
+    border-bottom: 2px solid #FFFFFF;
+}
+/*按钮样式*/
+.backBtn{
+    border: 1px solid #D9D9D9;
+    color: rgba(0, 0, 0, 0.65);
+    border-radius: 4px;
+}
+.backBtn:hover,.backBtn:hover {
+    opacity: .8;
+    filter: alpha(opacity=80);
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.65);;
+    cursor:pointer;
+}
+.savaBtn{
+    border: 1px solid #D9D9D9;
+    color: #FFFFFF;
+    background: #FF6666;
+    border-radius: 4px;
+}
+.btnSpace_right{
+    margin-right: 64px;
+}
+.layui-form {
+     padding: 0px;
+}
+
+
+

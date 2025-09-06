@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>账单报表</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="./css/public.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<link href="/pages/console/css/billCount.css" rel="stylesheet">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<!-- 全局时间范围选择 -->
+<div class="layui-row background_white title_menu_place">
+    <div class="searchModule layui-form">
+        <div class="searchBranch">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">时间范围：</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" id="globalDate" value="" placeholder=" " type="text">
+                        <img src="/pages/console/images/draw/calendar.png" class="calendar_icon">
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <div class="layui-input-inline" style="width: 80px;">
+                        <select class="global-time-unit" name="timeUnit" lay-filter="global-time-unit">
+                            <option value="1" selected>所有</option>
+                            <option value="2">今年</option>
+                            <option value="3">本月</option>
+                            <option value="4">今天</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-inline">
+                    <span style="color: red;" class="prompt_info"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--账单详情-->
+<div class="layui-row background_white title_menu_place module_interval" style="padding: 15px 40px;">
+    <div class="layui-col-md4 bill_font_style">
+        <p class="bill_title">未领取红包金额</p>
+        <p class="layuiadmin-big-font bill_money redpacketOverTotal"></p>
+    </div>
+    <div class="layui-col-md4 bill_font_style bill_border_left">
+        <p class="bill_title">转账未领取金额</p>
+        <p class="layuiadmin-big-font bill_money transferOverTotal"></p>
+    </div>
+    <div class="layui-col-md4 bill_font_style bill_border_left">
+        <p class="bill_title">充值金额</p>
+        <p class="layuiadmin-big-font bill_money rechargeTotal"></p>
+    </div>
+    <div class="layui-col-md4 bill_font_style">
+        <p class="bill_title">提现金额</p>
+        <p class="layuiadmin-big-font bill_money cashTotal"></p>
+    </div>
+    <div class="layui-col-md4 bill_font_style bill_border_left">
+        <p class="bill_title">提现手续费</p>
+        <p class="layuiadmin-big-font bill_money serviceChargeTotal"></p>
+    </div>
+</div>
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/common/echarts/shine.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/billCount.js"></script>
+</body>
+</html>

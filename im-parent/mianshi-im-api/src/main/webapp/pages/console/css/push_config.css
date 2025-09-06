@@ -1,0 +1,20 @@
+.layui-tab-title{
+    margin: 0px 40px;
+}
+
+.layui-tab-title li{
+    border: 1px solid #E1E3E6;
+    border-bottom: 1px  solid transparent;
+    border-radius: 4px 4px 0px 0px;
+    margin-right: 40px;
+    border-bottom: 2px solid transparent;
+}
+
+.layui-tab-title .layui-this {
+    border: 1px solid #E1E3E6;
+    color: #FF6666;
+    position: relative;
+    top: -2px;
+    border-bottom: 2px solid #FFFFFF;
+}
+

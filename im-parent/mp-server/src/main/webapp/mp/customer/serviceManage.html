@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/mp/css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+
+    <!-- 客服管理  -->
+    <div class="layui-row">
+        <div id="service_table" class="layui-card" style="margin-top: 1%;">
+            <div class="layui-card-header" style="text-align: center;">
+                <p data-locale="serviceList">客服列表</p>
+            </div>
+            <div class="layui-card-body">
+                <table id="service_list" lay-filter="service_list" style="table-layout:fixed;word-break:break-all;" >
+                    
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div id="hide_area">
+
+        <div id="bindService" class="layui-form" style="margin:20px 40px 10px 40px;display: none;">
+           <div class="layui-form-item">
+              <div class="layui-input-block" style="margin: 0 auto;">
+                <input type="text" required  lay-verify="required" placeholder=" " data-locale="telephone_number" autocomplete="off" lay-verify="number" class="layui-input telephoneStr">
+              </div>
+            </div>
+        </div>
+
+        <!-- 客服接待访客统计 -->
+        <div id="serviceVisitorCount_panel" style="display: none;">
+            <div class="layui-col-sm12">
+                <div class="layui-card">
+                <div class="layui-card-header" style="height: 75px;">
+                    <div class="layui-form" style="min-width: 400px;max-height: 30px;display: inline-flex; margin-top: 8px;">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                              <label class="layui-form-label" style="padding: 9px 8px" data-locale="time_search">时间搜索</label>
+                              <div class="layui-input-inline">
+                                <input class="layui-input" id="serviceVisitorCount_date" placeholder=" - " type="text">
+                              </div>
+                            </div>
+                        </div>
+                        <div class="layui-form-item" >
+                            <div class="layui-inline" >
+                                  <div class="layui-input-inline" style="width: 80px;">
+                                    <select class="serviceVisitorCount_time_unit" name="timeItem"  lay-filter="serviceVisitorCount_time_unit">
+                                            <option value="1" data-locale="time_unit_month">月</option>
+                                            <option value="2" data-locale="time_unit_day" selected>天</option>
+                                            <option value="3" data-locale="time_unit_hour">小时</option>
+                                     </select>
+                                  </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="layui-inline" >
+                        <span style="color: red;" class="prompt_info"></span>
+                    </div>
+
+                </div>
+                <div class="layui-card-body">
+                  <div class="layui-row">
+                  
+                    <div class="layui-col-sm12">
+                        <div class="layui-carousel layadmin-carousel layadmin-dataview" data-anim="fade" lay-filter="LAY-index-pagetwo" lay-anim="fade" style="width: 100%;">
+                            <div id="serviceVisitorCount_showArea"  style="width: 650px; height: 350px;"></div>
+                        </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="text/html" id="serviceTopBar">
+            <input type="text" name="" class="layui-input search_service_keyword" style="width: 15%;display: inline" placeholder="客服名称" data-locale="service_name" >
+            <a class="layui-btn layui-btn-sm"  lay-event="search_service" data-locale="menu_search">搜索</a>
+            <a class="layui-btn layui-btn-sm"  lay-event="add_service" data-locale="addService">添加客服</a>
+    </script>
+
+    <!-- 表格操作列 -->
+	<script type="text/html" id="serviceOptionBar">
+	    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="visitor_count" data-locale="view_visitor_records">接待访客统计</a>
+        {{# if(1!=d.isAllowModifyConfig){    }}
+             <a class="layui-btn layui-btn layui-btn-xs" lay-event="modify_config_ok" >允许修改配置</a>
+        {{# }else{                           }}
+             <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="modify_config_no" >禁止修改配置</a>
+        {{# }                                }}
+	    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del_service" data-locale="btn_delete">删除</a>
+	</script>
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+    <script type="text/javascript" src="/mp/common/echarts/echarts4_7_0.js"></script>
+    <script type="text/javascript" src="/mp/common/echarts/shine.js"></script>
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="/mp/common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+
+
+    <!-- <script type="text/javascript" src="/mp/js/mp_httpApi.js"></script> -->
+
+    <script type="text/javascript">
+
+       layui.use(['layer', 'util','table'], function () {
+            var $ = layui.jquery;
+            var layer = layui.layer;
+            var util = layui.util;
+            var table = layui.table;
+
+                //客服列表
+                var tableInService = table.render({
+                    elem: '#service_list'
+                    ,toolbar: '#serviceTopBar'
+                    ,url: request(mpCommon.serviceUrl+"/customerService/admin/serviceList",1)
+                    ,id: 'service_list'
+                    ,page: true
+                    ,curr: 0
+                    ,limit: mpCommon.limit
+                    ,limits: mpCommon.limits
+                    ,groups: 7
+                    ,cols: [[ //表头
+
+                        {field: 'service_userId', title: mpLanguage.getLanguageName('service_id'), width:100}
+                        ,{field: 'serviceName', title:  mpLanguage.getLanguageName('service_nickName'), width:150}
+                        ,{field: 'telephone', title: mpLanguage.getLanguageName('service_telephone'), width:200}
+                        ,{field: 'state', title: mpLanguage.getLanguageName('service_type'),sort:'true', width:100,templet:function(d){
+                                //状态 -1 离线(xmpp) 0：离开  1：忙碌 2 :空闲
+                                if(-1==d.state){ return mpLanguage.getLanguageName('dont_online');
+                                }else if(0==d.state){ return  mpLanguage.getLanguageName('online_leave');
+                                }else if(1==d.state){ return  mpLanguage.getLanguageName('online_busy')
+                                }else if(2==d.state){ return  mpLanguage.getLanguageName('online_free')
+                                }
+                            }}
+                        ,{field: 'createTime', title: mpLanguage.getLanguageName('add_time'),sort:'true', width:250,templet:function(d){
+                                return util.toDateString(d.createTime);
+                            }}
+                        ,{fixed: 'right', width: 300,title: mpLanguage.getLanguageName('operation'), align:'center', toolbar: '#serviceOptionBar'}
+                    ]]
+                    ,done:function(res, curr, count){
+                        // checkRequst(res);
+
+                       //initLanguage();
+                        layui.form.render();
+                    }
+
+                });
+
+             
+                //表头监听
+                table.on('toolbar(service_list)', function(obj){
+                    
+                    var layEvent = obj.event,  data = obj.data;
+                   
+                    if(layEvent === 'add_service'){ //添加客服
+                        Service.addService();
+                    }else if (layEvent === 'search_service'){
+                        Service.reloadServiceList();
+                    }
+
+                });
+
+                // 菜单操作项
+                table.on('tool(service_list)', function(obj){
+                    var layEvent = obj.event,  data = obj.data;
+                   
+                    if(layEvent === 'visitor_count'){ //客服统计
+                        
+                       Service.serviceVisitorCount(data.service_userId);
+
+                    }else if(layEvent==='del_service'){ //删除
+
+                        layer.confirm('确定删除该客服吗？', function(index){
+                          Service.deleteService(data.service_userId);
+                          obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+                          layer.close(index);
+                        });
+
+                    }else if(layEvent === 'modify_config_ok' ){ //
+                        Service.updateIsAllowModifyConfig(data.service_userId,1);
+
+                    }else if(layEvent === 'modify_config_no' ){ //
+                        Service.updateIsAllowModifyConfig(data.service_userId,0);
+                    }
+
+                });
+
+                var Service = {
+
+                    //添加客服
+                    addService : function () {
+                        layer.open({
+                            title:mpLanguage.getLanguageName('addService'),
+                            type: 1,
+                            btn:[mpLanguage.getLanguageName('determine'),mpLanguage.getLanguageName('theCancel')],
+                            area: ['310px'],
+                            content: $("#bindService")
+                            ,end: function(){ 
+                                $("#bindService").hide();
+                                //layui.form.render();
+                            }
+                            ,yes: function(index, layero){ //确定按钮的回调
+                                var telephoneStr = $("#bindService .telephoneStr").val();
+                                if (telephoneStr == ""){
+                                    layer.msg(mpLanguage.getLanguageName('input_phone_number'),{"icon":5});
+                                    return
+                                }
+                                mpCommon.invoke2({
+                                    url :'/customerService/admin/bindService',
+                                    data : {
+                                        telephoneStr : telephoneStr
+                                    },
+                                    success : function(result) {
+                                        if(result.resultCode == 1){
+                                            
+                                            if(0==result.data.successCount){
+
+                                                 layer.msg(mpLanguage.getLanguageName('addServiceError'),{"icon":2});
+                                            }else{
+                                                layer.msg(mpLanguage.getLanguageName('add_success')+ result.data.successCount + mpLanguage.getLanguageName('theData') ,{"icon":1});
+                                            }
+
+                                            layer.close(index); //关闭弹框
+
+                                            Service.reloadServiceList();
+
+                                        }else{
+                                            layer.close(index); //关闭弹框
+                                            layer.msg(result.resultMsg,{"icon":2});
+                                        }
+                                    },
+                                    error : function(result) {
+                                      layer.msg(mpLanguage.getLanguageName('failed_load_data'));
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    //删除客服
+                    ,deleteService:function (serviceId) {
+                        mpCommon.invoke2({
+                            url : '/customerService/admin/deleteService',
+                            data : {
+                                serviceId : serviceId
+                            },
+                            success : function(result) {
+                                if(result.resultCode == 1){
+                                    layer.msg(mpLanguage.getLanguageName('delete_success'),{"icon":1});
+                                   
+                                }else{
+                                    layer.msg(result.resultMsg,{"icon":2});
+                                }
+                            },
+                            error : function(result) {
+                            }
+                        });
+                    },
+                    reloadServiceList : function(){
+
+                        //重载表格数据
+                        tableInService.reload({
+                          where: { //设定异步数据接口的额外参数，任意设
+                            keyword : $(".search_service_keyword").val()
+                          }
+                          ,page: {
+                            curr: 1 //重新从第 1 页开始
+                          }
+                        });
+                    },
+                    serviceVisitorCount : function(serviceId,startDate,endDate,timeUnit){
+
+                        if(mpCommon.isNil(serviceId)){
+                            return; 
+                        }
+                        mpCommon.invoke2({
+                              url :'/customerService/admin/serviceVisitorCount',
+                              data : {
+                                serviceId:serviceId,
+                                startDate:startDate,
+                                endDate:endDate,
+                                timeUnit:timeUnit
+                              },
+                              success : function(result) {
+
+                                //基于准备好的dom，初始化echarts实例
+                                var serviceVisitorCount = echarts.init(document.getElementById('serviceVisitorCount_showArea'),'shine');
+                                
+                                //使用刚指定的配置项和数据显示图表。
+                                serviceVisitorCount.setOption(option = {
+                                        title: {
+                                            //text: getLanguage('group_chart')
+                                            text: "客服接待访客统计"
+                                        },
+                                        tooltip: {
+                                            trigger: 'axis'
+                                        },
+                                        xAxis: {
+
+                                            data : Service.getTimeStr(result.data)
+                                        },
+                                        yAxis: {
+                                            splitLine: {
+                                                show: false
+                                            }
+                                        },
+                                        /*toolbox: {
+                                            left: 'center',
+                                            feature: {
+                                                dataZoom: {
+                                                    yAxisIndex: 'none'
+                                                },
+                                                restore: {},
+                                                saveAsImage: {}
+                                            }
+                                        },*/
+                                        visualMap: {
+                                            top: 10,
+                                            right: 10,
+                                            pieces: [{
+                                                gt: 0,
+                                                lte: 50,
+                                                color: '#096'
+                                            }, {
+                                                gt: 50,
+                                                lte: 100,
+                                                color: '#ffde33'
+                                            }, {
+                                                gt: 100,
+                                                lte: 150,
+                                                color: '#ff9933'
+                                            }, {
+                                                gt: 150,
+                                                lte: 200,
+                                                color: '#cc0033'
+                                            }, {
+                                                gt: 200,
+                                                lte: 300,
+                                                color: '#660099'
+                                            }, {
+                                                gt: 300,
+                                                color: '#7e0023'
+                                            }],
+                                            outOfRange: {
+                                                color: '#999'
+                                            }
+                                        },
+                                        series: {
+                                            //name: getLanguage('create_message_number'),
+                                            name: '接待访客数',
+                                            type: 'line',
+                                            /*data: data.map(function (item) {
+                                                for( var time in item){ return item[time]}
+                                            })*/
+
+                                            data : Service.getTimeVlues(result.data)
+                                        }
+                                 });
+
+
+                                //打开客服接待访客统计面板
+                                layer.open({
+                                    title:"",
+                                    type: 1,
+                                    shade: false,
+                                    area: ['700px', '450px'],
+                                    shadeClose: true, //点击遮罩关闭
+                                    content: $("#serviceVisitorCount_panel"),
+                                    end : function(index, layero){ 
+                                      //if(confirm('确定要关闭么')){ //只有当点击confirm框的确定时，该层才会关闭
+                                        layer.close(index)
+                                        $("#serviceVisitorCount_panel").hide();
+                                     // }
+                                      return false; 
+                                    },
+                                    success : function(layero,index){  //弹窗打开成功后的回调
+                                        //layui.form.render();
+
+                                        layui.form.render('select');
+
+                                          //日期范围
+                                          layui.laydate.render({
+                                            elem: '#serviceVisitorCount_date'
+                                              ,lang: mpLanguage.getLanguage()
+                                            ,range: "~"
+                                            ,done: function(value, date, endDate){  // choose end
+                                                var startDate = value.split("~")[0];
+                                                var endDate = value.split("~")[1]; 
+                                                var timeUnit =  $(".serviceVisitorCount_time_unit").val()
+                                                Service.serviceVisitorCount(serviceId,startDate,endDate,timeUnit);
+                                            }
+                                            ,max: 0
+                                        });
+
+                                        //时间单位切换
+                                        layui.form.on('select(serviceVisitorCount_time_unit)', function(data){
+
+
+                                            if(data.value==3){ //时间单位切换到小时
+
+                                                $("#serviceVisitorCount_date").val("");
+
+                                                $("#serviceVisitorCount_date").attr("disabled","");
+                                                //getLanguage('count_hint')
+                                                $(".prompt_info").text(mpLanguage.getLanguageName("count_hint"));
+
+                                                dateRange = "";
+
+                                            }else{
+
+                                                $("#serviceVisitorCount_date").removeAttr("disabled");
+                                                $(".prompt_info").text("");
+                                            }
+
+
+                                              var dateRange = $("#serviceVisitorCount_date").val();
+                                              var startDate = dateRange.split("~")[0];
+                                              var endDate = dateRange.split("~")[1]; 
+
+                                              Service.serviceVisitorCount(serviceId,startDate,endDate,data.value);
+                                                
+                                        });
+
+
+                                    }
+
+
+                                });
+                                
+                                
+
+                              },
+                              errorCb : function(result) {
+
+                              }
+                        });
+
+                    },
+                    getTimeStr(datas){
+                        var timeStrs = new Array();
+                        for(var time in datas){
+                          timeStrs.push(time);
+                        }
+                        return timeStrs;
+                    }
+                    ,getTimeVlues(datas){
+                        var values = new Array();
+                        for(var time in datas){
+                            values.push(datas[time]);
+                        }
+                        return values;
+                    },
+                    updateIsAllowModifyConfig(serviceId,isAllow){
+
+                        mpCommon.invoke2({
+                            url : '/customerService/admin/serviceIsAllowModifyConfig',
+                            data : {
+                                serviceId : serviceId,
+                                isAllow : isAllow
+                            },
+                            success : function(result) {
+                                if(result.resultCode == 1){
+                                    layer.msg(mpLanguage.getLanguageName('update_success'),{"icon":1});
+                                    tableInService.reload(); //刷新当前页
+                                }else{
+                                    layer.msg(result.resultMsg,{"icon":2});
+                                }
+                            },
+                            error : function(result) {
+                            }
+                        });
+
+
+                    },
+
+
+
+
+                }
+
+
+
+
+
+       });
+    </script>
+
+
+
+</body>
+</html>

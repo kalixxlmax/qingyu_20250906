@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>朋友圈管理</title>
+</head>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+<link href="/pages/console/css/msg.css" rel="stylesheet">
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<div id="friendMsg_div">
+    <div class="layui-row background_white title_menu_place serachMsg">
+        <div class="layui-form searchModule">
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">发送人ID ：</label>
+                        <div class="layui-input-inline">
+                            <input id="userId" type="text" name="" class="layui-input" placeholder="请输入"
+                                   oninput="value=value.replace(/[^\d]/g,'')">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch">
+                <div class="layui-form-item">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">发送人昵称 ：</label>
+                        <div class="layui-input-inline">
+                            <input id="nickName" type="text" name="" class="layui-input" placeholder="请输入">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch">
+                <div class="layui-form-item" style="">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">消息类型：</label>
+                        <div class="layui-input-inline">
+                            <select id="type" class="layui-select">
+                                <option value="">请选择</option>
+                                <option value="1">文字消息</option>
+                                <option value="2">图文消息</option>
+                                <option value="3">语音消息</option>
+                                <option value="4">视频消息</option>
+                                <option value="5">文件消息</option>
+                                <option value="6">SDK分享消息</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="searchBranch characters_center">
+                <button class="layui-btn search_live motif_button_style">搜索</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="friendMsgList" class="layui-card module_interval">
+        <div class="mustDelete">
+            <img src="/pages/console/images/draw/question.png" class="small_icon">
+            <span class="chooseDeleteCount"></span>
+            <span class="checkDelete checkDelete" lay-event="deleteMsg" onclick="Msg.checkDeleteMsg()">  删除
+            </span>
+        </div>
+        <div class="layui-card-header layui_card_header_title layui_card_header_spare">
+            朋友圈列表
+        </div>
+        <div class="layui-card-body layui_card_body_top">
+            <table id="msg_table" lay-filter="msg_table" lay-data="{id:'msg_table'}"></table>
+        </div>
+    </div>
+
+    <!-- 评论详情 -->
+    <div id="commonMsg" class="layui-card module_interval" style="display: none;">
+        <div class="mustDelete">
+            <img src="/pages/console/images/draw/question.png" class="small_icon">
+            <span class="chooseDeleteCount"></span>
+            <span class="checkDelete checkDelete" onclick="Msg.checkDeleteComment()">  删除
+            </span>
+        </div>
+        <div class="layui-card-header layui_card_header_title">
+            评论详情
+        </div>
+        <div class="layui-card-body">
+            <table id="commentMsg_table" lay-filter="commentMsg_table">
+            </table>
+            <input id="msg_pageCount" type="" name="" style="display: none">
+            <div class="characters_center table_padding padding_upDown_space">
+                <button onclick="Msg.btn_back()" class="layui-btn default_button_style"
+                        style="">返回
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 点赞详情 -->
+    <div id="praiseMsg" class="layui-card module_interval" style="display: none;">
+        <div class="layui-card-header layui_card_header_p_title layui_card_header_spare">
+            点赞详情
+        </div>
+        <div class="layui-card-body layui_card_body_top table_padding">
+            <table id="praiseMsg_table" lay-filter="praiseMsg_table"></table>
+            <div class="characters_center padding_upDown_space">
+                <button onclick="Msg.btn_back()" class="layui-btn default_button_style"
+                        style="">返回
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--预览 -->
+<form id="showMsgInfo" style="display:none;">
+    <div class="layui-form-item">
+        <p class="layui-form-label" id="msgTitle" style="width: 650px;text-align: left"></p><br/><br/><br/>
+        <div class="layui-input-block" id="msgContent">
+
+        </div>
+    </div>
+</form>
+
+<!--隐藏框-->
+<input id="msg_limlt" value="15" type="hidden">
+<input id="pageCount" type="" name="" style="display: none">
+<input type="" name="" id="save_roomId" style="display: none;">
+<input id="member_pageCount" type="" name="" style="display: none">
+
+<!--操作-->
+<script type="text/html" id="msgListBar">
+    <a class="layui-btn layui-btn-xs delete msg-delete table_default_btn" lay-event="delete">删除</a>
+    <a class="layui-btn layui-btn-xs praiseMsg msg-praiseMsg table_default_btn" lay-event="praiseMsg"
+       onclick="Common.closeTablePopup()">点赞列表</a>
+    <a class="layui-btn layui-btn-xs commonMsg  msg-commonMsg table_default_btn" lay-event="commonMsg"
+       onclick="Common.closeTablePopup()">评论列表</a>
+    {{#  if(d.state == 0){ }}
+    <a class="layui-btn layui-btn-xs shutup  msg-shutup table_default_btn" lay-event="shutup">锁定</a>
+    {{#  }else if(d.state == 1){  }}
+    <a class="layui-btn layui-btn-xs cancelShutup msg-shutup table_default_btn" lay-event="cancelShutup">解锁</a>
+    {{#  } }}
+
+    {{#  if(d.userStatus == 1){ }}
+    <a class="layui-btn layui-btn-xs shutup msg-shutup1 table_default_btn" lay-event="locking">封号</a>
+    {{#  }else{  }}
+    <a class="layui-btn layui-btn-xs cancelShutup msg-shutup1 table_default_btn" lay-event="unlock">解封</a>
+    {{#  } }}
+
+    {{#  if(d.state == 2){ }}
+    <a class="layui-btn layui-btn-xs table_default_btn" lay-event="checkMsg">审核</a>
+    {{#  }else if(d.state == -1){  }}
+    <a class="layui-btn layui-btn-xs layui-btn-disabled table_disabled_btn">审核未通过</a>
+    {{#  } }}
+</script>
+
+<script type="text/html" id="deleteCommonMsg">
+    <a class="layui-btn layui-btn-danger layui-btn-xs deleteCommon msg-delete table_default_btn"
+       lay-event="deleteCommon">删除评论</a>
+</script>
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="./js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="/pages/console/js/common/BenzAMRRecorder.min.js"></script>
+<script type="text/javascript" src="./js/msg.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+.createMiniGame{
+    height: 470px;
+    margin-top: 50px;
+    padding-top: 50px;
+    border: 1px solid #e6e6e6;
+}
+.layui-form-label{
+    width: 100px;
+}
+.layui-word-aux{
+    padding: 0 30px!important;
+}
+.layui-form-item {
+    margin-bottom: 30px;
+}
+.input_p {
+    width: 520px;
+    color: #c1c2c3;
+    padding: 0 30px!important;
+}

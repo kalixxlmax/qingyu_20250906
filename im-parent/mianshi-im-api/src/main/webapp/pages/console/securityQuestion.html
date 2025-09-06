@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>安全问题</title>
+<link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+<link href="/pages/console/css/public.css" rel="stylesheet">
+</head>
+<body>
+	<div class="layui-row">
+		<div id="back" class="layui-col-md1">&nbsp;</div>
+		<input id="pageCount" type="" name="" style="display: none">
+	<div id="appRecharge_div" style="padding: 0px 13px 0px 13px;">
+
+		<div class="hintInfo_btn_div" style="margin-top: 2%">
+			<input type="text" name="" class="layui-input" id="searchCompany_keyword" placeholder="关键字" style="width: 10%;display: inline-block;">
+			<button class="layui-btn" id="searchCompany_btn" >搜索</button>
+
+			<button class="layui-btn" onclick="operation.createBtn()">新增</button>
+		</div>
+
+		<div class="layui-card" style="margin-top: 1%">
+			<div class="layui-card-header">安全问题</div>
+				<div class="layui-card-body" id="listQuestion">
+					<table id="question_table" lay-filter="question_table">
+					</table>
+				</div>
+
+
+				<!-- 新增问题 -->
+				<form  id="createQuestion" class="layui-form" style="width: 50%;display: none;">
+					<div class="layui-form-item">
+						<label class="layui-form-label">问题</label>
+						<div class="layui-input-block">
+							<input type="text" name="question" lay-verify="required" autocomplete="off" class="layui-input">
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<label class="layui-form-label">状态</label>
+						<div class="layui-input-block">
+							<input type="checkbox" checked="" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="开|关">
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button type="submit" class="layui-btn" lay-submit="" lay-filter="create">立即提交</button>
+							<a type="submit" class="layui-btn layui-btn-primary" onclick="operation.backBtn()">返回</a>
+						</div>
+					</div>
+				</form>
+
+
+				<!-- 修改问题 -->
+				<form id="updateQuestion" class="layui-form" style="width: 50%;display: none;">
+					<div class="layui-form-item">
+						<label class="layui-form-label">编号</label>
+						<div class="layui-input-block">
+							<input type="text" name="title" autocomplete="off" class="layui-input questionId" readonly>
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<label class="layui-form-label">问题</label>
+						<div class="layui-input-block">
+							<input type="text" name="title" autocomplete="off" class="layui-input question_modity">
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<label class="layui-form-label">状态</label>
+						<div class="layui-input-block">
+							<input type="checkbox" checked="" name="open" class="status_modity" lay-skin="switch" lay-filter="switchTest" lay-text="开|关">
+						</div>
+					</div>
+
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button type="submit" class="layui-btn" lay-submit="" lay-filter="update">立即修改</button>
+							<a type="submit" class="layui-btn layui-btn-primary" onclick="operation.backBtn()">返回</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- 多选操作 -->
+	<script type="text/html" id="toolbarCompanys">
+		<button  class="layui-btn layui-btn-sm"  lay-event="modity">修改</button>
+		<button  class="layui-btn layui-btn-danger layui-btn-sm"  lay-event="del">删除</button>
+	</script>
+
+	<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+	<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+	<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+	<script type="text/javascript" src="/pages/console/js/common.js"></script>
+	<script type="text/javascript" src="./js/console_ui.js"></script>
+	<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+	<script type="text/javascript" src="/pages/console/js/securityQuestion.js"></script>
+</body>
+</html>

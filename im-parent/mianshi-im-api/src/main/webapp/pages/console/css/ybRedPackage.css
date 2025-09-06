@@ -1,0 +1,207 @@
+body{
+    padding: 0px 32px 0px 32px;
+    margin-top: 24px;
+}
+.layui-table td, .layui-table th, .layui-table-col-set, .layui-table-fixed-r, .layui-table-grid-down, .layui-table-header, .layui-table-page, .layui-table-tips-main, .layui-table-tool, .layui-table-total, .layui-table-view, .layui-table[lay-skin=line], .layui-table[lay-skin=row] {
+    border-width: 0px;
+    border-style: solid;
+    border-color: #FFFFFF;
+    border-bottom: 1px solid #E8E8E8;
+}
+table thead tr th{
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 19px;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #FFFFFF;
+}
+.layui-form{
+    background: #FFFFFF;
+}
+.layui-table {
+    width: 100%;
+    margin: 0 auto;
+}
+.config_title{
+    width: 113px;
+    font-size: 21px;
+    color: rgba(0, 0, 0, 0.85);
+}
+.layui-form-radio>i:hover, .layui-form-radioed>i {
+    color: #54CBC3;
+}
+table tbody tr td .layui-input{
+    width: 72%;
+    border-radius: 5px;
+}
+
+table tbody tr td .layui-form-select dl {
+    min-width: 72%;
+}
+
+table tbody tr td .layui-form-select .layui-edge {
+    right: 30%;
+}
+.save{
+    background: #FF6666;
+}
+
+/*修改分页样式*/
+.layui-table-view .layui-table td {
+    padding: 9px 15px;
+    border-top: none;
+    border-left: none;
+}
+
+.layui-table-view .layui-table th {
+    padding: 9px 15px;
+    border-top: none;
+    border-left: none;
+}
+
+.layui-table thead tr, .layui-table-click, .layui-table-header, .layui-table-hover, .layui-table-mend, .layui-table-patch, .layui-table-tool, .layui-table-total, .layui-table-total tr, .layui-table[lay-even] tr:nth-child(2n) {
+    background-color: #FFFFFF;
+}
+
+.layui-table-tool{
+    border-bottom: 0px;
+}
+
+.layui-btn {
+    background-color: #FFFFFF;
+    color: #3DA2FF;
+    font-size: 14px;
+}
+
+.layui-btn:hover {
+    opacity: .8;
+    filter: alpha(opacity=80);
+    font-size: 14px;
+    color: #3DA2FF;
+    cursor:pointer;
+}
+.layui-table-body {
+    margin-bottom: 0px;
+}
+
+.layui-table-page .layui-laypage {
+    margin: 0;
+    float: right;
+}
+
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #FF6666;
+}
+
+.layui-table-view .layui-table {
+    width: 100%;
+}
+
+#urlConfigList .layui-table td, #urlConfigList .layui-table th,#centerConfigList .layui-table td, #centerConfigList .layui-table th {
+    padding: 12px 15px;
+}
+
+/*按钮样式*/
+.default_button_style{
+    border: 1px solid #D9D9D9;
+    color: rgba(0, 0, 0, 0.65);
+    border-radius: 4px;
+}
+.backBtn:hover,.backBtn:hover {
+    opacity: .8;
+    filter: alpha(opacity=80);
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.65);;
+    cursor:pointer;
+}
+.motif_button_style{
+    border: 1px solid #D9D9D9;
+    color: #FFFFFF;
+    background: #FF6666;
+    border-radius: 4px;
+}
+.btnSpace_right{
+    margin-right: 64px;
+}
+.pushTitle{
+    font-size: 16px;
+    color: #333333;
+    display: block;
+    padding: 6px 0px;
+}
+.background_white{
+    background: #FFFFFF;
+}
+.layui-input{
+    border-radius: 5px;
+}
+.layui-card-header{
+    border-bottom: 0px;
+}
+
+.characters_center{
+    text-align: center;
+}
+.title_menu_place{
+    padding: 24px 0px;
+}
+
+.layui_card_header_title{
+    font-size: 21px;
+    color: #333333;
+}
+
+.layui_row_space{
+    margin-bottom: 32px;
+}
+
+
+.layui-nav .layui-nav-more {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid dashed dashed;
+    border-color: #3DA2FF transparent transparent;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all .2s;
+    -webkit-transition: all .2s;
+    position: absolute;
+    top: 50%;
+    right: 3px;
+    margin-top: -3px;
+    border-width: 6px;
+    border-top-color: #3DA2FF;
+}
+.layui-nav .layui-nav-mored, .layui-nav-itemed>a .layui-nav-more {
+    margin-top: -9px;
+    border-style: dashed dashed solid;
+    border-color: transparent transparent #3DA2FF;
+}
+.moreBtn{
+    background-color: #fff;
+    color: #000000;
+}
+.layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 5px;
+    background-color: #FFFFFF;
+    transition: all .2s;
+    -webkit-transition: all .2s;
+}
+.layui-nav-child .layui-btn:hover {
+    opacity: 0.8;
+    color: #000000;
+}
+
+/*群组操作相关*/
+.cluster_style{
+    color: #bbb;
+    font-size: 13px;
+}
+.operationClass{
+    position: absolute;
+    right: 240px;
+}

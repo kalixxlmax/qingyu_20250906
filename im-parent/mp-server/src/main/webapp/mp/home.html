@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="./css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- 首页内容 -->
+    <div id="index" class="layui-body" >
+         <div id="index_one" class="layui-row layui-col-space10 index_all">
+            <div class="layui-col-md3 index_div_one" style="margin-left: 25px;">
+                <a id = "newMsg_area">
+                    <div class="layui-card-body index_div_body">
+                        <p id="msgCount" style="cursor:pointer;">0</p>
+                        <p class="index_div_p" data-locale="new_message">新消息</p>
+                    </div>
+                </a>
+            </div>
+            <div class="layui-col-md3 index_div_one" style="margin-left: 200px;">
+                <a id="fansNum_area">
+                    <div class="layui-card-body index_div_body">
+                        <p id="fansCount" style="cursor:pointer;"></p>
+                        <p class="index_div_p" data-locale="fan_num">粉丝数量</p>
+                    </div>
+                </a>
+                
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="./common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+    <script type="text/javascript" src="./js/mp_httpApi.js"></script>
+
+     <script type="text/javascript">
+         mpHttpApi.updateHomeCount();
+     </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <link href="/mp/common/layui/css/layui.css" rel="stylesheet">
+    <link href="./css/mp.css?v=21212" rel="stylesheet">
+</head>
+<body>
+    
+    <!-- 群发消息 -->
+   <div id="pushText" class="layui-body" >
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md10" style="margin-left: 10%;margin-top: 2%">
+                <textarea id="textbody" name="textbody" class="layui-textarea"  placeholder="请输入要群发的内容" data-locale="textbody"></textarea>
+                <div style="margin-top: 2%">
+                    <button  id="groupSendMsg_btn"  class="layui-btn" data-locale="textbody_btn">群发</button>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md10" style="margin-left: 10%;margin-top: 3%;height: 2%;" >
+                <h1 data-locale="example">示例</h1>
+                <img alt="" style="margin-left: 20%" src="./images/pushText.png">
+            </div>
+        </div>
+    </div>
+
+
+
+    <script type="text/javascript" src="/mp/common/layui/layui.all.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/mp/common/jquery/jquery.md5.js"></script>
+
+    <!-- i18n国际化 -->
+    <script type="text/javascript" src="./common/i18n/jquery.i18n.properties.js"></script>
+
+    <script type="text/javascript" src="/mp/js/mp_commons.js"></script>
+    <script type="text/javascript" src="./js/mp_httpApi.js"></script>
+
+     <script type="text/javascript">
+         
+        // 发送群发消息
+        $('#groupSendMsg_btn').on('click',function(){
+                
+            var body=$("#textbody").val();
+            if(null == body || "" == body || undefined == body){
+                layui.layer.alert(mpLanguage.getLanguageName('index_17'));
+                return;
+            }
+            
+            mpCommon.invoke({
+                url : '/mp/textToAll',
+                data : {
+                    title : body
+                },
+                success : function(result) {
+                    if (result.resultCode == 1) {
+                        layui.layer.alert(mpLanguage.getLanguageName('successful_mass'));
+                        $("#textbody").val("");
+                    } else {
+                        layui.layer.alert(mpLanguage.getLanguageName('mass_failure'));
+                    }
+                },
+                error : function(result) {
+                    layui.layer.alert(mpLanguage.getLanguageName('mass_failure'));
+                }
+            });
+
+
+        });
+
+
+     </script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,112 @@
+body{
+    padding: 0px 32px 0px 32px;
+    margin-top: 24px;
+    background-color: #F8F8F8;
+}
+.layui-btn {
+    background-color: #FFFFFF;
+    color: #3DA2FF;
+    font-size: 14px;
+}
+
+.layui-btn:hover {
+    opacity: .8;
+    filter: alpha(opacity=80);
+    color: #FFFFFF;
+    cursor:pointer;
+}
+.background_white{
+    background: #FFFFFF;
+}
+/*主题颜色*/
+.motif_button_style{
+    /*border: 1px solid #D9D9D9;*/
+    color: #FFFFFF;
+    background: #FF6666;
+    border-radius: 4px;
+}
+.motif_button_style:hover{
+    /*border: 1px solid #D9D9D9;*/
+    color: #FFFFFF;
+    background: #FF6666;
+    border-radius: 4px;
+}
+/*表单按钮默认样式*/
+.table_default_btn{
+    background-color: #fff;
+    color: #3DA2FF;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+.table_default_btn:hover{
+    border: 1px solid #E9E9E9;
+    background-color: #fff;
+    color: #3DA2FF;
+    border-radius: 2px;
+}
+/*字体居中*/
+.characters_center{
+    text-align: center;
+}
+.font_bule:hover{
+    color: #3DA2FF;
+    border: 1px solid #e6e6e6;
+}
+.table_default_btn_border{
+    border: 1px solid #E9E9E9;
+}
+
+.default_button_style {
+    border: 1px solid #D9D9D9;
+    color: rgba(0, 0, 0, 0.65);
+    border-radius: 2px;
+}
+
+.default_button_style:hover {
+    border: 1px solid #D9D9D9;
+    color: rgba(0, 0, 0, 0.65);
+    border-radius: 2px;
+}
+.fixed-table-container tbody .selected td {
+    background-color: transparent;
+}
+.table-hover>tbody>tr:hover{
+    background-color: #FFF1F1;
+}
+.table-hover>thead>tr:hover{
+    background-color: #FFF1F1;
+}
+/*上下间距*/
+.padding_upDown_space {
+    padding: 15px 0px;
+}
+.table_div{
+    padding: 15px 40px 0px 40px;
+}
+
+.layui-form {
+    background: #FFFFFF;
+    padding: 0px;
+}
+#from_bm_update , #from_bm_addEmp{
+    padding: 43px 40px;
+}
+#from_bm_add , #from_yg_update{
+    padding: 30px 40px;
+}
+.layui-form-label{
+    width: unset;
+    padding: 9px 0px;
+}
+#from_bm_addEmp , #from_bm_add , #from_bm_update , #from_yg_update ,#employeeInput ,#departmentInput{
+    display: none;
+}
+
+.layui-form-select dl dd.layui-this {
+    background-color: #FF6666;
+    color: #fff;
+}
+
+#employeeInput .layui-form-item , #departmentInput .layui-form-item{
+    margin-top: 27px;
+}

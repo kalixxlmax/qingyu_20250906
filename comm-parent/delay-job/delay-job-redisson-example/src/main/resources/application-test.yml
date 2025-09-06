@@ -1,0 +1,22 @@
+
+mongoconfig:
+    connectTimeout: 20000
+    dbName: db1
+    maxWaitTime: 20000
+    password: ''
+    roomDbName: imRoom
+    socketTimeout: 20000
+    uri: mongodb://192.168.0.120:28018/delayjob
+    username: ''
+redisson:
+    address: redis://192.168.0.120:6379
+    connectTimeout: 10000
+    database: 2
+    password: ''
+    pingConnectionInterval: 500
+    pingTimeout: 10000
+    timeout: 10000
+rocketmq:
+    name-server: 192.168.0.120:9876
+    producer:
+        group: push-delayjob-exec

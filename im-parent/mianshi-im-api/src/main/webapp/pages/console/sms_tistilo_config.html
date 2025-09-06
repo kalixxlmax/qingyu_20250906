@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/pages/common/layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="./css/public.css" media="all"/>
+    <link rel="stylesheet" href="/pages/console/css/commonStyle.css" media="all"/>
+    <link rel="stylesheet" href="/pages/console/css/sms_config.css" media="all"/>
+</head>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<form class="layui-form spare_bottom">
+    <!--天天国际短信配置-->
+    <table class="layui-table mag0 table-top-interval">
+        <colgroup>
+            <col width="25%">
+            <col width="26%">
+            <col width="25%">
+        </colgroup>
+        <thead>
+        <tr>
+            <th>参数说明</th>
+            <th>参数值</th>
+            <th>变量名</th>
+            <th>参数详细说明</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td>域名</td>
+            <td><input type="" name="" class="layui-input host" placeholder="请输入域名！"></td>
+            <td>host</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>端口</td>
+            <td><input type="number" name="" class="layui-input port" placeholder="请输入端口！"></td>
+            <td>port</td>
+            <td></td>
+        </tr>
+
+        <tr>
+            <td>api</td>
+            <td><input type="" name="" class="layui-input api" placeholder="api！"></td>
+            <td>api</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>短信平台用户名</td>
+            <td><input type="" name="" class="layui-input username" placeholder="请输入短信平台用户名！"></td>
+            <td>username</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>短信平台密码</td>
+            <td><input type="" name="" class="layui-input password" placeholder="请输入短信平台密码！"></td>
+            <td>password</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>中文短信模板</td>
+            <td><input type="" name="" class="layui-input templateChineseSMS" placeholder="请输入中文短信模板！"></td>
+            <td>templateChineseSMS</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>英文短信模板</td>
+            <td><input type="" name="" class="layui-input templateEnglishSMS" placeholder="请输入英文短信模板！"></td>
+            <td>templateEnglishSMS</td>
+            <td></td>
+        </tr>
+
+
+        <tr>
+            <td>单个IP指定时间区间内超过请求次数需要验证码(单位:次)</td>
+            <td><input type="" name="" class="layui-input smsSendCount" placeholder=""></td>
+            <td>smsSendCount</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>单个IP请求时间(单位:秒)</td>
+            <td><input type="" name="" class="layui-input smsSendTime" placeholder=""></td>
+            <td>smsSendTime</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>单个IP在指定时间区间内请求次数达到后拉黑(单位:次)</td>
+            <td><input type="" name="" class="layui-input smsSendBlackCount" placeholder=""></td>
+            <td>smsSendBlackCount</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>拉黑时间(单位:秒)</td>
+            <td><input type="" name="" class="layui-input smsSendBlackTime" placeholder=""></td>
+            <td>smsSendBlackTime</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>短信验证码指定时间区间内发送超出指定数量需要验证码(单位:次)</td>
+            <td><input type="" name="" class="layui-input allSmsSendCount" placeholder=""></td>
+            <td>allSmsSendCount</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>短信验证码验证区间(单位:秒)</td>
+            <td><input type="" name="" class="layui-input allSmsSendTime" placeholder=""></td>
+            <td>allSmsSendTime</td>
+            <td></td>
+        </tr>
+        <tr class="tableHoverWhite">
+            <td colspan="4" class="characters_center" style="border-bottom: 1px solid transparent;">
+                <button class="layui-btn smsConfig-sava sava-btn-place motif_button_style" lay-submit="" lay-filter="systemConfig">保存</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="./js/sms_tistilo_config.js"></script>
+</body>
+</html>

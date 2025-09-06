@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <title>资源管理</title>
+    <link href="/pages/common/layui/css/layui.css" rel="stylesheet">
+    <link href="/pages/console/css/commonStyle.css" rel="stylesheet">
+</head>
+<body>
+<!--展示当前路径-->
+<div class="layui-row background_white visitPathDiv">
+    <div class="visitPath"></div>
+</div>
+<!--搜索操作-->
+<div class="layui-row background_white title_menu_place">
+    <div class="searchModule layui-form">
+        <div class="searchBranch">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">文件名称：</label>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input keyword" placeholder="请输入">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">文件类型：</label>
+                    <div class="layui-input-inline">
+                        <select id="fileType" class="layui-select">
+                            <option value="" data-locale="fileType">请选择</option>
+                            <option value="image" data-locale="this_picture">图片</option>
+                            <option value="video" data-locale="video">视频</option>
+                            <option value="audio" data-locale="this_voice">语音</option>
+                            <option value="other" data-locale="other">其他</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch">
+            <div class="layui-form-item timeComponent">
+                <div class="layui-inline">
+                    <label class="layui-form-label">时间范围搜索：</label>
+                    <div class="layui-input-inline">
+                        <input class="layui-input" id="msgData" placeholder="请选择时间范围" type="text" autocomplete="off">
+                        <img src="/pages/console/images/draw/calendar.png" class="calendar_icon">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="searchBranch characters_center">
+            <button class="layui-btn search_btn motif_button_style">搜索</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- 审核列表 -->
+<div id="openCheckLogList" class="layui-card module_interval">
+    <div class="layui-card-header title layui_card_header_title layui_card_header_spare">
+        文件资源列表
+    </div>
+    <div class="layui-card-body layui_card_body_top">
+        <div id="resourc_table_div">
+            <table id="resourc_table" lay-filter="resourc_table"></table>
+        </div>
+    </div>
+</div>
+
+
+<input id="check_limlt" value="15" type="hidden">
+
+<!--预览 -->
+<form id="showMsgInfo" style="display:none;">
+    <div class="layui-form-item">
+        <p class="layui-form-label" id="msgTitle" style="width: 650px;text-align: left"></p><br/><br/><br/>
+        <div class="layui-input-block" id="msgContent">
+
+        </div>
+    </div>
+</form>
+
+<form id="uploadSmallFileFrom" name="uploadSmallFileFrom" action="" method="post" enctype="multipart/form-data">
+    <input id="photoSmallUrl" type="hidden" name="photoSmallUrl">
+    <input id="photoSmallUpload" lay-filter="photoSmallUpload" onchange="UploadInfo.upload()" name="myfile" type="file" style="display: none;" accept="image/bmp,image/png,image/jpeg,image/jpg,image/gif">
+</form>
+
+<!--操作-->
+<script type="text/html" id="showCaseBar_table">
+    <a class="layui-btn layui-btn-xs table_default_btn delete" lay-event="delete" data-locale="delete_btn">删除</a>
+</script>
+
+<script type="text/javascript" src="/pages/common/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/pages/console/assets/xss-filters.1.2.7.min.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<script type="text/javascript" src="/pages/assets/js/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="./js/console_ui.js"></script>
+<script type="text/javascript" src="/pages/console/js/authorityManagement.js"></script>
+<script type="text/javascript" src="/pages/console/js/common/BenzAMRRecorder.min.js"></script>
+<script type="text/javascript" src="/pages/console/js/resourceItem.js"></script>
+<!-- 文件上传 -->
+<script type="text/javascript" src="./js/jquery.form.js"></script>
+</body>
+</html>

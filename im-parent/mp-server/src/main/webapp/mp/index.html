@@ -1,0 +1,450 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>即时通讯公众号平台</title>
+<link rel="icon" href="./images/favicon.ico">
+<link href="./common/layui/css/layui.css" rel="stylesheet">
+<link href="./css/mp.css" rel="stylesheet">
+<link href="./css/mp_chatPanel.css" rel="stylesheet">
+<link href="./css/coolchat.css" rel="stylesheet">
+
+<link href="./scrollbar/nanoscroller.css" rel="stylesheet">
+
+</head>
+
+<style>
+	body{
+		margin: 0;
+	}
+	a:hover {
+    	color: #777;
+	}
+	.userInfo_input{
+		width: 80%;
+	}
+</style>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<input id="pageCount" type="" name="" style="display: none">
+
+		<!-- 顶部 -->
+		<div class="mp-head">
+		    <div class="mp-head-inner">
+		      	<div class="mp-head-layout">
+			        <div class="mp-head-layout-side">
+			          <h1 class="mp-head-logo">
+			            <p onclick="UI.index()" class="top_div_p" data-locale="index_title">即时通讯公众号平台</p>
+			          </h1>
+			        </div>
+
+
+			        <div id="userInfo" class="mp-head-layout-extra">
+			          	<div class="weui-desktop-account">
+
+				            <div class="mp-head-account-opr">
+				              <span>
+				                <div class="mp-head-account-info">
+				                  <a href="javascript:;">
+				                   <img id="avatar" class="mp-head-account-thumb headChang" src="">
+									<!-- <label  style="position: absolute;opacity: 0; width: 37%;height: 105%;display: block;cursor: pointer;background: rgb(255, 255, 255) none repeat scroll 0% 0%;left: -9px;"></label> -->
+				                  </a>
+				                  <a id="status" class="mp-head-status user-back" href="javascript:;"></a>
+				                  <div style="line-height: 40px;">
+				                  	<b class="mp-head-nickname" style="float:left"></b>
+				                  	<img src="./images/quit.png" class="quit_login" onclick="mpHttpApi.logout()" title="退出登录">
+				                  </div>
+									<!--<div class="layui-header head_language">
+										<ul class="layui-nav layui-layout-right">
+											<li class="layui-nav-item">
+												<a href="javascript:;">
+													<label data-locale="Change_Language">切换语言</label>
+												</a>
+												<dl class="layui-nav-child">
+													<dd>
+														<a href="#" class="signOut">
+															<i class="seraph icon-tuichu"></i>
+															<cite id="clickZH" onclick="mpLanguage.loadProperties('ZH')" data-locale="chinas">中文</cite>
+														</a>
+													</dd>
+													<dd>
+														<a href="#" class="signOut">
+															<i class="seraph icon-tuichu"></i>
+															<cite id="clickEN" onclick="mpLanguage.loadProperties('EN')" data-locale="english">英文</cite>
+														</a>
+													</dd>
+												</dl>
+											</li>
+										</ul>
+									</div>-->
+				                </div>
+				              </span>
+				            </div>
+			          	</div>
+			        </div>
+		      	</div>
+		    </div>
+		</div>
+
+
+		<!--  left导航栏 -->
+		<div id="mp_navBar" class="layui-side layui-side-menu layui-bg-black">
+			<ul class="layui-nav layui-nav-tree " style="list-style:none">
+
+				<!--<li id="home"  onclick="UI.switchTab(this)"  data-url="/mp/home.html"  class="layui-nav-item layui-nav-itemed">
+					<a class="left_a" data-locale="nav_1"  onmouseover="mpLanguage.Tips('li_one','nav_1')">首页</a>
+				</li>-->
+
+				<li id="msg" onclick="UI.switchTab(this)"  class="layui-nav-item" style="position:relative;">
+					<a onclick="UI.load_messageList()" class="left_a" data-locale="nav_2" onmouseover="mpLanguage.Tips('msg','nav_2')">消息管理</a>
+					<i id="messageNum_count" class="messageNum msgNumHide"></i>
+				</li>
+				<li id="fans" onclick="UI.switchTab(this)"  class="layui-nav-item">
+					<a onclick="UI.loadFansList()" class="left_a" data-locale="nav_3" onmouseover="mpLanguage.Tips('fans','nav_3')">粉丝管理</a>
+				</li>
+				<li id="grupSendMsg" onclick="UI.switchTab(this)" data-url="/mp/groupSendMsg.html" class="layui-nav-item">
+					<a  class="left_a" data-locale="nav_4" onmouseover="mpLanguage.Tips('grupSendMsg','nav_4')">群发消息</a>
+				</li>
+				<li id="sendSingleImgText" onclick="UI.switchTab(this)" data-url="/mp/sendSingleImgText.html" class="layui-nav-item">
+					<a  class="left_a" data-locale="nav_5" onmouseover="mpLanguage.Tips('sendSingleImgText','nav_5')">发单图文</a>
+				</li>
+				<li id="sendDoubleImgText" onclick="UI.switchTab(this)" data-url="/mp/sendDoubleImgText.html" class="layui-nav-item">
+					<a  class="left_a" data-locale="nav_6" onmouseover="mpLanguage.Tips('sendDoubleImgText','nav_6')">发多图文</a>
+				</li>
+
+				<li id="mpMenu"  onclick="UI.switchTab(this)" data-url="/mp/mpMenu.html" class="layui-nav-item">
+					<a  class="left_a" data-locale="nav_7" onmouseover="mpLanguage.Tips('mpMenu','nav_7')">定义菜单</a>
+				</li>
+
+				<li id="richText_groupSend"  onclick="UI.switchTab(this)"  data-url="/mp/richMassSend.html"  class="layui-nav-item">
+					<a class="left_a" data-locale="nav_richText" onmouseover="mpLanguage.Tips('richTextGroupSend','nav_richText')"  >富文本群发</a>
+				</li>
+
+				<!-- 客服模块 -->
+				<li id="customerModel"  class="layui-nav-item" >
+					<a href="#">
+						<label data-locale="nav_8" onmouseover="mpLanguage.Tips('service_system','nav_8')">客服系统</label>
+					</a>
+					<ul class="layui-nav-child" style="width: 100px;">
+
+						<li onclick="UI.switchTab(this)" data-url="/mp/customer/customerCount.html" class="layui-nav-item">
+							<a  class="left_a countManage" style="cursor:hand;">
+								<p class="nav_child_over" data-locale="nav_9" onmouseover="mpLanguage.Tips('li_ten','nav_9')">统计表图</p>
+							</a>
+						</li>
+
+						<li onclick="UI.switchTab(this)" data-url="/mp/customer/configManage.html"  class="layui-nav-item">
+							<a  class="left_a" style="cursor:hand;">
+								<p class="nav_child_over" data-locale="nav_10" onmouseover="mpLanguage.Tips('li_eleven','nav_10')">配置管理</p>
+							</a>
+						</li>
+
+						<li onclick="UI.switchTab(this)" data-url="/mp/customer/serviceManage.html" class="layui-nav-item">
+							<a  class="left_a" style="cursor:hand;">
+								<p class="nav_child_over" data-locale="nav_11" onmouseover="mpLanguage.Tips('li_eight','nav_11')">客服管理</p>
+							</a>
+						</li>
+
+						<li onclick="UI.switchTab(this)" data-url="/mp/customer/replyQuestion.html" class="layui-nav-item">
+							<a  class="left_a" style="cursor:hand;">
+								<p class="nav_child_over" data-locale="nav_12">自动回复问题</p>
+							</a>
+						</li>
+
+						<li onclick="UI.switchTab(this)" data-url="/mp/customer/replyMenu.html" class="layui-nav-item">
+							<a  class="left_a" style="cursor:hand;">
+								<p style="margin-left: 44px;">迎宾菜单管理</p>
+							</a>
+						</li>
+
+						<li onclick="UI.switchTab(this)" data-url="/mp/customer/usefulTextManage.html" class="layui-nav-item">
+							<a  class="left_a" style="cursor:hand;">
+								<p class="nav_child_over" data-locale="nav_13" onmouseover="mpLanguage.Tips('li_nine','nav_13')">常用语管理</p>
+							</a>
+						</li>
+
+						<li onclick="UI.switchTab(this)" data-url="/mp/customer/leaveWordManage.html" class="layui-nav-item">
+							<a  class="left_a" style="cursor:hand;">
+								<p class="nav_child_over" data-locale="nav_14" onmouseover="mpLanguage.Tips('li_twelve','nav_14')">留言管理</p>
+							</a>
+						</li>
+
+						<li onclick="UI.switchTab(this)" data-url="/mp/customer/evaluationManage.html" class="layui-nav-item">
+							<a  class="left_a" style="cursor:hand;">
+								<p class="nav_child_over" data-locale="nav_15" onmouseover="mpLanguage.Tips('li_thirteen','nav_15')">评价管理</p>
+							</a>
+						</li>
+					</ul>
+				</li>
+
+			</ul>
+		</div>
+
+
+		<!-- 右侧内容 -->
+		<div class="layui-body layui-form" style="background-color: #f2f2f2;height:90%">
+			<div class="layui-tab mag0 "  id="top_tabs_box">
+
+				<div class="layui-tab-content clildFrame">
+					<div id="mpBodyTab" class="layui-tab-item layui-show">
+						<!-- <iframe id="iframe" src="/mp/customer/replyMenu.html" style="position: absolute;height: 90%;width: 100%;border: none;"></iframe> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!-- 消息管理 -->
+		<div id="msg_manager" class="layui-body hide" style="background-color: #FFFFFF;">
+			<div class="page_content">
+				<ul class="message_list" id="message_list"></ul>
+
+				<div class="layui-flow-more">
+					<a href="javascript:;">
+						<i id="loadingMsgList" style="display: none;" class="layui-anim layui-anim-rotate layui-anim-loop layui-icon "></i>
+						<cite id="loadMoreMsgList" data-locale="menu_load_more">加载更多</cite>
+						<p id="noDataMsgList" style="display: none;" class="layui-flow-more" data-locale="no_more_data">没有更多数据了</p>
+					</a>
+				</div>
+
+			</div>
+		</div>
+
+		<!-- 粉丝列表 -->
+		<div id="fans_manager" class="layui-body hide" style="margin: 10px 30px;">
+	        <div id="fans_table" class="layui-card" style="margin-top: 1%;">
+	            <div class="layui-card-header" style="text-align: center;">
+	                <p data-locale="fans_list">粉丝列表</p>
+	            </div>
+	            <div class="layui-card-body">
+	                <table id="fans_list" lay-filter="fans_list" style="table-layout:fixed;word-break:break-all;" >
+
+	                </table>
+	            </div>
+	        </div>
+
+	        <script type="text/html" id="fansTopBar">
+	            <input type="text" name="" class="layui-input search_fans_keyword" style="width: 15%;display: inline" placeholder="粉丝昵称" data-locale="fans_nickName" >
+	            <a class="layui-btn layui-btn-sm"  lay-event="search_fans" data-locale="menu_search">搜索</a>
+		    </script>
+
+		    <script type="text/html" id="fansOptionBar">
+	            <a class="layui-btn layui-btn-danger layui-btn-sm"  lay-event="del_fans" data-locale="btn_delete">删除</a>
+	            <a class="layui-btn layui-btn-sm"  lay-event="send_msg" data-locale="send_message">发消息</a>
+		    </script>
+	    </div>
+
+		<!-- 百度地图 -->
+		<div id="baiduMap" style="display: none;">
+			<div id="baiduMap_showArea" style="width:600px; height:500px;"></div>
+		</div>
+
+		<!-- 聊天图片点击放大显示区 -->
+		<div id='mp_imgZoom_div' style="display: none;"></div>
+
+		<!-- 聊天面板  -->
+		<div id="mp_chatPanel" class="customer_message_panel"  style="overflow: hidden; display: none; ">
+
+			<div class="customer-heading" style="background-color: #EEEEEE; vertical-align:middle;border-bottom: 1px solid #d6d6d6">
+				<div style="height:40px">
+					<div class="headContent">
+						<div class="imgAvatar">
+							<figure id="chatAvator" style="height:40px;width:40px;">
+								<img onerror="'./images/ic_avatar.png'" src="./images/ic_avatar.png" class="chat_content_avatar">
+							</figure>
+						</div>
+					</div>
+
+					<div class="headContent">
+						<h3  class="panel-title user_nickname">
+							<span id="chatTitle"></span>
+						</h3>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="panel-body" style="padding: 0px;height:600px">
+				<div id='messagePanel' class="nano coolchat_message_show_area" style="height: 400px;">
+					<div class="nano-content" style="right:0">
+						<div id="messageContainer" style="overflow: hidden;padding: 0 13px;"></div>
+						<div id="messageEnd" style="height: 0px; overflow: hidden"></div>
+					</div>
+				</div>
+				<div id="emojl-panel" class="emoji-panel" style="display: none;">
+
+					<ul id="emojiList" class="emojiList" style=""></ul>
+				</div>
+
+				<div id="userfulText-panel" class="userfulText-panel" style="display: none;">
+					<h3 class="title">
+						<a href="javascript:" id="addUsefulTextBtn" class="link-set" data-locale="addUsefulTextBtn">添加</a>
+						常用语
+					</h3>
+					<ul id="userfulTextList"></ul>
+				</div>
+
+
+				<div id="sendMsgScopeDiv" style="height:210px; ">
+
+					<div style=" cursor: pointer; color: blue; font-size: 12px;">
+						<span id="btnEmojl">
+							<img id="img1" alt="" src="./images/emoji.png">
+						</span>
+
+						<span id="btnImg">
+								<img alt="" src="./images/p.png">
+						</span>
+						<!-- 用于触发图片上传 -->
+						<span id="imgUploadAction" style="display: none;"></span>
+
+						<span id="btnFile">
+							<img alt="" src="./images/wj.png">
+						</span>
+						<!-- 用于触发文件上传 -->
+						<span id="fileUploadAction" style="display: none;"></span>
+
+						<span id="userfulTextBtn" style="display: none;">
+							<img style="margin-top: 5px" src="./images/userfulText.png">
+						</span>
+					</div>
+					<textarea class="Input_text" id="messageBody" wrap="hard" style="padding: 0"></textarea>
+
+
+					<div style="/*margin-top: 15px; */float: right;">
+						<button id="btnSend" type="button"  class="layui-btn"  style="color: white; margin:10px 10px; background-color:#4baf4a; padding: 0 5px 0 10px;" data-locale="send_enter">发送（Enter）</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<!--预览用户信息 -->
+		<form id="showMsgInfo" style="display:none;">
+			<div class="layui-form-item">
+				<p class="layui-form-label" id="msgTitle" style="width: 650px;text-align: left"></p>
+				<br/><br/><br/>
+				<div id="msgContent">
+					<img class="user_info_headImg" style="border-radius: 16%;max-width: 120px;max-height: 120px;margin-left: 38%;margin-top: -6%;margin-bottom: 1%;" onerror='this.src ="/mp/images/ic_avatar.png" '  src="">
+					<img alt="" src="./images/wj.png">
+					<form class="layui-form layui-form-pane user_info_from" >
+						<div class="layui-form-item">
+							<label class="layui-form-label">昵称</label>
+							<div class="layui-input-block">
+								<input type="text" autocomplete="off" class="layui-input userInfo_input userinfo_nickname" readonly>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">性别</label>
+							<div class="layui-input-block">
+								<input type="text" autocomplete="off" class="layui-input userInfo_input userinfo_sex" readonly>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">出生年月</label>
+							<div class="layui-input-block">
+								<input type="text" autocomplete="off" class="layui-input userInfo_input userinfo_birthday" readonly>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">居住地</label>
+							<div class="layui-input-block">
+								<input type="text" autocomplete="off" class="layui-input userInfo_input userinfo_area" readonly>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">手机号</label>
+							<div class="layui-input-block">
+								<input type="text" autocomplete="off" class="layui-input userInfo_input userinfo_telephone" readonly>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">通讯号</label>
+							<div class="layui-input-block">
+								<input type="text" autocomplete="off" class="layui-input userInfo_input userinfo_account" readonly>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">个性签名</label>
+							<div class="layui-input-block">
+								<input type="text" autocomplete="off" class="layui-input userInfo_input userinfo_description" readonly>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</form>
+
+
+
+		<!-- 富文本编辑群发 -->
+		<div id="richText" class="layui-body hide" >
+			<div class="layui-row layui-col-space10">
+				<div class="layui-col-md10" style="margin-top: 3.5%;">
+					<iframe id="iframe" src="/mp/richMassSend.html" style="width: 120%;height: 92%;" frameborder=0></iframe>
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+	<!-- <form id="uploadUserHead" name="uploadSmallFileFrom" action="" method="post" enctype="multipart/form-data">
+		<input type="hidden" id="userId" name="userId" value="0" />
+		<input type="hidden" name="version" value="1" />
+		<input id="userHeadUpload" lay-filter="userHeadUpload" onchange="UI.uploadhead()" name="myfile" type="file" style="display: none;" accept="image/bmp,image/png,image/jpeg,image/jpg,image/gif">
+	</form> -->
+
+	<script type="text/javascript" src="./common/layui/layui.all.js"></script>
+
+	<script type="text/javascript" src="./common/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="./common/jquery/jquery.md5.js"></script>
+
+	<!-- i18n国际化 -->
+	<script type="text/javascript" src="./common/i18n/jquery.i18n.properties.js"></script>
+
+	<!-- 视频播放器 -->
+	<link rel="stylesheet" href="./common/plyr/plyr.css">
+	<script type="text/javascript" src="./common/plyr/plyr.min.js"></script>
+
+
+	<!-- 滚动条相关  -->
+	<script type="text/javascript" src="./scrollbar/jquery.nanoscroller.js"></script>
+	<script type="text/javascript" src="./scrollbar/jquery.nicescroll.js"></script>
+
+	<script type="text/javascript" src="./js/mp_dataUtils.js"></script>
+	<script type="text/javascript" src="./js/mp_commons.js"></script>
+
+	<!-- websocket IM  -->
+	<script src="./js/protobuf.js"></script>
+	<script src="./js/websocket_sdk.js"></script>
+	<script src="./js/webim.js"></script>
+
+	<!-- 百度地图 -->
+	<script type="text/javascript" src="//api.map.baidu.com/api?v=2.0&ak=jKNQmZGpICFGGVpZL2qMIWz5FQQG14PW"></script>
+
+	<script type="text/javascript" src="js/baidu-map.js"></script>
+
+
+
+
+
+	<!-- 消息加密相关-->
+	<!-- <script type="text/javascript" src="js/core.js"></script> -->
+	<script type="text/javascript" src="js/assets/tripledes.js"></script>
+	<script type="text/javascript" src="js/assets/crypto-js.js"></script>
+	<script type="text/javascript" src="js/assets/elliptic.js"></script>
+	<script type="text/javascript" src="js/assets/jsencrypt.min.js"></script>
+
+	<script type="text/javascript" src="./js/encryptUtils.js"></script>
+
+	<script type="text/javascript" src="./js/mp_httpApi.js"></script>
+
+	<script type="text/javascript" src="./js/mp_chat.js"></script>
+	<script type="text/javascript" src="./js/mp_index.js"></script>
+	<script type="text/javascript" src="./js/mp_init.js?v=32323"></script>
+
+</body>
+</html>

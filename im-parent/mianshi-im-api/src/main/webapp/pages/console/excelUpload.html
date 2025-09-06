@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>bootstrap-treegrid Demo</title>
+    <meta charset="utf-8" />
+    <link href="/pages/common/layui/css/layui.css" rel="stylesheet" media="all"/>
+    <link href="/pages/console/bootstrap-treegrid/dist/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/pages/console/bootstrap-treegrid/dist/bootstrap-table/bootstrap-table.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<script src="/pages/console/bootstrap-treegrid/dist/jquery/jquery-1.11.3.min.js"></script>
+<script src="/pages/console/bootstrap-treegrid/dist/bootstrap/js/bootstrap.min.js"></script>
+<script src="/pages/console/bootstrap-treegrid/dist/bootstrap-table/bootstrap-table.min.js"></script>
+<script src="/pages/console/bootstrap-treegrid/dist/bootstrap-table/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="/pages/console/bootstrap-treegrid/src/bootstrap-treegrid.js"></script>
+<script type="text/javascript" src="/pages/common/jquery/jquery.md5.js"></script>
+<script type="text/javascript" src="/pages/console/js/common.js"></script>
+<script type="text/javascript" src="/pages/common/layui/layui.all.js"></script>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+    <legend>绑定原始文件域</legend>
+</fieldset>
+
+<input type="file" name="file" id="test20">
+<!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
+<script>
+    // var reStr=request("/console/excel/importUserExcelData");
+    var reStr=request("/console/excel/importDepartmentExcelData");
+    layui.use(['upload', 'element', 'layer'], function(){
+        var $ = layui.jquery
+            ,upload = layui.upload
+            ,element = layui.element
+            ,layer = layui.layer;
+
+        //绑定原始文件域
+        upload.render({
+            elem: '#test20'
+            // ,url: 'https://httpbin.org/post' //改成您自己的上传接口
+
+            ,url: reStr //改成您自己的上传接口
+            ,accept: 'file' //file
+            ,done: function(res){
+                layer.msg('上传成功');
+                console.log(res)
+            }
+        });
+
+    });
+
+</script>
+</body>
+</html>

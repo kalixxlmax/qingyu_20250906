@@ -1,0 +1,14 @@
+#operation{
+    margin-left: 78%;
+    margin-top: 9px;
+}
+
+#addRandomUser .layui-form-label{
+    width: unset;
+    padding: 9px 0px;
+}
+
+.updateRoomArgeColor{
+    color: #999!important;
+    font-size: 12px;
+}
